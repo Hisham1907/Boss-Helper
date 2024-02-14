@@ -1,0 +1,280 @@
+ /********************/
+/* BELOW 1344PX SMALLER DESKTOP */
+/********************/
+@media (max-width:84em){
+  .hero{
+      max-width: 120rem;
+  }
+  .heading-primary {
+    font-size: 4.4rem;
+}
+}
+/* BELOW 1200PX (small laptops) */
+/********************/
+@media (max-width:75em){
+html{
+ font-size:56.25% ; 
+}
+.heading-secondary {
+  font-size: 3.6rem;
+}
+.heading-tertiary {
+  font-size: 2.4rem;
+}
+.grid{
+  row-gap: 6.4rem;
+  column-gap: 4.8rem;
+}
+.header{
+  padding: 0 3.2rem;
+}
+.hero{
+  gap: 4.8rem;
+}
+.main-nav-list {
+  gap: 3.2rem;
+
+}
+}
+
+/* BELOW 976PX (tablets) */
+/********************/
+@media (max-width:61em){
+html{
+  font-size: 50%;
+}
+.hero {
+  grid-template-columns: 1fr;
+  padding: 0 8rem;
+   gap: 6.4rem;
+}
+.hero-img {
+  width: 60%;
+}
+
+.hero-text-box, 
+.hero-img-box {
+  text-align: center;
+}
+.customers{
+justify-content: center;
+margin-top: 3.2rem;
+}
+
+.features-grid ,.testemonials-boxes{
+  grid-template-columns: repeat(2, 1fr);
+}
+.features-img-box {
+ display: none;
+ }
+ .footer-text{
+  font-size: 3.2rem;
+  line-height: 1.4;
+
+ }
+}
+@media (max-width:55em){
+  .heading-trusted{
+    font-size: 3.6rem;
+  }
+  .trusted-img {
+    height: 2.4rem;
+   }
+}
+/* BELOW 768PX (small tablets) */
+/********************/
+@media (max-width:48em){
+  .heading-secondary {
+     margin-bottom: 4.8rem;
+   }
+.accordion {
+     width: 100%;
+   }
+   .cta {
+     grid-template-columns: 1fr;
+     row-gap: 3.2rem;
+  }
+  .contact-us{
+    grid-column: span 2;
+  }
+.contact-info-box {
+   grid-row: 2;
+display: grid;
+grid-template-columns: 1fr 1fr;
+column-gap: 2.4rem;
+}
+.info-details{
+  align-self: center;
+}
+.footer-second-row{
+    grid-template-columns: repeat(6, 1fr);
+}
+.nav-col{
+    grid-row: 1;
+    grid-column: span 2;
+    margin-bottom: 3.2em;
+  }
+.logo-col,
+.address-col{
+    grid-column: span 3;
+  }
+  .header{
+    position: relative;
+  }
+.btn-mobile-nav{
+  display: block;
+}
+
+.main-nav{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: .5s all;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateX(100%);
+}
+.main-nav .main-nav-list{
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+.main-list-link:link,
+.main-list-link:visited {
+  font-size: 3rem;
+}
+.nav-open .main-nav{
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+
+}
+.nav-open .mobile-nav-icon.fa-xmark{
+  display: block;
+}
+.nav-open .mobile-nav-icon.fa-bars{
+  display: none;
+}
+
+
+}
+ 
+/* BELOW 608PX ( phones) */
+/********************/
+@media(max-width:38em){
+  .grid{
+    row-gap: 4.8rem;
+      }
+      .grid-col-2 ,
+      .features-grid,
+      .testemonials-boxes,
+      .contact-info-box
+      {
+        grid-template-columns: 1fr;
+      }
+      .hero{
+        padding: 0 3.2rem;
+  
+   }
+   
+  
+   .section-hero {
+    padding: 2.4rem 0 6.4rem 0;
+ }
+ .btn,
+ .btn:link,
+ .btn:visited {
+    padding: 2.4rem 1.6rem;
+ }
+ .hero-img {
+  width: 80%;
+}
+.why-img-box:nth-child(4){
+  grid-row: 3;
+}
+
+.trusted-img {
+  height: 1.6rem;
+}
+}
+/* 448px */
+@media(max-width:28em){
+  .heading-primary{
+    font-size: 3rem;
+  }
+  .heading-trusted {
+    font-size: 3rem;
+    line-height: 1.4;
+  }
+  .trusted-text {
+    margin-bottom: 3.2rem;
+  }
+  .trusted-testemonial-box{
+    padding: 0 2.4rem;
+  }
+  .trusted-testemonial {
+     padding: 3.2rem;
+  }
+  .item-text {
+    font-size: 2rem;
+line-height: 1.4;
+  }
+  .cta-form {
+     grid-template-columns: 1fr;
+  }
+  .footer-img {
+    display: none;   
+  }
+  
+  .footer-header {
+    grid-column: 1/-1;
+  }
+  .footer {
+     padding: 4.8rem 0;
+   
+  }
+}
+    
+
+/* 384px */
+@media(max-width:24em){
+  .trusted-img {
+    height: 1.2rem;
+  }
+  .faq-img {
+    width: 32rem;
+  }
+  .container {
+     padding: 0 2.4rem;
+   }
+  .heading-primary{
+    font-size: 2.8rem;
+}
+.boss-info{
+  line-height: 1.4;
+}
+}
+/* 384px */
+@media(max-width:21.25em){
+ 
+  .heading-primary{
+    font-size: 2.6rem;
+}
+
+}
+
+
+  /* Font sizes (px) */
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+      
+-Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/form.css">
+  <title>Sign In</title>
+</head>
+
+<body>
+      <!--Sign in page Start  -->
+  <!--Navbar Start  -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Boss Helper</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <a href="signUp.html" class="nav-btn rounded-2" type="submit">Sign Up</a>
+            </form>
+        </div>
+    </div>
+</nav>
+  <!--Navbar End  -->
+<!--==================================================================-->
+   <!--Form Start  -->
+<section class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="row ">
+      <!-- Image Column -->
+      <div class="offset-lg-1 col-lg-5 p-0 d-flex align-items-stretch">
+        <div class="home-img">
+          <img src="img/home.jpg" class="w-100 h-100 object-fit-cover" alt="Company">
+        </div>
+      </div>
+       <!-- Form Column -->
+<div class="col-lg-4 p-0 ">
+  <div class="form py-3 px-5 rounded-end-3 d-flex flex-column justify-content-center align-items-stretch h-100">
+      <header class="form-title">
+          <h2 class="title text-center">Sign In</h2>
+      </header>
+      <!-- Validation and Error Messages -->
+      <div id="error-message" class="alert alert-danger hidden" role="alert">
+          Incorrect email or password. Please try again.
+      </div>
+      <div class="input-field form-control py-2 rounded-pill d-flex flex-row justify-content-center align-items-center">
+          <i class="fa-solid fa-envelope pe-3"></i>
+          <input type="email" id="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="input-field form-control py-2 rounded-pill d-flex flex-row justify-content-center align-items-center">
+          <i class="fa-solid fa-lock pe-3"></i>
+          <input type="password" id="password" name="password" placeholder="Password" required>
+      </div>
+      <!-- Remember Me Option -->
+      <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="rememberCheckbox">
+          <label class="form-check-label" for="rememberCheckbox">
+              Remember Me
+          </label>
+      </div>
+      <div class="btn-field text-center">
+          <input type="submit" id="login" value="Login" class="my-btn rounded-pill px-5 py-2 my-3">
+          <p class="fw-bold">Don’t have an account? <a id="sign-up-btn" href="signUp.html">Sign Up</a></p>
+      </div>
+      <!-- Forgot Password Link -->
+      <p class="text-center"><a href="#" id="forgotPassword">Forgot Password?</a></p>
+  </div>
+</div>
+
+    </div>
+  </section>
+    <!--Form End  -->
+<!--==================================================================-->
+   <!-- Footer Start -->
+   <footer class="bg-dark text-light py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 text-center text-lg-start mb-5 mb-lg-0 ">
+                <h4>Personal Info</h4>
+                <p>Email: info@bosshelper.com</p>
+                <p>Phone: +201090164367</p>
+            </div>
+            <div class="col-lg-3 text-center text-lg-start mb-5 mb-lg-0">
+                <h4>Quick Links</h4>
+                <ul class="list-unstyled">
+                    <a class="nav-link" href="tasks.html">Home</a>
+
+                    <a class="nav-link" href="employees.html">About Us</a>
+
+                    <a class="nav-link" href="testemonials.html">Services</a>
+                </ul>
+            </div>
+            <div class="col-lg-3 text-center text-lg-start mb-5 mb-lg-0 icons">
+                <h4 class="mb-3">My Social Media</h4>
+                <a href="#" class=" mx-3"><i class="fab fa-facebook fa-xl"></i></a>
+                <a href="#" class=" me-3"><i class="fab fa-twitter fa-xl"></i></a>
+                <a href="#" class=" me-3"><i class="fab fa-instagram fa-xl"></i></a>
+            </div>
+            <div class="col-lg-3 text-center text-lg-start mb-5 mb-lg-0">
+                <h4>Newsletter</h4>
+                <form id="newsletterForm" class="form-inline">
+                    <div class="mb-2">
+                        <label for="newsletterEmail" class="visually-hidden">Email address</label>
+                        <input type="email" class="form-control my-4 " id="newsletterEmail" placeholder="Your Email">
+                    </div>
+                    <button type="submit" class="my-btn mb-2 py-2 px-4 rounded-2">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+        <hr class="my-3">
+        <div class="row">
+            <div class="col-lg-6 text-center text-lg-start">
+                <p>&copy; 2023 Boss Helper | Copyright by <span class="fw-bold">Hisham</span> </p>
+            </div>
+            <div class="col-lg-6 text-center terms text-lg-end">
+                <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+  <!-- Footer End -->
+  <!--==================================================================-->
+      <!--Sign in page End  -->
+<!--==================================================================-->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/signInModule.js"></script>
+</body>
+
+</html>
+ 

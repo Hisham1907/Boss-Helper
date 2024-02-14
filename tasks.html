@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/tasks.css">
+
+  <title>To Do List</title>
+  <meta name="title">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--Daily tasks page Start -->
+
+  <!--Navbar Start  -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Boss Helper</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link  " aria-current="page" href="profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tasks.html">Daily Tasks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="employees.html">Employees Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testemonials.html">Customers Reviews</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <a href="signIn.html" class=" nav-btn rounded-2" type="submit">Logout</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!--Navbar End  -->
+  <!--==================================================================-->
+  <!-- Todo list Start -->
+  <main class="py-5 px-1 px-md-5">
+    <p id="error" class="d-none m-auto text-center shadow todo-bg rounded-2 py-2 mt-3 ">Input field cannot be empty!</p>
+
+    <section class="mt-5 d-flex justify-content-center align-items-center">
+      <div class="todo  shadow todo-bg rounded-2 px-1 px-md-3 py-3">
+        <div class="add-bar d-flex justify-content-between">
+          <input id="input-field" type="text" class="w-75 form-control-plaintext" placeholder="Add a task ...">
+          <button id="main-btn" class="px-4 rounded-2 border-0">Add</button>
+        </div>
+
+        <div class="tasks p-3">
+          <p id="pending-tasks">
+            You have <span id="tasks-count"></span> task(s) to complete.
+          </p>
+          <div id="task-container">
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <!-- Todo list End -->
+  <!--==================================================================-->
+  <!-- Footer Start -->
+  <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 text-center text-lg-start mb-5 mb-lg-0">
+          <h4 >Personal Info</h4>
+          <p>Email: info@bosshelper.com</p>
+          <p>Phone: +123 456 7890</p>
+        </div>
+        <div class="col-lg-4 text-center text-lg-start mb-5 mb-lg-0">
+          <h4>Quick Links</h4>
+          <ul class="list-unstyled">
+            <a class="nav-link" href="tasks.html">Daily Tasks</a>
+
+            <a class="nav-link" href="employees.html">Employees Data</a>
+
+            <a class="nav-link" href="testemonials.html">Customers Reviews</a>
+           </ul>
+        </div>
+        <div class="col-lg-4 text-center text-lg-start mb-5 mb-lg-0 icons">
+          <h4 class="mb-3">My Social Media</h4>
+           <a href="#" class=" mx-3"><i class="fab fa-facebook fa-xl"></i></a>
+          <a href="#" class=" me-3"><i class="fab fa-twitter fa-xl"></i></a>
+          <a href="#" class=" me-3"><i class="fab fa-instagram fa-xl"></i></a>
+        </div>
+ 
+      </div>
+      <hr class="my-3">
+      <div class="row">
+        <div class="col-lg-6 text-center text-lg-start">
+          <p>&copy; 2023 Boss Helper | Copyright by <span class="fw-bold">Hisham</span> </p>
+        </div>
+        <div class="col-lg-6 text-center terms text-lg-end">
+          <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+  <!--==================================================================-->
+  <!--Daily tasks page Start  -->
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tasks.js"></script>
+</body>
+
+</html>

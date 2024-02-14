@@ -1,0 +1,72 @@
+
+/*============================================================================================================================*/
+/*======================================================= Todo Start ====================================================*/
+/*============================================================================================================================*/
+.todo-bg {
+  background-color: #f1f8fb;
+}
+.add-bar input {
+  border-bottom: 1px solid #dadfe2;
+}
+.add-bar input:focus {
+  border-bottom: 1px solid #3a6073;
+}
+.add-bar button {
+  background-color: #3a6073;
+  color: white;
+}
+#error {
+  color: #ff5c5c;
+}
+.checked {
+  text-decoration: line-through;
+  color: #555;
+}
+#check-icon {
+  color: #3a6073;
+}
+/*============================================================================================================================*/
+/*======================================================= Todo End ====================================================*/
+/*============================================================================================================================*/
+
+/* Media Query */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .todo,
+  #error {
+    width: 100%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .todo,
+  #error {
+    width: 100%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .todo,
+  #error {
+    width: 70%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .todo,
+  #error {
+    width: 50%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .todo,
+  #error {
+    width: 50%;
+  }
+}
