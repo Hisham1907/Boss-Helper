@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <aside >
+            <div class="top-box">
+                <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
+                    <p >Boss<span>Helper</span></p>
+                </a>
+                <i class="fa-solid fa-bars " id="toggle-btn"></i>
+             </div>
+             <div class="profile">
+                <div class="profile-img">
+                    <img src="img/boss.jpg" alt="Boss Img">
+                </div>
+                <p class="profile-name" id="profile-name">Hisham Rabea</p>
+            </div>
+            <nav class="menu ">
+                <ul class="menu-items">
+                    <li class="menu-item"> 
+                        <a class="active" href="dashboard.html"><i class="menu-icon fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a></li>
+                    <li class="menu-item">
+                        <a href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
+                            <span>Employees</span> 
+
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
+                            <span>Products</span>
+
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="menu-icon fas fa-tasks"></i>
+                            <span>Daily Tasks</span>
+
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="menu-icon fa-solid fa-gear"></i>
+                            <span>Settings</span>
+
+                        </a>
+                    </li>
+                  
+                   
+                    <li class="menu-item">
+                        <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                    <li  >
+                        <div class="mode">
+                            <div class="mode-icon">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <span class="mode-text">Dark Mode</span>
+                            <label class="toggle">
+                                <input type="checkbox" id="mode-toggle">
+                                <span class="slider"></span>
+                                <span class="toggle-icon">
+                                    <i class="fas fa-sun"></i>
+                                    <i class="fas fa-moon"></i>
+                                </span>
+                            </label>
+                        </div>
+                        
+                       
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- <i class="fa-solid fa-xmark fa-xl dashboard-mobile-icon"></i> -->
+
+        <main>
+            <div class="welcome-back">
+                <h2>Welcome Back, Yasser!</h2>
+                <p>We're glad to see you again. Here's a quick overview of your dashboard:</p>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="reports">
+                    <div class="report">
+                        <h3>Sales Overview</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla quam ac sem euismod,
+                            vel tincidunt libero feugiat.</p>
+                    </div>
+                    <div class="report">
+                        <h3>Task Progress</h3>
+                        <p>Curabitur vehicula augue quis est finibus, non scelerisque dui ullamcorper. Nunc ut ipsum non
+                            lacus imperdiet volutpat.</p>
+                    </div>
+                    <div class="report">
+                        <h3>Recent Activities</h3>
+                        <p>Integer facilisis justo in sapien faucibus, ac mattis libero consectetur. Fusce a nisi id
+                            orci aliquet posuere.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+        <div class="right-col">
+          
+        </div>
+
+    </div>
+
+
+    <script src="js/dashboard.js"></script>
+
+
+</body>
+
+</html>

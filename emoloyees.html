@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/emoloyees.css">
+    <title>Employees</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <aside >
+            <div class="top-box">
+                <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
+                    <p >Boss<span>Helper</span></p>
+                </a>
+                <i class="fa-solid fa-bars " id="toggle-btn"></i>
+             </div>
+             <div class="profile">
+                <div class="profile-img">
+                    <img src="img/boss.jpg" alt="Boss Img">
+                </div>
+                <p class="profile-name">Hisham Rabea</p>
+            </div>
+            <nav class="menu ">
+                <ul class="menu-items">
+                    <li class="menu-item"> 
+                        <a  href="dashboard.html"><i class="menu-icon fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a></li>
+                    <li class="menu-item">
+                        <a class="active" href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
+                            <span>Employees</span> 
+
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
+                            <span>Products</span>
+
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="menu-icon fas fa-tasks"></i>
+                            <span>Daily Tasks</span>
+
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#"><i class="menu-icon fa-solid fa-gear"></i>
+                            <span>Settings</span>
+
+                        </a>
+                    </li>
+                  
+                   
+                    <li class="menu-item">
+                        <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                    <li  >
+                        <div class="mode">
+                            <div class="mode-icon">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <span class="mode-text">Dark Mode</span>
+                            <label class="toggle">
+                                <input type="checkbox" id="mode-toggle">
+                                <span class="slider"></span>
+                                <span class="toggle-icon">
+                                    <i class="fas fa-sun"></i>
+                                    <i class="fas fa-moon"></i>
+                                </span>
+                            </label>
+                        </div>
+                        
+                       
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="employees-crud">
+            <header>
+                <div class="header-top">
+                    <div class="entries-numbers">
+                        <span>Show </span>
+                        <select id="table-size">
+                            <option value="10">10</option>
+                            <option value="10">25</option>
+                            <option value="10">50</option>
+                            <option value="10">100</option>
+                        </select>
+                        <span> entries</span>
+                    </div>
+                    <div class="search-bar">
+                        <label for="search">Search:</label>
+                        <input type="text" name="search" id="search" placeholder="Search ...">
+                    </div>
+                   
+                </div>
+                <button id="add-new-member">New member</button>
+            </header>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Picture</th>
+                        <th>Full Name</th>
+                        <th>Age</th>
+                        <th>Position</th>
+                        <th>Salary</th>
+                        <!-- <th>Start date</th> -->
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="11" class="empty">No Data Available</td>
+                    </tr>
+                
+                </tbody>
+            </table>
+            <footer>
+                <p>Showing 1 to 10 from 50 entries</p>
+                <div class="pagination">
+                    <button>Prev</button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>Next</button>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <!-- Employee Form -->
+    <div class="form-container ">
+        <div class="employees-form">
+            <header>
+                <h2 class="modal-title">Employee Data</h2>
+                <button class="close-btn" id="close-btn"><i class="fa-solid fa-circle-xmark"></i></button>
+            </header>
+            <main >
+                <form action="#" id="my-form">
+                    <div class="img-holder">
+                        <label for="file-input" class="upload">
+                            <input type="file" id="file-input" class="picture">
+                            <i class="fa-solid fa-plus"></i>
+                        </label>
+                        <img src="img/user.jpg" alt="" id="employee-img">
+                     </div>
+                    <div class="input-fields">
+                        <div class="input-box">
+                            <label for="first-name">First Name </label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="last-name">Last Name </label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="position">Position </label>
+                            <input type="text" id="position" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="salary">Salary </label>
+                            <input type="number" id="salary" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="start-date">Start Date </label>
+                            <input type="date" id="start-date" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="email">Email </label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="phone">Phone </label>
+                            <input type="number" id="phone" required>
+                        </div>
+                    </div>
+                </form>
+            </main>
+            <footer>
+                <button class="submit-btn" form="my-form" id="main-btn" >Add Employee</button>
+            </footer>
+        </div>
+    </div>
+   
+    <script src="js/emoloyees.js"></script>
+
+</body>
+
+</html>

@@ -13,7 +13,7 @@ function signInHandler() {
       if (emailInput.value == users[i].email &&passwordInput.value == users[i].password) {
         localStorage.setItem('name',users[i].name)
         localStorage.setItem('email',users[i].email)
-        window.location.href = 'profile.html';
+        window.location.href = 'dashboard.html';
       }
     }
   });

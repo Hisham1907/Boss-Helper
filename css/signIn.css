@@ -1,0 +1,13 @@
+.sign-box {
+     grid-template-columns: 1fr;
+}
+.sign-content {
+     border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; 
+  }
+  .main-logo{
+    margin-bottom: 24px;
+  }
+  .main-title {
+     margin-bottom: 12px;
+   }
