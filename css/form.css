@@ -84,6 +84,10 @@ border-color: #15803d;
 display: block; 
  color:#15803d ;
 }
+.input-field.error ,.input-field.success{
+   transition: all 0.3s ease;  
+}
+
 .error .field {
    border-color: #b91c1c;
 }
@@ -262,4 +266,58 @@ visibility: visible;
 }
 
 /* NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN */
+ 
+ /********************/
+/* BELOW 1344PX SMALLER DESKTOP */
+/********************/
+@media (max-width:84em){
+ 
+}
+/* BELOW 1200PX (small laptops) */
+/********************/
+@media (max-width:75em){
+html{
+ font-size:56.25% ; 
+}
+ 
+}
+
+/* BELOW 976PX (tablets) */
+/********************/
+@media (max-width:61em){
+html{
+  font-size: 50%;
+}
+ 
+}
+@media (max-width:55em){
+ 
+}
+/* BELOW 768PX (small tablets) */
+/********************/
+@media (max-width:48em){
+ 
+}
+ 
+/* BELOW 608PX ( phones) */
+/********************/
+@media(max-width:38em){
+ 
+}
+/* 448px */
+@media(max-width:28em){
+ 
+}
+    
+
+/* 384px */
+@media(max-width:24em){
+ 
+}
+/* 384px */
+@media(max-width:21.25em){
+ 
+}
+
+
  

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/form.css">
-  <link rel="stylesheet" href="css/signIn.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/signIn.css">
 
-  <title>Sign In</title>
+    <title>Sign In</title>
 </head>
 
 <body>
@@ -16,13 +16,11 @@
         <div class="sign-content">
             <a href="index.html" class="main-logo "><i class="fas fa-handshake"></i>Boss Helper
             </a>
-    
+
             <main class="main">
                 <h3 class="main-title">Welcome back!</h3>
                 <p class="main-text">Login to your BossHelper account and continue your journey with us.</p>
             </main>
- 
-    
         </div>
         <div class="form ">
             <header class="form-title">
@@ -37,16 +35,18 @@
                 </div>
                 <small>Error Message</small>
             </div>
-    
-    
+
+
             <div class="input-field">
                 <div class="field ">
                     <i class="fa-solid fa-lock input-icon"></i>
                     <input type="password" id="password" name="password" placeholder="Password" required>
-                     <div id="password-strength"></div>
+                    <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
+                    <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
                 </div>
-                </div>
-             <div class="form-check">
+                <small>Error Message</small>
+            </div>
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
                 <label class="form-check-label" for="termsCheckbox">
                     Remember Me
@@ -55,15 +55,14 @@
             <div class="btn-field">
                 <input type="submit" id="login" value="Login" class="my-btn ">
                 <p>Don’t have an account? <a id="sign-up-btn" href="signUp.html">Sign Up</a></p>
-     
             </div>
             <!-- <p class="text-center"><a href="#" id="forgotPassword">Forgot Password?</a></p> -->
         </div>
-    
+
     </div>
-   
-   <script src="js/signInModule.js"></script>
+    <div class="error-message" id="errorMessage"></div>
+
+    <script src="js/signInModule.js"></script>
 </body>
 
 </html>
- 

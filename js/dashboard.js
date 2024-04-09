@@ -1,8 +1,6 @@
 const profileContent = document.querySelector('#profile-name');
 profileContent.innerHTML = `${localStorage.getItem('name')}  `;
-{/* <p class="fs-5"><span class="fw-bold"> Email : </span>${localStorage.getItem(
-    'email'
-  )}</p> */}
+ 
 // Aside toggle btn
 let toggleBtn=document.querySelector('#toggle-btn');
 let aside=document.querySelector('aside')

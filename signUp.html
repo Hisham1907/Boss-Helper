@@ -11,12 +11,10 @@
 </head>
 
 <body>
-
     <div class=" sign-box ">
         <div class="sign-content">
             <a href="index.html" class="main-logo "><i class="fas fa-handshake"></i>Boss Helper
             </a>
-
             <main class="main">
                 <h3 class="main-title  ">Start your journey with us</h3>
                 <p class="main-text">Welcome to <strong>BossHelper</strong>, Where Success Finds You! Join now for
@@ -45,7 +43,7 @@
             <div class="input-field ">
                 <div class="field  ">
                 <i class="fa-solid fa-user input-icon "></i>
-                <input type="text" id="name" name="fullName" placeholder="Full Name" required>
+                <input type="text" id="name" name="fullName" placeholder="Name" required maxlength="31">
                 <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
                 <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
             </div>
@@ -64,7 +62,9 @@
             <div class="field ">
                 <i class="fa-solid fa-lock input-icon"></i>
                 <input type="password" id="password" name="password" placeholder="Password" required>
-                 <div id="password-strength"></div>
+                <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
+                <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                <div id="password-strength"></div>
             </div>
             <small>Error Message</small>
 
@@ -73,7 +73,9 @@
                 <div class="field ">
                 <i class="fa-solid fa-lock input-icon"></i>
                 <input type="password" id="confirm-password" name="password" placeholder="Confirm Password" required>
-                 <div id="password-strength"></div>
+                <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
+                <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                <div id="password-strength"></div>
             </div>
             <small>Error Message</small>
             </div>
@@ -88,8 +90,8 @@
                 <p>Already have an account? <a id="sign-up-btn" href="signIn.html">Sign In</a></p>
             </div>
         </div>
-
     </div>
+ 
 
     <script src="js/signUpModule.js"></script>
 </body>
