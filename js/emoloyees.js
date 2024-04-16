@@ -23,6 +23,7 @@ if (localStorage.getItem('employees')!=null){
   employees=JSON.parse(localStorage.getItem('employees'))
   displayData()
 }
+
 addNewMemberBtn.addEventListener("click", function () {
   formContainer.classList.add("appear");
   employeesForm.classList.add("appear");
@@ -30,7 +31,6 @@ addNewMemberBtn.addEventListener("click", function () {
 closeBtn.addEventListener("click", function () {
   formContainer.classList.remove("appear");
   employeesForm.classList.remove("appear");
-  
 });
 fileInput.addEventListener("change", function (e) {
   let file = e.target.files[0];
@@ -86,27 +86,29 @@ function clear() {
   employeeImg.src ='images/user.jpg';
 }
 function displayData() {
-  let content = "";
-  for (let i = 0; i < employees.length; i++) {
-    content += `
-    <tr>
-    <td>${i + 1}</td>
-    <td class="user-img"><img src="${employees[i].img}" alt=""></td>
-    <td>${employees[i].firstName + " " + employees[i].lastName}</td>
-    <td>${employees[i].age}</td>
-     <td>${employees[i].position}</td>
-    <td>${employees[i].salary}</td>
-     <td>${employees[i].email}</td>
-    <td>${employees[i].phone}</td>
-    <td class="action">
-        <button><i class="fa-regular fa-eye"></i></button>
-        <button onclick="getData(${i})"><i class="fa-regular fa-pen-to-square"></i></button>
-        <button onclick="deleteEmployee(${i})"><i class="fa-regular fa-trash-can" ></i></button>
-    </td>
-</tr>
-    `;
-  }
-  tableBody.innerHTML = content;
+  let content=''
+  employees.forEach(function( employee,i){
+ content+=`
+     <tr>
+     <td>${i + 1}</td>
+     <td class="user-img"><img src="${employee.img}" alt=""></td>
+     <td>${employee.firstName + " " + employee.lastName}</td>
+     <td>${employee.age}</td>
+      <td>${employee.position}</td>
+     <td>${employee.salary}</td>
+      <td>${employee.email}</td>
+     <td>${employee.phone}</td>
+    
+     <td class="action">
+     <button onclick="getData(${i})" class="update"><i class="fa-regular fa-pen-to-square"></i></button>
+     </td>
+     <td class="action">
+     <button onclick="deleteEmployee(${i})" class="delete"><i class="fa-regular fa-trash-can" ></i></button>
+     </td>
+ </tr>
+    `
+  })
+tableBody.innerHTML = content;
 }
 function deleteEmployee(index){
 employees.splice(index,1)
@@ -138,8 +140,6 @@ function updateData(i){
   employees[i].phone=phone.value
 
 }
-
-
 search.addEventListener('keyup',function(){
   let content='';
 for(let i=0;i<employees.length;i++){
@@ -156,10 +156,11 @@ for(let i=0;i<employees.length;i++){
      <td>${employees[i].email}</td>
     <td>${employees[i].phone}</td>
     <td class="action">
-        <button><i class="fa-regular fa-eye"></i></button>
-        <button onclick="getData(${i})"><i class="fa-regular fa-pen-to-square"></i></button>
-        <button onclick="deleteEmployee(${i})"><i class="fa-regular fa-trash-can" ></i></button>
-    </td>
+     <button onclick="getData(${i})" class="update"><i class="fa-regular fa-pen-to-square"></i></button>
+     </td>
+     <td class="action">
+     <button onclick="deleteEmployee(${i})" class="delete"><i class="fa-regular fa-trash-can" ></i></button>
+     </td>
 </tr>
     `;
   

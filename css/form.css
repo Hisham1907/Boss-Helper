@@ -9,19 +9,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100svh;
+  min-height: 100svh;
  }
+ html {
+  font-size: 62.5%;
+   
+}
 a {
   text-decoration: none !important;
 }
 .main-title {
   font-weight: 700;
-  margin-bottom: 24px;
-  font-size: 36px; 
+  margin-bottom: 2.4rem;
+  font-size: 3.6rem; 
 }
 .main-text {
   line-height: 1.6;
-  font-size: 18px; 
+  font-size: 1.8rem; 
 
 }
 .boss-qoute {
@@ -29,20 +33,20 @@ a {
 }
 /* Input Field Styling */
 .input-field{
-  padding-bottom: 10px;
+  padding-bottom: 1rem;
 }
 .field {
   display: flex;
   align-items: center;
   background-color: #f0f9ff;
   border-radius: 5px;
-   padding: 16px 8px;
+   padding: 1.6rem .8rem;
   border: 2px solid #dee2e6;
   color: #333;
-  margin-bottom: 4px;
+  margin-bottom: .4rem;
  }
 .field input {
-  padding: 6px;
+  padding: .6rem;
   border: none;
   background-color: #f0f9ff;
   display: flex;
@@ -51,6 +55,7 @@ a {
 }
 .input-field small{
 visibility: hidden;
+font-size: 1.4rem;
 }
 input {
   background-color: transparent;
@@ -58,23 +63,23 @@ input {
   outline: none;
   font-weight: 600;
   width: 100%;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 input::placeholder {
   color: #075985;
   font-weight: 500;
-  font-size: 18px;
+  font-size:  1.8rem;
 }
 .field .input-icon {
   color: #075985;
   margin-left: 1rem;
-  padding-right: 12px;
-  font-size: 18px;
+  padding-right:  1.2rem;
+  font-size:  1.8rem;
 }
 .verfy-icon{
-   font-size: 20px;
+   font-size:  2rem;
 display: none;
-margin-right: 10px ;
+margin-right:  1rem ;
 }
 .success .field {
 border-color: #15803d;
@@ -102,31 +107,32 @@ visibility: visible;
   }
 .form {
   background-color: #fff;
-  padding: 32px;
-  border-radius: 11px;
+  padding:  3.2rem;
+  border-radius:  11px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
 }
 .form-title {
-  margin-bottom: 32px;
+  margin-bottom:  3.2rem;
   text-align: center;
 }
 
 .title {
-  font-size: 28px;
+  font-size:  2.8rem;
   font-weight: 600;
   color: #333;
 }
  
 .btn-field {
-  margin-top: 16px;
+  margin-top:  1.6rem;
   text-align: center;
 }
 .btn-field p {
   color: #333;
   font-weight: 700;
+  font-size: 1.4rem;
 }
 
 .btn-field a {
@@ -147,10 +153,10 @@ visibility: visible;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  padding: 10px 5px;
+  padding:  1rem  .5rem;
   border-radius: 5px;
-  margin: 12px 0;
-  font-size: 20px; /* Increased font size */
+  margin:  1.2rem 0;
+  font-size:  2rem; /* Increased font size */
 }
 
 .my-btn:hover {
@@ -160,7 +166,7 @@ visibility: visible;
 .sign-box {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 800px;
+  max-width:  80rem;
   border-radius: 11px;
   box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -181,7 +187,7 @@ visibility: visible;
 }
 .main-logo {
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 2.4rem;
   font-weight: 600;
   color: #fff;
 }
@@ -195,19 +201,20 @@ visibility: visible;
 }
 .boss-message {
   background-color: #0369a1;
-  padding: 12px;
+  padding: 1.2rem;
   border-radius: 9px;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
 }
 .boss-img {
-  width: 3.5rem;
+  width: 4rem;
   border-radius: 50%;
 }
 .boss-info {
   display: flex;
   gap: 1rem;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 1.2rem;
 }
 .info-text p {
   margin-bottom: 0;
@@ -216,15 +223,15 @@ visibility: visible;
   font-weight: 600;
 }
 .boss-title {
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 /* Form Check Box Styling */
 .form-check {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 8px;
+  gap: .8rem;
   align-items: center;
-  padding-left: 12px;
+  padding-left: 1.2rem;
   position: relative;
  }
 
@@ -232,13 +239,13 @@ visibility: visible;
   margin-right: 0.5rem;
   position: relative;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
   background-color: transparent;
   border: 2px solid #075985;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .form-check-input:checked {
@@ -252,7 +259,7 @@ visibility: visible;
 
 .form-check-label {
   color: #333;
-  font-size: 16px;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
@@ -267,57 +274,30 @@ visibility: visible;
 
 /* NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN */
  
- /********************/
-/* BELOW 1344PX SMALLER DESKTOP */
-/********************/
-@media (max-width:84em){
- 
-}
-/* BELOW 1200PX (small laptops) */
-/********************/
-@media (max-width:75em){
-html{
- font-size:56.25% ; 
-}
- 
-}
+ @media (max-width:768px) {
+  html{
+    font-size: 50%;
+  }
+  body{
+    align-items:start;
+    background-color: #fff;
+  }
+  .sign-box {
+     grid-template-columns: 1fr;
+     border-radius: 0;
+     box-shadow: none;
+  }
+  .form,.sign-content{
+    border-radius: 0;
+  }
+  .sign-content{
+    display: flex;
+    gap: 4rem;
 
-/* BELOW 976PX (tablets) */
-/********************/
-@media (max-width:61em){
-html{
-  font-size: 50%;
-}
- 
-}
-@media (max-width:55em){
- 
-}
-/* BELOW 768PX (small tablets) */
-/********************/
-@media (max-width:48em){
- 
-}
- 
-/* BELOW 608PX ( phones) */
-/********************/
-@media(max-width:38em){
- 
-}
-/* 448px */
-@media(max-width:28em){
- 
-}
-    
+  }
 
-/* 384px */
-@media(max-width:24em){
- 
-}
-/* 384px */
-@media(max-width:21.25em){
- 
-}
 
+
+ }
 
  

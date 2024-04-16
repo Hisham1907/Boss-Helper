@@ -1,35 +1,49 @@
 :root {
-  font-size: 62.5%;
-  overflow-x: hidden;
+   overflow-x: hidden;
   scroll-behavior: smooth;
   --main-bg-color: #343a40;
   --secondary-bg-color: #212529;
+  --form-bg-color: #212529;
   --teriary-bg-color: #0c4a6e;
   --btn-hover: #1864ab;
   --main-hover-bg-color: rgba(255, 255, 255, 0.2);
-  --table-hover-color: rgba(255, 255, 255, 0.1);
+  --head-hover-color: rgba(255, 255, 255, 0.2);
+  --table-hover-color: rgba(255, 255, 255, 0.1) ;
   --main-color: #fff;
   --link-before-color: #7dd3fc;
   --box-shadow-color: rgba(255, 255, 255, 0.2);
   --logo-primary-color: #fff;
   --logo-secondary-color: #7dd3fc;
   --input-focus-color: #121416;
+  --add-hover-bg-color: #121416;
+  --form-input-color: #121416;
   --aside-bg-color: #212529;
+  --light-color: #fff; 
+  --submit-btn-bg-color: #fff; 
+  --submit-btn-color: #000; 
 
 }
 .light-theme {
-  font-size: 62.5%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  --main-bg-color: #f5f5f5; /* Light gray background */
-  --secondary-bg-color: #fff; /* White background */
-  --teriary-bg-color: #e2e8f0; /* Light gray for theme toggler */
-  --btn-hover: #1864ab; /* Button hover color */
-  --main-color: #343a40; /* Dark gray text color */
-  --link-before-color: #0284c7; /* Darker blue for pseudo-elements */
-  --box-shadow-color: rgba(0, 0, 0, 0.2); /* Dark box shadow */
-  --logo-primary-color: #343a40; /* Dark gray for logo text */
-  --logo-secondary-color: #7dd3fc; /* Light blue for logo icon */
+  --main-bg-color: #f5f5f5;
+  --teriary-bg-color: #e2e8f0; 
+  --btn-hover: #1864ab;
+  --main-color: #343a40;
+  --light-color: #fff;
+  --link-before-color: #fff; 
+  --box-shadow-color: rgba(0, 0, 0, 0.2); 
+  --logo-primary-color: #fff; 
+  --logo-secondary-color: #7dd3fc;  
+  --aside-bg-color: #0369a1;
+  --add-hover-bg-color: #0369a1;
+   --input-focus-color: #bae6fd;
+   --secondary-bg-color:#e2e8f0; 
+  --table-hover-color: #bae6fd;
+  --form-bg-color: #fff;
+  --submit-btn-bg-color: #0369a1; 
+  --submit-btn-color: #fff; 
+  --form-input-color: #f5f5f5;
+  --head-hover-color: #0284c7;
+
 }
 
 * {
@@ -37,10 +51,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+html{
+  font-size: 62.5%;
+}
 .container {
   display: grid;
-  grid-template-columns: 100px auto;
-  height: 100vh;
+  grid-template-columns: 10rem auto;
+  min-height: 100vh;
   transition: all 0.5s ease;
 }
 main {
@@ -54,11 +71,11 @@ body {
 }
 /* Side Navbar Start */
 aside {
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--aside-bg-color);
-  padding: 16px;
+  padding: 1.6rem;
   position: relative;
-  width: 100px;
+  width: 10rem;
   transition: 0.5s all ease;
 }
 aside .top-box {
@@ -85,6 +102,7 @@ aside .top-box {
 #toggle-btn {
   cursor: pointer;
   font-size: 2rem;
+  color: var(--light-color);
  }
  .profile {
   display: flex;
@@ -105,6 +123,7 @@ aside .top-box {
   font-size: 1.6rem;
   font-weight: 600;
   opacity: 0;
+  color: var(--light-color);
 }
 .menu-items {
   display: flex;
@@ -114,7 +133,7 @@ aside .top-box {
 }
 .menu a {
   text-decoration: none;
-  color: var(--main-link-color);
+  color: var(--light-color);
   padding: 1.8rem;
   display: flex;
   align-items: center;
@@ -146,15 +165,15 @@ aside .top-box {
   content: "";
   position: absolute;
   left: 0;
-  width: 6px;
+  width: .6rem;
   height: 100%;
   background-color: var(--link-before-color);
 }
 .aside-active {
-  width: 280px;
+  width: 28rem;
 }
 .container:has(> aside.aside-active) {
-  grid-template-columns: 280px auto;
+  grid-template-columns: 28rem auto;
 }
 .aside-active .main-logo {
   opacity: 1;
@@ -182,8 +201,8 @@ aside .top-box {
 .toggle {
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 20px;
+  width: 4rem;
+  height: 2rem;
 }
 .toggle input {
   display: none;
@@ -197,15 +216,15 @@ aside .top-box {
   bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 20px;
+  border-radius: 2rem;
 }
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
-  left: 2px;
-  bottom: 2px;
+  height: 1.6rem;
+  width: 1.6rem;
+  left: .2rem;
+  bottom: .2rem;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
@@ -215,7 +234,7 @@ input:checked + .slider {
   background-color: #2196f3;
 }
 input:checked + .slider:before {
-  transform: translateX(20px);
+  transform: translateX(2rem);
 }
 .toggle-icon {
   position: absolute;
@@ -227,7 +246,7 @@ input:checked + .slider:before {
 .toggle-icon i {
   font-size: 1.2rem;
   color: #fff;
-  margin: 0 5px;
+  margin: 0 .5rem;
 }
 .mode {
   text-decoration: none;
@@ -285,7 +304,7 @@ input:checked + .slider:before {
   transform: scale(1.05);
 }
 #add-new-member,.submit-btn {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--secondary-bg-color) ;
   color: var(--main-color);
   padding: 1rem 1.6rem;
   border: none;
@@ -297,8 +316,8 @@ input:checked + .slider:before {
   margin-bottom: 2rem;
 }
 #add-new-member:hover {
-  /* background-color: var(--main-hover-bg-color); */
-  background-color: var(--input-focus-color);
+   background-color: var(--add-hover-bg-color);
+   color: var(--light-color);
 
 }
 .user-img img {
@@ -313,6 +332,7 @@ input:checked + .slider:before {
   border-collapse: collapse;
   font-size: 1.6rem;
   width: 100%;
+  overflow: auto;
 }
 .employees-crud td,
 .employees-crud th {
@@ -320,13 +340,16 @@ input:checked + .slider:before {
   border-bottom: 1px solid #adb5bd;
   padding: 0.8rem 1.2rem;
 }
+.employees-crud thead{
+  color: var(--light-color);
+}
 .employees-crud thead tr th {
-  background-color: var(--input-focus-color);
-  padding: 2rem 1rem;
+  background-color: var(--aside-bg-color);
+   padding: 2rem 1rem;
   transition: 0.3s all;
 }
 .employees-crud thead tr th:hover {
-  background-color: var(--table-hover-color);
+  background-color: var(--head-hover-color);
   cursor: pointer;
 }
 .employees-crud tbody tr:nth-child(even) {
@@ -341,17 +364,21 @@ input:checked + .slider:before {
   background-color: var(--table-hover-color);
 }
 table .action button {
-  background-color: var(--input-focus-color);
-  padding: 0.5rem;
-  color: var(--main-color);
-  border: 1px solid var(--main-color);
+   padding: 0.5rem;
+  color: var(--light-color);
+  border: 1px solid var(--light-color);
   outline: none;
   font-size: 1.7rem;
   cursor: pointer;
 }
-table .action button:nth-child(2) {
-  margin: 0 0.5rem;
+table .action button.update {
+  background-color:#f59e0b ;
 }
+table .action button.delete {
+  background-color:#dc2626 ;
+}
+
+ 
 footer {
   display: flex;
   justify-content: space-between;
@@ -388,6 +415,7 @@ footer .pagination button:last-child {
 footer .pagination button:hover,
 footer .pagination button.active {
   background-color: var(--btn-hover);
+  color: var(--light-color);
 }
 
 table .empty {
@@ -414,7 +442,7 @@ table .empty {
 
  }
 .employees-form {
-  background-color:var(--secondary-bg-color);
+  background-color:var(--form-bg-color);
    box-shadow: 0 2rem 4rem var(--box-shadow-color);
    border-radius: 4px;
    overflow: auto;
@@ -443,7 +471,7 @@ table .empty {
 }
 .employees-form header .close-btn i {
 color: var(--main-color);
-font-size: 1.6rem;
+font-size: 2rem;
 }
 .modal-title{
   font-size: 2rem;
@@ -452,8 +480,8 @@ font-size: 1.6rem;
   width: 15rem;
 }
 .submit-btn{
-  background-color: var(--main-color);
-  color: #000000;
+  background-color: var(--submit-btn-bg-color);
+color: var(--submit-btn-color);
   margin-left: auto;
 }
 .employees-form footer{
@@ -471,8 +499,8 @@ font-size: 1.6rem;
   width: 15rem;
   height: 15rem;
    border-radius: 5px;
-  box-shadow: 0 0 5px rgba(225, 225, 225, 0.5);
-  position: relative;
+   border: 1px solid var(--box-shadow-color);
+   position: relative;
   overflow: hidden;
   }
  form .img-holder img{
@@ -481,8 +509,6 @@ font-size: 1.6rem;
    border-radius: 5px;
    
   }
-  
-
 form .upload{
   position: absolute;
   width: 100%;
@@ -502,6 +528,7 @@ transition: .3s all ease-in;
  }
 form .upload i{
 font-size: 4rem;
+color: var(--light-color);
 }
 
 form .img-holder:hover .upload{
@@ -519,11 +546,12 @@ form .img-holder:hover .upload{
   gap: .8rem;
 }
 .input-box label{
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  font-weight: bold;
  }
  .input-box input {
-  background-color: var(--input-focus-color);
-  border: none;
+  background-color: var(--form-input-color);
+   border: none;
   outline: none;
   color: var(--main-color);
   padding:1rem;
@@ -537,68 +565,8 @@ form .img-holder:hover .upload{
 
 }
 
-
-/* CSS for screens smaller than 768px */
-@media only screen and (max-width: 767px) {
-  .container {
-      grid-template-columns: 1fr;
-  }
-  aside {
-      display: none;
-  }
-  main {
-      padding: 1rem;
-  }
-  table {
-      width: 100%;
-      border-collapse: collapse;
-  }
-  th, td {
-      padding: 8px;
-      text-align: left;
-  }
-  th {
-      background-color: #f2f2f2;
-  }
-}
-
-/* CSS for screens between 768px and 1023px */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .container {
-      grid-template-columns: 1fr;
-  }
-  aside {
-      display: none;
-  }
-  main {
-      padding: 1rem;
-  }
-  table {
-      width: 100%;
-      border-collapse: collapse;
-  }
-  th, td {
-      padding: 8px;
-      text-align: left;
-  }
-  th {
-      background-color: #f2f2f2;
-  }
-}
-
-/* CSS for screens between 1024px and 1279px */
-@media only screen and (min-width: 1024px) and (max-width: 1279px) {
-  aside {
-      padding: 1rem;
-  }
-}
-
-/* CSS for screens larger than or equal to 1280px */
-@media only screen and (min-width: 1280px) {
-  .container {
-      /* grid-template-columns: 1fr 4fr; */
-  }
-  aside {
-      padding: 16px;
+@media (max-width:130em){
+  html{
+    font-size: 50%;
   }
 }

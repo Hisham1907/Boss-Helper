@@ -1,52 +1,53 @@
 :root {
-  font-size: 62.5%;
   overflow-x: hidden;
-  scroll-behavior: smooth;
-  --main-bg-color: #343a40; /* Dark gray background */
-  --main-hover-bg-color: rgba(
-    255,
-    255,
-    255,
-    0.2
-  ); /* Slightly darker gray background on hover */
-  --main-link-color: #fff; /* Light blue for main links */
-  --link-before-color: #7dd3fc;
-  --secondary-color: #ffffff; /* White for secondary text */
-  --box-shadow-color: rgba(255, 255, 255, 0.1); /* Light box shadow */
-  --secondary-bg-color: #212529; /* Dark blue-gray color for text and backgrounds */
-  --logo-primary-color: #fff;
-  --logo-secondary-color: #7dd3fc;
-  --aside-bg-color: #212529;
-}
-:root {
-  font-size: 62.5%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  --main-bg-color: #343a40;
-  --secondary-bg-color: #212529;
-  --teriary-bg-color: #0c4a6e;
-  --btn-hover: #1864ab;
-  --main-hover-bg-color: rgba(255, 255, 255, 0.2);
-  --table-hover-color: rgba(255, 255, 255, 0.1);
-  --main-color: #fff;
-  --link-before-color: #7dd3fc;
-  --box-shadow-color: rgba(255, 255, 255, 0.1);
-  --logo-primary-color: #fff;
-  --logo-secondary-color: #7dd3fc;
-  --input-focus-color: #121416;
+ scroll-behavior: smooth;
+ --main-bg-color: #343a40;
+ --secondary-bg-color: #212529;
+ --form-bg-color: #212529;
+ --teriary-bg-color: #0c4a6e;
+ --btn-hover: #1864ab;
+ --main-hover-bg-color: rgba(255, 255, 255, 0.2);
+ --head-hover-color: rgba(255, 255, 255, 0.2);
+ --table-hover-color: rgba(255, 255, 255, 0.1) ;
+ --main-color: #fff;
+ --link-before-color: #7dd3fc;
+ --box-shadow-color: rgba(255, 255, 255, 0.2);
+ --logo-primary-color: #fff;
+ --logo-secondary-color: #7dd3fc;
+ --input-focus-color: #121416;
+ --add-hover-bg-color: #121416;
+ --form-input-color: #121416;
+ --aside-bg-color: #212529;
+ --light-color: #fff; 
+ --submit-btn-bg-color: #fff; 
+ --submit-btn-color: #000; 
+
 }
 .light-theme {
-  --main-bg-color: #f5f5f5; /* Light gray background */
-  --main-hover-bg-color: #e0e0e0; /* Lighter gray background on hover */
-  --main-link-color: #0c4a6e; /* Blue for main links */
-  --link-before-color: #0284c7; /* Darker blue for pseudo-elements */
-  --secondary-color: #333; /* Dark gray for secondary text */
-  --box-shadow-color: rgba(0, 0, 0, 0.2); /* Dark box shadow */
-  --secondary-bg-color: #fff; /* White color for text and backgrounds */
-  --theme-bg-color: #e2e8f0; /* Light gray for theme toggler */
-  --logo-primary-color: #082f49;
-  --logo-secondary-color: #0284c7;
-  --aside-bg-color: #fff;
+ --main-bg-color: #f5f5f5;
+ --teriary-bg-color: #e2e8f0; 
+ --btn-hover: #1864ab;
+ --main-color: #343a40;
+ --light-color: #fff;
+ --link-before-color: #fff; 
+ --box-shadow-color: rgba(0, 0, 0, 0.2); 
+ --logo-primary-color: #fff; 
+ --logo-secondary-color: #7dd3fc;  
+ --aside-bg-color: #0369a1;
+ --add-hover-bg-color: #0369a1;
+  --input-focus-color: #bae6fd;
+  --secondary-bg-color:#e2e8f0; 
+ --table-hover-color: #bae6fd;
+ --form-bg-color: #fff;
+ --submit-btn-bg-color: #0369a1; 
+ --submit-btn-color: #fff; 
+ --form-input-color: #f5f5f5;
+ --head-hover-color: #0284c7;
+
+}
+
+html{
+  font-size: 62.5%;
 }
 * {
   margin: 0;
@@ -56,21 +57,21 @@
 body {
   font-family: "Rubik", sans-serif;
   background-color: var(--main-bg-color);
-  color: var(--secondary-color);
+  color: var(--main-color);
 }
 .container {
   display: grid;
-  grid-template-columns: 100px auto;
-  height: 100vh;
+  grid-template-columns: 10rem auto;
+  min-height: 100vh;
   transition: all 0.5s ease;
 }
 /* Side Navbar Start */
 aside {
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--aside-bg-color);
-  padding: 16px;
+  padding: 1.6rem;
   position: relative;
-  width: 100px;
+  width: 10rem;
   transition: 0.5s all ease;
 }
 aside .top-box {
@@ -97,6 +98,7 @@ aside .top-box {
 #toggle-btn {
   cursor: pointer;
   font-size: 2rem;
+  color: var(--light-color);
  }
  .profile {
   display: flex;
@@ -117,6 +119,7 @@ aside .top-box {
   font-size: 1.6rem;
   font-weight: 600;
   opacity: 0;
+  color: var(--light-color);
 }
 .menu-items {
   display: flex;
@@ -126,7 +129,7 @@ aside .top-box {
 }
 .menu a {
   text-decoration: none;
-  color: var(--main-link-color);
+  color: var(--light-color);
   padding: 1.8rem;
   display: flex;
   align-items: center;
@@ -158,15 +161,15 @@ aside .top-box {
   content: "";
   position: absolute;
   left: 0;
-  width: 6px;
+  width: .6rem;
   height: 100%;
   background-color: var(--link-before-color);
 }
 .aside-active {
-  width: 280px;
+  width: 28rem;
 }
 .container:has(> aside.aside-active) {
-  grid-template-columns: 280px auto;
+  grid-template-columns: 28rem auto;
 }
 .aside-active .main-logo {
   opacity: 1;
@@ -189,13 +192,12 @@ aside .top-box {
   opacity: 1;
 }
 /* Side Navbar End */
-
 /* Theme toggler Start*/
 .toggle {
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 20px;
+  width: 4rem;
+  height: 2rem;
 }
 .toggle input {
   display: none;
@@ -209,15 +211,15 @@ aside .top-box {
   bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 20px;
+  border-radius: 2rem;
 }
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
-  left: 2px;
-  bottom: 2px;
+  height: 1.6rem;
+  width: 1.6rem;
+  left: .2rem;
+  bottom: .2rem;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
@@ -227,7 +229,7 @@ input:checked + .slider {
   background-color: #2196f3;
 }
 input:checked + .slider:before {
-  transform: translateX(20px);
+  transform: translateX(2rem);
 }
 .toggle-icon {
   position: absolute;
@@ -314,39 +316,39 @@ main .reports {
 }
 .welcome-back {
   background-color: var(--secondary-bg-color);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px var(--box-shadow-color);
-  margin-bottom: 20px;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 1rem var(--box-shadow-color);
+  margin-bottom: 2rem;
 }
 .welcome-back h2 {
   color: var(--secondary-color);
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
 }
 .welcome-back p {
   color: var(--secondary-color);
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 .reports {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 2rem;
 }
 .report {
   background-color: var(--secondary-bg-color);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px var(--box-shadow-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 1rem var(--box-shadow-color);
 }
 .report h3 {
   color: var(--secondary-color);
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 .report p {
   color: var(--secondary-color);
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 .right-col {
   padding: 2.4rem 2.4rem 2.4rem 0;
@@ -375,7 +377,11 @@ main .reports {
 }
 
 
- 
+@media (max-width:130em){
+  html{
+    font-size: 50%;
+  }
+}
 
 
 

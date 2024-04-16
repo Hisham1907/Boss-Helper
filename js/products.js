@@ -22,7 +22,8 @@ let calcTotal = () => {
       Number(ads.value) -
       Number(discount.value);
     totalBox.innerHTML = total;
-    totalBox.style.backgroundColor = "#0c4a6e";
+    totalBox.style.backgroundColor = "#0369a1";
+    totalBox.style.color = "var(--light-color)";
   } else {
     totalBox.innerHTML = "";
     totalBox.style.backgroundColor = "var(--input-focus-color)";
@@ -171,8 +172,8 @@ if(products[i].name.toLowerCase().includes(search.value.trim().toLowerCase())||p
     <td>${products[i].total}</td>
     <td>
         <div class="table-btns">
-            <i class="fas fa-edit" onclick="getData(${i})" style="background-color: #f59e0b"></i>
-            <i class="fas fa-trash-alt" onclick="deleteProduct(${i})" style="background-color: #ef4444"></i>
+            <i class="fas fa-edit update" onclick="getData(${i}) " style="background-color: #f59e0b "></i>
+            <i class="fas fa-trash-alt delete" onclick="deleteProduct(${i})" style="background-color: #ef4444 "></i>
         </div>
 
     </td>
