@@ -18,7 +18,4 @@ To get started with Boss Helper, follow these steps:
 1. Clone the repository: `git clone https://github.com/your_username/boss-helper.git`
 2. Navigate to the project directory: `cd boss-helper`
 3. Open the `index.html` file in your preferred web browser.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+ 
