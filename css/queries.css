@@ -210,6 +210,7 @@ column-gap: 2.4rem;
   .modal {
     min-width: 200px;
     width: 95%;
+    max-height: 95vh;
   }
   .modal-text {
     grid-template-columns: 1fr;
