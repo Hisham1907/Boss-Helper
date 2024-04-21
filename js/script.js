@@ -1,3 +1,4 @@
+// Mobile Nav
 let btnNav = document.querySelector(".btn-mobile-nav");
 let header = document.querySelector(".header");
 
@@ -13,30 +14,64 @@ links.forEach((link) => {
     }
   });
 });
+// ///////////////////////////////////////////////////////////////
 
 // Sticky navigation
+// const sectionHeroEl = document.querySelector(".section-hero");
+// const headerEl = document.querySelector(".header");
 
-const sectionHeroEl = document.querySelector(".section-hero");
-const headerEl = document.querySelector(".header");
+// const observer = new IntersectionObserver(
+//   function (entries) {
+//     const entry = entries[0];
 
-const obs = new IntersectionObserver(
-  function (entries) {
-    const ent = entries[0];
+//     if (!entry.isIntersecting) {
+//       headerEl.classList.add("sticky");
+//       document.querySelectorAll(".main-list-link").forEach(function (link) {
+//         link.style.color = "#000";
+//       });
+//       document.querySelector(".main-list-link.nav-cta").style.color = "#fff";
+//       document.querySelector(".main-list-link.nav-cta").style.backgroundColor = "#1e40af";
+//       document.querySelector(".main-logo ").style.color = "#172554";
+//       document.querySelector(".main-logo i").style.color = "#2563eb";
+//       document.querySelector(".main-logo span").style.color = "#2563eb";
 
-    if (ent.isIntersecting === false) {
-      headerEl.classList.add("sticky");
-    } else {
-      headerEl.classList.remove("sticky");
-    }
-  },
-  {
-    root: null,
-    threshold: 0,
-    rootMargin: "-80px",
-  }
-);
+//     } else {
+//       headerEl.classList.remove("sticky");
+//       document.querySelectorAll(".main-list-link").forEach(function (link) {
+//         link.style.color = "#fff";
+//       });
+//       document.querySelector(".main-list-link.nav-cta").style.color = "#000";
+//       document.querySelector(".main-list-link.nav-cta").style.backgroundColor = "#fff";
+//       document.querySelector(".main-logo ").style.color = "#fff";
+//       document.querySelector(".main-logo i").style.color = "#fff";
+//       document.querySelector(".main-logo span").style.color = "#fff";
 
-obs.observe(sectionHeroEl);
+//     }
+//   },
+//   {
+//     root: null,
+//     threshold: 0,
+//     rootMargin: "0px",
+//   }
+// );
+
+// observer.observe(sectionHeroEl);
+
+let whyAccordion=document.querySelector('.why-accordion')
+let whyAccordionSelection=document.querySelectorAll('.why-acc-selection')
+
+whyAccordionSelection.forEach(function(acc){
+  acc.addEventListener('click',function(){
+    acc.parentElement.classList.toggle('acc-active')
+  })
+})
+
+
+
+
+
+
+
 
 let allItemIcons = document.querySelectorAll(".item-icon");
 for (let i = 0; i < allItemIcons.length; i++) {
@@ -158,12 +193,11 @@ function getPrev() {
   displayModal(currentIndex);
 }
 document.addEventListener("keydown", function (e) {
-  if(modal.classList.contains("view-modal")){
+  if (modal.classList.contains("view-modal")) {
     if (e.key == "ArrowRight") getNext();
     if (e.key == "ArrowLeft") getPrev();
     if (e.key == "Escape") closeModal();
   }
- 
 });
 function displayModal(i) {
   modalLayer.classList.add("view-modal-layer");
@@ -189,6 +223,29 @@ prevBtn.addEventListener("click", function () {
 document.addEventListener("keydown", function (e) {
   console.log(e);
 });
-modalLayer.addEventListener('click',function(e){
-  if(e.target==modalLayer)closeModal();
+modalLayer.addEventListener("click", function (e) {
+  if (e.target == modalLayer) closeModal();
+});
+
+const heroImages=['img/hero-1.jpg','img/hero-2.jpg','img/hero-3.jpeg']
+let heroImg=document.querySelector('.hero-img')
+let heroPrev=document.querySelector('.hero-prev')
+let heroNext=document.querySelector('.hero-next')
+let currIndex=0;
+heroNext.addEventListener('click',function(){
+currIndex=(currIndex+1)%heroImages.length;
+ heroImg.setAttribute('src',heroImages[currIndex])
 })
+heroPrev.addEventListener('click',function(){
+currIndex=((currIndex-1)+heroImages.length)%heroImages.length;
+heroImg.setAttribute('src',heroImages[currIndex])
+
+})
+
+
+
+
+
+
+
+

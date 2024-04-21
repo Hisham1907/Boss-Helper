@@ -1,0 +1,115 @@
+.nav-faq{
+  background-color: #172554;
+ 
+}
+.faq-hero,.faq-ask {
+  background-image: url("../img/FAQ.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+     height: 50svh;
+  }
+  
+/*==============================================================================*/
+/*==================================== SECTION FAQ START============================ */
+/*==============================================================================*/
+ 
+.section-faq {
+  padding-top:4.8rem ;
+}
+.faq-description {
+  text-align: center;
+  font-size: 1.8rem;
+  line-height: 1.8;
+  margin-bottom: 2.4em;
+}
+.faq-img {
+  margin: auto;
+  width: 48rem;
+  }
+ 
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 80%;
+  margin: auto;
+}
+.accordion-item {
+  display: grid;
+  grid-template-columns: 1fr 10fr auto;
+  column-gap: 1.6rem;
+  row-gap: 2.4rem;
+  align-items: center;
+  box-shadow: 0 0 3.2rem rgba(0, 0, 0, 0.1);
+  padding: 2.4rem;
+  transition: 0.5s all;
+  cursor: pointer;
+  border-top: 5px solid transparent;
+  border-radius: 11px;
+}
+.accordion-item:hover .item-text {
+  color: #1e40af;
+}
+.item-number {
+  font-size: 3.2rem;
+  color: #ced4da;
+  font-weight: 500;
+}
+.item-text {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+.item-icons {
+  justify-self: end;
+}
+.item-icon {
+  font-size: 1.6rem;
+  background-color: #eee;
+  border-radius: 50%;
+  color: #aaa !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+}
+.item-icon.fa-minus {
+  display: none;
+}
+.answer-box {
+  grid-column: 2/3;
+  display: none;
+}
+.answer-box p {
+  font-size: 2rem;
+  line-height: 1.8;
+}
+/* When accordion-item-open class is added */
+
+.accordion-item-open.accordion-item {
+  border-top: 5px solid #1e40af;
+  transition: max-height 0.3s ease-out;
+}
+.accordion-item-open .item-number,
+.accordion-item-open .item-text {
+  color: #1e40af;
+}
+.accordion-item-open .item-icon.fa-minus {
+  display: flex;
+}
+.accordion-item-open .item-icon.fa-plus {
+  display: none;
+}
+.accordion-item-open .item-icon {
+  background-color: #1e40af;
+  border-radius: 50%;
+  color: #fff !important;
+  font-size: 1.6rem;
+}
+.accordion-item-open .answer-box {
+  display: block;
+}
+/*==============================================================================*/
+/*==================================== SECTION FAQ END============================ */
+/*==============================================================================*/
+ 

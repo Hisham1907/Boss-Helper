@@ -3,10 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The best website ever ">
-
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -15,39 +13,38 @@
 </head>
 
 <body>
-    <header class="header ">
-        <a href="#" class="main-logo"><i class="fas fa-handshake"></i>Boss<span>Helper</span>
-        </a>
-        <nav class="main-nav">
-            <ul class="main-nav-list">
-                <li><a class="main-list-link" href="#why">Why Boss Helper</a></li>
-                <li><a class="main-list-link" href="#features">Features</a></li>
-                <li><a class="main-list-link" href="#testemonials">Testimonials</a></li>
-                <li><a class="main-list-link" href="#faq">FAQ</a></li>
-                <li><a class="main-list-link" href="#contact">Contact Us</a></li>
-                <li><a class="main-list-link nav-cta" href="signUp.html">Register</a></li>
-            </ul>
-        </nav>
-        <button class="btn-mobile-nav">
-            <i class="fa-solid fa-bars fa-xl mobile-nav-icon"></i>
-            <i class="fa-solid fa-xmark fa-xl mobile-nav-icon"></i>
-        </button>
-    </header>
-    <main>
-        <section class="section-hero">
+    <header class='home'>
+        <div class="home-content">
+            <header class="header ">
+                <a href="#" class="main-logo"><i class="fas fa-handshake"></i>Boss<span>Helper</span>
+                </a>
+                <nav class="main-nav">
+                    <ul class="main-nav-list">
+                        <li><a class="main-list-link" href="index.html">Home</a></li>
+                        <li><a class="main-list-link" href="about.html">About</a></li>
+                        <li><a class="main-list-link" href="faq.html">FAQ</a></li>
+                        <li><a class="main-list-link" href="founder.html">Founder</a></li>
+                        <li><a class="main-list-link nav-cta" href="signUp.html">Register</a></li>
+                    </ul>
+                </nav>
+                <button class="btn-mobile-nav">
+                    <i class="fa-solid fa-bars fa-xl mobile-nav-icon"></i>
+                    <i class="fa-solid fa-xmark fa-xl mobile-nav-icon"></i>
+                </button>
+                
+            </header>
             <div class="hero">
                 <div class="hero-text-box">
-                    <h1 class="heading-primary">Successful businesses are built on performance, alignment and
-                        progression
+                    <h1 class="heading-primary home-heading">Revolutionize Your Workflow and Spark Success
                     </h1>
-                    <p class="hero-description">Experience unparalleled productivity with Boss Helper - your dedicated
-                        virtual assistant for streamlined task management, efficient scheduling, and beyond.
+                    <p class="hero-description">Elevate your productivity to new heights with Boss Helper, your ultimate
+                        ally for effortless task management, seamless scheduling, and limitless efficiency.
                     </p>
                     <a href="signUp.html" class="btn btn--full margin-right-sm">Get Started
                     </a>
-                    <a href="#why" class="btn  btn--outline">Learn More &darr;
+                    <a href="#contact" class="btn  btn--outline">Contact Us
                     </a>
-                    <div class="customers">
+                    <!-- <div class="customers">
                         <div class="customers-imgs">
                             <img src="img/customers/customer-1.jpg" alt="">
                             <img src="img/customers/customer-2.jpg" alt="">
@@ -57,48 +54,113 @@
                             <img src="img/customers/customer-6.jpg" alt="">
                         </div>
                         <p class="customers-text"><span> 15,000+</span> clients last year!</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="hero-img-box">
-                    <img src="img/hero.jpg" class="hero-img" alt="">
+                    <i class="hero-prev fa-solid fa-arrow-left"></i>
+                    <img src="img/hero-1.jpg" class="hero-img" alt="">
+                    <i class="hero-next fa-solid fa-arrow-right "></i>
                 </div>
             </div>
-        </section>
+        </div>
+    </header>
+    <main>
         <section class="section-why" id="why">
             <h2 class="heading-secondary text-center margin-bottom-lg">Why Boss Helper ?</h2>
-            <div class="container grid grid-col-2 grid-center-v">
+            <div class="container why-grid ">
                 <div class="why-img-box">
-                    <img src="img/why/why1.png" alt="">
+                    <img src="img/Accept tasks-pana.svg" alt="Accept tasks">
                 </div>
                 <div class="why-text-box">
-                    <span class="subheading">Efficient Task Management</span>
-                    <h2 class="heading-tertiary heading-why ">Seamless Organization for Your Business</h2>
+                    <span class="subheading">Task Management</span>
+                    <h2 class="heading-tertiary heading-why">Seamless Organization for Your Business
+                    </h2>
                     <p class="why-text">Boss Helper simplifies task management, ensuring your business operations run
-                        smoothly.</p>
-                    <a class="btn btn--full" href="#features">Explore Features</a>
+                        smoothly. From assigning tasks to tracking progress, Boss Helper streamlines every aspect of
+                        your workflow.</p>
+
+
+                    <a class="btn btn--why" href="signUp.html"> Discover More
+                    </a>
                 </div>
                 <div class="why-text-box">
-                    <span class="subheading">Streamlined Employee Management</span>
-                    <h2 class="heading-tertiary heading-why ">Effortlessly Manage Your Workforce</h2>
-                    <p class="why-text">With Boss Helper, handling employee data and tasks becomes effortless,
-                        allowing you to focus on strategic goals.</p>
-                    <a class="btn btn--full" href="#">Learn More</a>
+                    <span class="subheading">Employees & Products Management</span>
+                    <h2 class="heading-tertiary heading-why"> Manage Your Workforce and Products</h2>
+                    <ul>
+                        <li>
+                            <div class="why-accordion acc-active">
+                                <div class="why-acc-selection">
+                                    <div class="why-accordion-icon">
+                                        <i class="fa-solid fa-caret-up"></i>
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </div>
+                                    <span class="why-accordion-title">Employee Management</span>
+                                </div>
+                                <p class="why-accordion-text">
+                                    Manage employee records efficiently: add, update, delete, and track essential
+                                    details for performance evaluation.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="why-accordion ">
+                                <div class="why-acc-selection">
+                                    <div class="why-accordion-icon">
+                                        <i class="fa-solid fa-caret-up"></i>
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </div>
+                                    <span class="why-accordion-title">Product Management</span>
+                                </div>
+                                <p class="why-accordion-text">
+                                    Seamlessly handle product inventory: add, update, remove items, track stock levels.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="why-accordion ">
+                                <div class="why-acc-selection">
+                                    <div class="why-accordion-icon">
+                                        <i class="fa-solid fa-caret-up"></i>
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </div>
+                                    <span class="why-accordion-title">Operational Efficiency</span>
+                                </div>
+                                <p class="why-accordion-text">
+                                    Increase efficiency through optimized processes. </p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+                <div class="why-img-box">
+                    <img src="img/Version control-pana.svg" alt="Version control">
                 </div>
                 <div class="why-img-box">
-                    <img src="img/why/why2.png" alt="">
-                </div>
-                <div class="why-img-box">
-                    <img src="img/why/why3.png" alt="">
+                    <img src="img/Business growth-amico.svg" alt="Business growth">
                 </div>
                 <div class="why-text-box">
-                    <span class="subheading">Efficient Business Growth</span>
-                    <h2 class="heading-tertiary heading-why ">Accelerate Your Business Performance</h2>
-                    <p class="why-text">Boss Helper empowers you to achieve business growth by providing intuitive
-                        tools for efficient business management.</p>
-                    <a class="btn btn--full" href="signUp.html">Get Started</a>
+                    <span class="subheading">Business Growth</span>
+                    <h2 class="heading-tertiary heading-why">Accelerate Your Business Performance</h2>
+                    <p class="why-text">Boss Helper equips you for business growth with intuitive tools, metrics
+                        analysis, and insights for thriving in today's market.
+
+                    </p>
+                    <ul>
+                        <li class="growth-list"><i class="fa-solid fa-check"></i> Empower business growth with intuitive
+                            tools.</li>
+                        <li class="growth-list"><i class="fa-solid fa-check"></i> Analyze performance metrics and
+                            identify growth opportunities.</li>
+                        <li class="growth-list"><i class="fa-solid fa-check"></i> Equip with insights and resources to
+                            thrive in the competitive market.</li>
+                    </ul>
                 </div>
+
             </div>
         </section>
+
         <section class="section-trusted">
             <div class="container text-center">
                 <h2 class="heading-trusted">Trusted by the world’s leading enterprises
@@ -167,46 +229,6 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="section-features">
-            <div class="container">
-                <h2 class="heading-secondary">Discover Our Features</h2>
-                <div class="features-grid">
-                    <div class="features-box">
-                        <div class="features-img-box">
-                            <img src="feature-global-access.jpg" alt="Global Access" class="features-img">
-                        </div>
-                        <div class="features-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="features-box-title">Global Access</div>
-                        <p class="features-text">Access our platform from anywhere in the world. Whether you're at home,
-                            in the office, or on the go, stay connected effortlessly.</p>
-                    </div>
-                    <div class="features-box">
-                        <div class="features-img-box">
-                            <img src="feature-security.jpg" alt="Security" class="features-img">
-                        </div>
-                        <div class="features-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="features-box-title">Security</div>
-                        <p class="features-text">Your data is safe and secure with our robust security measures. Rest
-                            easy knowing that your information is protected.</p>
-                    </div>
-                    <div class="features-box">
-                        <div class="features-img-box">
-                            <img src="feature-performance.jpg" alt="Performance" class="features-img">
-                        </div>
-                        <div class="features-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="features-box-title">Performance</div>
-                        <p class="features-text">Experience lightning-fast performance and smooth navigation. Our
-                            platform is optimized for speed and efficiency.</p>
-                    </div>
-                </div>
-            </div>
-        </section> -->
 
         <section class="section-success-stories" id="success-stories">
             <div class="container">
@@ -214,7 +236,7 @@
                 </h2>
             </div>
             <div class="container testemonials-boxes story-boxes">
-                 <div class="success-story">
+                <div class="success-story">
                     <div class="story-img">
                         <img src="img/Sucess/sucess-1.jpg" alt="Success Story 1" class="success-story-image">
                         <div class="img-layer">
@@ -339,46 +361,6 @@
                 </div>
             </div>
         </section>
-        <!-- Modals -->
-        <div class="modal-layer ">
-            <div class="modal">  
-                <div class="modal-head">
-                    <h2 class="modal-title">Hisham
-                    </h2>
-                    <i class="modal-icon modal-close  fa-solid fa-circle-xmark"></i>
-                </div>
-               
-                <div class="company-boss">
-                    <span class="boss-name"><strong>Boss :</strong> Jennifer Smith
-                    </span>
-                </div>
-                <div class="modal-content">
-                    <div class="prev-btn">
-                        <i class=" modal-icon fa-solid fa-circle-arrow-left"></i>
-                    </div>
-                    <div class="modal-text">
-                        <img src="img/Sucess/sucess-1.jpg" class="modal-img" alt="Success Story Image">
-                        <div class="modal-info">
-
-                            <div class="modal-description">
-                                <h3>Success Journey</h3>
-                                <p class="p-1">Empowered by Boss Helper, Jennifer Smith, the driving force behind TechNova, led a
-                                    tech revolution.</p>
-                                <p class="p-2">Utilizing advanced tools and strategies, her team enhanced project management,
-                                    increasing productivity, reducing errors, and fostering collaboration.</p>
-                                <p class="p-3">Notably, TechNova improved efficiency by 30%, optimizing workflow.</p>
-                                <p class="p-4">Today, TechNova pioneers innovation, shaping tomorrow's tech landscape.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="next-btn">
-                        <i class="modal-icon fa-solid fa-circle-arrow-right"></i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         <section class="section-testemonials" id="testemonials">
             <div class="container">
                 <h2 class="heading-secondary text-center margin-bottom-sm">But don’t just take our word for it
@@ -497,119 +479,7 @@
                 </div>
             </div>
         </section>
-        <section class="section-faq" id="faq">
-            <div class="cotainer faq-img ">
-                <img src="img/faq.svg" class="faq-img"></img>
-            </div>
-            <div class="container">
-                <h2 class="heading-secondary text-center margin-bottom-sm">Frequently asked questions</h2>
-                <p class="testemonials-description">Got questions? We've got answers! Check out our FAQs below to learn
-                    more about Boss Helper !</p>
-            </div>
-            <div class="container">
-                <div class="faq-text-box">
-                    <div class="accordion">
-                        <div class="accordion-item ">
-                            <p class="item-number">01</p>
-                            <p class="item-text">What is Boss Helper?</p>
-                            <div class="item-icons">
-                                <i class="fa-solid fa-plus item-icon "></i>
-                                <i class="fa-solid fa-minus item-icon "></i>
-                            </div>
-
-                            <div class="answer-box">
-                                <p>Boss Helper is a dedicated performance management platform designed to streamline
-                                    business operations, enhance task management, and simplify managing your team.</p>
-                            </div>
-                        </div>
-                        <div class="accordion-item ">
-                            <p class="item-number">02</p>
-                            <p class="item-text">How can Boss Helper benefit my business?
-                            </p>
-                            <div class="item-icons">
-                                <i class="fa-solid fa-plus item-icon "></i>
-                                <i class="fa-solid fa-minus item-icon "></i>
-                            </div>
-
-                            <div class="answer-box">
-                                <p>Boss Helper empowers businesses by offering tools for efficient task management,
-                                    managing your team effortlessly, and providing a user-friendly interface, ultimately
-                                    leading to improved productivity and streamlined operations.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="accordion-item ">
-                            <p class="item-number">03</p>
-                            <p class="item-text">Is Boss Helper suitable for businesses of all sizes?
-                            </p>
-                            <div class="item-icons">
-                                <i class="fa-solid fa-plus item-icon "></i>
-                                <i class="fa-solid fa-minus item-icon "></i>
-                            </div>
-
-                            <div class="answer-box">
-                                <p>Yes, Boss Helper is designed to cater to the needs of businesses of various sizes,
-                                    from small startups to large enterprises. Its customizable features make it
-                                    adaptable to different business requirements.
-
-                                </p>
-                            </div>
-                        </div>
-                        <div class="accordion-item ">
-                            <p class="item-number">04</p>
-                            <p class="item-text">Is Boss Helper mobile-friendly?
-                            </p>
-                            <div class="item-icons">
-                                <i class="fa-solid fa-plus item-icon "></i>
-                                <i class="fa-solid fa-minus item-icon "></i>
-                            </div>
-
-                            <div class="answer-box">
-                                <p>Yes, Boss Helper is accessible via web browsers on both desktop and mobile devices.
-                                    Additionally, the platform may offer native mobile apps for iOS and Android devices
-                                    for enhanced usability on the go.
-
-                                </p>
-                            </div>
-                        </div>
-                        <div class="accordion-item ">
-                            <p class="item-number">05</p>
-                            <p class="item-text">How to get support if I faced issues with Boss Helper?</p>
-                            <div class="item-icons">
-                                <i class="fa-solid fa-plus item-icon "></i>
-                                <i class="fa-solid fa-minus item-icon "></i>
-                            </div>
-
-                            <div class="answer-box">
-                                <p>Boss Helper provides customer support through various channels including email, live
-                                    chat, and a dedicated help center. You can reach out to the support team for
-                                    assistance with any queries or technical issues.
-
-                                </p>
-                            </div>
-                        </div>
-                        <div class="accordion-item ">
-                            <p class="item-number">06</p>
-                            <p class="item-text">How do I get started with Boss Helper?
-                            </p>
-                            <div class="item-icons">
-                                <i class="fa-solid fa-plus item-icon "></i>
-                                <i class="fa-solid fa-minus item-icon "></i>
-                            </div>
-
-                            <div class="answer-box">
-                                <p>Getting started with Boss Helper is easy! Simply sign up for an account on our
-                                    website, and you'll be guided through the setup process to start optimizing your
-                                    business management.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </section>
+      
         <section class="section-cta" id="contact">
             <div class="container cta ">
                 <div class="contact-us">
@@ -653,32 +523,49 @@
                 </div>
             </div>
         </section>
-        <!-- About Us Section
-<section class="section-about-us" id="about-us">
-    <div class="container">
-        <h2 class="heading-secondary text-center">About Boss Helper</h2>
-        <div class="about-us-content">
-            <div class="about-us-text">
-                <p>Welcome to Boss Helper, your ultimate solution for optimizing business management and performance. Founded in [year], our mission is to empower businesses of all sizes to achieve their full potential through innovative technology and dedicated support.</p>
-                <p>At Boss Helper, we believe in the power of efficiency, collaboration, and growth. Our platform is designed to streamline task management, enhance team collaboration, and facilitate sustainable business growth. We understand the challenges businesses face in today's competitive landscape, and we're here to provide the tools and support you need to succeed.</p>
-                <p>With a team of experienced professionals and a commitment to excellence, we strive to deliver exceptional value to our clients. Whether you're a small startup or a large enterprise, Boss Helper is here to help you navigate the complexities of modern business management with ease.</p>
-            </div>
-            <div class="about-us-image">
-                <img src="https://via.placeholder.com/600x400" alt="About Us Image">
+          <!-- Modals -->
+          <div class="modal-layer ">
+            <div class="modal">
+                <div class="modal-head">
+                    <h2 class="modal-title">Hisham
+                    </h2>
+                    <i class="modal-icon modal-close  fa-solid fa-circle-xmark"></i>
+                </div>
+
+                <div class="company-boss">
+                    <span class="boss-name"><strong>Boss :</strong> Jennifer Smith
+                    </span>
+                </div>
+                <div class="modal-content">
+                    <div class="prev-btn">
+                        <i class=" modal-icon fa-solid fa-circle-arrow-left"></i>
+                    </div>
+                    <div class="modal-text">
+                        <img src="img/Sucess/sucess-1.jpg" class="modal-img" alt="Success Story Image">
+                        <div class="modal-info">
+                            <div class="modal-description">
+                                <h3>Success Journey</h3>
+                                <p class="p-1">Empowered by Boss Helper, Jennifer Smith, the driving force behind
+                                    TechNova, led a
+                                    tech revolution.</p>
+                                <p class="p-2">Utilizing advanced tools and strategies, her team enhanced project
+                                    management,
+                                    increasing productivity, reducing errors, and fostering collaboration.</p>
+                                <p class="p-3">Notably, TechNova improved efficiency by 30%, optimizing workflow.</p>
+                                <p class="p-4">Today, TechNova pioneers innovation, shaping tomorrow's tech landscape.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="next-btn">
+                        <i class="modal-icon fa-solid fa-circle-arrow-right"></i>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="about-us-values">
-            <h3 class="subheading">Our Values</h3>
-            <ul class="values-list">
-                <li><i class="fas fa-check-circle"></i> Innovation: We're committed to staying at the forefront of technology and continuously improving our platform to meet the evolving needs of our customers.</li>
-                <li><i class="fas fa-check-circle"></i> Integrity: We operate with honesty, transparency, and integrity in all aspects of our business, fostering trust and credibility with our clients.</li>
-                <li><i class="fas fa-check-circle"></i> Collaboration: We believe in the power of teamwork and collaboration, both internally within our organization and externally with our clients and partners.</li>
-                <li><i class="fas fa-check-circle"></i> Customer Focus: Our customers are at the heart of everything we do. We're dedicated to providing exceptional customer service and support to ensure our clients' success.</li>
-                <li><i class="fas fa-check-circle"></i> Excellence: We strive for excellence in everything we do, from product development and innovation to customer service and support.</li>
-            </ul>
-        </div>
-    </div>
-</section> -->
+        
     </main>
     <footer class="footer">
         <div class="container grid grid--footer">

@@ -5,11 +5,19 @@
 }
 body {
   font-family: "Rubik", sans-serif;
-  background-color: #f1f5f9;
+  /* background-color: #f1f5f9; */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100svh;
+  background-image: linear-gradient(
+      rgba(30, 64, 175, 0.4),
+      rgba(30, 64, 175, 0.4)
+    ),
+    url("../img/welcome.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
  }
  html {
   font-size: 62.5%;
@@ -38,7 +46,7 @@ a {
 .field {
   display: flex;
   align-items: center;
-  background-color: #f0f9ff;
+  background-color: #eff6ff;
   border-radius: 5px;
    padding: 1.6rem .8rem;
   border: 2px solid #dee2e6;
@@ -48,7 +56,7 @@ a {
 .field input {
   padding: .6rem;
   border: none;
-  background-color: #f0f9ff;
+  background-color: #eff6ff;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -66,12 +74,12 @@ input {
   font-size: 1.8rem;
 }
 input::placeholder {
-  color: #075985;
+  color: #1e40af;
   font-weight: 500;
   font-size:  1.8rem;
 }
 .field .input-icon {
-  color: #075985;
+  color: #1e40af;
   margin-left: 1rem;
   padding-right:  1.2rem;
   font-size:  1.8rem;
@@ -113,7 +121,10 @@ visibility: visible;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
+ 
 .form-title {
   margin-bottom:  3.2rem;
   text-align: center;
@@ -137,18 +148,18 @@ visibility: visible;
 
 .btn-field a {
   text-decoration: none;
-  color: #075985;
+  color: #1e40af;
   transition: 0.5s all;
 }
 
 .btn-field a:hover {
   text-decoration: none;
-  color: #0c4a6e;
+  color: #1e3a8a;
 }
 /* Button Styling */
 .my-btn {
   font-weight: 600;
-  background-color: #075985;
+  background-color: #1e40af;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -160,7 +171,7 @@ visibility: visible;
 }
 
 .my-btn:hover {
-  background-color: #0c4a6e;
+  background-color: #1e3a8a;
 }
 /* Sign-Up Box Styling */
 .sign-box {
@@ -172,7 +183,7 @@ visibility: visible;
   overflow: hidden;
 }
 .sign-content {
-  background-color: #075985;
+  background-color: hsla(226, 71%, 40%, 0.826);
   padding: 1.6rem;
   border-radius: 11px;
   color: #fff;
@@ -182,6 +193,7 @@ visibility: visible;
   flex-direction: column;
   justify-content: space-between;
 }
+
 .sign-content p {
   color: #fff;
 }
@@ -200,7 +212,7 @@ visibility: visible;
   margin-right: 0.5rem;
 }
 .boss-message {
-  background-color: #0369a1;
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 1.2rem;
   border-radius: 9px;
   margin-bottom: 2rem;
@@ -242,15 +254,15 @@ visibility: visible;
   width: 1.6rem;
   height: 1.6rem;
   background-color: transparent;
-  border: 2px solid #075985;
+  border: 2px solid #1e40af;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .form-check-input:checked {
-  background-color: #075985;
-  border-color: #075985;
+  background-color: #1e40af;
+  border-color: #1e40af;
 }
 
 .form-check-input:focus {
@@ -264,7 +276,7 @@ visibility: visible;
 }
 
 .form-check-label a {
-  color: #075985;
+  color: #1e40af;
   text-decoration: none;
 }
 

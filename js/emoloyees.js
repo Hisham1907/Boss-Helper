@@ -16,12 +16,16 @@ let phone = document.getElementById("phone");
 let mainBtn = document.getElementById("main-btn");
 let tableBody = document.getElementById("tableBody");
 let search = document.getElementById("search");
+let popBtn = document.querySelector(".pop-btn");
+let popUpModal= document.querySelector(".pop-up");
+let canceModallBtn= document.querySelector(".cancel-btn");
+let deleteModalBtn= document.querySelector(".delete-btn");
 let currentImgSrc;
 let currentIndex;
 let employees = [];
-if (localStorage.getItem('employees')!=null){
-  employees=JSON.parse(localStorage.getItem('employees'))
-  displayData()
+if (localStorage.getItem("employees") != null) {
+  employees = JSON.parse(localStorage.getItem("employees"));
+  displayData();
 }
 
 addNewMemberBtn.addEventListener("click", function () {
@@ -37,29 +41,28 @@ fileInput.addEventListener("change", function (e) {
   if (file.size < 1000000) {
     let src = URL.createObjectURL(file);
     employeeImg.src = src;
-    currentImgSrc=src;
+    currentImgSrc = src;
   } else {
     alert("The file is too long");
   }
 });
 mainBtn.addEventListener("click", function () {
-if (mainBtn.innerHTML=='Add Employee'){
-  addEmployee();
-  clear();
-  displayData();
-}
-else{
-  updateData(currentIndex)
-  displayData()
-  clear()
-  mainBtn.innerHTML="Add Employee" 
-}
+  if (mainBtn.innerHTML == "Add Employee") {
+    addEmployee();
+    clear();
+    displayData();
+  } else {
+    updateData(currentIndex);
+    displayData();
+    clear();
+    mainBtn.innerHTML = "Add Employee";
+  }
   formContainer.classList.remove("appear");
   employeesForm.classList.remove("appear");
 });
 function addEmployee() {
   let employee = {
-    img: currentImgSrc || 'images/user.jpg',
+    img: currentImgSrc || "images/user.jpg",
     firstName: firstName.value,
     lastName: lastName.value,
     age: age.value,
@@ -71,7 +74,6 @@ function addEmployee() {
   };
   employees.push(employee);
   localStorage.setItem("employees", JSON.stringify(employees));
-
 }
 function clear() {
   fileInput.value = "";
@@ -83,12 +85,12 @@ function clear() {
   startDate.value = "";
   email.value = "";
   phone.value = "";
-  employeeImg.src ='images/user.jpg';
+  employeeImg.src = "images/user.jpg";
 }
 function displayData() {
-  let content=''
-  employees.forEach(function( employee,i){
- content+=`
+  let content = "";
+  employees.forEach(function (employee, i) {
+    content += `
      <tr>
      <td>${i + 1}</td>
      <td class="user-img"><img src="${employee.img}" alt=""></td>
@@ -106,17 +108,24 @@ function displayData() {
      <button onclick="deleteEmployee(${i})" class="delete"><i class="fa-regular fa-trash-can" ></i></button>
      </td>
  </tr>
-    `
-  })
-tableBody.innerHTML = content;
+    `;
+  });
+  tableBody.innerHTML = content;
 }
-function deleteEmployee(index){
-employees.splice(index,1)
-localStorage.setItem("employees", JSON.stringify(employees));
-displayData()
+function deleteEmployee(index) {
+  popUpModal.classList.add('pop-up-active');
+  deleteModalBtn.addEventListener('click', function handleDelete() {
+    employees.splice(index, 1);
+    localStorage.setItem("employees", JSON.stringify(employees));
+    displayData();
+    deleteModalBtn.removeEventListener('click', handleDelete); 
+      popUpModal.classList.remove('pop-up-active')
+
+  });
 }
-function getData(i){
-  currentIndex=i;
+
+function getData(i) {
+  currentIndex = i;
   formContainer.classList.add("appear");
   employeesForm.classList.add("appear");
   // fileInput.value = employees[i].img;
@@ -128,24 +137,26 @@ function getData(i){
   startDate.value = employees[i].startDate;
   email.value = employees[i].email;
   phone.value = employees[i].phone;
-mainBtn.innerHTML="Update Employee" 
- }
-function updateData(i){
-   employees[i].firstName=firstName.value;
-  employees[i].lastName=lastName.value 
-  employees[i].age=age.value
-  employees[i].position=position.value
-  employees[i].salary=salary.value
-  employees[i].email=email.value
-  employees[i].phone=phone.value
-
+  mainBtn.innerHTML = "Update Employee";
 }
-search.addEventListener('keyup',function(){
-  let content='';
-for(let i=0;i<employees.length;i++){
-  if(employees[i].firstName.toLowerCase().includes(search.value.trim().toLowerCase()))
-  {
-    content += `
+function updateData(i) {
+  employees[i].firstName = firstName.value;
+  employees[i].lastName = lastName.value;
+  employees[i].age = age.value;
+  employees[i].position = position.value;
+  employees[i].salary = salary.value;
+  employees[i].email = email.value;
+  employees[i].phone = phone.value;
+}
+search.addEventListener("keyup", function () {
+  let content = "";
+  for (let i = 0; i < employees.length; i++) {
+    if (
+      employees[i].firstName
+        .toLowerCase()
+        .includes(search.value.trim().toLowerCase())
+    ) {
+      content += `
     <tr>
     <td>${i + 1}</td>
     <td class="user-img"><img src="${employees[i].img}" alt=""></td>
@@ -163,41 +174,39 @@ for(let i=0;i<employees.length;i++){
      </td>
 </tr>
     `;
-  
+    }
   }
-}
-tableBody.innerHTML = content;
-
-})
-
-
-
-
-
-
-
+  tableBody.innerHTML = content;
+});
 
 // Aside toggle btn
-let toggleBtn=document.querySelector('#toggle-btn');
-let aside=document.querySelector('aside')
-toggleBtn.addEventListener('click',function(){
-    aside.classList.toggle('aside-active')
- })
+let toggleBtn = document.querySelector("#toggle-btn");
+let aside = document.querySelector("aside");
+toggleBtn.addEventListener("click", function () {
+  aside.classList.toggle("aside-active");
+});
 // Dark Mode
 
-const modeToggle = document.getElementById('mode-toggle');
-const modeText = document.querySelector('.mode-text');
+const modeToggle = document.getElementById("mode-toggle");
+const modeText = document.querySelector(".mode-text");
 
-modeToggle.addEventListener('change', function() {
-    if (this.checked) {
-        document.body.classList.add('light-theme');
-        modeText.textContent = 'Light Mode';
-        document.querySelector('.fa-sun').style.display='block'
-        document.querySelector('.fa-moon').style.display='none'
-    } else {
-        document.body.classList.remove('light-theme');
-        modeText.textContent = 'Dark Mode';
-        document.querySelector('.fa-sun').style.display='none'
-        document.querySelector('.fa-moon').style.display='block'
-    }
+modeToggle.addEventListener("change", function () {
+  if (this.checked) {
+    document.body.classList.add("light-theme");
+    modeText.textContent = "Light Mode";
+    document.querySelector(".fa-sun").style.display = "block";
+    document.querySelector(".fa-moon").style.display = "none";
+  } else {
+    document.body.classList.remove("light-theme");
+    modeText.textContent = "Dark Mode";
+    document.querySelector(".fa-sun").style.display = "none";
+    document.querySelector(".fa-moon").style.display = "block";
+  }
 });
+
+
+
+
+canceModallBtn.addEventListener('click',function(){
+  popUpModal.classList.remove('pop-up-active')
+})

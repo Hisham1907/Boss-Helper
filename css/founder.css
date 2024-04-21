@@ -1,0 +1,255 @@
+body {
+  color: #fff;
+}
+.home,
+.section-skills {
+  background-image: none;
+  background-color: #172554;
+  border-bottom: 1px solid #fff;
+}
+.founder {
+  padding: 0 3.2rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 9.6rem;
+  min-height: 80svh;
+}
+.founder-img-box img {
+  width: 25vw;
+  max-width: 30rem;
+  max-height: 30rem;
+  object-fit: cover;
+  border-radius: 50%;
+  animation: jump 4s ease-in-out infinite;
+  box-shadow: 0 0 1rem #fff;
+}
+.founder-description {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 3.2rem;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 0 1rem #fff;
+  }
+
+  50% {
+    transform: translateY(-2.5rem);
+    box-shadow: 0 0 5rem #fff;
+  }
+
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 1rem #fff;
+  }
+}
+
+.hire-btn,
+.my-btn:link,
+.my-btn:visited {
+  display: inline-block;
+  padding: 1.6rem 3.2rem;
+  border-radius: 9px;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: 0.3s all;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.hire-btn,
+.my-btn--outline:link,
+.my-btn--outline:visited {
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 0 1rem #fff;
+  background-color: transparent;
+}
+.hire-btn:hover,
+.my-btn.my-btn--outline:hover,
+.my-btn.my-btn--outline:active {
+  /* background-color: #eff6ff;
+  color: #333; */
+  transform: translateY(-5px);
+  box-shadow: none;
+}
+
+/* section-about-me */
+.section-about-me {
+  padding: 9.6rem 0;
+  background-color: #2b375f;
+  border-bottom: 1px solid #fff;
+}
+.about-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4.8rem;
+}
+
+.about-img img {
+  width: 25vw;
+  border-radius: 11px;
+}
+.heading {
+  margin-bottom: 2.4rem;
+  color: #fff;
+  font-size: 4.4rem;
+}
+
+.about-text h2 {
+  text-align: left;
+  line-height: 1.2;
+  margin-bottom: 3.2rem;
+}
+
+.about-text h3 {
+  font-size: 2.6rem;
+}
+
+.about-text span {
+  color: #38bdf8;
+}
+.about-text p {
+  margin: 2rem 0;
+  max-width: 60rem;
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 3.2rem;
+}
+.my-icons {
+  margin-bottom: 2.4rem;
+}
+.my-icons .my-btn {
+  padding: 1.6rem 1.6rem;
+}
+.my-icons .my-btn:first-child {
+  margin-right: 1.2rem;
+}
+
+.section-skills {
+  padding: 2.4rem 0;
+}
+.skills-bar {
+  display: flex;
+  gap: 2.4rem;
+  justify-content: center;
+}
+/* Section Contact Me */
+.section-contact-me {
+  background-color: #2b375f;
+  color: #fff;
+  padding: 9.6rem 0;
+}
+.contact-content {
+  text-align: center;
+}
+
+.contact-content .heading {
+  font-size: 4.4rem;
+  margin-bottom: 3.2rem;
+}
+
+.contact-content p {
+  font-size: 2rem;
+  margin-bottom: 3.2rem;
+}
+
+.email-box {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.email-box input,
+.email-box textarea {
+  width: 100%;
+  padding: 1.6rem;
+  margin-bottom: 1.2rem;
+  border: none;
+  border-radius: 9px;
+  background-color: #172554;
+  color: #fff;
+}
+.email-box input::placeholder,
+.email-box textarea::placeholder {
+  color: #fff;
+}
+
+.email-box textarea {
+  height: 12rem;
+  resize: none;
+  margin-bottom: 2.4rem;
+}
+
+@media (max-width: 61em) {
+  .founder-img-box img {
+    width: 30vw;
+    max-width: 40rem;
+    max-height: 40rem;
+  }
+}
+@media (max-width: 48em) {
+  .founder {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+   }
+  .founder-img-box {
+    order: -1;
+    justify-self: center;
+  }
+  .founder-img-box img {
+    width: 40vw;
+    max-width: 40rem;
+    max-height: 40rem;
+   }
+   .founder-text-box{
+    text-align: center;
+      }
+      .founder-text-box p{
+        max-width: 60rem;
+        margin: auto;
+     
+      }
+      .founder .my-btn{
+        margin: 3.2rem 0;
+      }
+      .about-content {
+        display: block;
+        text-align: center;
+      }
+      .about-text h2{
+        text-align: center;
+        margin-top: 2.4rem;
+
+      }
+      .about-text p{
+margin: auto;
+margin-bottom: 3.2rem;
+      }
+      .about-img img {
+        width: 35vw;
+        border-radius: 11px;
+      }
+      .section-about-me {
+        padding-top: 3.2rem;
+}
+}
+  
+@media (max-width: 28em) {
+  .founder-img-box img {
+    width: 60vw;
+   margin-top: 4.8rem;
+   }
+ .about-img img {
+        width: 50vw;
+        border-radius: 11px;
+      }
+}
+@media (max-width: 24em) {
+  .acheivements {
+    grid-template-columns: 1fr;
+  }
+}

@@ -11,3 +11,7 @@
   .main-title {
      margin-bottom: 12px;
    }
+
+   .form{
+   border-top-right-radius: 0;
+   }
