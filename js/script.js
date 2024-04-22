@@ -17,46 +17,28 @@ links.forEach((link) => {
 // ///////////////////////////////////////////////////////////////
 
 // Sticky navigation
-// const sectionHeroEl = document.querySelector(".section-hero");
-// const headerEl = document.querySelector(".header");
+window.addEventListener('DOMContentLoaded', () => {
+  const headerEl = document.querySelector('.header');
 
-// const observer = new IntersectionObserver(
-//   function (entries) {
-//     const entry = entries[0];
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+      if (!entry.isIntersecting) {
+        headerEl.classList.add('sticky');
+      } else {
+        headerEl.classList.remove('sticky');
+      }
+    },
+    {
+      root: null,
+      threshold: 0,
+      rootMargin: '0px'  
+    }
+  );
 
-//     if (!entry.isIntersecting) {
-//       headerEl.classList.add("sticky");
-//       document.querySelectorAll(".main-list-link").forEach(function (link) {
-//         link.style.color = "#000";
-//       });
-//       document.querySelector(".main-list-link.nav-cta").style.color = "#fff";
-//       document.querySelector(".main-list-link.nav-cta").style.backgroundColor = "#1e40af";
-//       document.querySelector(".main-logo ").style.color = "#172554";
-//       document.querySelector(".main-logo i").style.color = "#2563eb";
-//       document.querySelector(".main-logo span").style.color = "#2563eb";
-
-//     } else {
-//       headerEl.classList.remove("sticky");
-//       document.querySelectorAll(".main-list-link").forEach(function (link) {
-//         link.style.color = "#fff";
-//       });
-//       document.querySelector(".main-list-link.nav-cta").style.color = "#000";
-//       document.querySelector(".main-list-link.nav-cta").style.backgroundColor = "#fff";
-//       document.querySelector(".main-logo ").style.color = "#fff";
-//       document.querySelector(".main-logo i").style.color = "#fff";
-//       document.querySelector(".main-logo span").style.color = "#fff";
-
-//     }
-//   },
-//   {
-//     root: null,
-//     threshold: 0,
-//     rootMargin: "0px",
-//   }
-// );
-
-// observer.observe(sectionHeroEl);
-
+  observer.observe(document.querySelector('.home'));
+});
+// Why Section Accordion
 let whyAccordion=document.querySelector('.why-accordion')
 let whyAccordionSelection=document.querySelectorAll('.why-acc-selection')
 
@@ -69,24 +51,11 @@ whyAccordionSelection.forEach(function(acc){
 
 
 
-
-
-
-
-let allItemIcons = document.querySelectorAll(".item-icon");
-for (let i = 0; i < allItemIcons.length; i++) {
-  allItemIcons[i].addEventListener("click", function () {
-    allItemIcons[i].parentElement.parentElement.classList.toggle(
-      "accordion-item-open"
-    );
-  });
-}
-
 const storiesData = [
   {
     title: "TechNova — Shaping Tomorrow",
     boss: `<strong>Boss :</strong> Jennifer Smith`,
-    imageUrl: "img/Sucess/sucess-1.jpg",
+    imageUrl: "img/Sucess/sucess-1.webp",
     story: [
       `Empowered by Boss Helper, Jennifer Smith led a tech revolution at TechNova.`,
       `Utilizing advanced tools and strategies, her team enhanced project management, increasing productivity, reducing errors, and fostering collaboration.`,
@@ -97,7 +66,7 @@ const storiesData = [
   {
     title: "InnovateX — Redefining Innovation",
     boss: `<strong>Boss :</strong> Mark Johnson`,
-    imageUrl: "img/Sucess/sucess-2.jpg",
+    imageUrl: "img/Sucess/sucess-2.webp",
     story: [
       `Mark Johnson, the innovative CEO of InnovateX, redefined innovation in the industry.`,
       `Through efficient communication and streamlined project coordination, InnovateX achieved remarkable milestones, setting new standards for innovation and excellence.`,
@@ -108,7 +77,7 @@ const storiesData = [
   {
     title: "AgileTech — Mastering Efficiency",
     boss: `<strong>Boss :</strong> Sarah Lee`,
-    imageUrl: "img/Sucess/sucess-3.jpg",
+    imageUrl: "img/Sucess/sucess-3.webp",
     story: [
       `Sarah Lee, the dynamic leader of AgileTech, mastered efficiency with Boss Helper.`,
       `Optimizing task delegation and improving workflow processes, AgileTech surpassed project goals.`,
@@ -119,7 +88,7 @@ const storiesData = [
   {
     title: "TechSwift — Fostering Collaboration",
     boss: `<strong>Boss :</strong> Michael Smith`,
-    imageUrl: "img/Sucess/sucess-4.jpg",
+    imageUrl: "img/Sucess/sucess-4.webp",
     story: [
       `Michael Smith fostered collaboration and boosted team morale at TechSwift with Boss Helper.`,
       `Enhanced transparency and project tracking solutions led to remarkable success.`,
@@ -130,7 +99,7 @@ const storiesData = [
   {
     title: "SparkTech — Accelerating Growth",
     boss: `<strong>Boss :</strong> Emily Johnson`,
-    imageUrl: "img/Sucess/sucess-5.jpg",
+    imageUrl: "img/Sucess/sucess-5.webp",
     story: [
       `Emily Johnson accelerated growth at SparkTech with streamlined workflows and real-time analytics.`,
       `Leveraging Boss Helper, SparkTech achieved faster project execution and solidified its position as a leader.`,
@@ -141,7 +110,7 @@ const storiesData = [
   {
     title: "Apex Solutions — Achieving Seamlessness",
     boss: `<strong>Boss :</strong> Sara & Jane`,
-    imageUrl: "img/Sucess/sucess-6.jpg",
+    imageUrl: "img/Sucess/sucess-6.webp",
     story: [
       `Sara & Jane seamlessly integrated Boss Helper at Apex Solutions, achieving unparalleled success.`,
       `Improved efficiency and reduced costs enabled Apex Solutions to deliver seamless experiences.`,
