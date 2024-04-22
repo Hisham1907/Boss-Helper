@@ -273,7 +273,7 @@ strong {
 
 /* HERO SECTION */
 .home {
-  padding-top: 1.2rem;
+  padding: 1.2rem 0 3.2rem 0;
   background-image: url("../img/hero-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -356,6 +356,8 @@ strong {
 }
 .hero-img {
   width: 100%;
+  border-radius: 11px;
+
 }
 /*==============================================================================*/
 /*==================================== HEADER & HERO END============================ */
@@ -622,6 +624,245 @@ strong {
 /*==================================== SECTION FEATURES END================== */
 /*==============================================================================*/
 
+
+/*==============================================================================*/
+/*==================================== SECTION Success Stories START============================ */
+/*==============================================================================*/
+.story-img img {
+  width: 100%;
+  transition: all 0.6s ease-in-out;
+  display: block;
+  cursor: pointer;
+}
+.story-boxes .features-text {
+  margin-bottom: 3.2rem;
+}
+
+.story-boxes {
+  padding: 6.4rem;
+}
+ 
+.success-story-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 35rem;
+   padding: 2rem;
+  flex: 1;  
+ 
+}
+
+.read-more-btn {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  text-align: start;
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: #1e40af;
+}
+.read-more-btn i {
+  transition: 1s all;
+}
+.read-more-btn strong {
+  font-weight: 600;
+  margin-left: 1.2rem;
+}
+.read-more-btn:hover i {
+  transform: translateX(1rem);
+}
+.success-story {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 4rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.story-img:hover img {
+  transform: scale(1.1);
+}
+
+.features-box-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.features-text {
+  font-size: 1.6rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.story-img {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+  cursor: pointer;
+}
+.img-layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 2.4rem 2.4rem 1.2rem;
+  background-color: rgba(30, 64, 175, 0.4);
+}
+.img-layer p {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+
+/*======================= Modal =============== */
+
+.modal-img {
+  width: 100%;
+   border-radius: 10px;
+}
+.modal-title {
+  background-color: #1e40af;
+  color: #fff;
+  padding: 1.2rem;
+  border-radius: 5px;
+   letter-spacing: -0.5px;
+  margin-bottom: 2.4rem;
+  font-weight: 600;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  text-align: center;
+   flex-grow: 1;
+  margin: 0;
+}
+.modal-layer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  transition: 0.5s all ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal {
+  padding: 2.4rem;
+  width: 60%;
+  min-width: 800px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transform: scale(0.5);
+  transition: 0.5s all ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  overflow: auto;
+;
+}
+.modal-content {
+  display: flex;
+}
+
+.prev-btn,
+.next-btn {
+  align-self: center;
+}
+.prev-btn {
+  margin-right: 1.2rem;
+}
+.next-btn {
+  margin-left: 1.2rem;
+}
+.modal-icon {
+  color: #1e40af;
+  font-size: 3.2rem;
+  cursor: pointer;
+  transition: 0.5s all;
+ }
+.modal-head {
+  display: flex;
+  margin-bottom: 1.2rem;
+  gap: 1.2rem;
+  align-items: center;
+}
+.modal-icon:hover,
+.modal-icon:active {
+  color: #333;
+}
+.modal-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  padding: 2.4rem 0;
+  align-items: stretch;
+}
+
+.company-boss,
+.company-boss span,
+.modal-description {
+  border-radius: 10px;
+}
+.company-boss,
+.company-boss span {
+  padding: 1.5rem;
+}
+
+.company-boss {
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+.company-boss span {
+  background-color: #dbeafe;
+}
+
+.company-boss span,
+.modal-description h3,
+.modal-description p {
+  margin-bottom: 1rem;
+}
+
+.company-boss span,
+.modal-description h3 {
+  color: #1e40af;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.modal-description p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+
+.view-modal-layer {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s all ease-in-out;
+}
+.view-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: 0.5s all ease-in-out;
+}
+
+
+/*==============================================================================*/
+/*==================================== SECTION Success Stories END============================ */
+/*==============================================================================*/
+
 /*==============================================================================*/
 /*==================================== SECTION Testemonials START============================ */
 /*==============================================================================*/
@@ -801,7 +1042,7 @@ strong {
   margin-bottom: 3.2rem;
   color: #fff;
   font-size: 3.6rem;
-}
+ }
 /* .footer-logo i,
 .footer-logo span {
   color: #fff;
@@ -810,6 +1051,7 @@ strong {
   list-style: none;
   display: flex;
   gap: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 .footer-link:link,
 .footer-link:visited {
@@ -821,6 +1063,7 @@ strong {
 .footer-link:hover,
 .footer-link:active {
   color: #bfdbfe;
+  letter-spacing: .1rem;
 }
 .copyright {
   margin-top: auto;
@@ -831,7 +1074,7 @@ strong {
 .footer-heading {
   font-size: 2rem;
   font-weight: 500;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 .contacts {
   font-style: normal;
@@ -853,238 +1096,4 @@ strong {
 /*==============================================================================*/
 /*==================================== FOOTER END============================ */
 /*==============================================================================*/
-
-
-/*==============================================================================*/
-/*==================================== SECTION Success Stories START============================ */
-/*==============================================================================*/
-.story-img img {
-  width: 100%;
-  transition: all 0.6s ease-in-out;
-  display: block;
-  cursor: pointer;
-}
-.story-boxes .features-text {
-  margin-bottom: 3.2rem;
-}
-
-.story-boxes {
-  padding: 6.4rem;
-}
- 
-.success-story-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 35rem;
-   padding: 2rem;
-  flex: 1;  
- 
-}
-
-.read-more-btn {
-  background-color: transparent;
-  outline: none;
-  border: none;
-  text-align: start;
-  cursor: pointer;
-  font-size: 1.8rem;
-  color: #1e40af;
-}
-.read-more-btn i {
-  transition: 1s all;
-}
-.read-more-btn strong {
-  font-weight: 600;
-  margin-left: 1.2rem;
-}
-.read-more-btn:hover i {
-  transform: translateX(1rem);
-}
-.success-story {
-  background-color: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  margin-bottom: 4rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.story-img:hover img {
-  transform: scale(1.1);
-}
-
-.features-box-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.features-text {
-  font-size: 1.6rem;
-  color: #666;
-  line-height: 1.6;
-}
-
-.story-img {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.6s ease-in-out;
-  cursor: pointer;
-}
-.img-layer {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 2.4rem 2.4rem 1.2rem;
-  background-color: rgba(30, 64, 175, 0.4);
-}
-.img-layer p {
-  font-size: 2.4rem;
-  font-weight: 600;
-  color: #fff;
-}
-
-
-/*======================= Modal =============== */
-
-.modal-img {
-  width: 100%;
-   border-radius: 10px;
-}
-.modal-title {
-  background-color: #1e40af;
-  color: #fff;
-  padding: 1.2rem;
-  border-radius: 5px;
-   letter-spacing: -0.5px;
-  margin-bottom: 2.4rem;
-  font-weight: 600;
-  font-size: 2.8rem;
-  line-height: 1.2;
-  text-align: center;
-   flex-grow: 1;
-  margin: 0;
-}
-.modal-layer {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999999;
-  transition: 0.5s all ease-in-out;
-
-  opacity: 0;
-  visibility: hidden;
-}
-
-.modal {
-  padding: 2.4rem;
-  width: 60%;
-  min-width: 800px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transform: scale(0.5);
-  transition: 0.5s all ease-in-out;
-  opacity: 0;
-  visibility: hidden;
-  overflow: auto;
-}
-.modal-content {
-  display: flex;
-}
-
-.prev-btn,
-.next-btn {
-  align-self: center;
-}
-.prev-btn {
-  margin-right: 1.2rem;
-}
-.next-btn {
-  margin-left: 1.2rem;
-}
-.modal-icon {
-  color: #1e40af;
-  font-size: 3.2rem;
-  cursor: pointer;
-  transition: 0.5s all;
-}
-.modal-head {
-  display: flex;
-  margin-bottom: 1.2rem;
-  gap: 1.2rem;
-  align-items: center;
-}
-.modal-icon:hover,
-.modal-icon:active {
-  color: #333;
-}
-.modal-text {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.4rem;
-  padding: 2.4rem 0;
-  align-items: stretch;
-}
-
-.company-boss,
-.company-boss span,
-.modal-description {
-  border-radius: 10px;
-}
-.company-boss,
-.company-boss span {
-  padding: 1.5rem;
-}
-
-.company-boss {
-  margin-bottom: 1.2rem;
-  text-align: center;
-}
-.company-boss span {
-  background-color: #dbeafe;
-}
-
-.company-boss span,
-.modal-description h3,
-.modal-description p {
-  margin-bottom: 1rem;
-}
-
-.company-boss span,
-.modal-description h3 {
-  color: #1e40af;
-  font-size: 2.4rem;
-  font-weight: 600;
-}
-
-.modal-description p {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  color: #333;
-}
-
-
-.view-modal-layer {
-  opacity: 1;
-  visibility: visible;
-  transition: 0.5s all ease-in-out;
-}
-.view-modal {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  transition: 0.5s all ease-in-out;
-}
 

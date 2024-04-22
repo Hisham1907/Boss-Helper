@@ -1,5 +1,4 @@
 :root {
-  overflow-x: hidden;
  scroll-behavior: smooth;
  --main-bg-color: #343a40;
  --secondary-bg-color: #212529;
@@ -62,12 +61,12 @@ html{
 }
 main {
   padding: 1rem 2.4rem 2.4rem;
-  overflow-y: auto;
- }
+  }
 body {
-  font-family: sans-serif;
-  color: var(--main-color);
+  font-family: "Rubik", sans-serif;
+    color: var(--main-color);
   background-color: var(--main-bg-color);
+ overflow: hidden;
 }
 /* Side Navbar Start */
 aside {
@@ -284,6 +283,8 @@ input:checked + .slider:before {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.4rem;
+  overflow-x: auto;
+
 }
 .group-box {
   padding: 2rem;
@@ -336,23 +337,32 @@ input:focus {
   padding: 8px;
   border-radius: 4px;
 }
+.btn-row
+{
+  grid-column: span 2;
+display: flex;
+justify-content: center;
+}
+
 .form-btn {
   background-color:#1d4ed8;
   color: #fff;
   font-weight: 700;
   border: none;
   width: 100%;
-  padding: 1rem 2rem;
+   padding: 1rem 2rem;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  grid-column: span 2;
   font-size: 1.6rem;
 }
 .form-btn:hover {
   background-color: var(--btn-hover);
 }
+.btn-row .form-btn{
+  width: 50%;
 
+}
 /* 
 table */
 .table-btns{
@@ -362,14 +372,17 @@ table {
   border-collapse: collapse;
   width: 100%;
   font-size: 1.6rem;
-  overflow: auto;
+  overflow-x: auto;
 }
 th,
 td {
   text-align: start;
   padding: 1.6rem 2.4rem;
   border-bottom: 1px solid #adb5bd;
+  white-space: nowrap; /* Prevent line breaks */
+
 }
+ 
 thead {
   background-color: #1d4ed8;
   color: #fff;
@@ -394,7 +407,12 @@ tbody tr:nth-child(even) {
 }
 
 
-@media (max-width:130em){
+@media (max-width:75em){
+  html{
+   font-size:56.25% ; 
+  }
+}
+@media (max-width:61em){
   html{
     font-size: 50%;
   }

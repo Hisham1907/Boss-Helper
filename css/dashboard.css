@@ -43,25 +43,29 @@
  --head-hover-color: #2563eb;
 
 }
-
-html{
-  font-size: 62.5%;
-}
+ 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  font-family: "Rubik", sans-serif;
-  background-color: var(--main-bg-color);
-  color: var(--main-color);
+html{
+  font-size: 62.5%;
 }
 .container {
   display: grid;
   grid-template-columns: 10rem auto;
   min-height: 100vh;
   transition: all 0.5s ease;
+}
+main {
+  padding: 1rem 2.4rem 2.4rem;
+  overflow-y: auto;
+}
+body {
+  font-family: "Rubik", sans-serif;
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
 }
 /* Side Navbar Start */
 aside {
@@ -190,6 +194,7 @@ aside .top-box {
   opacity: 1;
 }
 /* Side Navbar End */
+
 /* Theme toggler Start*/
 .toggle {
   position: relative;
@@ -239,11 +244,34 @@ input:checked + .slider:before {
 .toggle-icon i {
   font-size: 1.2rem;
   color: #fff;
-  margin: 0 5px;
+  margin: 0 .5rem;
+}
+.mode {
+  text-decoration: none;
+  color: var(--main-link-color);
+  color: #fff;
+  padding: 1.8rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: 0.3s all ease;
+  border-radius: 7px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  background: linear-gradient(135deg, #172554 0%, #2563eb 100%);
+}
+.mode-text,.mode-icon {
+  opacity: 0;
+  display: none;
+ }
+.mode-icon .fa-sun {
+  display: none;
 }
 /* Theme toggler End*/
 
 /* ================================================ */
+
 main {
   padding: 2.4rem;
 }
@@ -375,14 +403,27 @@ main .reports {
 }
 
 
-@media (max-width:130em){
+@media (max-width:75em){
+  html{
+   font-size:56.25% ; 
+  }
+}
+@media (max-width:61em){
   html{
     font-size: 50%;
   }
 }
 
-
-
+@media(max-width:38em){
+  main .reports {
+   grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width:28em){
+  main .reports {
+   grid-template-columns:1fr;
+  }
+}
 
 
 
