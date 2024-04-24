@@ -36,10 +36,10 @@ Default:9px
   padding: 0;
   box-sizing: border-box;
 }
-*:focus {
+/* *:focus {
   outline: none;
   box-shadow: 0 0 0 0.8rem rgba(30, 64, 175, 0.514);
-}
+} */
 html {
   font-size: 62.5%;
   overflow-x: hidden;
