@@ -10,21 +10,74 @@ let users = [];
 if (localStorage.getItem("users") !== null) {
   users = JSON.parse(localStorage.getItem("users"));
 }
+function addUser() {
+  validateName();
+  validateEmail();
+  validatePassword();
+  validatePasswordConfirmation(passwordInput.value);
+  if (document.querySelectorAll(".error").length == 0) {
+    const userData = {
+      name: nameInput.value,
+      email: emailInput.value,
+      password: passwordInput.value,
+    };
+    users.push(userData);
+    localStorage.setItem("users", JSON.stringify(users));
+    clear();
+    toastr["success"]("Account created successfully!", " ");
+    setTimeout(function() {
+      toastr.clear();
+      window.location.href = "signIn.html"; // Redirect after toastr notification disappears
+    }, 5000); // Timeout after 5 seconds (5000 milliseconds)
+  } else {
+    toastr["error"]("Sign up failed! Please check the form for errors.", " ")
+    setTimeout(function() {
+      toastr.clear();
+    }, 5000); // Timeout after 5 seconds (5000 milliseconds)
+  }
+}
+function clear() {
+  nameInput.value = "";
+  emailInput.value = "";
+  passwordInput.value = "";
+  confirmPasswordInput.value = "";
+  let inputs = [nameInput, emailInput, passwordInput, confirmPasswordInput];
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].parentElement.parentElement.classList.remove("error");
+    inputs[i].parentElement.parentElement.classList.remove("success");
+  }
+}
+function signUpHandler() {
+  signUpBtn.addEventListener("click", function () {
+    addUser();
+  });
+}
+signUpHandler();
+
 function setError(element, message) {
   let inputControl = element.parentElement.parentElement;
-  let errorMessage = inputControl.querySelector("small");
-  errorMessage.innerHTML = message;
-  inputControl.classList.add("error");
+   inputControl.classList.add("error");
   inputControl.classList.remove("success");
+  if (element._tippy) {
+    element._tippy.destroy();
+  }
+  tippy(element, {
+    content: message,
+    trigger: 'manual',  
+    placement: 'bottom',  
+     theme:'errorTooltip',  
+     arrow:true
+     }).show(); 
 }
 function setSuccess(element) {
+  if (element._tippy) {
+    element._tippy.destroy();
+  }
   let inputControl = element.parentElement.parentElement;
-  let errorMessage = inputControl.querySelector("small");
-  errorMessage.innerHTML = "";
   inputControl.classList.remove("error");
   inputControl.classList.add("success");
-  
 }
+
 function validateName() {
   let nameValue = nameInput.value.trim();
   if (nameValue == "") {
@@ -61,7 +114,7 @@ function validateEmail() {
     if (emailExists)
       setError(
         emailInput,
-        "This Email already exists. Please choose another one"
+        "This Email already exists. Choose another one"
       );
     else setSuccess(emailInput);
   }
@@ -87,45 +140,46 @@ function validatePasswordConfirmation(passwordValue) {
     setSuccess(confirmPasswordInput);
   }
 }
-function addUser() {
-  validateName();
-  validateEmail();
-  validatePassword();
-  validatePasswordConfirmation(passwordInput.value);
-  if (document.querySelectorAll(".error").length == 0) {
-    const userData = {
-      name: nameInput.value,
-      email: emailInput.value,
-      password: passwordInput.value,
-    };
-    console.log(document.querySelectorAll(".error").length);
-    users.push(userData);
-    localStorage.setItem("users", JSON.stringify(users));
-    window.location.href = "signIn.html";
-    clear();
+
+nameInput.addEventListener("input", function() {
+  if (nameInput.value.trim() === "") {
+    clearError(nameInput);
+  } else {
+    validateName();
   }
-}
-function clear() {
-  nameInput.value = "";
-  emailInput.value = "";
-  passwordInput.value = "";
-  confirmPasswordInput.value = "";
-  let inputs = [nameInput, emailInput, passwordInput, confirmPasswordInput];
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i].parentElement.parentElement.classList.remove("error");
-    inputs[i].parentElement.parentElement.classList.remove("success");
-  }
-}
-function signUpHandler() {
-  signUpBtn.addEventListener("click", function () {
-    addUser();
-  });
-}
-signUpHandler();
-// Attach event listeners for real-time validation
-nameInput.addEventListener("input", validateName);
-emailInput.addEventListener("input", validateEmail);
-passwordInput.addEventListener("input", validatePassword);
-confirmPasswordInput.addEventListener("input", function() {
-  validatePasswordConfirmation(passwordInput.value);
 });
+
+emailInput.addEventListener("input", function() {
+  if (emailInput.value.trim() === "") {
+    clearError(emailInput);
+  } else {
+    validateEmail();
+  }
+});
+
+passwordInput.addEventListener("input", function() {
+  if (passwordInput.value.trim() === "") {
+    clearError(passwordInput);
+  } else {
+    validatePassword();
+  }
+});
+
+confirmPasswordInput.addEventListener("input", function() {
+  if (confirmPasswordInput.value.trim() === "") {
+    clearError(confirmPasswordInput);
+  } else {
+    validatePasswordConfirmation(passwordInput.value);
+  }
+});
+
+function clearError(inputElement) {
+  inputElement._tippy.destroy();
+  let inputControl = inputElement.parentElement.parentElement;
+  inputControl.classList.remove("error");
+  inputControl.classList.remove("success");
+}
+ 
+ 
+ 
+ 

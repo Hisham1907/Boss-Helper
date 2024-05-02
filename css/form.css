@@ -51,8 +51,11 @@ a {
    padding: 1.6rem .8rem;
   border: 2px solid #dee2e6;
   color: #333;
-  margin-bottom: .4rem;
+  margin-bottom: 2rem;
+    position: relative;
+
  }
+ 
 .field input {
   padding: .6rem;
   border: none;
@@ -61,9 +64,12 @@ a {
   align-items: center;
   cursor: pointer;
 }
-.input-field small{
-visibility: hidden;
-font-size: 1.4rem;
+.toast {
+  /* Set padding */
+  padding: 15px;
+
+  /* Set width */
+  width: 500px; /* Adjust the width as needed */
 }
 input {
   background-color: transparent;
@@ -102,16 +108,12 @@ display: block;
 }
 
 .error .field {
-   border-color: #b91c1c;
+   border-color: #ff6961;
 }
-.error small{
-visibility: visible; 
- color:#b91c1c ;
-
-}
+ 
 .error .error-icon{
   display: block; 
-   color:#b91c1c ;
+   color:#ff6961 ;
   }
 .form {
   background-color: #fff;
@@ -311,5 +313,29 @@ visibility: visible;
 
 
  }
+ 
+/* 
+Tooltip
+ */
 
+ .tippy-box[data-theme='errorTooltip'] {
+  background-color: #ff6961;
+  color: #fff;
+   font-size: 1.4rem;
+  font-weight: 500;
+   border-radius: 5px; 
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3); 
+}
+
+.tippy-box[data-theme='errorTooltip'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: #ff6961; 
+
+}
+
+#toast-container>div {
+    font-size: 1.6rem;
+  line-height: 1.6;
+  padding: 20px 20px 20px 50px;
+  
+}
  

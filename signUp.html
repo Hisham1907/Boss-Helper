@@ -14,6 +14,8 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/toastr.min.css">
     <link rel="stylesheet" href="css/all.min.css">
      <link rel="stylesheet" href="css/form.css">
 
@@ -36,7 +38,7 @@
                 <p class="boss-qoute">"I'm thrilled to share my best project! After nurturing the idea, I'm proud to see it come to life.
                     Dive in and enjoy!"</p>
                 <div class="boss-info">
-                    <img src="img/boss.jpg" class="boss-img" alt="">
+                    <img src="img/boss.jpg" class="boss-img" alt="Hisham Rabea, Founder and CEO">
                     <div class="info-text">
                         <p class="boss-name">Hisham Rabea</p>
                         <p class="boss-title">Founder and CEO</p>
@@ -53,44 +55,42 @@
             <div class="input-field ">
                 <div class="field  ">
                 <i class="fa-solid fa-user input-icon "></i>
-                <input type="text" id="name" name="fullName" placeholder="Name" required maxlength="31">
+                <input type="text" id="name" name="fullName" placeholder="Name" required maxlength="31" autocomplete="off" title="">
                 <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
                 <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
             </div>
-            <small>Error Message</small>
             </div>
         <div class="input-field  ">
             <div class="field ">
                 <i class="fa-solid fa-envelope input-icon"></i>
-                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="email" id="email" name="email" placeholder="Email" required autocomplete="off" title="">
                 <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
                 <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                <span class="underline"></span>
+
             </div>
-            <small>Error Message</small>
         </div>
         <div class="input-field">
             <div class="field ">
                 <i class="fa-solid fa-lock input-icon"></i>
-                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="password" id="password" name="password" placeholder="Password" required title="">
                 <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
                 <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
                 <div id="password-strength"></div>
             </div>
-            <small>Error Message</small>
 
             </div>
             <div class="input-field">
                 <div class="field ">
                 <i class="fa-solid fa-lock input-icon"></i>
-                <input type="password" id="confirm-password" name="password" placeholder="Confirm Password" required>
+                <input type="password" id="confirm-password" name="password" placeholder="Confirm Password" required title="" >
                 <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
                 <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
                 <div id="password-strength"></div>
             </div>
-            <small>Error Message</small>
             </div>
              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
+                <input class="form-check-input" type="checkbox" id="terms-check-btn" required title="">
                 <label class="form-check-label" for="termsCheckbox">
                     I agree to the <a href="#">Terms and Conditions</a>
                 </label>
@@ -102,11 +102,19 @@
         </div>
     </div>
  
-
-    <script src="js/signUpModule.js"></script>
+ 
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/toastr.min.js"></script>
+     <script src="js/signUpModule.js"></script>
+    
 </body>
 
 </html>
 
 
 <!--  -->
+
+ 
+

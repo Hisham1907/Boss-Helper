@@ -37,7 +37,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(document.querySelector('.faq-hero'));
 });
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
 
+   document.querySelectorAll('.wow').forEach(element => {
+      new WOW().init();
+  });
+});
 // Accordiooon
 
 let allItemIcons = document.querySelectorAll(".item-icon");

@@ -70,15 +70,17 @@
   .btn-mobile-nav {
     display: block;
   }
-  
+  .home:has(.header.nav-open) {
+    padding: 0;
+}
   .main-nav {
     position: absolute;
+    height: 100vh;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
     background-color: #fff;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,7 +89,8 @@
     pointer-events: none;
     visibility: hidden;
     transform: translateX(100%);
-    z-index: 99999;
+    z-index: -99;
+
   }
   .main-nav .main-nav-list {
     display: flex;
@@ -106,6 +109,9 @@
     pointer-events: auto;
     visibility: visible;
     transform: translateX(0);
+    
+    z-index: 99999;
+
   }
   .nav-open .mobile-nav-icon {
     color: #333;

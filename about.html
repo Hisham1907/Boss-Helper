@@ -19,15 +19,17 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/common-queries.css">
+    <link rel="stylesheet" href="css/animate.css">
+ 
      <title>About</title>
 </head>
 <body>
     <header class='about'>
         <div class="about-content">
             <header class="header ">
-                <a href="index.html" class="main-logo"><i class="fas fa-handshake"></i>Boss<span>Helper</span>
+                <a href="index.html" class="main-logo wow fadeInDownBig"   data-wow-duration="1.5s"><i class="fas fa-handshake"></i>Boss<span>Helper</span>
                 </a>
-                <nav class="main-nav">
+                <nav class="main-nav wow fadeInDownBig" data-wow-delay=".4s" data-wow-duration="1.5s">
                     <ul class="main-nav-list">
                         <li><a class="main-list-link" href="index.html">Home</a></li>
                         <li><a class="main-list-link" href="about.html">About</a></li>
@@ -36,14 +38,14 @@
                         <li><a class="main-list-link nav-cta" href="signUp.html">Register</a></li>
                     </ul>
                 </nav>
-                <button class="btn-mobile-nav">
+                <button class="btn-mobile-nav wow fadeInDownBig "   data-wow-duration="1.5s">
                     <i class="fa-solid fa-bars fa-xl mobile-nav-icon"></i>
                     <i class="fa-solid fa-xmark fa-xl mobile-nav-icon"></i>
                 </button>
             </header>
             <div class="about-info container">
-                <h1 class="heading-secondary home-heading">About Us</h1>
-                <div class="rating">
+                <h1 class="heading-secondary home-heading wow fadeInDownBig" data-wow-duration="2.4s">About Us</h1>
+                <div class="rating wow fadeInDown" data-wow-delay="2.6s" >
                     <div class="rating-icons">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -58,25 +60,25 @@
     </header>
     <section class="section-info">
         <div class="container info-grid ">
-            <div class="info-text">
-                <span class="info-icon">
-                    <img src="img/binoculars.png" alt="">
+            <div class="info-text  wow fadeInLeft" data-wow-duration="2s" data-wow-offset="200"data-wow-delay="2.8s">
+                <span class="info-icon ">
+                    <img src="img/binoculars.png" alt="" >
                 </span>
-                <h2 class="heading-secondary heading-info">Our Mission</h2>
-                <p>
+                <h2 class="heading-secondary heading-info  " >Our Mission</h2>
+                <p >
                     Our mission at Boss Helper is simple: to provide cutting-edge solutions that streamline operations,
                     enhance productivity, and foster growth for businesses in every industry. We are dedicated to
                     helping our clients achieve their goals and exceed their expectations with our intuitive platform.
                 </p>
             </div>
-            <div class="info-img">
+            <div class="info-img  wow fadeInRight" data-wow-duration="2s" data-wow-offset="200"data-wow-delay="3s">
                 <img src="img/mission.jpeg" alt="">
             </div>
-            <div class="info-img">
-                <img src="img/mission.svg" alt="">
+            <div class="info-img  wow fadeInLeft" data-wow-duration="2s" data-wow-offset="200">
+                <img src="img/mission.svg" alt="" >
             </div>
 
-            <div class="info-text">
+            <div class="info-text wow fadeInRight" data-wow-duration="2s" data-wow-offset="200">
                 <span class="info-icon">
                     <img src="img/rocket.png" alt="">
                 </span>
@@ -90,23 +92,23 @@
         </div>
     </section>
     <section class="section-achievements">
-        <div class="container acheivements">
+        <div class="container acheivements wow fadeInLeftBig" data-wow-duration="2s" data-wow-offset="50">
         <div class="achievement-box ">
             <i class="fa-solid fa-calendar-days fa-2xl"></i>
             <span>10+</span>
             <p>Years Experience</p>
         </div>
-        <div class="achievement-box">
+        <div class="achievement-box ">
             <i class="fa-solid fa-globe fa-2xl"></i>
             <span>1500+</span>
             <p>Worldwide Clients</p>
         </div>
-        <div class="achievement-box">
+        <div class="achievement-box ">
             <i class="fa-solid fa-phone fa-2xl"></i>
             <span>24/7</span>
             <p>Support</p>
         </div>
-        <div class="achievement-box">
+        <div class="achievement-box ">
             <i class="fa-solid fa-check-circle fa-2xl"></i>
             <span>100%</span>
             <p>Client Satisfaction</p>
@@ -114,14 +116,14 @@
     </div>
     </section>
     <section class="section-team">
-        <div class="container info-grid">
-            <div class="info-text">
+        <div class="container info-grid ">
+            <div class="info-text wow fadeInLeftBig" data-wow-duration="2s" data-wow-offset="200">
                 <h2 class="heading-secondary heading-info">Our Team</h2>
                 <p>
                     At Boss Helper, we're more than just a team; we're a family united by a passion for innovation and a drive for success. Get to know the faces behind the screens and discover the diverse talents that make our company thrive.
                 </p>
             </div>
-            <div class="info-video">
+            <div class="info-video wow fadeInRightBig" data-wow-duration="2s" data-wow-offset="200">
                 <video id="teamVideo" src="img/team.mp4" autoplay></video>
                 <button id="playPauseBtn" class="play-btn">
                     <i class="fa-solid fa-play fa-xl"></i>
@@ -132,17 +134,17 @@
     <footer class="footer">
         <div class="container grid grid--footer">
             <div class="footer-img-box">
-                <img src="img/rocket.svg" alt="" class="footer-img">
+                <img src="img/rocket.svg" alt="" class="footer-img  wow fadeInLeft"data-wow-offset="150"  >
             </div>
             <div class="footer-header">
-                <p class="footer-text">Unlock your business's full potential with Boss Helper where efficiency meets
+                <p class="footer-text  wow fadeInDown"data-wow-offset="150"  >Unlock your business's full potential with Boss Helper where efficiency meets
                     success!
                 </p>
-                <a href="signUp.html" class="btn  btn--outline">Discover the Power
+                <a href="signUp.html" class="btn  btn--outline  wow fadeInUp" data-wow-offset="100" >Discover the Power
                 </a>
             </div>
-            <div class="footer-second-row">
-                <div class="logo-col">
+            <div class="footer-second-row ">
+                <div class="logo-col wow fadeInUp" data-wow-delay=".5s" data-wow-offset="100">
                     <a class="main-logo footer-logo" href="#">Boss Helper
                     </a>
                     <ul class="social-links">
@@ -157,9 +159,10 @@
                         </li>
                     </ul>
 
-                    <p class="copyright">Copyright &copy; 2024 by Hisham Rabea and Boss Helper, Inc. All rights reserved.</p>
+                    <p class="copyright">Copyright &copy; 2024 by Hisham Rabea and Boss Helper, Inc. All rights
+                        reserved.</p>
                 </div>
-                <div class="address-col">
+                <div class="address-col wow fadeInLeft" data-wow-delay=".7s" data-wow-offset="100">
                     <p class="footer-heading">
                         Contact us
                     </p>
@@ -171,7 +174,7 @@
                         </p>
                     </address>
                 </div>
-                <nav class="nav-col ">
+                <nav class="nav-col wow fadeInLeft" data-wow-delay=".9s" data-wow-offset="100">
                     <p class="footer-heading">
                         Explore
                     </p>
@@ -182,7 +185,7 @@
                         <li><a class="footer-link" href="#">Careers</a></li>
                     </ul>
                 </nav>
-                <nav class="nav-col">
+                <nav class="nav-col wow fadeInLeft" data-wow-delay="1.1s"data-wow-offset="100" >
                     <p class="footer-heading">
                         Support
                     </p>
@@ -193,7 +196,7 @@
                         <li><a class="footer-link" href="#">Contact Us</a></li>
                     </ul>
                 </nav>
-                <nav class="nav-col">
+                <nav class="nav-col wow fadeInLeft" data-wow-delay="1.3s"data-wow-offset="100" >
                     <p class="footer-heading">
                         Connect
                     </p>
@@ -204,12 +207,17 @@
                         <li><a class="footer-link" href="#">LinkedIn</a></li>
                     </ul>
                 </nav>
-                
+
             </div>
 
         </div>
     </footer>
       <script src="js/about.js"></script>
+      <script src="js/wow.min.js"></script>
+      <script>
+        new WOW().init();
+    </script>
+
  </body>
  
 </html>

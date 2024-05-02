@@ -37,3 +37,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(document.querySelector('.founder'));
 });
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+
+   document.querySelectorAll('.wow').forEach(element => {
+      new WOW().init();
+  });
+});

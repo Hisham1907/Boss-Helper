@@ -25,6 +25,7 @@ body{
   align-items: center;
   flex-direction: column;
   gap: 1.2rem;
+  padding: 2.4rem 0;
 }
 .rating {
   display: flex;
@@ -62,6 +63,9 @@ body{
   column-gap: 3.2rem;
   row-gap: 2.4rem;
 }
+.info-img,.info-text{
+  overflow: hidden;
+}
 .info-img img {
   width: 100%;
   border-radius: 11px;
@@ -71,7 +75,7 @@ body{
   font-size: 1.8rem;
   line-height: 1.8;
 }
-
+.info-text,
 .heading-info {
   margin-bottom: 1.2rem;
 }

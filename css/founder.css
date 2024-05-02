@@ -16,6 +16,7 @@ body {
   align-items: center;
   gap: 9.6rem;
   min-height: 80svh;
+  overflow: hidden;
 }
 .founder-img-box img {
   width: 25vw;

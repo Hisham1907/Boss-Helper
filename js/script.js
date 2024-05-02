@@ -5,7 +5,7 @@ let header = document.querySelector(".header");
 btnNav.addEventListener("click", function () {
   header.classList.toggle("nav-open");
 });
-
+ 
 let links = document.querySelectorAll("a");
 links.forEach((link) => {
   link.addEventListener("click", function () {
@@ -21,23 +21,34 @@ window.addEventListener('DOMContentLoaded', () => {
   const headerEl = document.querySelector('.header');
 
   const observer = new IntersectionObserver(
-    (entries) => {
-      const entry = entries[0];
-      if (!entry.isIntersecting) {
-        headerEl.classList.add('sticky');
-      } else {
-        headerEl.classList.remove('sticky');
+      (entries) => {
+          const entry = entries[0];
+          if (!entry.isIntersecting) {
+              headerEl.classList.add('sticky');
+                
+          } else {
+              headerEl.classList.remove('sticky');
+          }
+      },
+      {
+          root: null,
+          threshold: 0,
+          rootMargin: '0px'
       }
-    },
-    {
-      root: null,
-      threshold: 0,
-      rootMargin: '0px'  
-    }
   );
 
   observer.observe(document.querySelector('.home'));
 });
+ 
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+
+   document.querySelectorAll('.wow').forEach(element => {
+      new WOW().init();
+  });
+});
+
+
 // Why Section Accordion
 let whyAccordion=document.querySelector('.why-accordion')
 let whyAccordionSelection=document.querySelectorAll('.why-acc-selection')
@@ -212,7 +223,20 @@ heroImg.setAttribute('src',heroImages[currIndex])
 })
 
 
-
+// Elements Animation
+// let animateElements=document.querySelectorAll('.animation-field')
+// console.log(animateElements);
+// const scrollReveal= function(){
+//   for (let i=0;i<animateElements.length;i++){
+//     let isElementOnScreen=animateElements[i].getBoundingClientRect().top<window.innerHeight;
+//     if(isElementOnScreen)
+//       animateElements[i].classList.add('animate')
+//     else
+//     animateElements[i].classList.remove('animate')
+//   }
+// }
+// window.addEventListener('scroll',scrollReveal)
+// window.addEventListener('load',scrollReveal)
 
 
 
