@@ -48,7 +48,7 @@ signInHandler();
 
 function validateEmail() {
   let emailValue = emailInput.value.trim();
-  let emailRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
+  const emailRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   if (emailValue === "") {
     setError(emailInput, "Email field cannot be empty");
   } else if (!emailRegex.test(emailValue)) {
@@ -65,7 +65,8 @@ function validatePassword() {
     setError(passwordInput, "Password field cannot be empty");
   } else if (passwordValue.length < 8) {
     setError(passwordInput, "Password can't be less than 8 characters long");
-  } else {
+  }
+   else {
     setSuccess(passwordInput);
   }
 }

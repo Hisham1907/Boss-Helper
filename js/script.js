@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 // Mobile Nav
 let btnNav = document.querySelector(".btn-mobile-nav");
 let header = document.querySelector(".header");
@@ -42,10 +44,6 @@ window.addEventListener('DOMContentLoaded', () => {
  
 window.addEventListener('load', () => {
   window.scrollTo(0, 0);
-
-   document.querySelectorAll('.wow').forEach(element => {
-      new WOW().init();
-  });
 });
 
 
@@ -241,4 +239,8 @@ heroImg.setAttribute('src',heroImages[currIndex])
 
 
 
+
+new WOW().init();
+
+});
 
