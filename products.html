@@ -15,6 +15,7 @@
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/common-app.css">
     <link rel="stylesheet" href="css/products.css">
       <title>Products</title>
 </head>
@@ -30,9 +31,9 @@
          </div>
          <div class="profile">
             <div class="profile-img">
-                <img src="img/boss.jpg" alt="Boss Img">
+                <img src="img/user.jpg" alt="Boss Img">
             </div>
-            <p class="profile-name">Hisham Rabea</p>
+            <p class="profile-name" id="profile-name"></p>
         </div>
         <nav class="menu ">
             <ul class="menu-items">
@@ -59,13 +60,14 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#"><i class="menu-icon fa-solid fa-gear"></i>
-                        <span>Settings</span>
-
+                    <a href="profile.html"> 
+                          <i class="menu-icon fas fa-user-alt"></i>
+                        <span>Profile</span>
                     </a>
                 </li>
-              
-               
+
+
+
                 <li class="menu-item">
                     <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
                         <span>Logout</span>
@@ -87,8 +89,8 @@
                             </span>
                         </label>
                     </div>
-                    
-                   
+
+
                 </li>
             </ul>
         </nav>
@@ -145,6 +147,7 @@
      </table>
 </main>
 </div>      
+<script src="js/common-app.js"></script>
 <script src="js/products.js"></script>
 
 </body>

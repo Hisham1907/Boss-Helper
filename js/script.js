@@ -236,7 +236,11 @@ heroImg.setAttribute('src',heroImages[currIndex])
 // window.addEventListener('scroll',scrollReveal)
 // window.addEventListener('load',scrollReveal)
 
-
+let toContactUsBtn=document.querySelector('#to-contact-us')
+let sectionCta=document.querySelector('.section-cta')
+ toContactUsBtn.addEventListener('click',function(e){
+   sectionCta.scrollIntoView({behavior:"smooth"})
+})
 
 
 

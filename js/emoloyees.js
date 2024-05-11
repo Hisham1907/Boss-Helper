@@ -18,8 +18,8 @@ let tableBody = document.getElementById("tableBody");
 let search = document.getElementById("search");
 let popBtn = document.querySelector(".pop-btn");
 let popUpModal= document.querySelector(".pop-up");
-let canceModallBtn= document.querySelector(".cancel-btn");
-let deleteModalBtn= document.querySelector(".delete-btn");
+let canceModallBtn= document.querySelector(".cancel-modal-btn");
+let deleteModalBtn= document.querySelector(".delete-modal-btn");
 let currentImgSrc;
 let currentIndex;
 let employees = [];
@@ -37,15 +37,20 @@ closeBtn.addEventListener("click", function () {
   employeesForm.classList.remove("appear");
 });
 fileInput.addEventListener("change", function (e) {
-  let file = e.target.files[0];
+  let file = fileInput.files[0];
+  console.log(file);
   if (file.size < 1000000) {
-    let src = URL.createObjectURL(file);
-    employeeImg.src = src;
-    currentImgSrc = src;
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      currentImgSrc = reader.result;
+      employeeImg.src = currentImgSrc;
+    };
   } else {
-    alert("The file is too long");
+    alert("The file is too large");
   }
 });
+
 mainBtn.addEventListener("click", function () {
   if (mainBtn.innerHTML == "Add Employee") {
     addEmployee();
@@ -62,7 +67,7 @@ mainBtn.addEventListener("click", function () {
 });
 function addEmployee() {
   let employee = {
-    img: currentImgSrc || "images/user.jpg",
+    img: currentImgSrc || "img/user.jpg",
     firstName: firstName.value,
     lastName: lastName.value,
     age: age.value,
@@ -140,14 +145,28 @@ function getData(i) {
   mainBtn.innerHTML = "Update Employee";
 }
 function updateData(i) {
-  employees[i].firstName = firstName.value;
-  employees[i].lastName = lastName.value;
-  employees[i].age = age.value;
-  employees[i].position = position.value;
-  employees[i].salary = salary.value;
-  employees[i].email = email.value;
-  employees[i].phone = phone.value;
+  let file = fileInput.files[0];
+  if (file && file.size < 1000000) { // Check if a file is selected and its size is within limit
+    let reader = new FileReader();
+    reader.onload = function () {
+      employees[i].img = reader.result; // Update the image URL
+      employees[i].firstName = firstName.value;
+      employees[i].lastName = lastName.value;
+      employees[i].age = age.value;
+      employees[i].position = position.value;
+      employees[i].salary = salary.value;
+      employees[i].email = email.value;
+      employees[i].phone = phone.value;
+
+      localStorage.setItem("employees", JSON.stringify(employees)); // Update local storage
+      displayData(); // Display updated data
+    };
+    reader.readAsDataURL(file); // Read the file as data URL
+  } else {
+    alert("Please select an image file within 1MB."); // Inform the user about the file size limit
+  }
 }
+
 search.addEventListener("keyup", function () {
   let content = "";
   for (let i = 0; i < employees.length; i++) {
@@ -178,74 +197,3 @@ search.addEventListener("keyup", function () {
   }
   tableBody.innerHTML = content;
 });
-
-// Aside toggle btn
-const toggleBtn = document.querySelector('#toggle-btn');
-const aside = document.querySelector('aside');
-let isAsideActive = false;
-
- if (localStorage.getItem('isAsideActive') !== null) {
-     isAsideActive = JSON.parse(localStorage.getItem('isAsideActive'));
-    console.log(isAsideActive);
-     if (isAsideActive) {
-        aside.classList.add('aside-active');
-    } else {
-        aside.classList.remove('aside-active');
-    }
-}
-
- toggleBtn.addEventListener('click', function () {
-    isAsideActive = !isAsideActive;  
-    localStorage.setItem('isAsideActive', JSON.stringify(isAsideActive)); // Store the updated value
-    console.log(isAsideActive);
-     aside.classList.toggle('aside-active');
-});
-
-// Dark & Light Mode
-
-const modeToggle = document.getElementById("mode-toggle");
-const modeText = document.querySelector(".mode-text");
-let isChecked = false;
- 
-if(localStorage.getItem('isChecked')!=null){
-  isChecked=JSON.parse(localStorage.getItem('isChecked'))
-  console.log(isChecked)
-  modeToggle.checked=isChecked;
-  if(isChecked){
-    document.body.classList.add("light-theme");
-    modeText.textContent = "Light Mode";
-    document.querySelector(".fa-sun").style.display = "block";
-    document.querySelector(".fa-moon").style.display = "none";
-  }
-  else{
-    document.body.classList.remove("light-theme");
-    modeText.textContent = "Dark Mode";
-    document.querySelector(".fa-sun").style.display = "none";
-    document.querySelector(".fa-moon").style.display = "block";
-  }
-}
-modeToggle.addEventListener("change", function () {
-  if (this.checked) {
-    isChecked = true;
-    localStorage.setItem('isChecked',JSON.stringify(isChecked))
-    document.body.classList.add("light-theme");
-    modeText.textContent = "Light Mode";
-    document.querySelector(".fa-sun").style.display = "block";
-    document.querySelector(".fa-moon").style.display = "none";
-  } else {
-    isChecked = false;
-    localStorage.setItem('isChecked',JSON.stringify(isChecked))
-
-    document.body.classList.remove("light-theme");
-    modeText.textContent = "Dark Mode";
-    document.querySelector(".fa-sun").style.display = "none";
-    document.querySelector(".fa-moon").style.display = "block";
-  }
-});
-
-
-
-
-canceModallBtn.addEventListener('click',function(){
-  popUpModal.classList.remove('pop-up-active')
-})

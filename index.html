@@ -16,13 +16,19 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;100;600;700&display=swap" rel="stylesheet">
-    <!-- CSS FILES -->
+   
+   
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/wow.min.js" as="script"> <!-- CSS FILES -->
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/queries.css">
     <link rel="stylesheet" href="css/common-queries.css">
     <link rel="stylesheet" href="css/animate.css">
+     <!-- Preload critical resources -->
+     <link rel="preload" href="css/style.css" as="style">
+     <link rel="preload" href="js/script.js" as="script">
     <title>Boss Helper &mdash; Magnify your business</title>
 </head>
 
@@ -63,8 +69,8 @@
                             <a href="signUp.html" class="btn btn--full margin-right-sm">Get Started
                             </a>
                         </button>
-                        <button class="wow fadeInLeftBig" data-wow-delay="1.1s" >
-                            <a href="#contact" class="btn  btn--outline ">Contact Us</a>
+                        <button class="wow fadeInLeftBig" data-wow-delay="1.1s" id="to-contact-us">
+                            <a href="#" class="btn  btn--outline ">Contact Us</a>
 
                         </button>
 
@@ -528,7 +534,7 @@
                 </div>
             </div>
         </section>
-        <section class="section-cta" id="contact">
+        <section class="section-cta" id="section-cta">
             <div class="container cta ">
                 <div class="contact-us">
                     <div class="container">
@@ -695,8 +701,9 @@
 
         </div>
     </footer>
-    <script src="js/script.js"></script>
-    <script src="js/wow.min.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/wow.min.js" defer></script>
+    
     
 </body>
 

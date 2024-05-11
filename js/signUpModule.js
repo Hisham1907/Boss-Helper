@@ -28,12 +28,12 @@ function addUser() {
     setTimeout(function() {
       toastr.clear();
       window.location.href = "signIn.html"; // Redirect after toastr notification disappears
-    }, 5000); // Timeout after 5 seconds (5000 milliseconds)
+    }, 5000);  
   } else {
     toastr["error"]("Sign up failed! Please check the form for errors.", " ")
     setTimeout(function() {
       toastr.clear();
-    }, 5000); // Timeout after 5 seconds (5000 milliseconds)
+    }, 5000);  
   }
 }
 function clear() {
