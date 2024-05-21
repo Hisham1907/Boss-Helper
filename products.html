@@ -14,7 +14,9 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/toastr.min.css">
     <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
     <link rel="stylesheet" href="css/common-app.css">
     <link rel="stylesheet" href="css/products.css">
       <title>Products</title>
@@ -54,8 +56,8 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#"><i class="menu-icon fas fa-tasks"></i>
-                        <span>Daily Tasks</span>
+                    <a href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
+                        <span>Tasks</span>
 
                     </a>
                 </li>
@@ -99,16 +101,16 @@
         <div class="products-form ">
            <div class="group-box ">
 
-               <input type="text" id="name" name="name" placeholder="Name" required>
-               <input type="text" id="category" name="category" placeholder="Category" required>
-               <input type="number" id="count" name="count" placeholder="Number of items">
+               <input type="text" id="name" name="name" placeholder="Name" required   autocomplete="off" title="">
+               <input type="text" id="category" name="category" placeholder="Category" required  autocomplete="off" title="">
+               <input type="number" id="count" name="count" placeholder="Number of items"  autocomplete="off" title="">
            </div>
            <div class="group-box">
                <div class="product-cal">
-                   <input type="number" onkeyup="calcTotal()" id="price" name="price" placeholder="Price" required>
-                   <input type="number"onkeyup="calcTotal()" id="taxes" name="taxes" placeholder="Taxes" required>
-                   <input type="number"onkeyup="calcTotal()" id="ads" name="ads" placeholder="ADS" required>
-                   <input type="number"onkeyup="calcTotal()" id="discount" name="discount" placeholder="Discounts" required>
+                   <input type="number" onkeyup="calcTotal()" id="price" name="price" placeholder="Price" required  autocomplete="off" title="">
+                   <input type="number"onkeyup="calcTotal()" id="taxes" name="taxes" placeholder="Taxes" required  autocomplete="off" title="">
+                   <input type="number"onkeyup="calcTotal()" id="ads" name="ads" placeholder="ADS" required  autocomplete="off" title="">
+                   <input type="number"onkeyup="calcTotal()" id="discount" name="discount" placeholder="Discounts" required  autocomplete="off" title="">
 
                </div>
                <div class="product-cal">
@@ -146,7 +148,25 @@
          </tbody>
      </table>
 </main>
+<div class="pop-up ">
+    <div class="pop-up-content">
+        <i class="fa-solid fa-trash-can fa-3x"></i>
+        <h2 class="pop-up-title"> </h2>
+        <img class="pop-up-img"src=" " alt="">
+        <p class="pop-up-text"> </p>
+        <div class="pop-up-control">
+            <button class="cancel-modal-btn">Cancel</button>
+            <button class="delete-modal-btn">Delete</button>
+        </div>
+    </div>
+</div>
 </div>      
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/sweetalert2.all.min.js"></script>
 <script src="js/common-app.js"></script>
 <script src="js/products.js"></script>
 

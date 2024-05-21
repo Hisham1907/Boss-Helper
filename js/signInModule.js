@@ -118,3 +118,8 @@ function clearError(inputElement) {
   inputControl.classList.remove("error");
   inputControl.classList.remove("success");
 }
+
+
+toastr.options = {
+  "closeButton": true,
+  } 

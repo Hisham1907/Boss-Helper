@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/common-app.css">
+    <link rel="stylesheet" href="css/toastr.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <title>Dashboard</title>
 </head>
@@ -54,8 +55,8 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#"><i class="menu-icon fas fa-tasks"></i>
-                            <span>Daily Tasks</span>
+                        <a href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
+                            <span>Tasks</span>
 
                         </a>
                     </li>
@@ -96,42 +97,71 @@
             </nav>
         </aside>
         <!-- <i class="fa-solid fa-xmark fa-xl dashboard-mobile-icon"></i> -->
-
+    
         <main>
-            <div class="welcome-back">
-                <h2>Welcome Back, Yasser!</h2>
-                <p>We're glad to see you again. Here's a quick overview of your dashboard:</p>
+          <section class="welcome-back">
+            <h2 class="welcome-boss">Welcome Back, John Doe!</h2>
+            <p>Here's a summary of your dashboard data.</p>
+          </section>
+          <section id="summary">
+            <div class="card">
+              <h2>Total Employees</h2>
+              <p id="total-employees">0</p>
             </div>
+            <div class="card">
+              <h2>Total Products</h2>
+              <p id="total-products">0</p>
+            </div>
+            <div class="card">
+              <h2>Total Tasks</h2>
+              <p id="total-tasks">0</p>
+            </div>
+          </section>
+          
+             <div class="chart-container employee-chart" >
+              <h2>Employee Distribution</h2>
+              <canvas id="employeeChart"></canvas>
+              <p id="employee-no-data" class="no-data-message">No employee data available</p>
+            </div>
+           
+          
+ <div class="second-col">
+  <section id="profile">
+    <div class="profile-card">
+      <h2>User Profile</h2>
+      <p id="user-name">Name: John Doe</p>
+      <p id="user-email">Email: john.doe@example.com</p>
+      <p id="user-phone">Phone: 123-456-7890</p>
+      <p id="user-company">Company: Example Inc.</p>
+      <a href="profile.html" id="update-profile-btn" >Update Profile</a>
+    </div>
+  </section>
+  <div class="chart-container product-chart">
+    <h2>Product Categories</h2>
+    <canvas id="productChart"></canvas>
+    <p id="product-no-data" class="no-data-message">No product data available</p>
+  </div>
 
-            <div class="dashboard-content">
-                <div class="reports">
-                    <div class="report">
-                        <h3>Sales Overview</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla quam ac sem euismod,
-                            vel tincidunt libero feugiat.</p>
-                    </div>
-                    <div class="report">
-                        <h3>Task Progress</h3>
-                        <p>Curabitur vehicula augue quis est finibus, non scelerisque dui ullamcorper. Nunc ut ipsum non
-                            lacus imperdiet volutpat.</p>
-                    </div>
-                    <div class="report">
-                        <h3>Recent Activities</h3>
-                        <p>Integer facilisis justo in sapien faucibus, ac mattis libero consectetur. Fusce a nisi id
-                            orci aliquet posuere.</p>
-                    </div>
-                </div>
-            </div>
+ </div>
+       
         </main>
-      
-        
+<!--        
+        <footer>
+          <p>© 2024 Hisham Rabea. All rights reserved.</p>
+        </footer> -->
         
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/toastr.min.js"></script>
     <script src="js/common-app.js"></script>
     <script src="js/dashboard.js"></script>
  
 </body>
 
 </html>
+
+ 

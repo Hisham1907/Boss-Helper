@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Fav-icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
-     <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
-     <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
-      <link rel="manifest" href="img/favicons/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="img/favicons/site.webmanifest">
     <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
-     <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/common-app.css">
+    <link rel="stylesheet" href="css/toastr.min.css">
     <link rel="stylesheet" href="css/emoloyees.css">
     <title>Employees</title>
 </head>
@@ -23,14 +24,14 @@
 <body>
 
     <div class="container">
-        <aside >
+        <aside>
             <div class="top-box">
                 <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
-                    <p >Boss<span>Helper</span></p>
+                    <p>Boss<span>Helper</span></p>
                 </a>
                 <i class="fa-solid fa-bars " id="toggle-btn"></i>
-             </div>
-             <div class="profile">
+            </div>
+            <div class="profile">
                 <div class="profile-img">
                     <img src="img/user.jpg" alt="Boss Img">
                 </div>
@@ -38,13 +39,14 @@
             </div>
             <nav class="menu ">
                 <ul class="menu-items">
-                    <li class="menu-item"> 
+                    <li class="menu-item">
                         <a href="dashboard.html"><i class="menu-icon fas fa-home"></i>
                             <span>Dashboard</span>
-                        </a></li>
+                        </a>
+                    </li>
                     <li class="menu-item">
                         <a class="active" href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
-                            <span>Employees</span> 
+                            <span>Employees</span>
 
                         </a>
                     </li>
@@ -55,14 +57,14 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#"><i class="menu-icon fas fa-tasks"></i>
-                            <span>Daily Tasks</span>
+                        <a href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
+                            <span>Tasks</span>
 
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="profile.html"> 
-                              <i class="menu-icon fas fa-user-alt"></i>
+                        <a href="profile.html">
+                            <i class="menu-icon fas fa-user-alt"></i>
                             <span>Profile</span>
                         </a>
                     </li>
@@ -74,7 +76,7 @@
                             <span>Logout</span>
                         </a>
                     </li>
-                    <li  >
+                    <li>
                         <div class="mode">
                             <div class="mode-icon">
                                 <i class="fas fa-sun"></i>
@@ -102,18 +104,20 @@
                     <div class="entries-numbers">
                         <span>Show </span>
                         <select id="table-size">
+                            <option value="5">5</option>
                             <option value="10">10</option>
-                            <option value="10">25</option>
-                            <option value="10">50</option>
-                            <option value="10">100</option>
+                            <option value="15">15</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
                         </select>
                         <span> entries</span>
                     </div>
+                    
                     <div class="search-bar">
                         <label for="search">Search:</label>
                         <input type="text" name="search" id="search" placeholder="Search ...">
                     </div>
-                   
+
                 </div>
                 <button id="add-new-member">New member</button>
             </header>
@@ -127,21 +131,18 @@
                             <th>Age</th>
                             <th>Position</th>
                             <th>Salary</th>
-                            <!-- <th>Start date</th> -->
-                            <th>Email</th>
                             <th>Phone</th>
-                             <th>..</th>
-                            <th>..</th>
-                        </tr>
+                            <th>Action</th>
+                         </tr>
                     </thead>
                     <tbody id="tableBody">
                         <tr>
                             <td colspan="11" class="empty">No Data Available</td>
                         </tr>
-                     </tbody>
+                    </tbody>
                 </table>
             </div>
-                
+
             <footer>
                 <p>Showing 1 to 10 from 50 entries</p>
                 <div class="pagination">
@@ -149,8 +150,6 @@
                     <button class="active">1</button>
                     <button>2</button>
                     <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
                     <button>Next</button>
                 </div>
             </footer>
@@ -163,53 +162,47 @@
                 <h2 class="modal-title">Employee Data</h2>
                 <button class="close-btn" id="close-btn"><i class="fa-solid fa-circle-xmark"></i></button>
             </header>
-            <main >
-                <form action="#" id="my-form">
+            <main>
+                <form action="#" id="my-form" novalidate>
                     <div class="img-holder">
                         <label for="file-input" class="upload">
                             <input type="file" id="file-input" class="picture">
                             <i class="fa-solid fa-plus"></i>
                         </label>
                         <img src="img/user.jpg" alt="" id="employee-img">
-                     </div>
+                    </div>
                     <div class="input-fields">
                         <div class="input-box">
                             <label for="first-name">First Name </label>
-                            <input type="text" id="first-name" required>
+                            <input type="text" id="first-name" required autocomplete="off" title="" >
                         </div>
                         <div class="input-box">
                             <label for="last-name">Last Name </label>
-                            <input type="text" id="last-name" required>
+                            <input type="text" id="last-name" required autocomplete="off" title="" >
                         </div>
                         <div class="input-box">
                             <label for="age">Age</label>
-                            <input type="number" id="age" required>
+                            <input type="number" id="age" required autocomplete="off" title="" >
                         </div>
                         <div class="input-box">
                             <label for="position">Position </label>
-                            <input type="text" id="position" required>
+                            <input type="text" id="position" required autocomplete="off" title="" >
                         </div>
                         <div class="input-box">
                             <label for="salary">Salary </label>
-                            <input type="number" id="salary" required>
+                            <input type="number" id="salary" required autocomplete="off" title="" >
                         </div>
-                        <div class="input-box">
-                            <label for="start-date">Start Date </label>
-                            <input type="date" id="start-date" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="email">Email </label>
-                            <input type="email" id="email" required>
-                        </div>
+                     
+                       
                         <div class="input-box">
                             <label for="phone">Phone </label>
-                            <input type="number" id="phone" required>
+                            <input type="number" id="phone" required autocomplete="off" title="" >
                         </div>
                     </div>
                 </form>
             </main>
             <footer>
-                <button class="submit-btn" form="my-form" id="main-btn" >Add Employee</button>
+                <button class="submit-btn" form="my-form" id="main-btn">Add Employee</button>
             </footer>
         </div>
     </div>
@@ -217,15 +210,20 @@
         <div class="pop-up-content">
             <i class="fa-solid fa-trash-can fa-3x"></i>
             <h2>You are about to delete an employee</h2>
-            <img src="img/delete.svg" alt="">
+            <img src="img/delete-employee.svg" alt="">
             <p>This will delete the employee from your table. Are you sure ?</p>
-        <div class="pop-up-control">
-        <button class="cance-modall-btn">Cancel</button>
-        <button class="delete-modal-btn">Delete</button>
+            <div class="pop-up-control">
+                <button class="cancel-modal-btn">Cancel</button>
+                <button class="delete-modal-btn">Delete</button>
+            </div>
         </div>
-        </div>
-           </div>
-   <script src="js/common-app.js"></script>
+    </div>
+
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/toastr.min.js"></script>
+    <script src="js/common-app.js"></script>
     <script src="js/emoloyees.js"></script>
 
 </body>

@@ -41,14 +41,18 @@ function emailHover() {
 updateBtn.addEventListener("click", function () {
   if (updateBtn.textContent === "Update Info") {
     updateBtn.textContent = "Save Changes";
-    [fullNameInput,
+    [
+      fullNameInput,
       emailInput,
       phoneInput,
       websiteInput,
       companyNameInput,
-      jobTitleInput
+      jobTitleInput,
     ].forEach((input) => {
       input.style.backgroundColor = "#25292d";
+      input.addEventListener("focus", function () {
+        input.style.backgroundColor = "#25292d";
+      });
       input.disabled = false;
     });
     emailInput.disabled = true;
@@ -61,17 +65,19 @@ updateBtn.addEventListener("click", function () {
     displayProfile();
   }
 });
-changePasswordBtn.addEventListener('click', function () {
-    if (changePasswordBtn.textContent === 'Change Password') {
-        changePasswordBtn.textContent = 'Save New Password';
-        [newPasswordInput,confirmPasswordInput].forEach(input => {
-            input.style.backgroundColor = '#25292d';
-            input.disabled = false;
-        });
-      } else {
-        validatePasswords()
-       
-     }
+changePasswordBtn.addEventListener("click", function () {
+  if (changePasswordBtn.textContent === "Change Password") {
+    changePasswordBtn.textContent = "Save New Password";
+    [newPasswordInput, confirmPasswordInput].forEach((input) => {
+      input.style.backgroundColor = "#25292d";
+      input.addEventListener("focus", function () {
+        input.style.backgroundColor = "#25292d";
+      });
+      input.disabled = false;
+    });
+  } else {
+    validatePasswords();
+  }
 });
 function validateInputs() {
   const validationFunctions = [
@@ -80,7 +86,6 @@ function validateInputs() {
     validateWebsite,
     validateCompanyName,
     validateJobTitle,
-    
   ];
 
   let isValid = true;
@@ -101,7 +106,6 @@ function validateInputs() {
     }, 5000);
   }
 }
-
 function updateUser() {
   currentUser.name = fullNameInput.value;
   localStorage.setItem("name", fullNameInput.value);
@@ -119,24 +123,30 @@ function updateUser() {
     currentUser.jobTitle = jobTitleInput.value;
   }
 
-localStorage.setItem("users", JSON.stringify(users));
-     toastr["success"]("Profile info updated successfully!", " ");
-    setTimeout(function () {
-      toastr.clear();
-    }, 5000);
-   displayInputs();
+  localStorage.setItem("users", JSON.stringify(users));
+  if (
+    currentUser.name != fullNameInput.value ||
+    currentUser.phone != phoneInput.value ||
+    currentUser.website != websiteInput.value||
+    currentUser.company != companyNameInput.value||
+    currentUser.jobTitle != jobTitleInput.value
+  ){
+    toastr["success"]("Profile info updated successfully!", " ");
+  setTimeout(function () {
+    toastr.clear();
+  }, 5000);
+  }
+    
+  displayInputs();
   updateBtn.textContent = "Update Info";
   document.querySelectorAll(".form-group input").forEach((input) => {
     input.style.backgroundColor = "#121416";
     input.disabled = true;
   });
 }
-function validatePasswords(){
-    const validationFunctions=[
-        validateNewPassword,
-        validateConfirmPassword,
-    ]
-    let isValid = true;
+function validatePasswords() {
+  const validationFunctions = [validateNewPassword, validateConfirmPassword];
+  let isValid = true;
 
   validationFunctions.forEach((func) => {
     const result = func();
@@ -147,32 +157,30 @@ function validatePasswords(){
 
   if (isValid) {
     updatePassword();
-    newPasswordInput.value=''
-confirmPasswordInput.value=''
+    newPasswordInput.value = "";
+    confirmPasswordInput.value = "";
   } else {
     toastr["error"]("Please fix all the errors add the new password", " ");
     setTimeout(function () {
       toastr.clear();
     }, 5000);
-
-
   }
 }
 function updatePassword() {
-    if (newPasswordInput.value !== "") {
-        currentUser.password = newPasswordInput.value;
-        toastr["success"]("Password updated successfully!", " ");
-        setTimeout(function () {
-          toastr.clear();
-        }, 5000);
-      }
-      localStorage.setItem("users", JSON.stringify(users));
-    
-      changePasswordBtn.textContent = "Change Password";
-      [newPasswordInput,confirmPasswordInput].forEach((input) => {
+  if (newPasswordInput.value !== "") {
+    currentUser.password = newPasswordInput.value;
+    toastr["success"]("Password updated successfully!", " ");
+    setTimeout(function () {
+      toastr.clear();
+    }, 5000);
+  }
+  localStorage.setItem("users", JSON.stringify(users));
+
+  changePasswordBtn.textContent = "Change Password";
+  [newPasswordInput, confirmPasswordInput].forEach((input) => {
     input.style.backgroundColor = "#121416";
     input.disabled = true;
-})
+  });
 }
 function setError(element, message) {
   element.classList.add("error");
@@ -182,6 +190,7 @@ function setError(element, message) {
     placement: "bottom",
     theme: "errorTooltip",
     arrow: true,
+ 
   }).show();
 }
 

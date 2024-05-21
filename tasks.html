@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fav-icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/toastr.min.css">
+  <link rel="stylesheet" href="css/common-app.css">
+  <link rel="stylesheet" href="css/tasks.css">
+  <title>Tasks</title>
+</head>
+
+<body>
+  <div class="container">
+    <aside>
+      <div class="top-box">
+        <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
+          <p>Boss<span>Helper</span></p>
+        </a>
+        <i class="fa-solid fa-bars " id="toggle-btn"></i>
+      </div>
+      <div class="profile">
+        <div class="profile-img">
+          <img src="img/user.jpg" alt="Boss Img">
+        </div>
+        <p class="profile-name" id="profile-name"></p>
+      </div>
+      <nav class="menu ">
+        <ul class="menu-items">
+          <li class="menu-item">
+            <a href="dashboard.html"><i class="menu-icon fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
+              <span>Employees</span>
+
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
+              <span>Products</span>
+
+            </a>
+          </li>
+          <li class="menu-item">
+            <a class="active" href="#"><i class="menu-icon fas fa-tasks"></i>
+              <span>Tasks</span>
+
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="profile.html">
+              <i class="menu-icon fas fa-user-alt"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+
+
+
+          <li class="menu-item">
+            <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+          <li>
+            <div class="mode">
+              <div class="mode-icon">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+              </div>
+              <span class="mode-text">Dark Mode</span>
+              <label class="toggle">
+                <input type="checkbox" id="mode-toggle">
+                <span class="slider"></span>
+                <span class="toggle-icon">
+                  <i class="fas fa-sun"></i>
+                  <i class="fas fa-moon"></i>
+                </span>
+              </label>
+            </div>
+
+
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <section class="todo-section">
+        <div class="todo-container">
+          <div class="add-bar">
+            <input id="input-field" type="text" class="input-field" placeholder="Add a task ...">
+            <div class="task-customizations">
+              <div class="task-info">
+                <div class="drop">
+                  <span class="priority-title">Task Category</span>
+                  <select id="category-select" class="category-field">
+                    <option value="Personal">Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Coding">Coding</option>
+                    <option value="Fitness">Fitness</option>
+                    <option value="Education">Education</option>
+                  </select>
+                </div>
+                <div class="priority-field">
+                  <span class="priority-title">Task Priority</span>
+                  <label class="priority-label"><input type="radio" name="priority" value="1" checked><span class="custom-radio"></span> High</label>
+                  <label class="priority-label"><input type="radio" name="priority" value="2"><span class="custom-radio"></span> Medium</label>
+                  <label class="priority-label"><input type="radio" name="priority" value="3"><span class="custom-radio"></span> Low</label>
+                </div>
+              </div>
+              <button id="main-btn" class="add-btn">Add Task</button>
+            </div>
+          </div>
+
+          <div class="categories-wrapper">
+            <div class="categories">
+              <div class="category" data-category="Personal">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="content">
+                  <h1>Personal</h1>
+                  <p id="Personal-count">0 Tasks</p>
+                </div>
+              </div>
+              <div class="category" data-category="Work">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <div class="content">
+                  <h1>Work</h1>
+                  <p id="Work-count">0 Tasks</p>
+                </div>
+              </div>
+              <div class="category" data-category="Shopping">
+                <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="content">
+                  <h1>Shopping</h1>
+                  <p id="Shopping-count">0 Tasks</p>
+                </div>
+              </div>
+              <div class="category" data-category="Coding">
+                <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                <div class="content">
+                  <h1>Coding</h1>
+                  <p id="Coding-count">0 Tasks</p>
+                </div>
+              </div>
+              <div class="category" data-category="Fitness">
+                <div class="icon"><i class="fas fa-dumbbell"></i></div>
+                <div class="content">
+                  <h1>Fitness</h1>
+                  <p id="Fitness-count">0 Tasks</p>
+                </div>
+              </div>
+              <div class="category" data-category="Education">
+                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="content">
+                  <h1>Education</h1>
+                  <p id="Education-count">0 Tasks</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tasks-container">
+            <p id="pending-tasks">You have <span id="tasks-count"></span> task(s) to complete.</p>
+            <div id="task-container"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+  <div class="pop-up ">
+    <div class="pop-up-content">
+        <i class="fa-solid fa-trash-can fa-3x"></i>
+        <h2>You are about to delete a task you lazy</h2>
+        <img src="img/delete-task.svg" alt="">
+        <p>This will delete the task . Are you free today?</p>
+        <div class="pop-up-control">
+            <button class="cancel-modal-btn">Cancel</button>
+            <button class="delete-modal-btn">Delete</button>
+        </div>
+    </div>
+</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="js/toastr.min.js"></script>
+  <script src="js/common-app.js"></script>
+  <script src="js/tasks.js"></script>
+</body>
+
+</html>

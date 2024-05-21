@@ -71,3 +71,8 @@ modeToggle.addEventListener("change", function () {
     document.querySelector(".fa-moon").style.display = "block";
   }
 });
+
+
+toastr.options = {
+  "closeButton": true,
+  } 

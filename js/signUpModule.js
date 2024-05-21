@@ -183,3 +183,7 @@ function clearError(inputElement) {
  
  
  
+
+toastr.options = {
+  "closeButton": true,
+  } 

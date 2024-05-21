@@ -1,6 +1,5 @@
 :root {
-   overflow-x: hidden;
-  scroll-behavior: smooth;
+   scroll-behavior: smooth;
   --main-bg-color: #343a40;
   --secondary-bg-color: #212529;
   --form-bg-color: #212529;
@@ -146,6 +145,7 @@ body {
   cursor: pointer;
   background-color: var(--table-hover-color);
 }
+ 
 table .action button {
    padding: 0.5rem;
   color: var(--light-color);
@@ -156,7 +156,8 @@ table .action button {
 }
 table .action button.update {
   background-color:#f59e0b ;
-}
+  margin-right: 1rem;
+ }
 table .action button.delete {
   background-color:#dc2626 ;
 }
@@ -365,4 +366,119 @@ form .img-holder:hover .upload{
   }
 }
 
+.error{
+  border-color: red !important; 
+ }
+ 
+/* 
+Tooltip
+ */
 
+ .tippy-box[data-theme='errorTooltip'] {
+  background-color: #ff6961;
+  color: #fff;
+   font-size: 1.4rem;
+  font-weight: 500;
+   border-radius: 5px; 
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3); 
+}
+.tippy-box[data-theme='errorTooltip'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: #ff6961; 
+}
+#toast-container>div {
+    font-size: 1.6rem;
+  line-height: 1.6;
+  padding: 20px 20px 20px 50px;  
+}
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add this CSS to your existing styles */
+
+/* Table Header Styling */
+thead tr th {
+  background-color: var(--aside-bg-color);
+  padding: 1rem;
+  text-align: center;
+  color: var(--main-color);
+  border: 1px solid var(--box-shadow-color);
+}
+
+/* Table Button Styling */
+table .action button {
+  padding: 0.5rem 1rem;
+  color: var(--light-color);
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+table .action button:hover {
+  background-color: var(--btn-hover);
+  color: var(--light-color);
+}
+
+/* Overall Table Styling */
+tbody tr:nth-child(even) {
+  background-color: var(--secondary-bg-color);
+}
+
+tbody tr:hover {
+  background-color: var(--table-hover-color);
+  cursor: pointer;
+}
+
+/* Tooltip Styling */
+.tippy-box[data-theme='errorTooltip'] {
+  background-color: #ff6961;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+}
+.tippy-box[data-theme='errorTooltip'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: #ff6961;
+}
+
+/* Button Styling */
+#add-new-member,
+.submit-btn,
+.view-btn {
+  background-color: var(--secondary-bg-color);
+  color: var(--main-color);
+  padding: 1rem 1.6rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: 0.5s all;
+  margin-bottom: 2rem;
+}
+
+#add-new-member:hover,
+.submit-btn:hover,
+.view-btn:hover {
+  background-color: var(--add-hover-bg-color);
+  color: var(--light-color);
+}
+.pop-up-content img {
+  max-width: 100%;
+  margin: auto;
+}

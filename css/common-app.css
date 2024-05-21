@@ -230,7 +230,7 @@ aside {
     opacity: 0;
     visibility: hidden;
     transition: .3s all ease-in-out;
-  
+  overflow: auto;
   
   }
   .pop-up-content{
@@ -305,4 +305,9 @@ color: #000;
   }
   
   
-  
+  table .empty {
+    background-color: var(--secondary-bg-color);
+    padding: 1.5rem;
+    text-align: center;
+  }
+ 

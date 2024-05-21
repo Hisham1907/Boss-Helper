@@ -1,6 +1,5 @@
 :root {
-    overflow-x: hidden;
-   scroll-behavior: smooth;
+    scroll-behavior: smooth;
    --main-bg-color: #343a40;
    --secondary-bg-color: #212529;
    --form-bg-color: #212529;
@@ -126,6 +125,7 @@
     background-color:  #121416;
   color: #fff;
   cursor: pointer;
+  outline: none;
   }
   .error{
     border-color: red !important; 
