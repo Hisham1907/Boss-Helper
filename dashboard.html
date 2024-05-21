@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/common-app.css">
     <link rel="stylesheet" href="css/toastr.min.css">
+    <link rel="stylesheet" href="css/tasks.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <title>Dashboard</title>
 </head>
@@ -99,52 +100,59 @@
         <!-- <i class="fa-solid fa-xmark fa-xl dashboard-mobile-icon"></i> -->
     
         <main>
-          <section class="welcome-back">
-            <h2 class="welcome-boss">Welcome Back, John Doe!</h2>
-            <p>Here's a summary of your dashboard data.</p>
-          </section>
-          <section id="summary">
-            <div class="card">
-              <h2>Total Employees</h2>
-              <p id="total-employees">0</p>
-            </div>
-            <div class="card">
-              <h2>Total Products</h2>
-              <p id="total-products">0</p>
-            </div>
-            <div class="card">
-              <h2>Total Tasks</h2>
-              <p id="total-tasks">0</p>
-            </div>
-          </section>
+            <section class="welcome-back">
+              <h2 class="welcome-boss">Welcome Back, John Doe!</h2>
+              <p>Here's a summary of your dashboard data.</p>
+            </section>
+            <section id="summary">
+              <div class="card">
+                <i class="fas fa-users"></i>
+                <div class="card-data">
+                  <h2>Total Employees</h2>
+                  <p id="total-employees">0</p>
+                </div>
+              </div>
+              <div class="card">
+                <i class="fas fa-shopping-cart"></i>
+                <div class="card-data">
+                  <h2>Total Products</h2>
+                  <p id="total-products">0</p>
+                </div>
+              </div>
+              <div class="card">
+                <i class="fas fa-tasks"></i>
+                <div class="card-data">
+                  <h2>Total Tasks</h2>
+                  <p id="total-tasks">0</p>
+                </div>
+              </div>
+            </section>
           
-             <div class="chart-container employee-chart" >
+            <div class="chart-container employee-chart">
               <h2>Employee Distribution</h2>
               <canvas id="employeeChart"></canvas>
-              <p id="employee-no-data" class="no-data-message">No employee data available</p>
+              <p id="employee-no-data" class="no-data-message">No employees data available Boss, Go add some employees and come back</p>
             </div>
-           
           
- <div class="second-col">
-  <section id="profile">
-    <div class="profile-card">
-      <h2>User Profile</h2>
-      <p id="user-name">Name: John Doe</p>
-      <p id="user-email">Email: john.doe@example.com</p>
-      <p id="user-phone">Phone: 123-456-7890</p>
-      <p id="user-company">Company: Example Inc.</p>
-      <a href="profile.html" id="update-profile-btn" >Update Profile</a>
-    </div>
-  </section>
-  <div class="chart-container product-chart">
-    <h2>Product Categories</h2>
-    <canvas id="productChart"></canvas>
-    <p id="product-no-data" class="no-data-message">No product data available</p>
-  </div>
-
- </div>
-       
-        </main>
+            <div class="second-col">
+              <section id="profile">
+                <div class="profile-card">
+                  <h2>Today's tasks</h2>
+                  <div id="task-container" class="no-data-placeholder">
+                    <p class="no-data-message">No tasks available</p>
+                  </div>
+                  <a href="tasks.html" id="update-profile-btn" >View all tasks</a>
+                </div>
+              </section>
+              <div class="chart-container product-chart">
+                <h2>Product Categories</h2>
+                <canvas id="productChart"></canvas>
+                <p id="product-no-data" class="no-data-message">No products data available Boss, Go add some employees and come back</p>
+              </div>
+            </div>
+          </main>
+          
+          
 <!--        
         <footer>
           <p>© 2024 Hisham Rabea. All rights reserved.</p>

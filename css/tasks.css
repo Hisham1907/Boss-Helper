@@ -204,7 +204,7 @@ color: #2ecc71;
   border-radius: 5px;
   font-size: 1.8rem;
   transition: all 0.3s ease;
-
+  line-height: 1.6;
 }
 .task-box:hover {
   background-color: var(--main-hover-bg-color);
