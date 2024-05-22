@@ -4,7 +4,8 @@ const totalTasksElem = document.getElementById("total-tasks");
 const employeeNoDataMessage = document.getElementById("employee-no-data");
 const productNoDataMessage = document.getElementById("product-no-data");
 const taskContainer = document.querySelector("#task-container");
-
+const userDashName = document.querySelector("#user-dash-name");
+userDashName.textContent=currentUser.name;
 if (!currentUser.employees || currentUser.employees.length === 0) {
   employeeNoDataMessage.style.display = "block";
 } else {
@@ -18,9 +19,12 @@ if (!currentUser.products || currentUser.products.length === 0) {
 }
 
 if (!currentUser.tasks || currentUser.tasks.length === 0) {
-  taskContainer.innerHTML = "<p>No tasks available</p>";
-} else {
+  document.getElementById("tasks-no-data").style.display = "block";
+  document.getElementById("update-profile-btn").style.display = "none";} 
+  else {
   totalTasksElem.textContent = currentUser.tasks.length;
+  document.getElementById("tasks-no-data").style.display = "none";
+
 }
 
 const employeeChartCtx = document
@@ -30,7 +34,7 @@ const productChartCtx = document
   .getElementById("productChart")
   .getContext("2d");
 
-if (currentUser.employees.length > 0) {
+if (currentUser.employees) {
   document.getElementById("employee-no-data").style.display = "none";
   new Chart(employeeChartCtx, {
     type: "bar",
@@ -40,8 +44,17 @@ if (currentUser.employees.length > 0) {
         {
           label: "Average Salary by Position",
           data: getAverageSalaryByPosition(),
-          backgroundColor: ["#f59e0b", "#10b981", "#3b82f6", "#ef4444"],
-        },
+          backgroundColor: [
+            "#f59e0b",  
+            "#10b981",  
+            "#3b82f6",   
+            "#ef4444",   
+            "#6366f1",   
+            "#ec4899",   
+            "#34d399", 
+            "#f87171"    
+        ]
+                },
       ],
     },
     options: {
@@ -84,7 +97,7 @@ function getAverageSalaryByPosition() {
   );
 }
 
-if (currentUser.products.length > 0) {
+if (currentUser.products) {
   document.getElementById("product-no-data").style.display = "none";
   new Chart(productChartCtx, {
     type: "doughnut",
@@ -95,12 +108,15 @@ if (currentUser.products.length > 0) {
           label: "Products by Category",
           data: getProductCountsByCategory(),
           backgroundColor: [
-            "#3b82f6",
-            "#10b981",
-            "#f59e0b",
-            "#ef4444",
-            "#6366f1",
-          ],
+            "#ec4899",   
+            "#10b981",  
+            "#3b82f6",   
+            "#6366f1",   
+            "#f59e0b",  
+            "#ef4444",   
+             "#f87171"    
+        ]
+        
         },
       ],
     },
@@ -140,6 +156,7 @@ const categoryIcons = {
 function displayTasks() {
   currentUser.tasks.sort((a, b) => a.priority - b.priority); // Sort by priority
   let content = "";
+     document.getElementById("update-profile-btn").style.display = "inline-block";
   for (let i = 0; i < 2 && i < currentUser.tasks.length; i++) {
     let task = currentUser.tasks[i];
     if (task) {
@@ -169,9 +186,13 @@ function displayTasks() {
       </div>`;
     }
   }
+
+ 
   taskContainer.innerHTML = content;
 }
+if (currentUser.tasks) {
 displayTasks();
+}
 
 function done(currentElement, currentIndex) {
   const taskBox = currentElement.closest(".task-box");

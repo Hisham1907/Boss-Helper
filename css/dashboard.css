@@ -1,5 +1,6 @@
+/* Root Variables */
 :root {
-   scroll-behavior: smooth;
+  scroll-behavior: smooth;
   --main-bg-color: #343a40;
   --secondary-bg-color: #212529;
   --form-bg-color: #212529;
@@ -19,16 +20,9 @@
   --light-color: #fff;
   --submit-btn-bg-color: #fff;
   --submit-btn-color: #000;
-}
-:root {
-  --main-bg-color: #343a40;
-  --secondary-bg-color: #212529;
-  --teriary-bg-color: #1e3a8a;
-  --main-hover-bg-color: rgba(255, 255, 255, 0.2);
-  --main-color: #fff;
-  --box-shadow-color: rgba(255, 255, 255, 0.2);
   --card-color: #3b82f6;
 }
+
 .light-theme {
   --main-bg-color: #f5f5f5;
   --teriary-bg-color: #e2e8f0;
@@ -50,6 +44,7 @@
   --head-hover-color: #2563eb;
 }
 
+/* Global Styles */
 body {
   font-family: "Rubik", sans-serif;
   color: var(--main-color);
@@ -64,19 +59,20 @@ main {
   grid-template-columns: 1fr 30rem;
   gap: 2rem;
   padding: 2rem;
-  transition: .5s all;
-
+  transition: 0.5s all;
 }
-.container:has(> aside.aside-closed) main{
+
+.container:has(> aside.aside-closed) main {
   grid-template-columns: auto 37rem;
 }
 
+/* Welcome Section */
 .welcome-back {
   background-color: var(--secondary-bg-color);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 0 1rem var(--box-shadow-color);
-   text-align: center;
+  text-align: center;
 }
 
 .welcome-back h2 {
@@ -90,6 +86,7 @@ main {
   font-size: 1.8rem;
 }
 
+/* Summary Section */
 #summary {
   display: flex;
   gap: 1rem;
@@ -106,12 +103,18 @@ main {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
-.card i{
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card i {
   font-size: 3rem;
   margin-bottom: 1rem;
-
 }
+
 .card h2 {
   color: var(--main-color);
   margin: 0 0 10px 0;
@@ -124,6 +127,7 @@ main {
   font-weight: 700;
 }
 
+/* Charts Section */
 #charts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -137,22 +141,19 @@ main {
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
-  text-align: center;
   width: 100%;
   overflow: hidden;
-  
 }
 
 .chart-container h2 {
   color: var(--main-color);
   margin-bottom: 3rem;
   font-size: 2.4rem;
- 
 }
 
 canvas {
   width: 100%;
-  }
+}
 
 .no-data-message {
   display: none;
@@ -164,26 +165,26 @@ canvas {
   transform: translate(-50%, -50%);
 }
 
-#profile  {
+/* Tasks Section */
+#tasks {
   background-color: var(--secondary-bg-color);
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
- }
- 
- .profile-card h2 {
+}
+
+.task-card h2 {
   color: var(--main-color);
   margin-bottom: 20px;
   font-size: 2rem;
 }
- .profile-card p {
+
+.task-card p {
   color: var(--main-color);
   font-size: 1.6rem;
   margin-bottom: 1.6rem;
 }
-
- 
 
 #update-profile-btn {
   display: inline-block;
@@ -196,7 +197,7 @@ canvas {
   font-size: 1.8rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 1.6rem 0;
+  margin: 0.5rem 0 1.6rem;
 }
 
 #update-profile-btn:hover {
@@ -213,6 +214,7 @@ canvas {
   padding: 5px 0;
 }
 
+/* Theme Toggler */
 .theme-toggler {
   background-color: #e2e8f0;
   display: flex;
@@ -258,6 +260,7 @@ canvas {
   border-bottom-right-radius: 0;
 }
 
+/* Responsive Media Queries */
 @media (max-width: 75em) {
   html {
     font-size: 56.25%;
@@ -286,65 +289,27 @@ canvas {
   }
 }
 
-/*  */
-/*  */
-/*  */
-/*  */
-  
- 
- 
-.card:hover {
-  transform: scale(1.02);
-  transition: transform 0.3s ease;
-}
-
 footer {
   font-size: 1.4rem;
-   text-align: center;
+  text-align: center;
   color: var(--main-color);
-    width: 100%;
+  width: 100%;
 }
- 
-.employee-chart{
-  grid-row:3 ;
-  grid-column: 1;
- 
-}
- 
 
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-.second-col{
+.employee-chart {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.second-col {
   grid-column: 2;
   grid-row: span 4;
   display: flex;
   flex-direction: column;
-  }
- #profile,
- .product-chart{
-  }
+}
 
- 
-
-
-
-
-  .task-box {
-    padding: 2rem 1rem;
-  }
-  
-
-  /*  */
-  /*  */
-  /*  */
-  /*  */
-  /*  */
-  .no-data-message{
-    color: #fff;
-    font-size: 1.6rem;
-    line-height: 1.6;
-  }
+.no-data-message {
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}

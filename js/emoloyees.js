@@ -73,14 +73,13 @@ if (mainBtn.innerHTML === "Add Employee") {
      formContainer.classList.remove("appear");
     employeesForm.classList.remove("appear");
     clear();
+    displayCurrentPageData()
+updatePaginationButtons();
   }
   else{
     toastr["error"]("Please fix all the errors to be able to add the employee", " ");
   
   }
-displayCurrentPageData()
-updatePaginationButtons();
- 
 
 } else {
    if (validateInputs()) {
@@ -114,10 +113,18 @@ function addEmployee() {
   localStorage.setItem("users", JSON.stringify(users));
   toastr["success"]("Product added successfully!", " ");
 
-  // Navigate to the last page after adding a new employee
-  let totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
-  goToPage(totalPages);
-  updateFooterText()
+ 
+    // Check if the current page is full
+    let totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
+    let currentPageEmployees = currentUser.employees.slice(
+      (currentPage - 1) * entriesPerPage,
+      currentPage * entriesPerPage
+    );
+  
+    if (currentPageEmployees.length === entriesPerPage) {
+      // Navigate to the next page
+      goToPage(currentPage + 1);
+    }
  
 }
 

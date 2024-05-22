@@ -108,12 +108,12 @@
                 <div class="drop">
                   <span class="priority-title">Task Category</span>
                   <select id="category-select" class="category-field">
-                    <option value="Personal">Personal</option>
-                    <option value="Work">Work</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Coding">Coding</option>
-                    <option value="Fitness">Fitness</option>
-                    <option value="Education">Education</option>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="coding">Coding</option>
+                    <option value="fitness">Fitness</option>
+                    <option value="education">Education</option>
                   </select>
                 </div>
                 <div class="priority-field">
@@ -126,61 +126,72 @@
               <button id="main-btn" class="add-btn">Add Task</button>
             </div>
           </div>
-
+    
           <div class="categories-wrapper">
             <div class="categories">
-              <div class="category" data-category="Personal">
+              <div class="category " id="all" >
+                <div class="icon"><i class="fas fa-tasks"></i></div>
+                <div class="content">
+                  <h1>All Tasks</h1>
+                  <p id="all-count">0 Tasks</p>
+                </div>
+              </div>
+              <div class="category" id="personal">
                 <div class="icon"><i class="fas fa-user"></i></div>
                 <div class="content">
                   <h1>Personal</h1>
-                  <p id="Personal-count">0 Tasks</p>
+                  <p id="personal-count">0 Tasks</p>
                 </div>
               </div>
-              <div class="category" data-category="Work">
+              <div class="category"   id="work">
                 <div class="icon"><i class="fas fa-briefcase"></i></div>
                 <div class="content">
                   <h1>Work</h1>
-                  <p id="Work-count">0 Tasks</p>
+                  <p id="work-count">0 Tasks</p>
                 </div>
               </div>
-              <div class="category" data-category="Shopping">
+              <div class="category" id="shopping" >
                 <div class="icon"><i class="fas fa-shopping-cart"></i></div>
                 <div class="content">
                   <h1>Shopping</h1>
-                  <p id="Shopping-count">0 Tasks</p>
+                  <p id="shopping-count">0 Tasks</p>
                 </div>
               </div>
-              <div class="category" data-category="Coding">
+              <div class="category"  id="coding">
                 <div class="icon"><i class="fas fa-laptop-code"></i></div>
                 <div class="content">
                   <h1>Coding</h1>
-                  <p id="Coding-count">0 Tasks</p>
+                  <p id="coding-count">0 Tasks</p>
                 </div>
               </div>
-              <div class="category" data-category="Fitness">
+              <div class="category"  id="fitness">
                 <div class="icon"><i class="fas fa-dumbbell"></i></div>
                 <div class="content">
                   <h1>Fitness</h1>
-                  <p id="Fitness-count">0 Tasks</p>
+                  <p id="fitness-count">0 Tasks</p>
                 </div>
               </div>
-              <div class="category" data-category="Education">
+              <div class="category" id="education" >
                 <div class="icon"><i class="fas fa-graduation-cap"></i></div>
                 <div class="content">
                   <h1>Education</h1>
-                  <p id="Education-count">0 Tasks</p>
+                  <p id="education-count">0 Tasks</p>
                 </div>
               </div>
             </div>
           </div>
-
+          
+    
           <div class="tasks-container">
-            <p id="pending-tasks">You have <span id="tasks-count"></span> task(s) to complete.</p>
+            <p id="pending-tasks">You have <span id="tasks-count"></span> task<span>s</span> to complete.</p>
             <div id="task-container"></div>
+            <p id="tasks-no-data" class="no-data-message">No Tasks available Boss, Add some and acheive more</p>
+
           </div>
         </div>
       </section>
     </main>
+    
 
   </div>
   <div class="pop-up ">

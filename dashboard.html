@@ -101,7 +101,7 @@
     
         <main>
             <section class="welcome-back">
-              <h2 class="welcome-boss">Welcome Back, John Doe!</h2>
+              <h2 class="welcome-boss">Welcome Back, <span id="user-dash-name"> John Doe</span>!</h2>
               <p>Here's a summary of your dashboard data.</p>
             </section>
             <section id="summary">
@@ -131,23 +131,23 @@
             <div class="chart-container employee-chart">
               <h2>Employee Distribution</h2>
               <canvas id="employeeChart"></canvas>
-              <p id="employee-no-data" class="no-data-message">No employees data available Boss, Go add some employees and come back</p>
+              <p id="employee-no-data" class="no-data-message">No employees data available Boss, Go add some employees and come back.</p>
             </div>
           
             <div class="second-col">
-              <section id="profile">
-                <div class="profile-card">
-                  <h2>Today's tasks</h2>
+              <section id="tasks">
+                <div class="task-card">
+                  <h2>Today's Tasks</h2>
                   <div id="task-container" class="no-data-placeholder">
-                    <p class="no-data-message">No tasks available</p>
-                  </div>
+                   </div>
+                   <p id="tasks-no-data" >No Tasks available.</p>
                   <a href="tasks.html" id="update-profile-btn" >View all tasks</a>
                 </div>
               </section>
               <div class="chart-container product-chart">
                 <h2>Product Categories</h2>
                 <canvas id="productChart"></canvas>
-                <p id="product-no-data" class="no-data-message">No products data available Boss, Go add some employees and come back</p>
+                <p id="product-no-data" class="no-data-message">No products available.</p>
               </div>
             </div>
           </main>
