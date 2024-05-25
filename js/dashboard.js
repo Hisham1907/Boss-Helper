@@ -20,7 +20,7 @@ if (!currentUser.products || currentUser.products.length === 0) {
 
 if (!currentUser.tasks || currentUser.tasks.length === 0) {
   document.getElementById("tasks-no-data").style.display = "block";
-  document.getElementById("update-profile-btn").style.display = "none";} 
+  document.getElementById("view-all-btn").style.display = "none";} 
   else {
   totalTasksElem.textContent = currentUser.tasks.length;
   document.getElementById("tasks-no-data").style.display = "none";
@@ -108,9 +108,9 @@ if (currentUser.products) {
           label: "Products by Category",
           data: getProductCountsByCategory(),
           backgroundColor: [
-            "#ec4899",   
-            "#10b981",  
-            "#3b82f6",   
+            "#FABB05",   
+            "#34A853",  
+            "#4285F4",   
             "#6366f1",   
             "#f59e0b",  
             "#ef4444",   
@@ -156,7 +156,7 @@ const categoryIcons = {
 function displayTasks() {
   currentUser.tasks.sort((a, b) => a.priority - b.priority); // Sort by priority
   let content = "";
-     document.getElementById("update-profile-btn").style.display = "inline-block";
+     document.getElementById("view-all-btn").style.display = "inline-block";
   for (let i = 0; i < 2 && i < currentUser.tasks.length; i++) {
     let task = currentUser.tasks[i];
     if (task) {

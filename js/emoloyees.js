@@ -215,8 +215,8 @@ currentUser.employees[i].firstName.toLowerCase().includes(search.value.trim().to
   <td>${currentUser.employees[i].salary}</td>
   <td>${currentUser.employees[i].phone}</td>
   <td class="action">
-   <button onclick="getData(${i})" class="update"><i class="fa-regular fa-pen-to-square"></i></button>
-   <button onclick="deleteEmployee(${i})" class="delete"><i class="fa-regular fa-trash-can" ></i></button>
+   <button onclick="getData(${i})" class="update"><i class="fas fa-edit"></i></button>
+   <button onclick="deleteEmployee(${i})" class="delete"><i class="fas fa-trash-alt" ></i></button>
 
    </td>
    
@@ -380,8 +380,8 @@ function displayCurrentPageData() {
           <td>${employee.salary}</td>
           <td>${employee.phone}</td>
           <td class="action">
-            <button onclick="getData(${startIndex + i})" class="update"><i class="fa-regular fa-pen-to-square"></i></button>
-            <button onclick="deleteEmployee(${startIndex + i})" class="delete"><i class="fa-regular fa-trash-can" ></i></button>
+            <button onclick="getData(${startIndex + i})" class="update"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button onclick="deleteEmployee(${startIndex + i})" class="delete"><i class="fa-solid fa-trash" ></i></button>
           </td>
         </tr>
       `;
@@ -511,8 +511,8 @@ function displayFilteredData() {
           <td>${employee.salary}</td>
           <td>${employee.phone}</td>
           <td class="action">
-            <button onclick="getData(${employee.originalIndex})" class="update"><i class="fa-regular fa-pen-to-square"></i></button> <!-- Use the original index here -->
-            <button onclick="deleteEmployee(${employee.originalIndex})" class="delete"><i class="fa-regular fa-trash-can" ></i></button> <!-- Use the original index here -->
+            <button onclick="getData(${employee.originalIndex})" class="update"><i class="fa-solid fa-pen-to-square"></i></button> <!-- Use the original index here -->
+            <button onclick="deleteEmployee(${employee.originalIndex})" class="delete"><i class="fa-solid fa-trash" ></i></button> <!-- Use the original index here -->
           </td>
         </tr>
       `;

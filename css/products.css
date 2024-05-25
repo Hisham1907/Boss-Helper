@@ -1,8 +1,8 @@
 :root {
  scroll-behavior: smooth;
- --main-bg-color: #343a40;
- --secondary-bg-color: #212529;
- --form-bg-color: #212529;
+ --main-bg-color: #101316;
+ --secondary-bg-color: #0B0D0F;
+ --form-bg-color: #0B0D0F;
  --teriary-bg-color: #1e3a8a;
  --btn-hover: #2563eb;
  --main-hover-bg-color: rgba(255, 255, 255, 0.2);
@@ -16,7 +16,7 @@
  --input-focus-color: #121416;
  --add-hover-bg-color: #121416;
  --form-input-color: #121416;
- --aside-bg-color: #212529;
+ --aside-bg-color: #0B0D0F;
  --light-color: #fff; 
  --submit-btn-bg-color: #fff; 
  --submit-btn-color: #000; 
@@ -26,7 +26,7 @@
  --main-bg-color: #f5f5f5;
  --teriary-bg-color: #e2e8f0; 
  --btn-hover: #2563eb;
- --main-color: #343a40;
+ --main-color: #101316;
  --light-color: #fff;
  --link-before-color: #fff; 
  --box-shadow-color: rgba(0, 0, 0, 0.2); 
@@ -64,42 +64,47 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 2.4rem;
   overflow-x: auto;
+  border: 1px solid #3C3E3F;
 
 }
 .group-box {
   padding: 2rem;
-  background-color: var(--main-bg-color);
+  background-color: #101316;
    border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  border: 1px solid #3C3E3F;
+
 }
 .product-cal {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.6rem;
 }
-input {
+.products-form input {
   padding: 1rem;
-  border: 1px solid #adb5bd;
+  background-color:#242627;  
+  border: 1px solid #7C7D7E;
   border-radius: 4px;
-  background-color: var(--secondary-bg-color); /* Darker background color */
-  color: var(--main-color);
+  cursor: pointer;
   font-size: 1.6rem;
   transition: .5s all ease-in-out;
+  outline:none;
+  color: #fff;
 }
-input::placeholder {
+.products-form input::placeholder {
   color: var(--main-color);
   font-size: 1.6rem;
 }
-input:focus {
-  background-color: var(--input-focus-color);
-  /* background-color:#cbd5e1; */
+.products-form input:focus {
+  border-color: #90b9fa;
+  box-shadow: 0 0 0 .25rem rgba(32, 107, 245, 0.25);
   transform: scale(1.02);
 }
 #total {
   padding: 1rem;
-  background-color: var(--input-focus-color);
+  background-color:#527ab5;
   border-radius: 4px;
   color: var(--main-color);
   font-weight: 600;
@@ -115,11 +120,16 @@ input:focus {
 }
  
 .table-btns i {
-  padding: 8px;
+  padding: 1rem;
   border-radius: 4px;
   cursor: pointer;
-
 }
+.update{
+  background-color: #a89734;
+  }
+  .delete{
+   background-color: #a83434  ;
+  }
 .btn-row
 {
   grid-column: span 2;
@@ -128,7 +138,7 @@ justify-content: center;
 }
 
 .form-btn {
-  background-color:#1d4ed8;
+  background-color:#345fa8;
   color: #fff;
   font-weight: 700;
   border: none;
@@ -140,7 +150,7 @@ justify-content: center;
   font-size: 1.6rem;
 }
 .form-btn:hover {
-  background-color: var(--btn-hover);
+  background-color: #527ab5;
 }
 .btn-row .form-btn{
   width: 50%;
@@ -167,23 +177,53 @@ td {
 }
  
 thead {
-  background-color: #1d4ed8;
+  background-color: #345fa8;
   color: #fff;
   text-align: start;
 }
 
 tbody tr:nth-child(odd) {
-  background-color: var(--secondary-bg-color);
+  background-color: #08090A;
 }
 
 tbody tr:nth-child(even) {
   background-color: var(--main-bg-color);
 }
 
-#search {
-  width: 100%;
+ 
+.search-bar{
+  position: relative;
   margin-bottom: 2rem;
+  }
+.search-bar input {
+  padding: 1rem 1.5rem;
+  transition: 0.5s ease-in-out;
+  background-color:#0B0D0F;  
+  border: 1px solid #3C3D3F;
+    padding:1.5rem;
+    padding-left: 4.5rem;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    width: 100%;
+    color:#fff;
+    outline: none;
 }
+ 
+.search-bar input:focus {
+    box-shadow: 0 0 0 .6rem rgba(80, 142, 243, 0.418);
+}
+.search-bar i{
+  position: absolute;
+  left: 3rem;
+    top:50%;
+    transform: translate(-50%,-50%);
+    font-size: 2rem;
+  z-index: 999;
+}
+
+
+
+
 
 #delete-all-btn {
   margin-bottom: 2rem;
@@ -201,29 +241,7 @@ tbody tr:nth-child(even) {
   }
 }
 
-
-/* Tooltip  & Toastr*/
-
-.tippy-box[data-theme='errorTooltip'] {
-  background-color: #ff6961;
-  color: #fff;
-   font-size: 1.4rem;
-  font-weight: 500;
-   border-radius: 5px; 
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3); 
-}
-
-.tippy-box[data-theme='errorTooltip'][data-placement^='bottom'] > .tippy-arrow::before {
-  border-bottom-color: #ff6961; 
-
-}
-
-#toast-container>div {
-  font-size: 1.6rem;
-line-height: 1.6;
-padding: 20px 20px 20px 50px;
-
-}
+ 
 .pop-up-control .cancel-modal-btn {
   background-color: #e2e8f0;
   color: #000;

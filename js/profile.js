@@ -33,6 +33,8 @@ function displayInputs() {
 
 displayInputs();
 function emailHover() {
+  toastr.clear();
+
   toastr["warning"]("Email cannot be changed", " ");
   setTimeout(function () {
     toastr.clear();
@@ -48,15 +50,12 @@ updateBtn.addEventListener("click", function () {
       websiteInput,
       companyNameInput,
       jobTitleInput,
-    ].forEach((input) => {
-      input.style.backgroundColor = "#25292d";
-      input.addEventListener("focus", function () {
-        input.style.backgroundColor = "#25292d";
-      });
+    ].forEach((input) => { 
+      input.style.backgroundColor = "var(--input-enabled-color)";   
       input.disabled = false;
     });
     emailInput.disabled = true;
-    emailInput.style.backgroundColor = "#121416";
+    emailInput.style.backgroundColor = "var(--input-disabled-color)";
     // Inside the code where you set up your email input element
     emailInput.addEventListener("mouseenter", emailHover);
   } else {
@@ -69,10 +68,7 @@ changePasswordBtn.addEventListener("click", function () {
   if (changePasswordBtn.textContent === "Change Password") {
     changePasswordBtn.textContent = "Save New Password";
     [newPasswordInput, confirmPasswordInput].forEach((input) => {
-      input.style.backgroundColor = "#25292d";
-      input.addEventListener("focus", function () {
-        input.style.backgroundColor = "#25292d";
-      });
+      input.style.backgroundColor = "var(--input-enabled-color)";
       input.disabled = false;
     });
   } else {
@@ -140,7 +136,7 @@ function updateUser() {
   displayInputs();
   updateBtn.textContent = "Update Info";
   document.querySelectorAll(".form-group input").forEach((input) => {
-    input.style.backgroundColor = "#121416";
+    input.style.backgroundColor = "var(--input-disabled-color)";
     input.disabled = true;
   });
 }
@@ -178,7 +174,7 @@ function updatePassword() {
 
   changePasswordBtn.textContent = "Change Password";
   [newPasswordInput, confirmPasswordInput].forEach((input) => {
-    input.style.backgroundColor = "#121416";
+    input.style.backgroundColor = "var(--input-disabled-color)";
     input.disabled = true;
   });
 }

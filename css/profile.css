@@ -1,260 +1,241 @@
 :root {
-    scroll-behavior: smooth;
-   --main-bg-color: #343a40;
-   --secondary-bg-color: #212529;
-   --form-bg-color: #212529;
-   --teriary-bg-color: #1e3a8a;
-    --main-hover-bg-color: rgba(255, 255, 255, 0.2);
-   --head-hover-color: rgba(255, 255, 255, 0.2);
-   --table-hover-color: rgba(255, 255, 255, 0.1) ;
-   --main-color: #fff;
-   --link-before-color: #93c5fd;
-   --box-shadow-color: rgba(255, 255, 255, 0.2);
-   --logo-primary-color: #fff;
-   --logo-secondary-color: #93c5fd;
-   --input-focus-color: #121416;
-   --add-hover-bg-color: #121416;
-   --form-input-color: #121416;
-   --aside-bg-color: #212529;
-   --light-color: #fff; 
-   --submit-btn-bg-color: #fff; 
-   --submit-btn-color: #000; 
-  
-  }
-  .light-theme {
-   --main-bg-color: #f5f5f5;
-   --teriary-bg-color: #e2e8f0; 
-    --main-color: #343a40;
-   --light-color: #fff;
-   --link-before-color: #fff; 
-   --box-shadow-color: rgba(0, 0, 0, 0.2); 
-   --logo-primary-color: #fff; 
-   --logo-secondary-color: #93c5fd;  
-   --aside-bg-color: #1d4ed8;
-   --add-hover-bg-color: #1d4ed8;
-    --input-focus-color: #bfdbfe;
-    --secondary-bg-color:#e2e8f0; 
-   --table-hover-color: #bfdbfe;
-   --form-bg-color: #fff;
-   --submit-btn-bg-color: #1d4ed8; 
-   --submit-btn-color: #fff; 
-   --form-input-color: #f5f5f5;
-   --head-hover-color: #2563eb;
-  
-  }
-  main {
-    padding: 1rem 2.4rem 2.4rem;
-    overflow-y: auto;
-  }
-  body {
-    font-family: "Rubik", sans-serif;
-    color: var(--main-color);
-    background-color: var(--main-bg-color);
-  }
+  --main-bg-color: #101316;
+  --secondary-bg-color: #0B0D0F;
+  --main-color:#345fa8 ;
+  --border-color:#3C3E3F;
+  --text-color: #fff;
+  --btn-text-color: #fff;
+  --box-shadow-color: rgba(255, 255, 255, 0.1);
+  --score-color:  #6097f4;
+  --main-hover-bg-color: #527ab5;
+  --icon-color:#6097f4;
+  --delete-btn-border-color:#3c3e3f;
+  --input-enabled-color:#242627;
+  --input-disabled-color:#3c3d3f ;
+  --input-placeholder-color:#c8c9c9;
+  --input-disabled-border-color:#7c7d7e;
+  --input-focus-color:#90b9fa;
+  --input-border-color:rgba(32, 107, 245, 0.25);
+}
+
+.light-theme {
+  --main-bg-color: #f5f5f5;
+  --secondary-bg-color: #ffffff;
+  --main-color: #1d4ed8;
+  --border-color: #d1d5db;
+  --text-color: #1f2937;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --score-color: #1d4ed8;
+  --main-hover-bg-color: #3b82f6;
+  --icon-color: #1d4ed8;
+  --delete-btn-border-color: #d1d5db;
+  --input-enabled-color: #ffffff;
+  --input-disabled-color: #f1f5f9;
+  --input-placeholder-color: #9ca3af;
+  --input-disabled-border-color: #e5e7eb;
+  --input-focus-color: #3b82f6;
+  --input-border-color: rgba(59, 130, 246, 0.25);
+}
+
+ 
+main {
+  padding: 1rem 2.4rem 2.4rem;
+  overflow-y: auto;
+}
+body {
+  font-family: "Rubik", sans-serif;
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
+}
+/* Settings */
 .settings {
-    margin: 2rem auto;
-     padding: 2rem;
-     width: 80rem;
-    background-color: var(--secondary-bg-color);
-    border-radius: 1rem;
-    box-shadow: 0 0 1rem var(--box-shadow-color);
-  }
-  .settings h2 {
-    font-size: 2.4rem;
-    margin-bottom: 2rem;
-  }
-  
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  .profile-picture   {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-right: 2rem;
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-  .profile-picture img {
-    width: 100%;
-  }
-  .profile-data p {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-  }
-   
-  .edit-form {
-    /* display: none; */
-  
-  
-  }
-  .form-collection{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 3.2rem;
-    row-gap: 2.4rem;
-    margin-bottom: 1rem;
-  }
-  .show{
-    display: block;
-  }
-  
-  .form-group {
-    display: grid;
-    gap: 0.5rem;
-    padding: .5rem;
-  }
-  
-  label {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-  .form-group input::placeholder{
-    color: #414345;
-  }
-  .form-group input{
-    padding: 1rem;
-    font-size: 1.6rem;
-    border-radius: 0.5rem;
-    border: 1px solid #414345;
-    margin-bottom: 1rem;
-    background-color:  #121416;
-  color: #fff;
-  cursor: pointer;
-  outline: none;
-  }
-  .error{
-    border-color: red !important; 
-   }
-  .btn {
-    padding: 1rem 2rem;
-    font-size: 1.6rem;
-    background-color: var(--teriary-bg-color);
-    color: var(--main-color);
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-   }
-   .btn-center{
-    margin: 3rem 0 4rem 0;
-    text-align: center;
-   }
-  
-  .edit-btn:hover {
-    background-color:#172554;
-  }
-  .delete-btn{
-    background-color: var(--main-hover-bg-color);
-  }
-  .delete-btn:hover{
-    background-color:  #dc2626;
-  }
-  #change{
-    margin-right: 1.2rem;
-position: relative;
-overflow: hidden;
-
-  }
- #change input{
- position: absolute;
-  opacity: 0;
- left: 0;
- right: 0;
- top: 0;
- bottom: 0;
- cursor: pointer;
- }
- 
-.settings .form-group label i {
-     margin-right: .6rem;
-     font-size: 2.2rem;
-     color: var(--logo-secondary-color);
-     cursor: pointer;
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 80rem;
+  background-color: var(--secondary-bg-color);
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem var(--box-shadow-color);
+  border: 1px solid var(--border-color);
 }
- 
- 
-
- 
-
-  @media (max-width:75em){
-    html{
-     font-size:56.25% ; 
-    }
-  }
-  @media (max-width:61em){
-    html{
-      font-size: 50%;
-    }
-  }
-  
-  @media(max-width:38em){
-    main .reports {
-     grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media(max-width:28em){
-    main .reports {
-     grid-template-columns:1fr;
-    }
-  }
-  
-  .tippy-box[data-theme='errorTooltip'] {
-    background-color: #ff6961;
-    color: #fff;
-     font-size: 1.4rem;
-    font-weight: 500;
-     border-radius: 5px; 
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3); 
-  }
-  
-  .tippy-box[data-theme='errorTooltip'][data-placement^='bottom'] > .tippy-arrow::before {
-    border-bottom-color: #ff6961; 
-  
-  }
-
-  #toast-container>div {
-    font-size: 1.6rem;
-  line-height: 1.6;
-  padding: 20px 20px 20px 50px;
-  
-}
-
-/* 
-
-*/
-
-.password-change{
-  margin-bottom: 4rem;
-}
-.delete-account,.password-text {
-  margin-top: 2rem;
-   font-size: 2rem
-}
-
-.delete-account p,.password-text p {
+.settings h2 {
+  font-size: 2.4rem;
   margin-bottom: 2rem;
 }
-.delete-account{
+.settings .form-group label i {
+  margin-right: 0.6rem;
+  font-size: 2.2rem;
+  color: var(--icon-color);
+  cursor: pointer;
+}
+/* profile img */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 2rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.profile-picture img {
+  width: 100%;
+}
+.btn {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  background-color: var(--main-color);
+  color: var(--btn-text-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: var(--main-hover-bg-color);
+}
+.delete-btn {
+  color: var(--text-color);
+  background-color: transparent;
+  border: 2px solid var(--delete-btn-border-color);
+}
+.delete-btn:hover {
+  color: var(--btn-text-color);
+  background-color: #a83434;
+}
+#change {
+  margin-right: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+#change input {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+/* profile data */
+.form-collection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3.2rem;
+  row-gap: 2.4rem;
+  margin-bottom: 1rem;
+}
+.form-group {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+label {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.form-group input {
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  background-color: var(--input-disabled-color);
+  border: 1px solid var(--input-disabled-border-color);
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+  outline: none;
+  transition: 0.5s all;
+}
+.form-group input:focus {
+  border-color: var(--input-focus-color);
+  box-shadow: 0 0 0 0.25rem var(--input-border-color);
+  transform: scale(1.02);
+}
+.form-group input::placeholder {
+  color:var(--input-placeholder-color) ;
+}
+.form-group input:disabled {
+  background-color: var(--input-disabled-color);
+  border-color: var(--input-disabled-border-color);
+  color: var(--input-placeholder-color);
+  cursor: not-allowed;
+}
+.btn-center {
+  margin: 3rem 0 4rem 0;
+  text-align: center;
+}
+.error {
+  border-color: #a83434 !important;
+}
+/* Change password & Delete Account */
+.password-change {
+  margin-bottom: 4rem;
+}
+.delete-account,
+.password-text {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.delete-account p,
+.password-text p {
+  margin-bottom: 2rem;
+}
+.delete-account {
   margin-bottom: 2rem;
 }
 .delete-account-btn {
-  background-color: #dc3545;
-  color: white;
+  background-color: #a83434;
+  color: var(--btn-text-color);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .delete-account-btn:hover {
-  background-color: #c82333;
+  background-color: #a84b4b;
 }
 
+@media (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media (max-width: 61em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 38em) {
+  main .reports {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 28em) {
+  main .reports {
+    grid-template-columns: 1fr;
+  }
+}
+
+ 
+
+
+
+
 /*  */
+/*  */
+/*  */
+
+
+
+
+ 

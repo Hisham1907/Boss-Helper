@@ -33,11 +33,11 @@ let calcTotal = () => {
       Number(ads.value) -
       Number(discount.value);
     totalBox.innerHTML = total;
-    totalBox.style.backgroundColor = "#0369a1";
+    totalBox.style.backgroundColor = "#345fa8";
     totalBox.style.color = "var(--light-color)";
   } else {
     totalBox.innerHTML = "";
-    totalBox.style.backgroundColor = "var(--input-focus-color)";
+    totalBox.style.backgroundColor = "#527ab5";
     totalBox.style.color = "var(--main-color)";
 
   }
@@ -108,7 +108,7 @@ function clearInputs() {
   discount.value = "";
   count.value = "";
   totalBox.innerHTML = "";
-  totalBox.style.backgroundColor = "var(--input-focus-color)";
+  totalBox.style.backgroundColor = "#527ab5";
 }
 function displayProducts() {
   let content = "";
@@ -125,10 +125,10 @@ function displayProducts() {
       <td>${currentUser.products[i].discount}</td>
       <td>${currentUser.products[i].total}</td>
       <td>
-          <div class="table-btns">
-              <i class="fas fa-edit" onclick="getData(${i})" style="background-color: #f59e0b"></i>
-              <i class="fas fa-trash-alt" onclick="deleteProduct(${i})" style="background-color: #ef4444"></i>
-          </div>
+      <div class="table-btns">
+      <i class="fa-solid fa-pen-to-square update" onclick="getData(${i}) " ></i>
+      <i class="fa-solid fa-trash delete" onclick="deleteProduct(${i})"></i>
+  </div>
   
       </td>
   
@@ -202,9 +202,8 @@ function getData(index) {
    calcTotal()
   count.style.display='none';
   mainBtn.innerHTML = "Update Product";
-  mainBtn.style.backgroundColor = "#f59e0b";
-  mainBtn.style.color = "#000";
-  window.scrollTo(0, 0);
+  mainBtn.style.backgroundColor = "#a8a234 ";
+   window.scrollTo(0, 0);
 
   
 }
@@ -220,9 +219,8 @@ function updateData(index) {
   toastr["success"]("Product updated successfully!", " ");
   mainBtn.innerHTML = "Add Product";
   count.style.display='block';
-  mainBtn.style.backgroundColor = "#1d4ed8";
-  mainBtn.style.color = "#fff";
- 
+  mainBtn.style.backgroundColor = "#345fa8";
+  
 }
 
 search.addEventListener('keyup',function(){
@@ -241,8 +239,8 @@ if(currentUser.products[i].name.toLowerCase().includes(search.value.trim().toLow
     <td>${currentUser.products[i].total}</td>
     <td>
         <div class="table-btns">
-            <i class="fas fa-edit update" onclick="getData(${i}) " style="background-color: #f59e0b "></i>
-            <i class="fas fa-trash-alt delete" onclick="deleteProduct(${i})" style="background-color: #ef4444 "></i>
+            <i class="fa-solid fa-pen-to-square update" onclick="getData(${i}) " ></i>
+            <i class="fa-solid fa-trash delete" onclick="deleteProduct(${i})"></i>
         </div>
 
     </td>
