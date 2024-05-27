@@ -14,7 +14,6 @@
   --link-before-color: #fff;
   --aside-link-color: #fff;
   --logo-secondary-color: #93c5fd;
-
 }
 
 * {
@@ -73,7 +72,7 @@ aside .top-box {
   transition: 0.3s all ease;
   margin-bottom: 1.2rem;
   cursor: pointer;
-  padding: 1.2rem;
+  padding: 1rem 0;
 }
 .profile-img img {
   width: 6rem;
@@ -321,7 +320,7 @@ button.delete-modal-btn {
 .pop-up-active .pop-up-content {
   transform: translateY(0);
 }
-
+ 
 table .empty {
   background-color: var(--secondary-bg-color);
   padding: 1.5rem;

@@ -18,24 +18,23 @@ links.forEach((link) => {
 });
 // ///////////////////////////////////////////////////////////////
 // Video
-document.addEventListener("DOMContentLoaded", function() {
-    const video = document.getElementById("teamVideo");
+     const video = document.getElementById("teamVideo");
     const playPauseBtn = document.getElementById("playPauseBtn");
-
+    video.paused=true;
     playPauseBtn.addEventListener("click", function() {
         if (video.paused) {
             video.play();
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-pause fa-xl"></i>';
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-pause "></i>';
         } else {
             video.pause();
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-play fa-xl"></i>';
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-play "></i>';
         }
     });
 
     video.addEventListener("ended", function() {
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-play fa-xl"></i>';
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-play "></i>';
     });
-});
+ 
 
 // Sticky navigation
 window.addEventListener('DOMContentLoaded', () => {

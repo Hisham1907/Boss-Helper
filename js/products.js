@@ -33,12 +33,12 @@ let calcTotal = () => {
       Number(ads.value) -
       Number(discount.value);
     totalBox.innerHTML = total;
-    totalBox.style.backgroundColor = "#345fa8";
-    totalBox.style.color = "var(--light-color)";
+    totalBox.style.backgroundColor = "var(--main-color)";
+    totalBox.style.color = "var(--always-fff)";
   } else {
     totalBox.innerHTML = "";
-    totalBox.style.backgroundColor = "#527ab5";
-    totalBox.style.color = "var(--main-color)";
+    totalBox.style.backgroundColor = "var(--main-hover-bg-color)";
+    totalBox.style.color = "var(--always-fff)";
 
   }
 };
@@ -108,7 +108,7 @@ function clearInputs() {
   discount.value = "";
   count.value = "";
   totalBox.innerHTML = "";
-  totalBox.style.backgroundColor = "#527ab5";
+  totalBox.style.backgroundColor = "var(--main-color)";
 }
 function displayProducts() {
   let content = "";
@@ -219,7 +219,7 @@ function updateData(index) {
   toastr["success"]("Product updated successfully!", " ");
   mainBtn.innerHTML = "Add Product";
   count.style.display='block';
-  mainBtn.style.backgroundColor = "#345fa8";
+  mainBtn.style.backgroundColor = "var(--main-color)";
   
 }
 
