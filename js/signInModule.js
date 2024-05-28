@@ -31,12 +31,12 @@ function signInHandler() {
         setTimeout(function() {
           toastr.clear();
           window.location.href = "dashboard.html";
-        }, 5000); 
+        }, 3000); 
       } else {
         toastr["error"]("Incorrect email or password. Please check and try again.");
         setTimeout(function() {
           toastr.clear();
-        }, 5000); 
+        }, 3000); 
       }
     }
     
@@ -123,3 +123,17 @@ function clearError(inputElement) {
 toastr.options = {
   "closeButton": true,
   } 
+    // loader
+    const loader=document.querySelector('#loader')
+    function showLoader(){
+      if(loader){
+        loader.style.display='flex'
+      }
+    }
+    showLoader()
+    function removeLoader(){
+      if(loader){
+        loader.style.display='none'
+      }
+    }
+    setTimeout(removeLoader,2500)

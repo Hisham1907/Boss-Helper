@@ -28,13 +28,14 @@ function addUser() {
     setTimeout(function() {
       toastr.clear();
       window.location.href = "signIn.html"; // Redirect after toastr notification disappears
-    }, 5000);  
+    }, 3000);  
   } else {
     toastr["error"]("Sign up failed! Please check the form for errors.", " ")
     setTimeout(function() {
       toastr.clear();
-    }, 5000);  
+    }, 3000);  
   }
+  resetAppChoices()
 }
 function clear() {
   nameInput.value = "";
@@ -180,10 +181,27 @@ function clearError(inputElement) {
   inputControl.classList.remove("success");
 }
  
- 
- 
- 
-
 toastr.options = {
   "closeButton": true,
   } 
+
+  // loader
+  const loader=document.querySelector('#loader')
+function showLoader(){
+  if(loader){
+    loader.style.display='flex'
+  }
+}
+showLoader()
+function removeLoader(){
+  if(loader){
+    loader.style.display='none'
+  }
+}
+setTimeout(removeLoader,2500)
+function resetAppChoices(){
+  isChecked = false;
+  isAsideActive = false;
+  localStorage.setItem('isChecked',JSON.stringify(isChecked))
+  localStorage.setItem('isAsideActive', JSON.stringify(isAsideActive));
+}

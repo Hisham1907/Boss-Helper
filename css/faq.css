@@ -6,12 +6,14 @@ body{
  
 }
 .faq-hero {
-  background-image: url("../img/FAQ.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-     height: 50svh;
-  }
+  background-image: url("../img/faq.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 50vh; /* I assume you meant to use 'vh' instead of 'svh' */
+ 
+}
+
 /*==============================================================================*/
 /*==================================== SECTION FAQ START============================ */
 /*==============================================================================*/

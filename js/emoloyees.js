@@ -23,7 +23,6 @@ let currentIndex;
  if(!currentUser.employees){
     currentUser.employees=[]
   }
-// Define variables to control pagination
 let currentPage = 1;
 let entriesPerPage = 5;
 
@@ -50,7 +49,7 @@ if (file.size < 1000000) {
   toastr["info"]("The file must be less than 1 MB");
   setTimeout(function () {
     toastr.clear();
-  }, 5000);
+  }, 3000);
 }
 });
 function setError(element, message) {
@@ -540,5 +539,11 @@ function goToPage(pageNumber) {
   displayCurrentPageData(); // Corrected function name
   updatePaginationButtons();
 }
+
+
+
+
+
+
 
 

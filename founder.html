@@ -26,12 +26,16 @@
 </head>
 
 <body>
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p class="loading-message">Loading Boss, please wait...</p>
+    </div>
     <header class='home'>
         <div class="home-content">
             <header class="header ">
-                <a href="index.html" class="main-logo wow fadeInDownBig"   ><i class="fas fa-handshake"></i>Boss<span>Helper</span>
+                <a href="index.html" class="main-logo wow fadeInDownBig" data-wow-delay="2.5s"  ><i class="fas fa-handshake"></i>Boss<span>Helper</span>
                 </a>
-                <nav class="main-nav wow fadeInDownBig" data-wow-delay=".4s" >
+                <nav class="main-nav wow fadeInDownBig" data-wow-delay="2.9s" >
                     <ul class="main-nav-list">
                         <li><a class="main-list-link" href="index.html">Home</a></li>
                         <li><a class="main-list-link" href="about.html">About</a></li>
@@ -47,24 +51,27 @@
             </header>
             <div class="founder">
                 <div class="founder-text-box">
-                    <h1 class="heading home-heading wow fadeInLeftBig"data-wow-delay=".5s"  >Hisham Rabea
+                    <h1 class="heading home-heading wow fadeInLeftBig"data-wow-delay="3.5s"  >Hisham Rabea
                     </h1>
 
-                    <p class="founder-description wow fadeInLeftBig"data-wow-delay="1.4s"  >
+                    <p class="founder-description wow fadeInLeftBig"data-wow-delay="4.3s"  >
                         I'm a fresh graduate of Helwan University with a degree in Computer Science, currently looking
                         for an opportunity to start my career as a Frontend developer, and I am open to any opportunity
                         whether it's full-time, part-time, remote, or onsite.
                     </p>
 
-                    <a href="#about-me" class="my-btn  my-btn--outline wow fadeInUpBig"data-wow-delay="1.6s"  >More About Me
+                    <a href="#about-me" class="my-btn  my-btn--outline wow fadeInUpBig"data-wow-delay="4.6s"  >More About Me
                     </a>
                 </div>
-                <div class="founder-img-box wow fadeInRightBig"data-wow-delay="1.4s"  >
+                <div class="founder-img-box wow fadeInRightBig"data-wow-delay="5s"  >
                     <img src="img/hisham-1.jpeg" />
                 </div>
             </div>
         </div>
     </header>
+    <div class="arrow">
+        <i class="fa-solid fa-arrow-up fa-beat fa-bounce"></i>
+    </div>
     <section class="section-about-me" id="about-me">
         <div class="container about-content">
             <div class="about-img wow fadeInLeftBig"  data-wow-offset="25">
@@ -88,7 +95,7 @@
                         <i class="fab fa-github  fa-xl"></i>
                     </a>
                 </div>
-                <a href="#" class="my-btn  my-btn--outline">Download Resume
+                <a href="Hisham_Rabea_Resume.pdf" download class="my-btn  my-btn--outline">Download Resume
                 </a>
             </div>
         </div>
@@ -162,10 +169,10 @@
             <h2 class="heading wow fadeInUpBig"  data-wow-offset="25" >Contact Me</h2>
             <p class="wow fadeInUpBig"  data-wow-offset="20"data-wow-delay=".5s">If you liked my work and want to hire me, I'm waiting in the email box!</p>
             <div class="email-box ">
-                <input type="text" placeholder="Name" class="wow fadeInUpBig"  data-wow-offset="20"data-wow-delay=".7s">
-                <input type="email" placeholder="Email" class="wow fadeInUpBig"  data-wow-offset="20" data-wow-delay=".9s">
-                <textarea placeholder="I would love to send you an offer ......." class="wow fadeInUpBig"  data-wow-offset="20"data-wow-delay="1.1s"></textarea>
-                <button href="#" class=" hire-btn wow fadeInUpBig"  data-wow-offset="10"data-wow-delay="1s">Hire Me
+                <input type="text" placeholder="Name" id="sender-name" class="wow fadeInUpBig"  data-wow-offset="20"data-wow-delay=".7s" required>
+                <input type="email" placeholder="Email" id="sender-email" class="wow fadeInUpBig"  data-wow-offset="20" data-wow-delay=".9s" required>
+                <textarea id="sender-message" placeholder="I would love to send you an offer ......." class="wow fadeInUpBig"  data-wow-offset="20"data-wow-delay="1.1s" required></textarea>
+                <button id="hire-me-btn" class=" hire-btn wow fadeInUpBig"  data-wow-offset="10"data-wow-delay="1s">Hire Me
                 </button>
             </div>
         </div>
@@ -252,8 +259,11 @@
 
         </div>
     </footer>
-    <script src="js/founder.js"></script>
+   
     <script src="js/wow.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/founder.js"></script>
   
 
 </body>

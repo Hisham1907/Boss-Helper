@@ -1,7 +1,7 @@
-let users = JSON.parse(localStorage.getItem('users'));
-let userName = localStorage.getItem('name');
-let userEmail = localStorage.getItem('email');
-let currentUser = users.find(user => user.name === userName && user.email === userEmail);
+const users = JSON.parse(localStorage.getItem('users'));
+const userName = localStorage.getItem('name');
+const userEmail = localStorage.getItem('email');
+const currentUser = users.find(user => user.name === userName && user.email === userEmail);
 function displayProfile(){
     const profileContent = document.querySelector('#profile-name');
 profileContent.textContent = currentUser.name;
@@ -16,8 +16,7 @@ let isAsideActive = false;
 
 if (localStorage.getItem('isAsideActive') !== null) {
     isAsideActive = JSON.parse(localStorage.getItem('isAsideActive'));
-    console.log(isAsideActive);
-    if (isAsideActive) {
+     if (isAsideActive) {
         aside.classList.add('aside-closed');
     } else {
         aside.classList.remove('aside-closed');
@@ -27,26 +26,28 @@ if (localStorage.getItem('isAsideActive') !== null) {
 toggleBtn.addEventListener('click', function () {
     isAsideActive = !isAsideActive;
     localStorage.setItem('isAsideActive', JSON.stringify(isAsideActive)); // Store the updated value
-    console.log(isAsideActive);
-    aside.classList.toggle('aside-closed');
+     aside.classList.toggle('aside-closed');
 });
 // Dark & Light Mode
 
 const modeToggle = document.getElementById("mode-toggle");
 const modeText = document.querySelector(".mode-text");
+const loader = document.getElementById('loader');
+
 let isChecked = false;
  
 if(localStorage.getItem('isChecked')!=null){
   isChecked=JSON.parse(localStorage.getItem('isChecked'))
-  console.log(isChecked)
-  modeToggle.checked=isChecked;
+   modeToggle.checked=isChecked;
   if(isChecked){
+    loader.classList.add("loader-light-theme");
     document.body.classList.add("light-theme");
     modeText.textContent = "Light Mode";
     document.querySelector(".fa-sun").style.display = "block";
     document.querySelector(".fa-moon").style.display = "none";
   }
   else{
+    loader.classList.remove("loader-light-theme");
     document.body.classList.remove("light-theme");
     modeText.textContent = "Dark Mode";
     document.querySelector(".fa-sun").style.display = "none";
@@ -76,3 +77,23 @@ modeToggle.addEventListener("change", function () {
 toastr.options = {
   "closeButton": true,
   } 
+
+  // Show the loader
+function showLoader() {
+  const loader = document.getElementById('loader');
+  if (loader) {
+    loader.style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+   }
+}
+showLoader()
+// Hide the loader
+function hideLoader() {
+  const loader = document.getElementById('loader');
+  if (loader) {
+    loader.style.display = 'none';
+        document.body.style.overflow = 'visible';
+
+  }
+}
+setTimeout(hideLoader,2500)

@@ -22,6 +22,10 @@
 </head>
 
 <body>
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p class="loading-message">Loading Boss, please wait...</p>
+    </div>
     <div class="container">
         <aside>
             <div class="top-box">
@@ -187,6 +191,16 @@
             </div>
                </div>
     </div>
+    <script>
+        // Immediately invoked function to set the theme 
+        (function() {
+          var theme = localStorage.getItem('theme');
+          if (theme) {
+            document.body.classList.add(theme);
+          }
+        })();
+      </script>
+    
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

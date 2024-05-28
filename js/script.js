@@ -1,21 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
-// Mobile Nav
-let btnNav = document.querySelector(".btn-mobile-nav");
-let header = document.querySelector(".header");
-
-btnNav.addEventListener("click", function () {
-  header.classList.toggle("nav-open");
-});
- 
-let links = document.querySelectorAll("a");
-links.forEach((link) => {
-  link.addEventListener("click", function () {
-    if (link.classList.contains("main-list-link")) {
-      header.classList.toggle("nav-open");
-    }
-  });
-});
 // ///////////////////////////////////////////////////////////////
 
 // Sticky navigation

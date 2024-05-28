@@ -24,12 +24,16 @@
      <title>About</title>
 </head>
 <body>
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p class="loading-message">Loading Boss, please wait...</p>
+    </div>
     <header class='about'>
         <div class="about-content">
             <header class="header ">
-                <a href="index.html" class="main-logo wow fadeInDownBig"   ><i class="fas fa-handshake"></i>Boss<span>Helper</span>
+                <a href="index.html" class="main-logo wow fadeInDownBig" data-wow-delay="2s"  ><i class="fas fa-handshake"></i>Boss<span>Helper</span>
                 </a>
-                <nav class="main-nav wow fadeInDownBig" data-wow-delay=".4s" >
+                <nav class="main-nav wow fadeInDownBig" data-wow-delay="2.2s" >
                     <ul class="main-nav-list">
                         <li><a class="main-list-link" href="index.html">Home</a></li>
                         <li><a class="main-list-link" href="about.html">About</a></li>
@@ -44,8 +48,8 @@
                 </button>
             </header>
             <div class="about-info container">
-                <h1 class="heading-secondary home-heading wow fadeInDownBig" data-wow-duration="1.2s">About Us</h1>
-                <div class="rating wow fadeInDown" data-wow-delay="1.2s" >
+                <h1 class="heading-secondary home-heading wow fadeInDownBig" data-wow-duration="4.2s">About Us</h1>
+                <div class="rating wow fadeInDown" data-wow-delay="3.9s" >
                     <div class="rating-icons">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -58,9 +62,12 @@
             </div>
         </div>
     </header>
+    <div class="arrow">
+        <i class="fa-solid fa-arrow-up fa-beat fa-bounce"></i>
+    </div>
     <section class="section-info">
         <div class="container info-grid ">
-            <div class="info-text  wow fadeInLeft"  data-wow-offset="50"data-wow-delay="1.4s">
+            <div class="info-text  wow fadeInLeft"  data-wow-offset="50"data-wow-delay="4.2s">
                 <span class="info-icon ">
                     <img src="img/binoculars.png" alt="" >
                 </span>
@@ -71,7 +78,7 @@
                     helping our clients achieve their goals and exceed their expectations with our intuitive platform.
                 </p>
             </div>
-            <div class="info-img  wow fadeInRight"  data-wow-offset="50"data-wow-delay="1.6s">
+            <div class="info-img  wow fadeInRight"  data-wow-offset="50"data-wow-delay="4.4s">
                 <img src="img/mission.jpeg" alt="">
             </div>
             <div class="info-img  wow fadeInLeft"  data-wow-offset="50">
@@ -215,8 +222,9 @@
 
         </div>
     </footer>
-      <script src="js/about.js"></script>
-      <script src="js/wow.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/about.js"></script>
 
  </body>
  

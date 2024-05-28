@@ -38,7 +38,7 @@ function emailHover() {
   toastr["warning"]("Email cannot be changed", " ");
   setTimeout(function () {
     toastr.clear();
-  }, 5000);
+  }, 3000);
 }
 updateBtn.addEventListener("click", function () {
   if (updateBtn.textContent === "Update Info") {
@@ -99,7 +99,7 @@ function validateInputs() {
     toastr["error"]("Please fix all the errors to be able to save", " ");
     setTimeout(function () {
       toastr.clear();
-    }, 5000);
+    }, 3000);
   }
 }
 function updateUser() {
@@ -130,7 +130,7 @@ function updateUser() {
     toastr["success"]("Profile info updated successfully!", " ");
   setTimeout(function () {
     toastr.clear();
-  }, 5000);
+  }, 3000);
   }
     
   displayInputs();
@@ -159,7 +159,7 @@ function validatePasswords() {
     toastr["error"]("Please fix all the errors add the new password", " ");
     setTimeout(function () {
       toastr.clear();
-    }, 5000);
+    }, 3000);
   }
 }
 function updatePassword() {
@@ -168,7 +168,7 @@ function updatePassword() {
     toastr["success"]("Password updated successfully!", " ");
     setTimeout(function () {
       toastr.clear();
-    }, 5000);
+    }, 3000);
   }
   localStorage.setItem("users", JSON.stringify(users));
 

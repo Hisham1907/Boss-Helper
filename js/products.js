@@ -55,7 +55,7 @@ mainBtn.addEventListener("click", function () {
     toastr["error"]("Please fix all the errors to be able to add the product");
     setTimeout(function () {
       toastr.clear();
-    }, 5000);
+    }, 3000);
   } else {
     if(validateInputs()){
       updateData(currentIndex);
@@ -66,7 +66,7 @@ mainBtn.addEventListener("click", function () {
     toastr["error"]("Please fix all the errors to be able to update add the product");
     setTimeout(function () {
       toastr.clear();
-    }, 5000);
+    }, 3000);
   }
   }
 });
