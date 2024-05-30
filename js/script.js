@@ -203,22 +203,6 @@ heroImg.setAttribute('src',heroImages[currIndex])
 
 })
 
-
-// Elements Animation
-// let animateElements=document.querySelectorAll('.animation-field')
-// console.log(animateElements);
-// const scrollReveal= function(){
-//   for (let i=0;i<animateElements.length;i++){
-//     let isElementOnScreen=animateElements[i].getBoundingClientRect().top<window.innerHeight;
-//     if(isElementOnScreen)
-//       animateElements[i].classList.add('animate')
-//     else
-//     animateElements[i].classList.remove('animate')
-//   }
-// }
-// window.addEventListener('scroll',scrollReveal)
-// window.addEventListener('load',scrollReveal)
-
 let toContactUsBtn=document.querySelector('#to-contact-us')
 let sectionCta=document.querySelector('.section-cta')
  toContactUsBtn.addEventListener('click',function(e){
