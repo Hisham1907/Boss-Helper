@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Fav-icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
-     <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
-     <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
-      <link rel="manifest" href="img/favicons/site.webmanifest">
-    <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
-     <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/common-app.css">
-    <link rel="stylesheet" href="css/toastr.min.css">
-    <link rel="stylesheet" href="css/tasks.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fav-icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/common-app.css">
+  <link rel="stylesheet" href="css/toastr.min.css">
+  <link rel="stylesheet" href="css/tasks.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <title>Dashboard</title>
 </head>
 
 <body>
@@ -27,154 +27,160 @@
     <div class="spinner"></div>
     <p class="loading-message">Loading Boss, please wait...</p>
   </div>
-    <div class="container">
-        <aside >
-            <div class="top-box">
-                <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
-                    <p >Boss<span>Helper</span></p>
-                </a>
-                <i class="fa-solid fa-bars " id="toggle-btn"></i>
-             </div>
-             <div class="profile">
-                <div class="profile-img">
-                    <img src="img/user.jpg" alt="Boss Img">
-                </div>
-                <p class="profile-name" id="profile-name"></p>
+  <header class="main-header">
+    <nav>
+      <i class="fa-solid fa-bars " id="toggle-btn"></i>
+
+
+      <button class="aside-toggle">
+        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
+      </a>
+      <div class="profile">
+        <div class="profile-img">
+          <img src="img/user.jpg" alt="Boss Img">
+        </div>
+        <p class="profile-name" id="profile-name">Hisham</p>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+ <aside>
+
+      <nav class="menu ">
+        <ul class="menu-items">
+          <li class="menu-item">
+            <a class="active" href="dashboard.html"><i class="menu-icon fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
+              <span>Employees</span>
+
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
+              <span>Products</span>
+
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
+              <span>Tasks</span>
+
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="profile.html">
+              <i class="menu-icon fas fa-user-alt"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+          <li>
+            <div class="mode">
+              <div class="mode-icon">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+              </div>
+              <span class="mode-text">Dark Mode</span>
+              <label class="toggle">
+                <input type="checkbox" id="mode-toggle">
+                <span class="slider"></span>
+                <span class="toggle-icon">
+                  <i class="fas fa-sun"></i>
+                  <i class="fas fa-moon"></i>
+                </span>
+              </label>
             </div>
-            <nav class="menu ">
-                <ul class="menu-items">
-                    <li class="menu-item"> 
-                        <a class="active" href="dashboard.html"><i class="menu-icon fas fa-home"></i>
-                            <span>Dashboard</span>
-                        </a></li>
-                    <li class="menu-item">
-                        <a href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
-                            <span>Employees</span> 
-
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
-                            <span>Products</span>
-
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
-                            <span>Tasks</span>
-
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="profile.html"> 
-                              <i class="menu-icon fas fa-user-alt"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
 
 
+          </li>
+        </ul>
+      </nav>
+    </aside>
+ 
+    <main>
+      <section class="welcome-section">
+        <h2 class="welcome-boss">Welcome Back, <span id="user-dash-name"> John Doe</span>!</h2>
+        <p>Here's a summary of your dashboard data.</p>
+      </section>
 
-                    <li class="menu-item">
-                        <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
-                    <li  >
-                        <div class="mode">
-                            <div class="mode-icon">
-                                <i class="fas fa-sun"></i>
-                                <i class="fas fa-moon"></i>
-                            </div>
-                            <span class="mode-text">Dark Mode</span>
-                            <label class="toggle">
-                                <input type="checkbox" id="mode-toggle">
-                                <span class="slider"></span>
-                                <span class="toggle-icon">
-                                    <i class="fas fa-sun"></i>
-                                    <i class="fas fa-moon"></i>
-                                </span>
-                            </label>
-                        </div>
+      <section id="summary">
+        <div class="card">
+          <i class="fas fa-users"></i>
+          <div class="card-data">
+            <h2>Total Employees</h2>
+            <p id="total-employees">0</p>
+          </div>
+        </div>
+        <div class="card">
+          <i class="fas fa-shopping-cart"></i>
+          <div class="card-data">
+            <h2>Total Products</h2>
+            <p id="total-products">0</p>
+          </div>
+        </div>
+        <div class="card">
+          <i class="fas fa-tasks"></i>
+          <div class="card-data">
+            <h2>Total Tasks</h2>
+            <p id="total-tasks">0</p>
+          </div>
+        </div>
+      </section>
 
+      <div class="chart-container employee-chart">
+        <h2>Employee Distribution</h2>
+        <canvas id="employeeChart"></canvas>
+        <p id="employee-no-data" class="no-data-message">No employees data available Boss, Go add some employees and
+          come back.</p>
+      </div>
 
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-        <!-- <i class="fa-solid fa-xmark fa-xl dashboard-mobile-icon"></i> -->
-    
-        <main>
-            <section class="welcome-section">
-              <h2 class="welcome-boss">Welcome Back, <span id="user-dash-name"> John Doe</span>!</h2>
-              <p>Here's a summary of your dashboard data.</p>
-            </section>
-            
-            <section id="summary">
-              <div class="card">
-                <i class="fas fa-users"></i>
-                <div class="card-data">
-                  <h2>Total Employees</h2>
-                  <p id="total-employees">0</p>
-                </div>
-              </div>
-              <div class="card">
-                <i class="fas fa-shopping-cart"></i>
-                <div class="card-data">
-                  <h2>Total Products</h2>
-                  <p id="total-products">0</p>
-                </div>
-              </div>
-              <div class="card">
-                <i class="fas fa-tasks"></i>
-                <div class="card-data">
-                  <h2>Total Tasks</h2>
-                  <p id="total-tasks">0</p>
-                </div>
-              </div>
-            </section>
-          
-            <div class="chart-container employee-chart">
-              <h2>Employee Distribution</h2>
-              <canvas id="employeeChart"></canvas>
-              <p id="employee-no-data" class="no-data-message">No employees data available Boss, Go add some employees and come back.</p>
+      <div class="second-col">
+        <section id="tasks">
+          <div class="task-card">
+            <h2>Today's Tasks</h2>
+            <div id="task-container" class="no-data-placeholder">
             </div>
-          
-            <div class="second-col">
-              <section id="tasks">
-                <div class="task-card">
-                  <h2>Today's Tasks</h2>
-                  <div id="task-container" class="no-data-placeholder">
-                   </div>
-                   <p id="tasks-no-data" >No Tasks available.</p>
-                  <a href="tasks.html" id="view-all-btn" >View all tasks</a>
-                </div>
-              </section>
-              <div class="chart-container product-chart">
-                <h2>Product Categories</h2>
-                <canvas id="productChart"></canvas>
-                <p id="product-no-data" class="no-data-message">No products available.</p>
-              </div>
-            </div>
-          </main>
-          
-          
-<!--        
+            <p id="tasks-no-data">No Tasks available.</p>
+            <a href="tasks.html" id="view-all-btn">View all tasks</a>
+          </div>
+        </section>
+        <div class="chart-container product-chart">
+          <h2>Product Categories</h2>
+          <canvas id="productChart"></canvas>
+          <p id="product-no-data" class="no-data-message">No products available.</p>
+        </div>
+      </div>
+    </main>
+
+
+    <!--        
         <footer>
           <p>© 2024 Hisham Rabea. All rights reserved.</p>
         </footer> -->
-        
 
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <div class="overlay"></div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/toastr.min.js"></script>
-    <script src="js/common-app.js"></script>
-    <script src="js/dashboard.js"></script>
- 
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/toastr.min.js"></script>
+  <script src="js/common-app.js"></script>
+  <script src="js/dashboard.js"></script>
+
 </body>
 
 </html>
-
- 

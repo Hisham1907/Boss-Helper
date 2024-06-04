@@ -17,7 +17,6 @@
   --input-focus-color:#90b9fa;
   --input-border-color:rgba(32, 107, 245, 0.25);
 }
-
 .light-theme {
   --main-bg-color: #f5f5f5;
   --secondary-bg-color: #ffffff;
@@ -36,16 +35,17 @@
   --input-focus-color: #3b82f6;
   --input-border-color: rgba(59, 130, 246, 0.25);
 }
-
- 
-main {
-  padding: 1rem 2.4rem 2.4rem;
-  overflow-y: auto;
-}
 body {
   font-family: "Rubik", sans-serif;
   color: var(--text-color);
   background-color: var(--main-bg-color);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+main {
+  padding: 1rem 2.4rem 2.4rem;
+  overflow-y: auto;
 }
 /* Settings */
 .settings {
@@ -122,7 +122,6 @@ body {
   bottom: 0;
   cursor: pointer;
 }
-
 /* profile data */
 .form-collection {
   display: grid;
@@ -162,7 +161,7 @@ label {
 }
 .form-group input:disabled {
   background-color: var(--input-disabled-color);
-  border-color: var(--input-disabled-border-color);
+  border-color: var (--input-disabled-border-color);
   color: var(--input-placeholder-color);
   cursor: not-allowed;
 }
@@ -182,10 +181,10 @@ label {
   margin-top: 2rem;
   font-size: 2rem;
 }
-
 .delete-account p,
 .password-text p {
   margin-bottom: 2rem;
+  line-height: 1.6;
 }
 .delete-account {
   margin-bottom: 2rem;
@@ -199,11 +198,10 @@ label {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .delete-account-btn:hover {
   background-color: #a84b4b;
 }
-
+/* Media Queries */
 @media (max-width: 75em) {
   html {
     font-size: 56.25%;
@@ -214,20 +212,48 @@ label {
     font-size: 50%;
   }
 }
+@media (max-width: 48em) {
+  main {
+    padding: 1.5rem;
+   }
+  .settings {
+    width: 100%;
+    padding: 2rem;
+  }
+  .form-collection {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
 
+  }
+}
 @media (max-width: 38em) {
-  main .reports {
-    grid-template-columns: repeat(2, 1fr);
+  .settings h2 {
+    font-size: 2rem;
+  }
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+  }
+  .profile-info h2 {
+    font-size: 1.8rem;
+  }
+ 
+  .form-group label {
+    font-size: 1.6rem;
+  }
+  .form-group input {
+    font-size: 1.4rem;
+    padding: 0.8rem;
+  }
+  .delete-account,
+  .password-text {
+    font-size: 1.6rem;
   }
 }
 @media (max-width: 28em) {
-  main .reports {
-    grid-template-columns: 1fr;
+  .profile-picture {
+    width: 100px;
+    height: 100px;
   }
-}
-
-
-
-
-
  
+}

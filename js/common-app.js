@@ -9,7 +9,7 @@ const profileImg = document.querySelector('.profile-img img');
 profileImg.src = currentUser.img?currentUser.img:'img/user.jpg';
 }
 displayProfile()
-// Aside toggle btn
+// Aside toggle btn Large Screen
 const toggleBtn = document.querySelector('#toggle-btn');
 const aside = document.querySelector('aside');
 let isAsideActive = false;
@@ -22,12 +22,24 @@ if (localStorage.getItem('isAsideActive') !== null) {
         aside.classList.remove('aside-closed');
     }
 }
-
-toggleBtn.addEventListener('click', function () {
-    isAsideActive = !isAsideActive;
+ toggleBtn.addEventListener('click', function () {
+     isAsideActive = !isAsideActive;
     localStorage.setItem('isAsideActive', JSON.stringify(isAsideActive)); // Store the updated value
      aside.classList.toggle('aside-closed');
 });
+// Aside toggle btn Small Screen
+const body = document.querySelector('body');
+const overlay=document.querySelector('.overlay')
+const asideToggle=document.querySelector('.aside-toggle')
+asideToggle.addEventListener('click',function(){
+  aside.classList.add('aside-closed');
+  body.classList.toggle('aside-open');
+})
+overlay.addEventListener('click',function(){
+   body.classList.remove('aside-open');
+})
+
+
 // Dark & Light Mode
 
 const modeToggle = document.getElementById("mode-toggle");

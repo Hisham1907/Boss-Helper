@@ -25,20 +25,28 @@
   <div class="loader" id="loader">
     <div class="spinner"></div>
     <p class="loading-message">Loading Boss, please wait...</p>
-  </div>  <div class="container">
-    <aside>
-      <div class="top-box">
-        <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
-          <p>Boss<span>Helper</span></p>
-        </a>
-        <i class="fa-solid fa-bars " id="toggle-btn"></i>
-      </div>
+  </div>
+  <header class="main-header">
+    <nav>
+      <i class="fa-solid fa-bars " id="toggle-btn"></i>
+
+
+      <button class="aside-toggle">
+        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
+      </a>
       <div class="profile">
         <div class="profile-img">
           <img src="img/user.jpg" alt="Boss Img">
         </div>
-        <p class="profile-name" id="profile-name"></p>
+        <p class="profile-name" id="profile-name">Hisham</p>
       </div>
+    </nav>
+  </header>
+  <div class="container">
+    <aside>
       <nav class="menu ">
         <ul class="menu-items">
           <li class="menu-item">
@@ -59,7 +67,7 @@
             </a>
           </li>
           <li class="menu-item">
-            <a class="active" href="#"><i class="menu-icon fas fa-tasks"></i>
+            <a class="active" href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
               <span>Tasks</span>
 
             </a>
@@ -70,9 +78,6 @@
               <span>Profile</span>
             </a>
           </li>
-
-
-
           <li class="menu-item">
             <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
               <span>Logout</span>
@@ -100,12 +105,11 @@
         </ul>
       </nav>
     </aside>
-
     <main class="main-content">
       <section class="todo-section">
         <div class="todo-container">
           <div class="add-bar">
-    <input id="input-field" type="text" class="input-field" placeholder="Add a task ...">
+            <input id="input-field" type="text" class="input-field" placeholder="Add a task ...">
             <div class="task-customizations">
               <div class="task-info">
                 <div class="drop">
@@ -121,64 +125,81 @@
                 </div>
                 <div class="priority-field">
                   <span class="priority-title">Task Priority</span>
-                  <label class="priority-label"><input type="radio" name="priority" value="1" checked><span class="custom-radio"></span> High</label>
-                  <label class="priority-label"><input type="radio" name="priority" value="2"><span class="custom-radio"></span> Medium</label>
-                  <label class="priority-label"><input type="radio" name="priority" value="3"><span class="custom-radio"></span> Low</label>
+                <div class="priority-labels">
+                  <label class="priority-label"><input type="radio" name="priority" value="1" checked><span
+                    class="custom-radio"></span> High</label>
+                <label class="priority-label"><input type="radio" name="priority" value="2"><span
+                    class="custom-radio"></span> Medium</label>
+                <label class="priority-label"><input type="radio" name="priority" value="3"><span
+                    class="custom-radio"></span> Low</label>
+                </div>
                 </div>
               </div>
               <button id="main-btn" class="main-btn">Add Task</button>
             </div>
-          </div>    
-          <div class="categories-wrapper">
-            <div class="categories">
-              <div class="category category-active" id="all" >
-                <div class="icon"><i class="fas fa-tasks"></i></div>
-                <div class="content">
-                  <h1>All Tasks</h1>
-                  <p id="all-count">0 Tasks</p>
+          </div>
+          <div class="filter-categories">
+            <div class="filter-control">
+              <span class="priority-title">Filter Tasks by Category</span>
+              <button id="category-filter-btn" class="category-select-btn">All Tasks</button>
+            </div>
+            <div id="category-modal" class="modal ">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2>Select Task Category</h2>
+                  <span class="close-btn">&times;</span>
                 </div>
-              </div>
-              <div class="category" id="personal">
-                <div class="icon"><i class="fas fa-user"></i></div>
-                <div class="content">
-                  <h1>Personal</h1>
-                  <p id="personal-count">0 Tasks</p>
-                </div>
-              </div>
-              <div class="category"   id="work">
-                <div class="icon"><i class="fas fa-briefcase"></i></div>
-                <div class="content">
-                  <h1>Work</h1>
-                  <p id="work-count">0 Tasks</p>
-                </div>
-              </div>
-              <div class="category" id="shopping" >
-                <div class="icon"><i class="fas fa-shopping-cart"></i></div>
-                <div class="content">
-                  <h1>Shopping</h1>
-                  <p id="shopping-count">0 Tasks</p>
-                </div>
-              </div>
-              <div class="category"  id="coding">
-                <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                <div class="content">
-                  <h1>Coding</h1>
-                  <p id="coding-count">0 Tasks</p>
-                </div>
-              </div>
-              <div class="category"  id="fitness">
-                <div class="icon"><i class="fas fa-dumbbell"></i></div>
-                <div class="content">
-                  <h1>Fitness</h1>
-                  <p id="fitness-count">0 Tasks</p>
-                </div>
-              </div>
-              <div class="category" id="education" >
-                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="content">
-                  <h1>Education</h1>
-                  <p id="education-count">0 Tasks</p>
-                </div>
+                <ul class="category-list ">
+                  <li class="category-item category-active" id="all">
+                    <div class="icon"><i class="fas fa-tasks"></i></div>
+                    <div class="content">
+                      <h2>All Tasks</h2>
+                      <p id="all-count">0 Tasks</p>
+                    </div>
+                  </li>
+                  <li  class="category-item " id="personal">
+                    <div class="icon"><i class="fas fa-user"></i></div>
+                    <div class="content">
+                      <h2>Personal</h2>
+                      <p id="personal-count">0 Tasks</p>
+                    </div>
+                  </li>
+                  <li  class="category-item" id="work">
+                    <div class="icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="content">
+                      <h2>Work</h2>
+                      <p id="work-count">0 Tasks</p>
+                    </div>
+                  </li>
+                  <li  class="category-item" id="shopping">
+                    <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="content">
+                      <h2>Shopping</h2>
+                      <p id="shopping-count">0 Tasks</p>
+                    </div>
+                  </li>
+                  <li  class="category-item" id="coding">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="content">
+                      <h2>Coding</h2>
+                      <p id="coding-count">0 Tasks</p>
+                    </div>
+                  </li>
+                  <li  class="category-item" id="fitness">
+                    <div class="icon"><i class="fas fa-dumbbell"></i></div>
+                    <div class="content">
+                      <h2>Fitness</h2>
+                      <p id="fitness-count">0 Tasks</p>
+                    </div>
+                  </li>
+                  <li class="category-item" id="education">
+                    <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="content">
+                      <h2>Education</h2>
+                      <p id="education-count">0 Tasks</p>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -190,21 +211,21 @@
         </div>
       </section>
     </main>
-    
-
+  
+    <div class="overlay"></div>
   </div>
   <div class="pop-up ">
     <div class="pop-up-content">
-        <i class="fa-solid fa-trash-can fa-3x"></i>
-        <h2>You are about to delete a task you lazy</h2>
-        <img src="img/delete-task.svg" alt="">
-        <p>This will delete the task . Are you free today?</p>
-        <div class="pop-up-control">
-            <button class="cancel-modal-btn">Cancel</button>
-            <button class="delete-modal-btn">Delete</button>
-        </div>
+      <i class="fa-solid fa-trash-can fa-3x"></i>
+      <h2>You are about to delete a task you lazy</h2>
+      <img src="img/delete-task.svg" alt="">
+      <p>This will delete the task . Are you free today?</p>
+      <div class="pop-up-control">
+        <button class="cancel-modal-btn">Cancel</button>
+        <button class="delete-modal-btn">Delete</button>
+      </div>
     </div>
-</div>
+  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/toastr.min.js"></script>
   <script src="js/common-app.js"></script>

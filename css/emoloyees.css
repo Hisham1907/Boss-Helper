@@ -1,10 +1,10 @@
-main {
-  padding: 2.4rem;
-}
 body {
   font-family: "Rubik", sans-serif;
   color: var(--text-color);
   background-color: var(--main-bg-color);
+}
+main {
+  padding: 2.4rem;
 }
 /* Employee */
 .header-top {
@@ -16,8 +16,7 @@ body {
 }
 .entries-numbers select,
 .search-bar input {
-  background-color:var(--input-enabled-color);  
-  border: 1px solid var(--input-disabled-border-color);
+  background-color: var(--input-enabled-color);
   border: none;
   outline: none;
   color: var(--text-color);
@@ -27,14 +26,13 @@ body {
   border-radius: 5px;
   font-size: 1.6rem;
 }
-
 .search-bar {
   position: relative;
 }
 .search-bar input {
   padding: 1rem 1.5rem;
   transition: 0.5s ease-in-out;
-  background-color:var(--secondary-bg-color);  
+  background-color: var(--secondary-bg-color);
   border: 1px solid var(--border-color);
   padding: 1.5rem;
   padding-left: 4.5rem;
@@ -43,7 +41,7 @@ body {
   outline: none;
 }
 .search-bar input:focus {
-  box-shadow: 0 0 0 .6rem var(--input-focus-color);
+  box-shadow: 0 0 0 0.6rem var(--input-focus-color);
 }
 .search-bar i {
   position: absolute;
@@ -62,17 +60,16 @@ body {
   padding: 1rem 1.6rem;
   border: none;
   border-radius: 4px;
-   font-size: 1.6rem;
+  font-size: 1.6rem;
   cursor: pointer;
   transition: 0.5s all;
   margin-bottom: 2rem;
 }
-
 #add-new-member:hover,
 .submit-btn:hover,
 .view-btn:hover {
   background-color: var(--main-hover-bg-color);
- }
+}
 /* Table */
 .employees-crud table {
   border-collapse: collapse;
@@ -82,12 +79,10 @@ body {
 }
 .employees-crud th,
 .employees-crud td {
-  /* text-align: start; */
   text-align: center;
   border-bottom: 1px solid var(--table-border-bottom-color);
   padding: 0.8rem 1.2rem;
 }
-
 .employees-crud thead tr th {
   background-color: var(--aside-bg-color);
   padding: 2rem 1rem;
@@ -115,24 +110,20 @@ body {
   border-radius: 4px;
   object-fit: cover;
 }
-table .action button {
+.table-btns {
+  display: flex;
+  gap: 1.6rem;
+  color: #fff;
+}
+.table-btns i {
   padding: 1rem;
-  color: var(--always-fff);
-  border: none;
-  outline: none;
-  font-size: 1.6rem;
-  cursor: pointer;
   border-radius: 4px;
-  transition: all 0.3s ease;
+  cursor: pointer;
 }
-table .action button:hover {
-  background-color: var(--main-color);
- }
-table .action button.update {
-  background-color: #a8a234;
-  margin-right: 1rem;
+.update {
+  background-color: #a89734;
 }
-table .action button.delete {
+.delete {
   background-color: #a83434;
 }
 table .empty {
@@ -147,9 +138,11 @@ footer {
   margin-top: 2.4rem;
   font-size: 1.6rem;
 }
+
 footer .pagination {
   display: flex;
 }
+
 footer .pagination button {
   width: 4rem;
   padding: 1rem;
@@ -163,17 +156,20 @@ footer .pagination button {
   border-left: none;
   transition: 0.3s all;
 }
+
 footer .pagination button:first-child {
   border-left: 1px solid var(--box-shadow-color);
   width: 8.5rem;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
+
 footer .pagination button:last-child {
   width: 8.5rem;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
+
 footer .pagination button:hover,
 footer .pagination button.active {
   background-color: var(--main-color);
@@ -195,9 +191,11 @@ footer .pagination button.active {
   overflow: auto;
   opacity: 0;
   visibility: hidden;
+  z-index: 9999;
 }
+
 .employees-form {
-  background-color:var(--main-bg-color);
+  background-color: var(--main-bg-color);
   box-shadow: 0 1rem 2rem var(--box-shadow-color);
   border-radius: 9px;
   overflow: auto;
@@ -207,31 +205,37 @@ footer .pagination button.active {
   transition: 0.5s all ease-in;
   border: 1px solid var(--delete-btn-border-color);
 }
+
 .employees-form header {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid var(--box-shadow-color);
   padding: 1rem 2rem;
 }
+
 .modal-title {
   font-size: 2rem;
 }
+
 .employees-form header .close-btn {
   background-color: transparent;
   outline: none;
   border: none;
   cursor: pointer;
 }
+
 .employees-form header .close-btn i {
   color: var(--main-color);
   font-size: 2rem;
 }
+
 .employees-form form {
   padding: 1rem 2rem;
   display: flex;
   align-items: start;
   gap: 4.8rem;
 }
+
 form .img-holder {
   width: 15rem;
   height: 15rem;
@@ -240,6 +244,7 @@ form .img-holder {
   position: relative;
   overflow: hidden;
 }
+
 form .upload {
   position: absolute;
   width: 100%;
@@ -253,21 +258,26 @@ form .upload {
   transform: translateY(100%);
   transition: 0.3s all ease-in;
 }
+
 form .upload i {
   font-size: 4rem;
   color: var(--always-fff);
 }
+
 form .img-holder:hover .upload {
   transform: translateY(0);
 }
+
 .picture {
   display: none;
 }
+
 form .img-holder img {
   width: 15rem;
   height: 15rem;
   border-radius: 5px;
 }
+
 /* Input fields */
 .input-fields {
   display: grid;
@@ -275,18 +285,20 @@ form .img-holder img {
   column-gap: 1.2rem;
   row-gap: 1.6rem;
 }
+
 .input-box {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
+
 .input-box label {
   font-size: 1.6rem;
   font-weight: bold;
 }
+
 .input-box input {
-  background-color:var(--input-enabled-color);  
-  border: 1px solid var(--input-disabled-border-color);
+  background-color: var(--input-enabled-color);
   border: none;
   outline: none;
   padding: 1rem;
@@ -295,36 +307,167 @@ form .img-holder img {
   border-radius: 4px;
   color: var(--text-color);
 }
+
 .input-box input:focus {
   transform: scale(1.06);
   border-color: var(--input-focus-color);
-  box-shadow: 0 0 0 .25rem var(--input-border-color);
+  box-shadow: 0 0 0 0.25rem var(--input-border-color);
 }
+
 .employees-form footer {
   border-top: 1px solid var(--box-shadow-color);
   padding-right: 2rem;
   padding-top: 1rem;
 }
+
 .submit-btn {
   margin-left: auto;
 }
+
 .appear {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
 }
+
 .pop-up-content img {
   max-width: 100%;
   margin: auto;
 }
 
+/* Media Query Adjustments */
 @media (max-width: 75em) {
   html {
     font-size: 56.25%;
   }
 }
+
 @media (max-width: 61em) {
   html {
     font-size: 50%;
   }
+  form {
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+  table,
+  th,
+  td {
+    font-size: 1.4rem;
+    padding: 1.2rem;
+  }
+  .user-img img {
+    width: 5rem;
+    height: 5rem;
+    
+  }
 }
+
+ 
+
+@media (max-width: 48em) {
+  main {
+    padding: 1.5rem;
+   }
+  form .img-holder {
+    margin: auto;
+  }
+  .header-top {
+    /* flex-direction: column; */
+    gap: 1rem;
+  }
+  footer .pagination button {
+    width: 3rem;
+    font-size: 1.2rem;
+  }
+  .employees-form {
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .employees-form form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .employees-form header {
+    padding: 1rem;
+  }
+
+  .employees-form footer {
+    padding: 1rem;
+  }
+
+  .employees-crud th, 
+  .employees-crud td {
+    font-size: 1.2rem;
+  }
+  #add-new-member,
+.submit-btn{
+  font-size: 1.4rem;
+}
+.user-img img {
+  width: 4rem;
+  height: 4rem;
+  
+}
+
+.search-bar input {
+  font-size: 1.4rem;
+  padding-left: 5rem;
+}
+.entries-numbers select{
+  font-size: 1.4rem;
+ }
+.search-bar i {
+  left: 2.5rem;
+  font-size: 1.8rem;
+}
+table,
+th,
+td {
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+.table-btns i {
+  padding: 0.8rem;
+}
+}
+@media (max-width: 30em) {
+  input {
+    font-size: 1.2rem;
+  }
+  input::placeholder {
+    font-size: 1.2rem;
+  }
+  .input-fields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .input-box {
+    width: 100%;
+  }
+  .search-bar input {
+    font-size: 1.2rem;
+   padding-left: 3rem;
+ }
+ .entries-numbers select{
+  font-size: 1.2rem;
+ }
+
+ .search-bar i {
+   left: 2rem;
+ }
+ table,
+ th,
+ td {
+   font-size: 1rem;
+   padding: 0.8rem;
+ }
+ .table-btns i {
+   padding: 0.6rem;
+ }
+}
+
+

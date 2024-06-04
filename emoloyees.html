@@ -26,82 +26,85 @@
         <div class="spinner"></div>
         <p class="loading-message">Loading Boss, please wait...</p>
     </div>
-            
+    <header class="main-header">
+        <nav>
+          <i class="fa-solid fa-bars " id="toggle-btn"></i>
+    
+    
+          <button class="aside-toggle">
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
+          </a>
+          <div class="profile">
+            <div class="profile-img">
+              <img src="img/user.jpg" alt="Boss Img">
+            </div>
+            <p class="profile-name" id="profile-name">Hisham</p>
+          </div>
+        </nav>
+      </header>
      <div class="container">
         <aside>
-            <div class="top-box">
-                <a href="#" class="main-logo"><i class="fas fa-handshake"></i>
-                    <p>Boss<span>Helper</span></p>
-                </a>
-                <i class="fa-solid fa-bars " id="toggle-btn"></i>
-            </div>
-            <div class="profile">
-                <div class="profile-img">
-                    <img src="img/user.jpg" alt="Boss Img">
-                </div>
-                <p class="profile-name" id="profile-name"></p>
-            </div>
             <nav class="menu ">
-                <ul class="menu-items">
-                    <li class="menu-item">
-                        <a href="dashboard.html"><i class="menu-icon fas fa-home"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a class="active" href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
-                            <span>Employees</span>
-
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
-                            <span>Products</span>
-
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
-                            <span>Tasks</span>
-
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="profile.html">
-                            <i class="menu-icon fas fa-user-alt"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-
-
-
-                    <li class="menu-item">
-                        <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="mode">
-                            <div class="mode-icon">
-                                <i class="fas fa-sun"></i>
-                                <i class="fas fa-moon"></i>
-                            </div>
-                            <span class="mode-text">Dark Mode</span>
-                            <label class="toggle">
-                                <input type="checkbox" id="mode-toggle">
-                                <span class="slider"></span>
-                                <span class="toggle-icon">
-                                    <i class="fas fa-sun"></i>
-                                    <i class="fas fa-moon"></i>
-                                </span>
-                            </label>
-                        </div>
-
-
-                    </li>
-                </ul>
+              <ul class="menu-items">
+                <li class="menu-item">
+                  <a  href="dashboard.html"><i class="menu-icon fas fa-home"></i>
+                    <span>Dashboard</span>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a class="active" href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
+                    <span>Employees</span>
+      
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a  href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
+                    <span>Products</span>
+      
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
+                    <span>Tasks</span>
+      
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="profile.html">
+                    <i class="menu-icon fas fa-user-alt"></i>
+                    <span>Profile</span>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                  </a>
+                </li>
+                <li>
+                  <div class="mode">
+                    <div class="mode-icon">
+                      <i class="fas fa-sun"></i>
+                      <i class="fas fa-moon"></i>
+                    </div>
+                    <span class="mode-text">Dark Mode</span>
+                    <label class="toggle">
+                      <input type="checkbox" id="mode-toggle">
+                      <span class="slider"></span>
+                      <span class="toggle-icon">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                      </span>
+                    </label>
+                  </div>
+      
+      
+                </li>
+              </ul>
             </nav>
-        </aside>
+          </aside>
         <main class="employees-crud">
             <header>
                 <div class="header-top">
@@ -157,6 +160,8 @@
                 </div>
             </footer>
         </main>
+        <div class="overlay"></div>
+
     </div>
      <div class="form-container ">
         <div class="employees-form">

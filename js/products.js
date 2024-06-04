@@ -147,7 +147,7 @@ function displayProducts() {
   } else {
     content = `
   <tr>
-    <td colspan="11" class="empty">No Data Available</td>
+    <td colspan="9" class="empty">No Data Available</td>
   </tr>
 `;
     deleteAllBox.innerHTML = "";
@@ -176,6 +176,9 @@ function deleteProduct(index) {
   cancelModalBtn.addEventListener("click", function () {
     popUpModal.classList.remove("pop-up-active");
   });
+  popUpModal.addEventListener("click", function () {
+    popUpModal.classList.remove("pop-up-active");
+  });
 }
 // Function to delete all products with confirmation modal
 function deleteAll() {
@@ -195,6 +198,9 @@ function deleteAll() {
   cancelModalBtn.addEventListener("click", function () {
     popUpModal.classList.remove("pop-up-active");
   });
+  popUpModal.addEventListener("click", function () {
+    popUpModal.classList.remove("pop-up-active");
+  });
 }
 // Function to get data of certain product and fill the input fields with it & apply some changes in th UI
 function getData(index) {
@@ -212,6 +218,7 @@ function getData(index) {
   mainBtn.style.backgroundColor = "#a8a234 ";
   window.scrollTo(0, 0);
 }
+// Function to update product data
 function updateData(index) {
   currentUser.products[index].name = productName.value;
   currentUser.products[index].category = category.value;
@@ -226,7 +233,8 @@ function updateData(index) {
   count.style.display = "block";
   mainBtn.style.backgroundColor = "var(--main-color)";
 }
-search.addEventListener("keyup", function () {
+// Function to display search results in real time
+ search.addEventListener("keyup", function () {
   let content = "";
   for (let i = 0; i < currentUser.products.length; i++) {
     if (
@@ -247,6 +255,7 @@ search.addEventListener("keyup", function () {
     <td>${currentUser.products[i].ads}</td>
     <td>${currentUser.products[i].discount}</td>
     <td>${currentUser.products[i].total}</td>
+
     <td>
         <div class="table-btns">
             <i class="fa-solid fa-pen-to-square update" onclick="getData(${i}) " ></i>
@@ -257,17 +266,11 @@ search.addEventListener("keyup", function () {
 
 </tr>
     
-    `;
+  `;
   }
   tableBody.innerHTML = content;
 });
-// deleteAllBtn.addEventListener("click", function () {
-// });
-// price.addEventListener('keyup',function(){
-//     calcTotal()
-// })
-
-//
+// Function to set error to input
 function setError(element, message) {
   element.classList.add("error");
   tippy(element, {
@@ -278,26 +281,11 @@ function setError(element, message) {
     arrow: true,
   }).show();
 }
+// Function to set success to input
 function setSuccess(element) {
   element.classList.remove("error");
 }
 // Validation functions
-function validateInputs() {
-  const validationFunctions = [
-    validateName,
-    validateCategory,
-    validatePrice,
-    validateTaxes,
-    validateDiscount,
-    validateAds,
-  ];
-  let isValid = true;
-  validationFunctions.forEach((func) => {
-    if (func() === false) isValid = false;
-  });
-  return isValid;
-}
-
 function validateName() {
   const nameValue = productName.value.trim();
   if (nameValue === "") {
@@ -345,7 +333,6 @@ function validateTaxes() {
     return true;
   }
 }
-
 function validateDiscount() {
   const discountValue = discount.value.trim();
   if (Number(discountValue) < 0) {
@@ -356,7 +343,6 @@ function validateDiscount() {
     return true;
   }
 }
-
 function validateAds() {
   const adsValue = ads.value.trim();
   if (Number(adsValue) < 0) {
@@ -366,6 +352,22 @@ function validateAds() {
     setSuccess(ads);
     return true;
   }
+}
+// function to call all validation functions and check all inputs validations then returns true or false based on validation of all the input fields to help me then to add or update a product
+function validateInputs() {
+  const validationFunctions = [
+    validateName,
+    validateCategory,
+    validatePrice,
+    validateTaxes,
+    validateDiscount,
+    validateAds
+  ];
+  let isValid = true;
+  validationFunctions.forEach((func) => {
+    if (func() === false) isValid = false;
+  });
+  return isValid;
 }
 
 // Swal.fire({

@@ -7,7 +7,7 @@ const companyNameInput = document.querySelector("#company");
 const jobTitleInput = document.querySelector("#job-title");
 const newPasswordInput = document.querySelector("#passwordPhone");
 const confirmPasswordInput = document.querySelector("#confirm-passwordPhone");
-const updateBtn = document.querySelector("#update-btn");
+const mainBtn = document.querySelector("#main-btn");
 const proName = document.querySelector("#pro-name");
 const accountImgFile = document.querySelector("#account-img-file");
 const accountImg = document.querySelector("#account-img");
@@ -17,32 +17,30 @@ const deleteAccount = document.querySelector("#delete-account");
 const popUpModal = document.querySelector(".pop-up");
 const canceModallBtn = document.querySelector(".cancel-modal-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
+// function to display user data
 function displayInputs() {
   proName.textContent = currentUser.name;
   accountImg.src = currentUser.img ? currentUser.img : "img/user.jpg";
   fullNameInput.value = currentUser.name;
   emailInput.value = currentUser.email;
-  if (currentUser.phone !== undefined) phoneInput.value = currentUser.phone;
-  if (currentUser.website !== undefined)
-    websiteInput.value = currentUser.website;
-  if (currentUser.company !== undefined)
-    companyNameInput.value = currentUser.company;
-  if (currentUser.jobTitle !== undefined)
-    jobTitleInput.value = currentUser.jobTitle;
+  if (currentUser.phone) phoneInput.value = currentUser.phone;
+  if (currentUser.website) websiteInput.value = currentUser.website;
+  if (currentUser.company) companyNameInput.value = currentUser.company;
+  if (currentUser.jobTitle) jobTitleInput.value = currentUser.jobTitle;
 }
-
 displayInputs();
+// function tells the user that email is disabled
 function emailHover() {
   toastr.clear();
-
-  toastr["warning"]("Email cannot be changed", " ");
+  toastr["warning"]("Email cannot be changed");
   setTimeout(function () {
     toastr.clear();
   }, 3000);
 }
-updateBtn.addEventListener("click", function () {
-  if (updateBtn.textContent === "Update Info") {
-    updateBtn.textContent = "Save Changes";
+// Update or Save user's info  based on the button's current text
+mainBtn.addEventListener("click", function () {
+  if (mainBtn.textContent === "Update Info") {
+    mainBtn.textContent = "Save Changes";
     [
       fullNameInput,
       emailInput,
@@ -50,13 +48,12 @@ updateBtn.addEventListener("click", function () {
       websiteInput,
       companyNameInput,
       jobTitleInput,
-    ].forEach((input) => { 
-      input.style.backgroundColor = "var(--input-enabled-color)";   
+    ].forEach((input) => {
+      input.style.backgroundColor = "var(--input-enabled-color)";
       input.disabled = false;
     });
     emailInput.disabled = true;
     emailInput.style.backgroundColor = "var(--input-disabled-color)";
-    // Inside the code where you set up your email input element
     emailInput.addEventListener("mouseenter", emailHover);
   } else {
     emailInput.removeEventListener("mouseenter", emailHover);
@@ -64,6 +61,7 @@ updateBtn.addEventListener("click", function () {
     displayProfile();
   }
 });
+// Change password
 changePasswordBtn.addEventListener("click", function () {
   if (changePasswordBtn.textContent === "Change Password") {
     changePasswordBtn.textContent = "Save New Password";
@@ -75,33 +73,7 @@ changePasswordBtn.addEventListener("click", function () {
     validatePasswords();
   }
 });
-function validateInputs() {
-  const validationFunctions = [
-    validateFullName,
-    validatePhone,
-    validateWebsite,
-    validateCompanyName,
-    validateJobTitle,
-  ];
-
-  let isValid = true;
-
-  validationFunctions.forEach((func) => {
-    const result = func();
-    if (result !== true) {
-      isValid = false;
-    }
-  });
-
-  if (isValid) {
-    updateUser();
-  } else {
-    toastr["error"]("Please fix all the errors to be able to save", " ");
-    setTimeout(function () {
-      toastr.clear();
-    }, 3000);
-  }
-}
+// Function to update user data
 function updateUser() {
   currentUser.name = fullNameInput.value;
   localStorage.setItem("name", fullNameInput.value);
@@ -123,45 +95,24 @@ function updateUser() {
   if (
     currentUser.name != fullNameInput.value ||
     currentUser.phone != phoneInput.value ||
-    currentUser.website != websiteInput.value||
-    currentUser.company != companyNameInput.value||
+    currentUser.website != websiteInput.value ||
+    currentUser.company != companyNameInput.value ||
     currentUser.jobTitle != jobTitleInput.value
-  ){
+  ) {
     toastr["success"]("Profile info updated successfully!", " ");
-  setTimeout(function () {
-    toastr.clear();
-  }, 3000);
+    setTimeout(function () {
+      toastr.clear();
+    }, 3000);
   }
-    
+
   displayInputs();
-  updateBtn.textContent = "Update Info";
+  mainBtn.textContent = "Update Info";
   document.querySelectorAll(".form-group input").forEach((input) => {
     input.style.backgroundColor = "var(--input-disabled-color)";
     input.disabled = true;
   });
 }
-function validatePasswords() {
-  const validationFunctions = [validateNewPassword, validateConfirmPassword];
-  let isValid = true;
-
-  validationFunctions.forEach((func) => {
-    const result = func();
-    if (result !== true) {
-      isValid = false;
-    }
-  });
-
-  if (isValid) {
-    updatePassword();
-    newPasswordInput.value = "";
-    confirmPasswordInput.value = "";
-  } else {
-    toastr["error"]("Please fix all the errors add the new password", " ");
-    setTimeout(function () {
-      toastr.clear();
-    }, 3000);
-  }
-}
+// Function to update user password
 function updatePassword() {
   if (newPasswordInput.value !== "") {
     currentUser.password = newPasswordInput.value;
@@ -178,6 +129,7 @@ function updatePassword() {
     input.disabled = true;
   });
 }
+// Function to set error to input
 function setError(element, message) {
   element.classList.add("error");
   tippy(element, {
@@ -186,14 +138,13 @@ function setError(element, message) {
     placement: "bottom",
     theme: "errorTooltip",
     arrow: true,
- 
   }).show();
 }
-
+// Function to set success to input
 function setSuccess(element) {
   element.classList.remove("error");
 }
-
+// validation functions
 function validateFullName() {
   const nameValue = fullNameInput.value.trim();
   if (nameValue === "") {
@@ -254,7 +205,34 @@ function validateJobTitle() {
     return true;
   }
 }
+function validateInputs() {
+  const validationFunctions = [
+    validateFullName,
+    validatePhone,
+    validateWebsite,
+    validateCompanyName,
+    validateJobTitle,
+  ];
 
+  let isValid = true;
+
+  validationFunctions.forEach((func) => {
+    const result = func();
+    if (result !== true) {
+      isValid = false;
+    }
+  });
+
+  if (isValid) {
+    updateUser();
+  } else {
+    toastr["error"]("Please fix all the errors to be able to save", " ");
+    setTimeout(function () {
+      toastr.clear();
+    }, 3000);
+  }
+}
+// Validate passwords
 function validateNewPassword() {
   const newPasswordValue = newPasswordInput.value.trim();
   if (newPasswordValue !== "" && newPasswordValue.length < 8) {
@@ -270,11 +248,12 @@ function validateNewPassword() {
     return true;
   }
 }
-
 function validateConfirmPassword() {
   const confirmPasswordValue = confirmPasswordInput.value.trim();
   const newPasswordValue = newPasswordInput.value.trim();
-  if (
+  if (newPasswordValue !== "" && confirmPasswordValue == "") {
+    setError(confirmPasswordInput, `Please confirm your new password`);
+  } else if (
     confirmPasswordValue !== "" &&
     confirmPasswordValue !== newPasswordValue
   ) {
@@ -285,10 +264,27 @@ function validateConfirmPassword() {
     return true;
   }
 }
+function validatePasswords() {
+  const validationFunctions = [validateNewPassword, validateConfirmPassword];
+  let isValid = true;
+  validationFunctions.forEach((func) => {
+    if (func() === false) isValid = false;
+  });
 
+  if (isValid) {
+    updatePassword();
+    newPasswordInput.value = "";
+    confirmPasswordInput.value = "";
+  } else {
+    toastr["error"]("Please fix all the errors add the new password", " ");
+    setTimeout(function () {
+      toastr.clear();
+    }, 3000);
+  }
+}
+// handle file input
 accountImgFile.addEventListener("change", () => {
   let file = accountImgFile.files[0];
-  console.log(file);
   let reader = new FileReader();
   reader.readAsDataURL(file);
   reader.addEventListener("load", function () {
@@ -337,5 +333,12 @@ deleteAccount.addEventListener("click", function () {
   });
   canceModallBtn.addEventListener("click", function () {
     popUpModal.classList.remove("pop-up-active");
+    deleteModalBtn.removeEventListener("click", handleDelete);
+
+  });
+  popUpModal.addEventListener("click", function () {
+    popUpModal.classList.remove("pop-up-active");
+    deleteModalBtn.removeEventListener("click", handleDelete);
+
   });
 });
