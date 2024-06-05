@@ -40,7 +40,7 @@
       </a>
       <div class="profile">
         <div class="profile-img">
-          <img src="img/user.jpg" alt="Boss Img">
+          <img src="img/user.png" alt="Boss Img">
         </div>
         <p class="profile-name" id="profile-name">Hisham</p>
       </div>
@@ -48,7 +48,7 @@
   </header>
 
   <div class="container">
- <aside>
+    <aside>
 
       <nav class="menu ">
         <ul class="menu-items">
@@ -108,11 +108,21 @@
         </ul>
       </nav>
     </aside>
- 
+
     <main>
+      <div class="page-header">
+        <h2>Welcome To Dashboard</h2>
+        <p>Home <span> / </span> Boss Helper</p>
+      </div>
+
       <section class="welcome-section">
-        <h2 class="welcome-boss">Welcome Back, <span id="user-dash-name"> John Doe</span>!</h2>
-        <p>Here's a summary of your dashboard data.</p>
+        <div class="welcome-text">
+          <h2 class="welcome-boss">Welcome Boss , <span id="user-dash-name"> </span> !</h2>
+          <p>Here's a summary of your Company data.</p>
+        </div>
+        <div>
+          <img src="img/welcome.png" alt="">
+        </div>
       </section>
 
       <section id="summary">
@@ -142,8 +152,10 @@
       <div class="chart-container employee-chart">
         <h2>Employee Distribution</h2>
         <canvas id="employeeChart"></canvas>
-        <p id="employee-no-data" class="no-data-message">No employees data available Boss, Go add some employees and
-          come back.</p>
+        <p id="employee-no-data" class="no-data-message">
+          No employees data available Boss, Go add some employees and
+          come back.
+        </p>
       </div>
 
       <div class="second-col">
@@ -162,15 +174,16 @@
           <p id="product-no-data" class="no-data-message">No products available.</p>
         </div>
       </div>
+           <footer>
+          <p>© 2024 Hisham Rabea. All rights reserved.</p>
+        </footer>
     </main>
 
 
-    <!--        
-        <footer>
-          <p>© 2024 Hisham Rabea. All rights reserved.</p>
-        </footer> -->
-
-        <div class="overlay"></div>
+    
+    <div class="overlay"></div>
+           
+   
 
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -1,5 +1,5 @@
 "use strict";
-
+// Select DOM Elements
 const mainBtn = document.querySelector("#main-btn");
 const inputField = document.querySelector("#input-field");
 const categorySelected = document.getElementById("category-select");
@@ -8,7 +8,18 @@ const tasksCount = document.querySelector("#tasks-count");
 const popUpModal = document.querySelector(".pop-up");
 const cancelModalBtn = document.querySelector(".cancel-modal-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
+const categoryFilterBtn = document.querySelector("#category-filter-btn");
+const modal = document.querySelector(".modal");
+const modalCloseBtn = document.querySelector(".close-btn");
+const personalCount = document.getElementById("personal-count");
+const workCount = document.getElementById("work-count");
+const shoppingCount = document.getElementById("shopping-count");
+const codingCount = document.getElementById("coding-count");
+const fitnessCount = document.getElementById("fitness-count");
+const educationCount = document.getElementById("education-count");
+const allCount = document.getElementById("all-count");
 
+// Category Icons
 const categoryIcons = {
   personal: "fas fa-user",
   work: "fas fa-briefcase",
@@ -17,15 +28,17 @@ const categoryIcons = {
   fitness: "fas fa-dumbbell",
   education: "fas fa-graduation-cap",
 };
-
-let currentIndex = 0;
-
+// Store the current index for update and delete operations
+let currentIndex ;
+// Initialize tasks array if not already initialized in currentUser object
 if (!currentUser.tasks) {
   currentUser.tasks = [];
 }
+// Initialize completedTasks array if not already initialized in currentUser object
 if (!currentUser.completedTasks) {
   currentUser.completedTasks = [];
 }
+// Initialize tasksCategories object if not already initialized in currentUser object
 if (!currentUser.tasksCategories) {
   currentUser.tasksCategories = {};
 }
@@ -34,10 +47,12 @@ initializeCategories();
 displayTasks(currentUser.tasks);
 displayCount();
 
+// Display the total count of tasks
 function displayCount() {
   tasksCount.textContent = currentUser.tasks.length;
 }
 
+// Add or Update product based on the button's current text
 mainBtn.addEventListener("click", function () {
   if (mainBtn.innerHTML === "Add Task") {
     if (inputField.value === "") {
@@ -54,6 +69,7 @@ mainBtn.addEventListener("click", function () {
   }
 });
 
+// Initialize task categories
 function initializeCategories() {
   const categories = [
     "personal",
@@ -69,7 +85,7 @@ function initializeCategories() {
     }
   });
 }
-
+// Function to add a new task
 function addTask() {
   let task = {
     name: inputField.value,
@@ -86,16 +102,6 @@ function addTask() {
   updateCatsTasksCount();
 }
 
-const categoryFilterBtn = document.querySelector("#category-filter-btn");
-const modal = document.querySelector(".modal");
-const modalCloseBtn = document.querySelector(".close-btn");
-const personalCount = document.getElementById("personal-count");
-const workCount = document.getElementById("work-count");
-const shoppingCount = document.getElementById("shopping-count");
-const codingCount = document.getElementById("coding-count");
-const fitnessCount = document.getElementById("fitness-count");
-const educationCount = document.getElementById("education-count");
-const allCount = document.getElementById("all-count");
 
 categoryFilterBtn.addEventListener("click", function () {
   modal.classList.add("modal-active");
@@ -106,7 +112,7 @@ modalCloseBtn.addEventListener("click", function () {
 modal.addEventListener("click", function (e) {
   if (e.target.id == "category-modal") modal.classList.remove("modal-active");
 });
-
+// Update task counts for each category
 function updateCatsTasksCount() {
   personalCount.textContent = `${currentUser.tasksCategories.personal.length} Tasks`;
   workCount.textContent = `${currentUser.tasksCategories.work.length} Tasks`;
@@ -136,7 +142,7 @@ document.querySelectorAll(".category-item").forEach((category) => {
     }
   });
 });
-
+// Function to Display tasks  
 function displayTasks(tasks) {
   tasks.sort((a, b) => a.priority - b.priority); // Sort by priority
 
@@ -183,6 +189,7 @@ function displayTasks(tasks) {
   taskContainer.innerHTML = content;
   displayCount();
 }
+// Function to Display tasks filtered by Category  
 function displayTasksByCategory(tasks) {
   tasks.sort((a, b) => a.priority - b.priority); // Sort by priority
   let content = "";
@@ -228,11 +235,13 @@ function displayTasksByCategory(tasks) {
   displayCount();
 }
 
+// Function to clear input fields
 function clearInput() {
   inputField.value = "";
   document.querySelector('input[name="priority"][value="1"]').checked = true;
 }
 
+// Function to Retrieve task information for editing & apply some changes in th UI
 function getTaskinfo(index) {
   inputField.value = currentUser.tasks[index].name;
   document.querySelector(
@@ -242,7 +251,7 @@ function getTaskinfo(index) {
   currentIndex = index;
   mainBtn.innerHTML = "Update Task";
 }
-
+// Function to update task data
 function updateTask() {
   currentUser.tasks[currentIndex].name = inputField.value;
   currentUser.tasks[currentIndex].priority = document.querySelector(
@@ -252,12 +261,12 @@ function updateTask() {
   localStorage.setItem("users", JSON.stringify(users));
   toastr.success("Task updated successfully!");
 }
-
+// Reset the update task form
 function updateReset() {
   clearInput();
   mainBtn.innerHTML = "Add Task";
 }
-
+// Function to delete product data
 function deleteTask(index) {
   document.querySelectorAll("#delete").forEach((btn) => (btn.disabled = true));
   popUpModal.classList.add("pop-up-active");
@@ -314,7 +323,7 @@ function deleteTask(index) {
     popUpModal.classList.remove("pop-up-active");
   });
 }
-
+// Mark a task as done
 function done(currentElement, currentIndex) {
   const taskBox = currentElement.closest(".task-box");
   if (currentElement.checked) {
@@ -332,13 +341,3 @@ function done(currentElement, currentIndex) {
     localStorage.setItem("users", JSON.stringify(users));
   }
 }
-
-//
-
-//
-//
-//
-//
-//
-//
-//

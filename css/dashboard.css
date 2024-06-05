@@ -1,5 +1,4 @@
-/* Root Variables */
- body {
+body {
   font-family: "Rubik", sans-serif;
   color: var(--text-color);
   background-color: var(--main-bg-color);
@@ -7,12 +6,13 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
 /* Main */
 main {
-  display: grid;
-  grid-template-columns: 1fr 30rem;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   padding: 2rem;
   transition: 0.5s all;
@@ -20,6 +20,20 @@ main {
 .container:has(> aside.aside-closed) main {
   grid-template-columns: auto 37rem;
 }
+
+/* Page Header */
+.page-header {
+  padding: 2rem 0 3rem 0;
+  text-align: center;
+}
+.page-header h2 {
+  font-size: 2.4rem;
+  margin-bottom: .8rem;
+}
+.page-header p {
+  font-size: 1.6rem;
+}
+
 /* Welcome display */
 .welcome-section {
   background-color: var(--secondary-bg-color);
@@ -28,23 +42,36 @@ main {
   box-shadow: 0 0 1rem var(--box-shadow-color);
   text-align: center;
   border: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
 }
-.welcome-section h2 {
+.welcome-section img {
+  width: 100%;
+  max-width: 25rem;
+}
+.welcome-section h2 ,#user-dash-name{
   color: var(--text-color);
   font-size: 2.4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .welcome-section p {
   color: var(--text-color);
   font-size: 1.8rem;
 }
+.welcome-section span {
+  color: var(--text-color);
+  font-size: 1.8rem;
+}
+
 /* Summary display */
 #summary {
   display: flex;
   gap: 1rem;
   margin: 1rem 0;
-  grid-row: 2;
-  grid-column: span 1;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .card {
   flex: 1;
@@ -56,7 +83,8 @@ main {
   cursor: pointer;
   transition: transform 0.3s ease;
   border: 1px solid var(--border-color);
-
+  max-width: 30%;
+  min-width: 250px;
 }
 .card:hover {
   transform: scale(1.02);
@@ -71,18 +99,18 @@ main {
 }
 .card p {
   font-size: 2.4rem;
-  color:var(--score-color);
+  color: var(--score-color);
   margin: 0;
   font-weight: 700;
 }
-
+ 
 /* Charts display */
 .chart-container {
   background-color: var(--secondary-bg-color);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 4px var(--box-shadow-color);
-   width: 100%;
+  width: 100%;
   overflow: hidden;
   border: 1px solid var(--border-color);
 }
@@ -93,22 +121,23 @@ main {
   text-align: center;
 }
 canvas {
-  width: 100%;
+  width: 100% !important; /* Ensure canvas fits within its container */
+  max-width: 100%; /* Prevent canvas from exceeding container width */
+  height: 400px; /* Set a default height for the charts */
 }
 .no-data-message {
   display: none;
   text-align: center;
-  color:  var(--text-color);
-   
+  color: var(--text-color);
   font-size: 1.6rem;
   line-height: 1.6;
 }
+
 /* second column & Tasks display */
 .second-col {
-  grid-column: 2;
-  grid-row: span 4;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 }
 #tasks {
   background-color: var(--secondary-bg-color);
@@ -130,9 +159,9 @@ canvas {
 }
 #view-all-btn {
   display: inline-block;
-  background-color:var(--main-color);
+  background-color: var(--main-color);
   text-decoration: none;
-  color:  var(--always-fff);
+  color: var(--always-fff);
   border: none;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
@@ -142,12 +171,11 @@ canvas {
   margin: 0.5rem 0 1.6rem;
 }
 #view-all-btn:hover {
-  background-color:var(--main-hover-bg-color) ;
+  background-color: var(--main-hover-bg-color);
 }
 .employee-chart {
-  grid-row: 3;
-  grid-column: 1;
 }
+
 /* Responsive Media Queries */
 @media (max-width: 75em) {
   html {
@@ -159,20 +187,26 @@ canvas {
     font-size: 50%;
   }
 }
+@media (max-width: 48em) {
+  .welcome-section {
+    grid-template-columns: 1fr;
+  }
+  #summary {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
 @media (max-width: 38em) {
   #summary {
     flex-direction: column;
     align-items: center;
   }
-
   .card {
     width: 100%;
     margin: 10px 0;
   }
-
-
 }
-
-
-
-

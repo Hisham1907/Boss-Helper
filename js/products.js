@@ -1,3 +1,4 @@
+"use strict";
 // Select DOM Elements
 const productName = document.getElementById("name");
 const category = document.getElementById("category");
@@ -20,7 +21,7 @@ const cancelModalBtn = document.querySelector(".cancel-modal-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
 // Store the current index for update and delete operations
 let currentIndex;
-// Initialize product array if not already initialized in currentUser object
+// Initialize products array if not already initialized in currentUser object
 if (!currentUser.products) {
   currentUser.products = [];
 }
@@ -35,12 +36,12 @@ let calcTotal = () => {
       Number(ads.value) -
       Number(discount.value);
     totalBox.innerHTML = total;
-    totalBox.style.backgroundColor = "var(--main-color)";
-    totalBox.style.color = "var(--always-fff)";
+    totalBox.classList.add('total-active')
   } else {
     totalBox.innerHTML = "";
-    totalBox.style.backgroundColor = "var(--main-hover-bg-color)";
-    totalBox.style.color = "var(--always-fff)";
+    totalBox.classList.remove('total-active')
+    totalBox.classList.add('total-default')
+
   }
 };
 // Call the calcTotal function on keyup in price,taxes,ads & discount to calculate the total on real time as any change happen
@@ -115,7 +116,10 @@ function clearInputs() {
   discount.value = "";
   count.value = "";
   totalBox.innerHTML = "";
-  totalBox.style.backgroundColor = "var(--main-color)";
+  totalBox.classList.add('total-default')
+  totalBox.classList.remove('total-active')
+
+
 }
 // Function to display all products in the table
 function displayProducts() {
@@ -143,7 +147,7 @@ function displayProducts() {
       `;
     }
     deleteAllBox.innerHTML = `            
-    <button id="delete-all-btn" onclick="deleteAll()" class="form-btn">Delete All &rAarr; ${currentUser.products.length} &lAarr;</button>  `;
+    <button id="delete-all-btn" onclick="deleteAll()" class="form-btn form-btn-default">Delete All &rAarr; ${currentUser.products.length} &lAarr;</button>  `;
   } else {
     content = `
   <tr>
@@ -215,7 +219,8 @@ function getData(index) {
   calcTotal();
   count.style.display = "none";
   mainBtn.innerHTML = "Update Product";
-  mainBtn.style.backgroundColor = "#a8a234 ";
+  mainBtn.classList.remove('form-btn-default')
+  mainBtn.classList.add('form-btn-update')
   window.scrollTo(0, 0);
 }
 // Function to update product data
@@ -231,8 +236,10 @@ function updateData(index) {
   toastr["success"]("Product updated successfully!", " ");
   mainBtn.innerHTML = "Add Product";
   count.style.display = "block";
-  mainBtn.style.backgroundColor = "var(--main-color)";
-}
+  mainBtn.classList.remove('form-btn-update')
+  mainBtn.classList.add('form-btn-default')
+  
+ }
 // Function to display search results in real time
  search.addEventListener("keyup", function () {
   let content = "";

@@ -15,3 +15,10 @@
    .form{
    border-top-right-radius: 0;
    }
+
+   #toast-container>div {
+    font-size: 1.6rem;
+  line-height: 1.6;
+  padding:3rem ;
+  padding-left: 5rem;
+}

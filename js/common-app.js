@@ -6,7 +6,7 @@ function displayProfile(){
     const profileContent = document.querySelector('#profile-name');
 profileContent.textContent = currentUser.name;
 const profileImg = document.querySelector('.profile-img img');
-profileImg.src = currentUser.img?currentUser.img:'img/user.jpg';
+profileImg.src = currentUser.img?currentUser.img:'img/user.png';
 }
 displayProfile()
 // Aside toggle btn Large Screen

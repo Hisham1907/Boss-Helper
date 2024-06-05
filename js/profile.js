@@ -20,7 +20,7 @@ const deleteModalBtn = document.querySelector(".delete-modal-btn");
 // function to display user data
 function displayInputs() {
   proName.textContent = currentUser.name;
-  accountImg.src = currentUser.img ? currentUser.img : "img/user.jpg";
+  accountImg.src = currentUser.img ? currentUser.img : "img/user.png";
   fullNameInput.value = currentUser.name;
   emailInput.value = currentUser.email;
   if (currentUser.phone) phoneInput.value = currentUser.phone;
@@ -282,7 +282,7 @@ function validatePasswords() {
     }, 3000);
   }
 }
-// handle file input
+// handle file input for img
 accountImgFile.addEventListener("change", () => {
   let file = accountImgFile.files[0];
   let reader = new FileReader();

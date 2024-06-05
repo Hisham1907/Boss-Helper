@@ -1,40 +1,4 @@
-:root {
-  --main-bg-color: #101316;
-  --secondary-bg-color: #0B0D0F;
-  --main-color:#345fa8 ;
-  --border-color:#3C3E3F;
-  --text-color: #fff;
-  --btn-text-color: #fff;
-  --box-shadow-color: rgba(255, 255, 255, 0.1);
-  --score-color:  #6097f4;
-  --main-hover-bg-color: #527ab5;
-  --icon-color:#6097f4;
-  --delete-btn-border-color:#3c3e3f;
-  --input-enabled-color:#242627;
-  --input-disabled-color:#3c3d3f ;
-  --input-placeholder-color:#c8c9c9;
-  --input-disabled-border-color:#7c7d7e;
-  --input-focus-color:#90b9fa;
-  --input-border-color:rgba(32, 107, 245, 0.25);
-}
-.light-theme {
-  --main-bg-color: #f5f5f5;
-  --secondary-bg-color: #ffffff;
-  --main-color: #1d4ed8;
-  --border-color: #d1d5db;
-  --text-color: #1f2937;
-  --box-shadow-color: rgba(0, 0, 0, 0.1);
-  --score-color: #1d4ed8;
-  --main-hover-bg-color: #3b82f6;
-  --icon-color: #1d4ed8;
-  --delete-btn-border-color: #d1d5db;
-  --input-enabled-color: #ffffff;
-  --input-disabled-color: #f1f5f9;
-  --input-placeholder-color: #9ca3af;
-  --input-disabled-border-color: #e5e7eb;
-  --input-focus-color: #3b82f6;
-  --input-border-color: rgba(59, 130, 246, 0.25);
-}
+ 
 body {
   font-family: "Rubik", sans-serif;
   color: var(--text-color);
@@ -55,7 +19,7 @@ main {
   background-color: var(--secondary-bg-color);
   border-radius: 1rem;
   box-shadow: 0 0 1rem var(--box-shadow-color);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--input-disabled-border-color);
 }
 .settings h2 {
   font-size: 2.4rem;
@@ -88,30 +52,33 @@ main {
 .btn {
   padding: 1rem 2rem;
   font-size: 1.6rem;
-  background-color: var(--main-color);
-  color: var(--btn-text-color);
+  background-color: var(--fancy-bg-color);
+  color: var(--fancy-color);
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   cursor: pointer;
+  font-weight: 600;
+
 }
 .btn:hover {
-  background-color: var(--main-hover-bg-color);
+  background-color: var(--fancy-bg-hover-color);
 }
 .delete-btn {
   color: var(--text-color);
   background-color: transparent;
-  border: 2px solid var(--delete-btn-border-color);
+  border: 2px solid var(--input-disabled-border-color);
 }
 .delete-btn:hover {
-  color: var(--btn-text-color);
-  background-color: #a83434;
+  color: #edf1f7;
+  background-color: var(--red-color);
 }
 #change {
   margin-right: 1.2rem;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 #change input {
   position: absolute;
@@ -151,6 +118,7 @@ label {
   outline: none;
   transition: 0.5s all;
 }
+ 
 .form-group input:focus {
   border-color: var(--input-focus-color);
   box-shadow: 0 0 0 0.25rem var(--input-border-color);
@@ -160,17 +128,20 @@ label {
   color:var(--input-placeholder-color) ;
 }
 .form-group input:disabled {
-  background-color: var(--input-disabled-color);
-  border-color: var (--input-disabled-border-color);
+   border-color: var (--input-disabled-border-color);
   color: var(--input-placeholder-color);
   cursor: not-allowed;
+}
+.form-group input:disabled::placeholder{
+  color:var(--input-disabled-placeholder-color) ;
+
 }
 .btn-center {
   margin: 3rem 0 4rem 0;
   text-align: center;
 }
 .error {
-  border-color: #a83434 !important;
+  border-color: var(--red-color) !important;
 }
 /* Change password & Delete Account */
 .password-change {
@@ -190,16 +161,17 @@ label {
   margin-bottom: 2rem;
 }
 .delete-account-btn {
-  background-color: #a83434;
-  color: var(--btn-text-color);
+  background-color: var(--red-color);
+  color: #edf1f7;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 600;
 }
 .delete-account-btn:hover {
-  background-color: #a84b4b;
+  background-color: var(--red-hover-color);
 }
 /* Media Queries */
 @media (max-width: 75em) {

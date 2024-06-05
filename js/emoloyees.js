@@ -1,4 +1,5 @@
-// CRUD
+"use strict";
+// Select DOM Elements
 const addNewMemberBtn = document.getElementById("add-new-member");
 const formContainer = document.querySelector(".form-container");
 const employeesForm = document.querySelector(".employees-form");
@@ -18,11 +19,18 @@ const popUpModal = document.querySelector(".pop-up");
 const cancelModalBtn = document.querySelector(".cancel-modal-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
 const tableSize=document.querySelector('#table-size')
+
+// Store the current img selected by user using file input
 let currentImgSrc;
+
+// Store the current index for update and delete operations
 let currentIndex;
+
+// Initialize employees array if not already initialized in currentUser object
  if(!currentUser.employees){
     currentUser.employees=[]
   }
+// Initializations
 let currentPage = 1;
 let entriesPerPage = 5;
 
@@ -36,6 +44,7 @@ formContainer.classList.remove("appear");
 employeesForm.classList.remove("appear");
 clear();
 });
+// 
 fileInput.addEventListener("change", function (e) {
 const file = fileInput.files[0];
 if (file.size < 1000000) {
@@ -99,7 +108,7 @@ updatePaginationButtons();
 
 function addEmployee() {
   let employee = {
-    img: currentImgSrc || "img/user.jpg",
+    img: currentImgSrc || "img/user.png",
     firstName: firstName.value,
     lastName: lastName.value,
     age: age.value,
@@ -129,7 +138,7 @@ function addEmployee() {
 
 function clear() {
 fileInput.value = "";
-employeeImg.src = "img/user.jpg";
+employeeImg.src = "img/user.png";
 firstName.value = "";
 lastName.value = "";
 age.value = "";
@@ -186,7 +195,7 @@ mainBtn.innerHTML = "Update Employee";
 }
 
 function updateData(i) {
-  currentUser.employees[i].img = currentImgSrc || "img/user.jpg" ; 
+  currentUser.employees[i].img = currentImgSrc || "img/user.png" ; 
  currentUser.employees[i].firstName = firstName.value;
 currentUser.employees[i].lastName = lastName.value;
 currentUser.employees[i].age = age.value;
@@ -532,7 +541,7 @@ function displayFilteredData() {
 // Function to navigate to a specific page
 function goToPage(pageNumber) {
   currentPage = pageNumber;
-  displayCurrentPageData(); // Corrected function name
+  displayCurrentPageData();  
   updatePaginationButtons();
 }
 
