@@ -29,8 +29,6 @@
     <header class="main-header">
         <nav>
           <i class="fa-solid fa-bars " id="toggle-btn"></i>
-    
-    
           <button class="aside-toggle">
             <i class="fa-solid fa-bars"></i>
             <i class="fa-solid fa-xmark"></i>
@@ -106,6 +104,10 @@
             </nav>
           </aside>
         <main class="employees-crud">
+          <div class="page-header">
+            <h2>Welcome To Employees</h2>
+            <p>Employees <span> / </span> Boss Helper</p>
+          </div>
             <header>
                 <div class="header-top">
                     <div class="entries-numbers">
@@ -159,7 +161,12 @@
                     <button>Next</button>
                 </div>
             </footer>
+           
+            <div class="copy-right">
+              <p>Copyright © 2024 BossHelper by Hisham Rabea. All Rights Reserved.</p>
+            </div>
         </main>
+       
         <div class="overlay"></div>
 
     </div>
@@ -170,7 +177,7 @@
                 <button class="close-btn" id="close-btn">&times;</button>
             </header>
             <main>
-                <form action="#" id="my-form" novalidate>
+                <div class="form">
                     <div class="img-holder">
                         <label for="file-input" class="upload">
                             <input type="file" id="file-input" class="picture">
@@ -204,10 +211,10 @@
                             <input type="number" id="phone" required autocomplete="off" title="" >
                         </div>
                     </div>
-                </form>
+                </div>
             </main>
             <footer>
-                <button class="submit-btn" form="my-form" id="main-btn">Add Employee</button>
+                <button class="submit-btn"  id="main-btn">Add Employee</button>
             </footer>
         </div>
     </div>

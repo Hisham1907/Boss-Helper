@@ -1,4 +1,5 @@
 "use strict";
+
 // Select DOM Elements
 const addNewMemberBtn = document.getElementById("add-new-member");
 const formContainer = document.querySelector(".form-container");
@@ -18,537 +19,410 @@ const search = document.getElementById("search");
 const popUpModal = document.querySelector(".pop-up");
 const cancelModalBtn = document.querySelector(".cancel-modal-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
-const tableSize=document.querySelector('#table-size')
+const tableSize = document.querySelector('#table-size');
 
 // Store the current img selected by user using file input
-let currentImgSrc;
-
-// Store the current index for update and delete operations
-let currentIndex;
+let currentImgSrc = "img/user.png"; // Initialize with default image
+let currentEmployeeId = null; // Store the current employee id for update/delete
 
 // Initialize employees array if not already initialized in currentUser object
- if(!currentUser.employees){
-    currentUser.employees=[]
-  }
+if (!currentUser.employees) {
+    currentUser.employees = [];
+}
+
 // Initializations
 let currentPage = 1;
 let entriesPerPage = 5;
 
-addNewMemberBtn.addEventListener("click", function () {
-formContainer.classList.add("appear");
-employeesForm.classList.add("appear");
-});
+// Event listeners
+addNewMemberBtn.addEventListener("click", openForm);
+closeBtn.addEventListener("click", closeForm);
+fileInput.addEventListener("change", handleFileInput);
+mainBtn.addEventListener("click", handleFormSubmit);
+tableSize.addEventListener('change', updateEntriesPerPage);
+search.addEventListener("keyup", filterEmployees);
+cancelModalBtn.addEventListener("click", closeModal);
+popUpModal.addEventListener("click", closeModal);
 
-closeBtn.addEventListener("click", function () {
-formContainer.classList.remove("appear");
-employeesForm.classList.remove("appear");
-clear();
-});
-// 
-fileInput.addEventListener("change", function (e) {
-const file = fileInput.files[0];
-if (file.size < 1000000) {
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    currentImgSrc = reader.result;
-    employeeImg.src = currentImgSrc;
-  };
-} else {
-  toastr["info"]("The file must be less than 1 MB");
-  setTimeout(function () {
-    toastr.clear();
-  }, 3000);
+function openForm() {
+    formContainer.classList.add("appear");
+    employeesForm.classList.add("appear");
 }
-});
-function setError(element, message) {
-element.classList.add("error");
-tippy(element, {
-  content: message,
-  trigger: "manual",
-  placement: "bottom",
-  theme: "errorTooltip",
-  arrow: true,
-}).show();
-}
-function setSuccess(element) {
-element.classList.remove("error");
-}
-mainBtn.addEventListener("click", function () {
-if (mainBtn.innerHTML === "Add Employee") {
-  if (validateInputs()) {
-    addEmployee();
-     formContainer.classList.remove("appear");
-    employeesForm.classList.remove("appear");
-    clear();
-    displayCurrentPageData()
-updatePaginationButtons();
-  }
-  else{
-    toastr["error"]("Please fix all the errors to be able to add the employee", " ");
-  
-  }
 
-} else {
-   if (validateInputs()) {
-    updateData(currentIndex);
+function closeForm() {
     formContainer.classList.remove("appear");
     employeesForm.classList.remove("appear");
-    mainBtn.innerHTML = "Add Employee";
-    clear();
-  }
-  else{
-    toastr["error"]("Please fix all the errors to be able to update the employee");
-  
-  }
-  displayCurrentPageData()
-
+    clearForm();
 }
-});
+
+function handleFileInput(e) {
+    const file = fileInput.files[0];
+    if (file.size < 1000000) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            currentImgSrc = reader.result;
+            employeeImg.src = currentImgSrc;
+        };
+    } else {
+        toastr["info"]("The file must be less than 1 MB");
+        setTimeout(toastr.clear, 3000);
+    }
+}
+
+function handleFormSubmit() {
+    if (validateInputs()) {
+        if (mainBtn.innerHTML === "Add Employee") {
+            addEmployee();
+        } else {
+            updateEmployee(currentEmployeeId);
+            mainBtn.innerHTML = "Add Employee";
+        }
+        closeForm();
+        displayCurrentPageData();
+        updatePaginationButtons();
+    } else {
+        toastr["error"]("Please fix all the errors to proceed.");
+    }
+}
 
 function addEmployee() {
-  let employee = {
-    img: currentImgSrc || "img/user.png",
-    firstName: firstName.value,
-    lastName: lastName.value,
-    age: age.value,
-    position: position.value,
-    salary: salary.value,
-    phone: phone.value,
+  const employee = {
+      id: Date.now(), // Unique ID for each employee
+      img: currentImgSrc,
+      firstName: firstName.value,
+      lastName: lastName.value,
+      age: age.value,
+      position: position.value,
+      salary: salary.value,
+      phone: phone.value,
   };
- 
+
   currentUser.employees.push(employee);
   localStorage.setItem("users", JSON.stringify(users));
-  toastr["success"]("Product added successfully!", " ");
+  toastr["success"]("Employee added successfully!");
 
- 
-    // Check if the current page is full
-    let totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
-    let currentPageEmployees = currentUser.employees.slice(
-      (currentPage - 1) * entriesPerPage,
-      currentPage * entriesPerPage
-    );
-  
-    if (currentPageEmployees.length === entriesPerPage) {
-      // Navigate to the next page
-      goToPage(currentPage + 1);
-    }
- 
+  // Calculate the total pages and the page where the new employee should be displayed
+  const totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
+  const targetPage = totalPages;
+  goToPage(targetPage); // Navigate to the last page
 }
 
-function clear() {
-fileInput.value = "";
-employeeImg.src = "img/user.png";
-firstName.value = "";
-lastName.value = "";
-age.value = "";
-position.value = "";
-salary.value = "";
-phone.value = "";
-let errorInputs = Array.from(document.querySelectorAll('input.error'));
-errorInputs.forEach((input) => input.classList.remove("error"));
-}
+function updateEmployee(id) {
+  const employee = currentUser.employees.find(emp => emp.id === id);
+  if (employee) {
+      employee.img = currentImgSrc;
+      employee.firstName = firstName.value;
+      employee.lastName = lastName.value;
+      employee.age = age.value;
+      employee.position = position.value;
+      employee.salary = salary.value;
+      employee.phone = phone.value;
+      localStorage.setItem("users", JSON.stringify(users));
+      toastr["success"]("Employee updated successfully!");
 
-
-function deleteEmployee(index) {
-  popUpModal.classList.add("pop-up-active");
-  deleteModalBtn.addEventListener("click", function handleDelete() {
-    currentUser.employees.splice(index, 1);
-    localStorage.setItem("users", JSON.stringify(users));
-    displayCurrentPageData();
-    updatePaginationButtons();
-
-    // Check if the current page is empty and navigate to the previous page if necessary
-    let startIndex = (currentPage - 1) * entriesPerPage;
-    let endIndex = startIndex + entriesPerPage;
-    let paginatedEmployees = currentUser.employees.slice(startIndex, endIndex);
-    if (paginatedEmployees.length === 0 && currentPage > 1) {
-      goToPage(currentPage - 1);
-    }
-
-    deleteModalBtn.removeEventListener("click", handleDelete);
-    popUpModal.classList.remove("pop-up-active");
-  });
-  cancelModalBtn.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
-  });
-  updateFooterText()
-  popUpModal.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
-  });
-}
-
-
-function getData(i) {
-currentIndex = i;
-formContainer.classList.add("appear");
-employeesForm.classList.add("appear");
-employeeImg.src = currentUser.employees[i].img;
-currentImgSrc=currentUser.employees[i].img;
-firstName.value = currentUser.employees[i].firstName;
-lastName.value = currentUser.employees[i].lastName;
-age.value = currentUser.employees[i].age;
-position.value = currentUser.employees[i].position;
-salary.value = currentUser.employees[i].salary;
-phone.value = currentUser.employees[i].phone;
-mainBtn.innerHTML = "Update Employee";
-}
-
-function updateData(i) {
-  currentUser.employees[i].img = currentImgSrc || "img/user.png" ; 
- currentUser.employees[i].firstName = firstName.value;
-currentUser.employees[i].lastName = lastName.value;
-currentUser.employees[i].age = age.value;
-currentUser.employees[i].position = position.value;
-currentUser.employees[i].salary = salary.value;
-currentUser.employees[i].phone = phone.value;
-localStorage.setItem("users", JSON.stringify(users));
-toastr["success"]("Product updated successfully!", " ");
-
- }
-
-search.addEventListener("keyup", function () {
-  // let filteredEmployees=employees.filter(employee=>employee.firstName.toLowerCase().includes(search.value.trim().toLowerCase()))
-  // console.log(filteredEmployees);
-
-let content = "";
-for (let i = 0; i < currentUser.employees.length; i++) {
-  if (
-currentUser.employees[i].firstName.toLowerCase().includes(search.value.trim().toLowerCase())
-  ) {
-    content += `
-  <tr>
-  <td>${i + 1}</td>
-  <td class="user-img"><img src="${currentUser.employees[i].img}" alt=""></td>
-  <td>${currentUser.employees[i].firstName + " " + currentUser.employees[i].lastName}</td>
-  <td>${currentUser.employees[i].age}</td>
-  <td>${currentUser.employees[i].position}</td>
-  <td>${currentUser.employees[i].salary}</td>
-  <td>${currentUser.employees[i].phone}</td>
-   <td >
-   <div class="table-btns">
-   <i class="fa-solid fa-pen-to-square update" onclick="getData(${i})"></i>
-   <i class="fa-solid fa-trash delete" onclick="deleteEmployee(${i})"></i>
-   </div>
-   </td>
-  </tr>
-  `;
+      // Calculate the page where the updated employee should be displayed
+      const updatedEmployeeIndex = currentUser.employees.findIndex(emp => emp.id === id);
+      const targetPage = Math.ceil((updatedEmployeeIndex + 1) / entriesPerPage);
+      goToPage(targetPage); // Navigate to the appropriate page
   }
 }
-tableBody.innerHTML = content;
- });
 
 
-// Validation functions 
-// Validation function for First Name
-function validateFirstName() {
-const firstNameValue = firstName.value.trim();
-const nameRegex = /^[A-Za-z]+$/;
-
-if (firstNameValue === "") {
-  setError(firstName, "First Name cannot be empty");
-  return false;
-} else if (!nameRegex.test(firstNameValue)) {
-  setError(firstName, "First Name can only contain letters");
-  return false;
-} else if (firstNameValue.length < 3) {
-  setError(firstName, "Name must be at least 3 characters long");
-  return false;
-} else if (firstNameValue.length >= 30) {
-  setError(firstName, "Name can't be more than 30 characters long");
-  return false;
-} else {
-  setSuccess(firstName);
-  return true;
-}
+function clearForm() {
+    fileInput.value = "";
+    employeeImg.src = "img/user.png";
+    currentImgSrc = "img/user.png";
+    firstName.value = "";
+    lastName.value = "";
+    age.value = "";
+    position.value = "";
+    salary.value = "";
+    phone.value = "";
+    document.querySelectorAll('input.error').forEach(input => input.classList.remove("error"));
 }
 
-// Validation function for Last Name
-function validateLastName() {
-const lastNameValue = lastName.value.trim();
-const nameRegex = /^[A-Za-z]+$/;
+function deleteEmployee(id) {
+    popUpModal.classList.add("pop-up-active");
+    deleteModalBtn.onclick = function () {
+        const employeeIndex = currentUser.employees.findIndex(emp => emp.id === id);
+        if (employeeIndex !== -1) {
+            currentUser.employees.splice(employeeIndex, 1);
+            localStorage.setItem("users", JSON.stringify(users));
+            displayCurrentPageData();
+            updatePaginationButtons();
 
-if (lastNameValue === "") {
-  setError(lastName, "Last Name cannot be empty");
-  return false;
-} else if (!nameRegex.test(lastNameValue)) {
-  setError(lastName, "Last Name can only contain letters");
-  return false;
-} else if (lastNameValue.length < 3) {
-  setError(lastName, "Name must be at least 3 characters long");
-  return false;
-} else if (lastNameValue.length >= 30) {
-  setError(lastName, "Name can't be more than 30 characters long");
-  return false;
-} else {
-  setSuccess(lastName);
-  return true;
-}
-}
+            // Check if the current page is empty and navigate to the previous page if necessary
+            const startIndex = (currentPage - 1) * entriesPerPage;
+            const paginatedEmployees = currentUser.employees.slice(startIndex, startIndex + entriesPerPage);
+            if (paginatedEmployees.length === 0 && currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
 
-// Validation function for Age
-function validateAge() {
-const ageValue = age.value.trim();
-if (ageValue === "") {
-  setError(age, "Age cannot be empty");
-  return false;
-} else if (isNaN(ageValue) || Number(ageValue) <= 0 || Number(ageValue) > 150) {
-  setError(age, "Please enter a valid age");
-  return false;
-} else {
-  setSuccess(age);
-  return true;
-}
+            closeModal();
+        }
+    };
 }
 
-// Validation function for Position
-function validatePosition() {
-const positionValue = position.value.trim();
-const positionRegex = /^[A-Za-z\s]+$/; // Regular expression allowing letters and spaces
-
-if (positionValue === "") {
-  setError(position, "Position cannot be empty");
-  return false;
-} else if (!positionRegex.test(positionValue)) {
-  setError(position, "Position can only contain letters and spaces");
-  return false;
-} else {
-  setSuccess(position);
-  return true;
-}
+function closeModal() {
+    popUpModal.classList.remove("pop-up-active");
 }
 
-// Validation function for Salary
-function validateSalary() {
-const salaryValue = salary.value.trim();
-if (salaryValue === "") {
-  setError(salary, "Salary cannot be empty");
-  return false;
-} else if (isNaN(salaryValue) || Number(salaryValue) <= 0) {
-  setError(salary, "Please enter a valid salary");
-  return false;
-} else {
-  setSuccess(salary);
-  return true;
-}
+function getData(id) {
+    currentEmployeeId = id;
+    const employee = currentUser.employees.find(emp => emp.id === id);
+    if (employee) {
+        formContainer.classList.add("appear");
+        employeesForm.classList.add("appear");
+        employeeImg.src = employee.img;
+        currentImgSrc = employee.img;
+        firstName.value = employee.firstName;
+        lastName.value = employee.lastName;
+        age.value = employee.age;
+        position.value = employee.position;
+        salary.value = employee.salary;
+        phone.value = employee.phone;
+        mainBtn.innerHTML = "Update Employee";
+    }
 }
 
-// Validation function for Phone
-function validatePhone() {
-const phoneValue = phone.value.trim();
-if (phoneValue === "") {
-  setError(phone, "Phone cannot be empty");
-  return false;
-} else if (!/^(\+\d{1,3})?(\d{9,15})$/.test(phoneValue)) {
-  setError(phone, "Please enter a valid phone number");
-  return false;
-} else {
-  setSuccess(phone);
-  return true;
+function filterEmployees() {
+    const filteredEmployees = currentUser.employees.filter(employee =>
+        employee.firstName.toLowerCase().includes(search.value.trim().toLowerCase())
+    );
+
+    currentPage = 1; // Reset to the first page
+    displayFilteredData(filteredEmployees);
+    updateFilteredPaginationButtons(filteredEmployees);
 }
+
+function displayFilteredData(filteredEmployees) {
+    let content = "";
+    const startIndex = (currentPage - 1) * entriesPerPage;
+    const paginatedEmployees = filteredEmployees.slice(startIndex, startIndex + entriesPerPage);
+
+    if (paginatedEmployees.length > 0) {
+        paginatedEmployees.forEach((employee, i) => {
+            content += `
+                <tr>
+                    <td>${startIndex + i + 1}</td>
+                    <td class="user-img"><img src="${employee.img}" alt=""></td>
+                    <td>${employee.firstName + " " + employee.lastName}</td>
+                    <td>${employee.age}</td>
+                    <td>${employee.position}</td>
+                    <td>${employee.salary}</td>
+                    <td>${employee.phone}</td>
+                    <td>
+                        <div class="table-btns">
+                            <i class="fa-solid fa-pen-to-square update" onclick="getData(${employee.id})"></i>
+                            <i class="fa-solid fa-trash delete" onclick="deleteEmployee(${employee.id})"></i>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        });
+    } else {
+        content = `<tr><td colspan="11" class="empty">No Data Available</td></tr>`;
+    }
+    tableBody.innerHTML = content;
+    updateFooterText(filteredEmployees.length);
+}
+
+function updateEntriesPerPage() {
+    entriesPerPage = Number(tableSize.value);
+    currentPage = Math.ceil(currentUser.employees.length / entriesPerPage); // Navigate to the last page
+    displayCurrentPageData();
+    updatePaginationButtons();
+}
+
+function displayCurrentPageData() {
+    const startIndex = (currentPage - 1) * entriesPerPage;
+    const paginatedEmployees = currentUser.employees.slice(startIndex, startIndex + entriesPerPage);
+
+    let content = "";
+    if (paginatedEmployees.length > 0) {
+        paginatedEmployees.forEach((employee, i) => {
+            content += `
+                <tr>
+                    <td>${startIndex + i + 1}</td>
+                    <td class="user-img"><img src="${employee.img}" alt=""></td>
+                    <td>${employee.firstName + " " + employee.lastName}</td>
+                    <td>${employee.age}</td>
+                    <td>${employee.position}</td>
+                    <td>${employee.salary}</td>
+                    <td>${employee.phone}</td>
+                    <td>
+                        <div class="table-btns">
+                            <i class="fa-solid fa-pen-to-square update" onclick="getData(${employee.id})"></i>
+                            <i class="fa-solid fa-trash delete" onclick="deleteEmployee(${employee.id})"></i>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        });
+    } else {
+        content = `<tr><td colspan="11" class="empty">No Data Available</td></tr>`;
+    }
+    tableBody.innerHTML = content;
+    updateFooterText(currentUser.employees.length);
+}
+
+function updateFooterText(totalEntries) {
+    const startIndex = (currentPage - 1) * entriesPerPage + 1;
+    const endIndex = Math.min(startIndex + entriesPerPage - 1, totalEntries);
+    const footerText = `Showing ${startIndex} to ${endIndex} from ${totalEntries} entries`;
+    document.querySelector('footer p').textContent = footerText;
+}
+
+function updatePaginationButtons(filteredEmployees = null) {
+    const totalPages = Math.ceil((filteredEmployees || currentUser.employees).length / entriesPerPage);
+
+    let paginationButtons = `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Prev</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+        paginationButtons += `<button ${i === currentPage ? 'class="active"' : ''} onclick="goToPage(${i})">${i}</button>`;
+    }
+    paginationButtons += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>`;
+
+    document.querySelector('.pagination').innerHTML = paginationButtons;
+}
+
+function updateFilteredPaginationButtons(filteredEmployees) {
+    const totalPages = Math.ceil(filteredEmployees.length / entriesPerPage);
+
+    let paginationButtons = `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Prev</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+        paginationButtons += `<button ${i === currentPage ? 'class="active"' : ''} onclick="goToPage(${i})">${i}</button>`;
+    }
+    paginationButtons += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>`;
+
+    document.querySelector('.pagination').innerHTML = paginationButtons;
+}
+
+function goToPage(pageNumber) {
+    currentPage = pageNumber;
+    displayCurrentPageData();
+    updatePaginationButtons();
 }
 
 function validateInputs() {
-const validationFunctions = [
-  validateFirstName,
-  validateLastName,
-  validateAge,
-  validatePosition,
-  validateSalary,
-  validatePhone
-];
-let isValid = true;
-validationFunctions.forEach(function (func) {
-  if (func() === false) {
-    isValid = false;
-  }
-  });
-return isValid;
-}
+    const validationFunctions = [
+        validateFirstName,
+        validateLastName,
+        validateAge,
+        validatePosition,
+        validateSalary,
+        validatePhone
+    ];
 
-
-tableSize.addEventListener('change', function() {
-  entriesPerPage = Number(tableSize.value);
-  displayCurrentPageData()
-  updatePaginationButtons()
-})
-// Function to display data for the current page
-function displayCurrentPageData() {
-  let startIndex = (currentPage - 1) * entriesPerPage;
-  let endIndex = startIndex + entriesPerPage;
-  let paginatedEmployees = currentUser.employees.slice(startIndex, endIndex);
-
-  let content = "";
-  if (paginatedEmployees.length > 0) {
-    paginatedEmployees.forEach(function (employee, i) {
-      content += `
-        <tr>
-          <td>${startIndex + i + 1}</td>
-          <td class="user-img"><img src="${employee.img}" alt=""></td>
-          <td>${employee.firstName + " " + employee.lastName}</td>
-          <td>${employee.age}</td>
-          <td>${employee.position}</td>
-          <td>${employee.salary}</td>
-          <td>${employee.phone}</td>
-          <td >
-          <div class="table-btns">
-          <i class="fa-solid fa-pen-to-square update" onclick="getData(${startIndex + i})"></i>
-          <i class="fa-solid fa-trash delete" onclick="deleteEmployee(${startIndex + i})"></i>
-          </div>
-          </td>
-          
-        </tr>
-      `;
+    let isValid = true;
+    validationFunctions.forEach(func => {
+        if (!func()) isValid = false;
     });
-  } else {
-    content = `
-      <tr>
-        <td colspan="11" class="empty">No Data Available</td>
-      </tr>
-    `;
-  }
-  tableBody.innerHTML = content;
-  updateFooterText()
+    return isValid;
 }
 
-// Function to update pagination buttons
-function updatePaginationButtons() {
-  let totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
-
-  let paginationButtons = "";
-  paginationButtons += `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Prev</button>`;
-  for(let i = 1; i <= totalPages; i++) {
-    paginationButtons += `<button ${i === currentPage ? 'class="active"' : ''} onclick="goToPage(${i})">${i}</button>`;
-  }
-  paginationButtons += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>`;
-
-  let paginationDiv = document.querySelector('.pagination');
-  paginationDiv.innerHTML = paginationButtons;
+function validateFirstName() {
+    const firstNameValue = firstName.value.trim();
+    const nameRegex = /^[A-Za-z]+$/;
+    if (!firstNameValue) return setError(firstName, "First Name cannot be empty");
+    if (!nameRegex.test(firstNameValue)) return setError(firstName, "First Name can only contain letters");
+    if (firstNameValue.length < 3) return setError(firstName, "Name must be at least 3 characters long");
+    if (firstNameValue.length >= 30) return setError(firstName, "Name can't be more than 30 characters long");
+    return setSuccess(firstName);
 }
 
-// Function to navigate to a specific page
-function goToPage(pageNumber) {
-  currentPage = pageNumber;
-  displayCurrentPageData();
-  updatePaginationButtons();
+function validateLastName() {
+    const lastNameValue = lastName.value.trim();
+    const nameRegex = /^[A-Za-z]+$/;
+    if (!lastNameValue) return setError(lastName, "Last Name cannot be empty");
+    if (!nameRegex.test(lastNameValue)) return setError(lastName, "Last Name can only contain letters");
+    if (lastNameValue.length < 3) return setError(lastName, "Name must be at least 3 characters long");
+    if (lastNameValue.length >= 30) return setError(lastName, "Name can't be more than 30 characters long");
+    return setSuccess(lastName);
 }
 
+function validateAge() {
+    const ageValue = age.value.trim();
+    if (!ageValue) return setError(age, "Age cannot be empty");
+    if (isNaN(ageValue) || Number(ageValue) <= 0 || Number(ageValue) > 150) return setError(age, "Please enter a valid age");
+    return setSuccess(age);
+}
+
+function validatePosition() {
+    const positionValue = position.value.trim();
+    const positionRegex = /^[A-Za-z\s]+$/;
+    if (!positionValue) return setError(position, "Position cannot be empty");
+    if (!positionRegex.test(positionValue)) return setError(position, "Position can only contain letters and spaces");
+    return setSuccess(position);
+}
+
+function validateSalary() {
+    const salaryValue = salary.value.trim();
+    if (!salaryValue) return setError(salary, "Salary cannot be empty");
+    if (isNaN(salaryValue) || Number(salaryValue) <= 0) return setError(salary, "Please enter a valid salary");
+    return setSuccess(salary);
+}
+
+function validatePhone() {
+    const phoneValue = phone.value.trim();
+    if (!phoneValue) return setError(phone, "Phone cannot be empty");
+    if (!/^(\+\d{1,3})?(\d{9,15})$/.test(phoneValue)) return setError(phone, "Please enter a valid phone number");
+    return setSuccess(phone);
+}
+
+function setError(element, message) {
+   element.classList.add("error");
+  tippy(element, {
+    content: message,
+    trigger: "manual",
+    placement: "bottom",
+    theme: "errorTooltip",
+    arrow: true,
+ zIndex: 9999999,
+  }).show();
+    return false;
+}
+
+function setSuccess(element) {
+    element.classList.remove("error");
+    return true;
+}
 // Initial display
 displayCurrentPageData();
 updatePaginationButtons();
-updateFooterText();
+updateFooterText(currentUser.employees.length);
+// 
+// 
+// 
+ // Function to add tooltips for better user guidance
+// Function to add tooltips for better user guidance
+function addTooltips() {
+    // Add tooltips for form fields
+    tippy("#first-name", { content: "Please enter your first name", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes', arrow: true });
+    tippy("#last-name", { content: "Please enter your last name", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
+    tippy("#age", { content: "Please enter your age", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
+    tippy("#position", { content: "Please enter your position", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
+    tippy("#salary", { content: "Please enter your salary", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
+    tippy("#phone", { content: "Please enter your phone number", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
 
-
-
-
-
-
-// Function to update the footer text
-function updateFooterText() {
-  let startIndex = (currentPage - 1) * entriesPerPage + 1;
-  let endIndex = Math.min(startIndex + entriesPerPage - 1, currentUser.employees.length);
-  let footerText = `Showing ${startIndex} to ${endIndex} from ${currentUser.employees.length} entries`;
-  document.querySelector('footer p').textContent = footerText;
+    // Add tooltips for other interactive elements
+    tippy("#toggle-btn", { content: "Toggle Menu", placement: "bottom", zIndex: 9999999, theme: 'modes' });
+    tippy("#table-size", { content: "Select number of entries to show", placement: "top", zIndex: 9999999, theme: 'modes' });
+    tippy("#search", { content: "Search for an employee", placement: "top", zIndex: 9999999, theme: 'modes' });
+    tippy(".fa-magnifying-glass", { content: "Click to search", placement: "top", zIndex: 9999999, theme: 'modes' });
+    tippy(".pagination button", { content: (reference) => reference.textContent, placement: "top", zIndex: 9999999, theme: 'modes' });
+    tippy(".mode", { content: "Toggle Dark/Light Mode", placement: "top", zIndex: 9999999, theme: 'modes' });
+    tippy(".close-btn", { content: "Close", placement: "bottom", zIndex: 9999999, theme: 'modes' });
+    tippy(".submit-btn", { content: "Submit the form", placement: "bottom", zIndex: 9999999, theme: 'modes' });
+    tippy(".cancel-modal-btn", { content: "Cancel", placement: "bottom", zIndex: 9999999, theme: 'modes' });
+    tippy(".delete-modal-btn", { content: "Delete", placement: "bottom", zIndex: 9999999, theme: 'modes' });
+  // Add tooltips for navigation menu items
+         document.querySelectorAll(".menu-item a").forEach(item => {
+            tippy(item, { content: item.querySelector("span").textContent, placement: "right", zIndex: 9999999, theme: 'navTips' });
+        });
+  
 }
 
-search.addEventListener("keyup", function () {
-  let filteredEmployees = currentUser.employees.filter((employee, index) => {
-    if (employee.firstName.toLowerCase().includes(search.value.trim().toLowerCase())) {
-      employee.originalIndex = index; // Store the original index
-      return true;
-    }
-    return false;
-  });
+document.addEventListener("DOMContentLoaded", addTooltips);
 
-  // Update the pagination based on the filtered employees
-  let totalPages = Math.ceil(filteredEmployees.length / entriesPerPage);
-  currentPage = 1; // Reset to the first page
-
-   
-  // Function to update the footer text
-  function updateFooterText() {
-    let startIndex = (currentPage - 1) * entriesPerPage + 1;
-    let endIndex = Math.min(startIndex + entriesPerPage - 1, filteredEmployees.length);
-    let footerText = `Showing ${startIndex} to ${endIndex} from ${filteredEmployees.length} entries`;
-    document.querySelector('footer p').textContent = footerText;
-  }
-// Function to update pagination buttons
-function updatePaginationButtons() {
-  let totalPages = Math.ceil(filteredEmployees.length / entriesPerPage);
-
-  let paginationButtons = "";
-  paginationButtons += `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Prev</button>`;
-  for(let i = 1; i <= totalPages; i++) {
-    paginationButtons += `<button ${i === currentPage ? 'class="active"' : ''} onclick="goToPage(${i})">${i}</button>`;
-  }
-  paginationButtons += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>`;
-
-  let paginationDiv = document.querySelector('.pagination');
-  paginationDiv.innerHTML = paginationButtons;
-}
-// Function to display data for the current page
-function displayFilteredData() {
-  let filteredEmployees = currentUser.employees.filter((employee, index) => {
-    if (employee.firstName.toLowerCase().includes(search.value.trim().toLowerCase())) {
-      employee.originalIndex = index; // Store the original index
-      return true;
-    }
-    return false;
-  });
-
-  let startIndex = (currentPage - 1) * entriesPerPage;
-  let endIndex = startIndex + entriesPerPage;
-  let paginatedEmployees = filteredEmployees.slice(startIndex, endIndex);
-
-  let content = "";
-  if (paginatedEmployees.length > 0) {
-    paginatedEmployees.forEach(function (employee, i) {
-      content += `
-        <tr>
-          <td>${employee.originalIndex + 1}</td> <!-- Use the original index here -->
-          <td class="user-img"><img src="${employee.img}" alt=""></td>
-          <td>${employee.firstName + " " + employee.lastName}</td>
-          <td>${employee.age}</td>
-          <td>${employee.position}</td>
-          <td>${employee.salary}</td>
-          <td>${employee.phone}</td>
-          <td >
-          <div class="table-btns">
-          <i class="fa-solid fa-pen-to-square update" onclick="getData(${employee.originalIndex})"></i>
-          <i class="fa-solid fa-trash delete"onclick="deleteEmployee(${employee.originalIndex})"></i>
-          </div>
-          </td>
-        </tr>
-      `;
-    });
-  } else {
-    content = `
-      <tr>
-        <td colspan="11" class="empty">No Data Available</td>
-      </tr>
-    `;
-  }
-  tableBody.innerHTML = content;
-  updateFooterText()
-}
-  // Display the filtered data and update the footer text
-  displayFilteredData();
-  updateFooterText();
-  updatePaginationButtons()
-});
-
-
-// Function to navigate to a specific page
-function goToPage(pageNumber) {
-  currentPage = pageNumber;
-  displayCurrentPageData();  
-  updatePaginationButtons();
-}
-
-
-
-
-
-
-
-
+addTooltips();

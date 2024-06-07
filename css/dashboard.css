@@ -21,19 +21,6 @@ main {
   grid-template-columns: auto 37rem;
 }
 
-/* Page Header */
-.page-header {
-  padding: 2rem 0 3rem 0;
-  text-align: center;
-}
-.page-header h2 {
-  font-size: 2.4rem;
-  margin-bottom: .8rem;
-}
-.page-header p {
-  font-size: 1.6rem;
-}
-
 /* Welcome display */
 .welcome-section {
   background-color: var(--secondary-bg-color);
@@ -83,9 +70,7 @@ main {
   cursor: pointer;
   transition: transform 0.3s ease;
   border: 1px solid var(--border-color);
-  max-width: 30%;
-  min-width: 250px;
-}
+  }
 .card:hover {
   transform: scale(1.02);
 }
@@ -123,7 +108,7 @@ main {
 canvas {
   width: 100% !important; /* Ensure canvas fits within its container */
   max-width: 100%; /* Prevent canvas from exceeding container width */
-  height: 400px; /* Set a default height for the charts */
+  height: 400px;   
 }
 .no-data-message {
   display: none;
@@ -132,12 +117,15 @@ canvas {
   font-size: 1.6rem;
   line-height: 1.6;
 }
-
+ 
 /* second column & Tasks display */
 .second-col {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+     gap: 2rem;  
+}
+#tasks, .product-chart {
+  height: 400px;  
 }
 #tasks {
   background-color: var(--secondary-bg-color);
@@ -146,7 +134,8 @@ canvas {
   box-shadow: 0 2px 4px var(--box-shadow-color);
   margin-bottom: 20px;
   border: 1px solid var(--border-color);
-}
+  }
+
 .task-card h2 {
   color: var(--text-color);
   margin-bottom: 20px;
@@ -159,9 +148,9 @@ canvas {
 }
 #view-all-btn {
   display: inline-block;
-  background-color: var(--main-color);
+  background-color: var(--fancy-bg-color) ;
   text-decoration: none;
-  color: var(--always-fff);
+  color: var(--fancy-color);
   border: none;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
@@ -171,7 +160,7 @@ canvas {
   margin: 0.5rem 0 1.6rem;
 }
 #view-all-btn:hover {
-  background-color: var(--main-hover-bg-color);
+  background-color: var(--fancy-bg-hover-color);
 }
 .employee-chart {
 }
@@ -199,6 +188,15 @@ canvas {
     width: 100%;
     margin: 10px 0;
   }
+  .second-col {
+    display: grid;
+    grid-template-columns:1fr;
+       gap: 2rem;  
+  }
+ 
+  .container:has(> aside.aside-closed) #tasks, .container:has(> aside.aside-closed) .product-chart {
+    height: auto; 
+}
 }
 @media (max-width: 38em) {
   #summary {
