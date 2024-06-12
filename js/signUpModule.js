@@ -24,16 +24,22 @@ function addUser() {
     users.push(userData);
     localStorage.setItem("users", JSON.stringify(users));
     clear();
-    toastr["success"]("Account created successfully!", " ");
+     Swal.fire({
+      text: "Account created successfully!",
+     icon: "success"
+   })
     setTimeout(function() {
-      toastr.clear();
-      window.location.href = "signIn.html"; // Redirect after toastr notification disappears
+       window.location.href = "signIn.html";  
     }, 3000);  
   } else {
-    toastr["error"]("Sign up failed! Please check the form for errors.", " ")
-    setTimeout(function() {
-      toastr.clear();
-    }, 3000);  
+     Swal.fire({
+      text: "Sign up failed! Please check the form for errors.",
+     icon: "error"
+   }).then(() => {
+    validateName();
+    validateEmail();
+    validatePassword();
+    validatePasswordConfirmation(passwordInput.value);});
   }
   resetAppChoices()
 }
@@ -181,10 +187,7 @@ function clearError(inputElement) {
   inputControl.classList.remove("success");
 }
  
-toastr.options = {
-  "closeButton": true,
-  } 
-
+ 
   // loader
   const loader=document.querySelector('#loader')
 function showLoader(){

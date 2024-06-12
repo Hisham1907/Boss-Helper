@@ -29,7 +29,6 @@ let currentEmployeeId = null; // Store the current employee id for update/delete
 if (!currentUser.employees) {
     currentUser.employees = [];
 }
-
 // Initializations
 let currentPage = 1;
 let entriesPerPage = 5;
@@ -65,8 +64,10 @@ function handleFileInput(e) {
             employeeImg.src = currentImgSrc;
         };
     } else {
-        toastr["info"]("The file must be less than 1 MB");
-        setTimeout(toastr.clear, 3000);
+         Swal.fire({
+            text: "The file must be less than 1 MB",
+           icon: "info"
+         })
     }
 }
 
@@ -82,7 +83,13 @@ function handleFormSubmit() {
         displayCurrentPageData();
         updatePaginationButtons();
     } else {
-        toastr["error"]("Please fix all the errors to proceed.");
+         Swal.fire({
+            text: "Please fix all the errors to proceed !",
+           icon: "error"
+         }).then(() => {
+            validateInputs() 
+        });
+      
     }
 }
 
@@ -100,8 +107,10 @@ function addEmployee() {
 
   currentUser.employees.push(employee);
   localStorage.setItem("users", JSON.stringify(users));
-  toastr["success"]("Employee added successfully!");
-
+   Swal.fire({
+     text: "Employee added successfully!",
+    icon: "success"
+  });
   // Calculate the total pages and the page where the new employee should be displayed
   const totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
   const targetPage = totalPages;
@@ -119,7 +128,11 @@ function updateEmployee(id) {
       employee.salary = salary.value;
       employee.phone = phone.value;
       localStorage.setItem("users", JSON.stringify(users));
-      toastr["success"]("Employee updated successfully!");
+      mainBtn.innerHTML = "Add Employee";
+       Swal.fire({
+        text: "Employee updated successfully!",
+       icon: "success"
+     });
 
       // Calculate the page where the updated employee should be displayed
       const updatedEmployeeIndex = currentUser.employees.findIndex(emp => emp.id === id);
@@ -388,6 +401,7 @@ function setSuccess(element) {
     return true;
 }
 // Initial display
+ 
 displayCurrentPageData();
 updatePaginationButtons();
 updateFooterText(currentUser.employees.length);
@@ -398,31 +412,21 @@ updateFooterText(currentUser.employees.length);
 // Function to add tooltips for better user guidance
 function addTooltips() {
     // Add tooltips for form fields
-    tippy("#first-name", { content: "Please enter your first name", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes', arrow: true });
-    tippy("#last-name", { content: "Please enter your last name", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
-    tippy("#age", { content: "Please enter your age", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
-    tippy("#position", { content: "Please enter your position", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
-    tippy("#salary", { content: "Please enter your salary", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
-    tippy("#phone", { content: "Please enter your phone number", placement: "bottom", trigger: "focus", zIndex: 9999999, theme: 'modes' });
+    
 
     // Add tooltips for other interactive elements
-    tippy("#toggle-btn", { content: "Toggle Menu", placement: "bottom", zIndex: 9999999, theme: 'modes' });
     tippy("#table-size", { content: "Select number of entries to show", placement: "top", zIndex: 9999999, theme: 'modes' });
     tippy("#search", { content: "Search for an employee", placement: "top", zIndex: 9999999, theme: 'modes' });
     tippy(".fa-magnifying-glass", { content: "Click to search", placement: "top", zIndex: 9999999, theme: 'modes' });
-    tippy(".pagination button", { content: (reference) => reference.textContent, placement: "top", zIndex: 9999999, theme: 'modes' });
-    tippy(".mode", { content: "Toggle Dark/Light Mode", placement: "top", zIndex: 9999999, theme: 'modes' });
     tippy(".close-btn", { content: "Close", placement: "bottom", zIndex: 9999999, theme: 'modes' });
-    tippy(".submit-btn", { content: "Submit the form", placement: "bottom", zIndex: 9999999, theme: 'modes' });
-    tippy(".cancel-modal-btn", { content: "Cancel", placement: "bottom", zIndex: 9999999, theme: 'modes' });
+     tippy(".cancel-modal-btn", { content: "Cancel", placement: "bottom", zIndex: 9999999, theme: 'modes' });
     tippy(".delete-modal-btn", { content: "Delete", placement: "bottom", zIndex: 9999999, theme: 'modes' });
   // Add tooltips for navigation menu items
-         document.querySelectorAll(".menu-item a").forEach(item => {
-            tippy(item, { content: item.querySelector("span").textContent, placement: "right", zIndex: 9999999, theme: 'navTips' });
-        });
+       
   
 }
 
 document.addEventListener("DOMContentLoaded", addTooltips);
 
 addTooltips();
+ 

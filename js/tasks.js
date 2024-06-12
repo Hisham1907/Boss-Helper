@@ -56,7 +56,10 @@ function displayCount() {
 mainBtn.addEventListener("click", function () {
   if (mainBtn.innerHTML === "Add Task") {
     if (inputField.value === "") {
-      toastr.error("Input field cannot be empty");
+      Swal.fire({
+        text: "Add a task Boss !",
+       icon: "error"
+     })
     } else {
       addTask();
       clearInput();
@@ -95,8 +98,10 @@ function addTask() {
   currentUser.tasks.push(task);
   currentUser.tasksCategories[categorySelected.value].push(task);
   localStorage.setItem("users", JSON.stringify(users));
-  toastr.success("Task added successfully!");
-
+   Swal.fire({
+    text: "Task added successfully!",
+   icon: "success"
+ })
   displayCount();
   displayTasks(currentUser.tasks);
   updateCatsTasksCount();
@@ -138,7 +143,10 @@ document.querySelectorAll(".category-item").forEach((category) => {
       const categoryTasks = currentUser.tasksCategories[categoryId];
       displayTasksByCategory(categoryTasks);
       categoryFilterBtn.textContent = category.querySelector("h2").textContent;
-      toastr.info("To edit or delete a task choose All Tasks");
+       Swal.fire({
+        text: "To edit or delete a task choose All Tasks",
+       icon: "info"
+     })
     }
   });
 });
@@ -259,18 +267,21 @@ function updateTask() {
   ).value;
   currentUser.tasks[currentIndex].category = categorySelected.value;
   localStorage.setItem("users", JSON.stringify(users));
-  toastr.success("Task updated successfully!");
+  Swal.fire({
+    text: "Task updated successfully!",
+   icon: "success"
+ })
 }
 // Reset the update task form
 function updateReset() {
   clearInput();
   mainBtn.innerHTML = "Add Task";
 }
+document.querySelectorAll("#delete").forEach((btn) => (btn.disabled = true));
 // Function to delete product data
 function deleteTask(index) {
-  document.querySelectorAll("#delete").forEach((btn) => (btn.disabled = true));
   popUpModal.classList.add("pop-up-active");
-
+  
   function handleDelete() {
     const deletedTask = currentUser.tasks[index];
     const category = deletedTask.category;
@@ -297,7 +308,10 @@ function deleteTask(index) {
     }
 
     localStorage.setItem("users", JSON.stringify(users));
-    toastr.success("Task deleted successfully!");
+     Swal.fire({
+      text: "Task deleted successfully!",
+     icon: "success"
+   })
     displayCount();
     displayTasks(currentUser.tasks);
     updateCatsTasksCount();

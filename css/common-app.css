@@ -7,6 +7,7 @@
   --active-color: rgba(143, 155, 179, 0.161);
   --link-before-color: #93c5fd;
   --main-bg-color: #222b45;
+  --sweet-bg-color: #222b45;
   --secondary-bg-color: #151a30;
   --main-color: #36f;
   --border-color: #3c3e3f;
@@ -52,6 +53,7 @@
   --aside-bg-color: #185bb4;
   --link-before-color: #fff;
   --main-bg-color: #e9ebef;
+  --sweet-bg-color: #fff;
   --main-color: #185bb4;
   --secondary-bg-color: #ffffff;
   --border-color: #d1d5db;
@@ -414,8 +416,16 @@ table .empty {
 }
 
 .error {
-  border-color: var(--red-color) !important;
+  border: 2px solid #e74c3c;
+  background-color: #fbe3e4;
 }
+
+.error-message {
+  color: #e74c3c;
+  font-size: 1.4rem;
+   display: block;
+}
+
 
 /* Tippy & Toastr js */
 .tippy-box[data-theme="errorTooltip"] {
@@ -425,6 +435,7 @@ table .empty {
   font-weight: 500;
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  
 }
 
 .tippy-box[data-theme="errorTooltip"][data-placement^="bottom"]

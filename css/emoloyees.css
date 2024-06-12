@@ -2,7 +2,8 @@ body {
   font-family: "Rubik", sans-serif;
   color: var(--text-color);
   background-color: var(--main-bg-color);
-}
+  
+ }
 main {
   padding: 2.4rem;
 }
@@ -500,3 +501,4 @@ td {
 }
 
 
+ 

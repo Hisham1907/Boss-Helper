@@ -27,16 +27,20 @@ function signInHandler() {
         }
       }
       if (isValid) {
-        toastr["success"]("Login successful!", "");
+         Swal.fire({
+          text: "Login Succesfully",
+         icon: "success"
+       })
         setTimeout(function() {
-          toastr.clear();
-          window.location.href = "dashboard.html";
+           window.location.href = "dashboard.html";
         }, 3000); 
       } else {
-        toastr["error"]("Incorrect email or password. Please check and try again.");
-        setTimeout(function() {
-          toastr.clear();
-        }, 3000); 
+         Swal.fire({
+          text: "Incorrect email or password. Please check and try again.",
+         icon: "error"
+       }).then(() => {
+        validateEmail();
+        validatePassword();});
       }
     }
     
@@ -119,10 +123,7 @@ function clearError(inputElement) {
   inputControl.classList.remove("success");
 }
 
-
-toastr.options = {
-  "closeButton": true,
-  } 
+ 
     // loader
     const loader=document.querySelector('#loader')
     function showLoader(){

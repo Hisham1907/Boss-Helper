@@ -99,10 +99,11 @@ function updateUser() {
     currentUser.company != companyNameInput.value ||
     currentUser.jobTitle != jobTitleInput.value
   ) {
-    toastr["success"]("Profile info updated successfully!", " ");
-    setTimeout(function () {
-      toastr.clear();
-    }, 3000);
+     Swal.fire({
+      text: "Profile info updated successfully!",
+     icon: "success"
+   })
+  
   }
 
   displayInputs();
@@ -116,10 +117,10 @@ function updateUser() {
 function updatePassword() {
   if (newPasswordInput.value !== "") {
     currentUser.password = newPasswordInput.value;
-    toastr["success"]("Password updated successfully!", " ");
-    setTimeout(function () {
-      toastr.clear();
-    }, 3000);
+     Swal.fire({
+      text: "Password updated successfully!",
+     icon: "success"
+   })
   }
   localStorage.setItem("users", JSON.stringify(users));
 
@@ -226,10 +227,10 @@ function validateInputs() {
   if (isValid) {
     updateUser();
   } else {
-    toastr["error"]("Please fix all the errors to be able to save", " ");
-    setTimeout(function () {
-      toastr.clear();
-    }, 3000);
+     Swal.fire({
+      text: "Please fix all the errors to be able to save",
+     icon: "error"
+   })
   }
 }
 // Validate passwords
@@ -276,10 +277,11 @@ function validatePasswords() {
     newPasswordInput.value = "";
     confirmPasswordInput.value = "";
   } else {
-    toastr["error"]("Please fix all the errors add the new password", " ");
-    setTimeout(function () {
-      toastr.clear();
-    }, 3000);
+     Swal.fire({
+      text: "Please fix all the errors add the new password",
+     icon: "error"
+   })
+   
   }
 }
 // handle file input for img
@@ -293,6 +295,10 @@ accountImgFile.addEventListener("change", () => {
     localStorage.setItem("users", JSON.stringify(users));
     displayProfile();
   });
+  Swal.fire({
+    text: "Image added Succesfully",
+   icon: "success"
+ })
 });
 
 deleteImg.addEventListener("click", function () {
@@ -313,6 +319,10 @@ deleteImg.addEventListener("click", function () {
   } else {
     console.log("Current user not found.");
   }
+  Swal.fire({
+    text: "Image deleted Succesfully",
+   icon: "success"
+ })
 });
 
 deleteAccount.addEventListener("click", function () {
@@ -325,10 +335,12 @@ deleteAccount.addEventListener("click", function () {
     localStorage.setItem("users", JSON.stringify(users));
     deleteModalBtn.removeEventListener("click", handleDelete);
     popUpModal.classList.remove("pop-up-active");
-    toastr["success"]("Account Deleted Succesfully", "");
+     Swal.fire({
+      text: "Account Deleted Succesfully",
+     icon: "success"
+   })
     setTimeout(function () {
-      toastr.clear();
-      window.location.href = "signUp.html";
+       window.location.href = "signUp.html";
     }, 3000);
   });
   canceModallBtn.addEventListener("click", function () {

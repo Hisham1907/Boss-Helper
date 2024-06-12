@@ -2,6 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --sweet-bg-color: #fff;
+  --text-color: #1f2937;
+  --fancy-bg-hover-color:#1e3a8a ;
+  --fancy-bg-color: #1e40af;
+  --fancy-color: #fff;
+
 }
 body {
   font-family: "Rubik", sans-serif;

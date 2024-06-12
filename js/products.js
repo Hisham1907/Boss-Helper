@@ -55,25 +55,25 @@ mainBtn.addEventListener("click", function () {
       addproduct();
       clearInputs();
       displayProducts();
-    } else
-      toastr["error"](
-        "Please fix all the errors to be able to add the product"
-      );
-    setTimeout(function () {
-      toastr.clear();
-    }, 3000);
+    } else{
+      Swal.fire({
+        text: "Please fix all the errors to be able to add the product",
+       icon: "error"
+     }).then(() => {
+      validateInputs() 
+  });
+    }
+     
   } else {
     if (validateInputs()) {
       updateData(currentIndex);
       clearInputs();
       displayProducts();
     } else {
-      toastr["error"](
-        "Please fix all the errors to be able to update add the product"
-      );
-      setTimeout(function () {
-        toastr.clear();
-      }, 3000);
+      Swal.fire({
+        text: "Please fix all the errors to be able to update the product",
+       icon: "error"
+     });
     }
   }
 });
@@ -103,7 +103,10 @@ function addproduct() {
   // Save the users array  to the local storage
   // Users arrays that contains the current user that contain the latest product(s) added
   localStorage.setItem("users", JSON.stringify(users));
-  toastr["success"]("Product added successfully!");
+  Swal.fire({
+    text: "Product added successfully!",
+   icon: "success"
+ });
 }
 // Function to clear input fields
 function clearInputs() {
@@ -174,7 +177,10 @@ function deleteProduct(index) {
     displayProducts();
     deleteModalBtn.removeEventListener("click", handleDelete);
     popUpModal.classList.remove("pop-up-active");
-    toastr["success"]("Product deleted successfully!", " ");
+     Swal.fire({
+      text: "Product deleted successfully!",
+     icon: "success"
+   });
   });
     // if user clicked the cancel btn in the modal
   cancelModalBtn.addEventListener("click", function () {
@@ -197,7 +203,10 @@ function deleteAll() {
     displayProducts();
     deleteModalBtn.removeEventListener("click", handleDelete);
     popUpModal.classList.remove("pop-up-active");
-    toastr["success"]("All Products deleted successfully!", " ");
+     Swal.fire({
+      text: "All Products deleted successfully!",
+     icon: "success"
+   });
   });
   cancelModalBtn.addEventListener("click", function () {
     popUpModal.classList.remove("pop-up-active");
@@ -233,7 +242,10 @@ function updateData(index) {
   currentUser.products[index].discount = Number(discount.value);
   currentUser.products[index].total = totalBox.innerHTML;
   localStorage.setItem("users", JSON.stringify(users));
-  toastr["success"]("Product updated successfully!", " ");
+   Swal.fire({
+    text: "Product updated successfully!",
+   icon: "success"
+ });
   mainBtn.innerHTML = "Add Product";
   count.style.display = "block";
   mainBtn.classList.remove('form-btn-update')
