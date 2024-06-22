@@ -15,8 +15,7 @@ main {
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
 }
-.entries-numbers select,
-.search-bar input {
+ .search-bar input {
     border: none;
   outline: none;
   color: var(--text-color);
@@ -150,52 +149,6 @@ table .empty {
   background-color: var(--secondary-bg-color);
   padding: 1.5rem;
   text-align: center;
-}
-/* footer */
-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2.4rem;
-  font-size: 1.6rem;
-}
-
-footer .pagination {
-  display: flex;
-}
-
-footer .pagination button {
-  width: 4rem;
-  padding: 1rem;
-  background-color: transparent;
-  color: var(--text-color);
-  font-size: 1.6rem;
-  cursor: pointer;
-  outline: none;
-  border: 1px solid var(--input-enabled-border-color);
-  margin: 0;
-  border-left: none;
-  transition: 0.3s all;
-}
-
-footer .pagination button:first-child {
-  border-left: 1px solid var(--input-enabled-border-color);
-   width: 8.5rem;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-
-footer .pagination button:last-child {
-  width: 8.5rem;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-footer .pagination button:hover,
-footer .pagination button.active {
-  background-color: var(--main-color);
-  color: var(--always-fff);
-  background-color: var(--fancy-bg-color);
-  color: var(--fancy-color);
 }
 
 /* Employee Form */
@@ -358,11 +311,7 @@ footer .pagination button.active {
   transform: scale(1);
 }
 
-.pop-up-content img {
-  max-width: 100%;
-  margin: auto;
-}
-
+ 
 /* Media Query Adjustments */
 @media (max-width: 75em) {
   html {
@@ -444,9 +393,7 @@ footer .pagination button.active {
   font-size: 1.4rem;
   padding-left: 5rem;
 }
-.entries-numbers select{
-  font-size: 1.4rem;
- }
+
 .search-bar i {
   left: 2.5rem;
   font-size: 1.8rem;
@@ -480,10 +427,6 @@ td {
   .search-bar input {
     font-size: 1.2rem;
    padding-left: 3rem;
- }
-
- .entries-numbers select{
-  font-size: 1.2rem;
  }
 
  .search-bar i {

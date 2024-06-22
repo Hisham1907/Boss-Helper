@@ -99,11 +99,10 @@ function updateUser() {
     currentUser.company != companyNameInput.value ||
     currentUser.jobTitle != jobTitleInput.value
   ) {
-     Swal.fire({
+    Swal.fire({
       text: "Profile info updated successfully!",
-     icon: "success"
-   })
-  
+      icon: "success",
+    });
   }
 
   displayInputs();
@@ -117,10 +116,10 @@ function updateUser() {
 function updatePassword() {
   if (newPasswordInput.value !== "") {
     currentUser.password = newPasswordInput.value;
-     Swal.fire({
+    Swal.fire({
       text: "Password updated successfully!",
-     icon: "success"
-   })
+      icon: "success",
+    });
   }
   localStorage.setItem("users", JSON.stringify(users));
 
@@ -227,10 +226,10 @@ function validateInputs() {
   if (isValid) {
     updateUser();
   } else {
-     Swal.fire({
+    Swal.fire({
       text: "Please fix all the errors to be able to save",
-     icon: "error"
-   })
+      icon: "error",
+    });
   }
 }
 // Validate passwords
@@ -277,11 +276,10 @@ function validatePasswords() {
     newPasswordInput.value = "";
     confirmPasswordInput.value = "";
   } else {
-     Swal.fire({
+    Swal.fire({
       text: "Please fix all the errors add the new password",
-     icon: "error"
-   })
-   
+      icon: "error",
+    });
   }
 }
 // handle file input for img
@@ -297,8 +295,8 @@ accountImgFile.addEventListener("change", () => {
   });
   Swal.fire({
     text: "Image added Succesfully",
-   icon: "success"
- })
+    icon: "success",
+  });
 });
 
 deleteImg.addEventListener("click", function () {
@@ -321,8 +319,8 @@ deleteImg.addEventListener("click", function () {
   }
   Swal.fire({
     text: "Image deleted Succesfully",
-   icon: "success"
- })
+    icon: "success",
+  });
 });
 
 deleteAccount.addEventListener("click", function () {
@@ -335,22 +333,20 @@ deleteAccount.addEventListener("click", function () {
     localStorage.setItem("users", JSON.stringify(users));
     deleteModalBtn.removeEventListener("click", handleDelete);
     popUpModal.classList.remove("pop-up-active");
-     Swal.fire({
+    Swal.fire({
       text: "Account Deleted Succesfully",
-     icon: "success"
-   })
+      icon: "success",
+    });
     setTimeout(function () {
-       window.location.href = "signUp.html";
+      window.location.href = "signUp.html";
     }, 3000);
   });
   canceModallBtn.addEventListener("click", function () {
     popUpModal.classList.remove("pop-up-active");
     deleteModalBtn.removeEventListener("click", handleDelete);
-
   });
   popUpModal.addEventListener("click", function () {
     popUpModal.classList.remove("pop-up-active");
     deleteModalBtn.removeEventListener("click", handleDelete);
-
   });
 });

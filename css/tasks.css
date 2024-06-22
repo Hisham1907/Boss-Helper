@@ -308,11 +308,14 @@ color: var(--fancy-color);
 color: var(--fancy-color);
 
 }
- 
-
 /* Task Container */
 .tasks-container {
   margin-top: 1rem;
+}
+.task-container-head{
+  display: flex; 
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
 }
 
 #pending-tasks {

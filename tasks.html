@@ -29,8 +29,6 @@
   <header class="main-header">
     <nav>
       <i class="fa-solid fa-bars " id="toggle-btn"></i>
-
-
       <button class="aside-toggle">
         <i class="fa-solid fa-bars"></i>
         <i class="fa-solid fa-xmark"></i>
@@ -57,19 +55,16 @@
           <li class="menu-item">
             <a href="emoloyees.html"><i class="menu-icon fas fa-users"></i>
               <span>Employees</span>
-
             </a>
           </li>
           <li class="menu-item">
             <a href="products.html"><i class="menu-icon fas fa-shopping-cart"></i>
               <span>Products</span>
-
             </a>
           </li>
           <li class="menu-item">
             <a class="active" href="tasks.html"><i class="menu-icon fas fa-tasks"></i>
               <span>Tasks</span>
-
             </a>
           </li>
           <li class="menu-item">
@@ -99,8 +94,6 @@
                 </span>
               </label>
             </div>
-
-
           </li>
         </ul>
       </nav>
@@ -129,14 +122,14 @@
                 </div>
                 <div class="priority-field">
                   <span class="priority-title">Task Priority</span>
-                <div class="priority-labels">
-                  <label class="priority-label"><input type="radio" name="priority" value="1" checked><span
-                    class="custom-radio"></span> High</label>
-                <label class="priority-label"><input type="radio" name="priority" value="2"><span
-                    class="custom-radio"></span> Medium</label>
-                <label class="priority-label"><input type="radio" name="priority" value="3"><span
-                    class="custom-radio"></span> Low</label>
-                </div>
+                  <div class="priority-labels">
+                    <label class="priority-label"><input type="radio" name="priority" value="1" checked><span
+                        class="custom-radio"></span> High</label>
+                    <label class="priority-label"><input type="radio" name="priority" value="2"><span
+                        class="custom-radio"></span> Medium</label>
+                    <label class="priority-label"><input type="radio" name="priority" value="3"><span
+                        class="custom-radio"></span> Low</label>
+                  </div>
                 </div>
               </div>
               <button id="main-btn" class="main-btn">Add Task</button>
@@ -161,35 +154,35 @@
                       <p id="all-count">0 Tasks</p>
                     </div>
                   </li>
-                  <li  class="category-item " id="personal">
+                  <li class="category-item " id="personal">
                     <div class="icon"><i class="fas fa-user"></i></div>
                     <div class="content">
                       <h2>Personal</h2>
                       <p id="personal-count">0 Tasks</p>
                     </div>
                   </li>
-                  <li  class="category-item" id="work">
+                  <li class="category-item" id="work">
                     <div class="icon"><i class="fas fa-briefcase"></i></div>
                     <div class="content">
                       <h2>Work</h2>
                       <p id="work-count">0 Tasks</p>
                     </div>
                   </li>
-                  <li  class="category-item" id="shopping">
+                  <li class="category-item" id="shopping">
                     <div class="icon"><i class="fas fa-shopping-cart"></i></div>
                     <div class="content">
                       <h2>Shopping</h2>
                       <p id="shopping-count">0 Tasks</p>
                     </div>
                   </li>
-                  <li  class="category-item" id="coding">
+                  <li class="category-item" id="coding">
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
                     <div class="content">
                       <h2>Coding</h2>
                       <p id="coding-count">0 Tasks</p>
                     </div>
                   </li>
-                  <li  class="category-item" id="fitness">
+                  <li class="category-item" id="fitness">
                     <div class="icon"><i class="fas fa-dumbbell"></i></div>
                     <div class="content">
                       <h2>Fitness</h2>
@@ -208,15 +201,38 @@
             </div>
           </div>
           <div class="tasks-container">
-            <p id="pending-tasks">You have <span id="tasks-count"></span> task<span>s</span> to complete.</p>
+            <div class="task-container-head">
+              <p id="pending-tasks">You have <span id="tasks-count"></span> task<span>s</span> to complete.</p>
+              <div class="entries-numbers">
+                <span>Show </span>
+                <select id="table-size">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+                <span> entries</span>
+              </div>
+            </div>
             <div id="task-container"></div>
             <p id="tasks-no-data" class="no-data-message">No Tasks available Boss, Add some and acheive more</p>
           </div>
+          <footer>
+            <p>Showing 1 to 10 from 50 entries</p>
+            <div class="pagination">
+              <button>Prev</button>
+              <button class="active">1</button>
+              <button>2</button>
+              <button>3</button>
+              <button>Next</button>
+            </div>
+          </footer>
         </div>
       </section>
-      <footer>
+      <div class="copy-right">
         <p>Copyright © 2024 BossHelper by Hisham Rabea. All Rights Reserved.</p>
-      </footer>
+      </div>
     </main>
     <div class="overlay"></div>
   </div>
@@ -225,13 +241,15 @@
       <i class="fa-solid fa-trash-can fa-3x"></i>
       <h2>You are about to delete a task you lazy</h2>
       <img src="img/delete-task.svg" alt="">
-      <p>This will delete the task . Are you free today?</p>
+      <p>This will delete the task. Are you free today?</p>
       <div class="pop-up-control">
         <button class="cancel-modal-btn">Cancel</button>
         <button class="delete-modal-btn">Delete</button>
       </div>
     </div>
   </div>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/toastr.min.js"></script>

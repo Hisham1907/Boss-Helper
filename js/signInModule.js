@@ -17,7 +17,7 @@ function signInHandler() {
    if (emailInput.value.trim() !== "" && passwordInput.value.trim() !== "") {
       for (let i = 0; i < users.length; i++) {
         if (
-          emailInput.value === users[i].email &&
+          emailInput.value.toLowerCase() === users[i].email.toLowerCase() &&
           passwordInput.value === users[i].password
         ) {
           localStorage.setItem("name", users[i].name);

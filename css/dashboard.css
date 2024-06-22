@@ -108,7 +108,7 @@ main {
 canvas {
   width: 100% !important; /* Ensure canvas fits within its container */
   max-width: 100%; /* Prevent canvas from exceeding container width */
-  height: 400px;   
+  height: 0;   
 }
 .no-data-message {
   display: none;
@@ -124,9 +124,9 @@ canvas {
   grid-template-columns: 1fr 1fr;
      gap: 2rem;  
 }
-#tasks, .product-chart {
-  height: 400px;  
-}
+/* #tasks,.product-chart {
+  height: 150px;  
+} */
 #tasks {
   background-color: var(--secondary-bg-color);
   border-radius: 10px;
@@ -162,9 +162,7 @@ canvas {
 #view-all-btn:hover {
   background-color: var(--fancy-bg-hover-color);
 }
-.employee-chart {
-}
-
+ 
 /* Responsive Media Queries */
 @media (max-width: 75em) {
   html {

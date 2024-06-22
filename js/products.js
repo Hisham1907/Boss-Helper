@@ -1,4 +1,5 @@
 "use strict";
+
 // Select DOM Elements
 const productName = document.getElementById("name");
 const category = document.getElementById("category");
@@ -11,7 +12,6 @@ const mainBtn = document.getElementById("main-btn");
 const totalBox = document.getElementById("total");
 const tableBody = document.getElementById("table-body");
 const deleteAllBox = document.getElementById("delete-all-box");
-const deleteAllBtn = document.getElementById("delete-all-btn");
 const search = document.getElementById("search");
 const popUpModal = document.querySelector(".pop-up");
 const popUpTitle = document.querySelector(".pop-up-title");
@@ -19,67 +19,66 @@ const popUpText = document.querySelector(".pop-up-text");
 const popUpImg = document.querySelector(".pop-up-img");
 const cancelModalBtn = document.querySelector(".cancel-modal-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
-// Store the current index for update and delete operations
-let currentIndex;
-// Initialize products array if not already initialized in currentUser object
+const tableSize = document.querySelector('#table-size');
+
+// Store the current productIndex for update and delete operations
+let currentId;
+let currentPage = 1;
+let entriesPerPage = 5;
+
 if (!currentUser.products) {
   currentUser.products = [];
 }
-// Display products on page load
-displayProducts();
-// Calculate and display total price
-let calcTotal = () => {
-  if (price.value != "") {
+
+// Event listeners
+[price, taxes, ads, discount].forEach((input) =>
+  input.addEventListener("keyup", calcTotal)
+);
+mainBtn.addEventListener("click", handleFormSubmit);
+tableSize.addEventListener('change', updateEntriesPerPage);
+search.addEventListener("keyup", searchProducts);
+cancelModalBtn.addEventListener("click", cancelModal);
+
+function calcTotal() {
+  if (price.value !== "") {
     let total =
       Number(price.value) +
       Number(taxes.value) +
       Number(ads.value) -
       Number(discount.value);
     totalBox.innerHTML = total;
-    totalBox.classList.add('total-active')
+    totalBox.classList.add('total-active');
   } else {
     totalBox.innerHTML = "";
-    totalBox.classList.remove('total-active')
-    totalBox.classList.add('total-default')
+    totalBox.classList.remove('total-active');
+    totalBox.classList.add('total-default');
+  }
+}
 
-  }
-};
-// Call the calcTotal function on keyup in price,taxes,ads & discount to calculate the total on real time as any change happen
-[price, taxes, ads, discount].forEach((input) =>
-  input.addEventListener("keyup", calcTotal)
-);
-// Add or Update product based on the button's current text
-mainBtn.addEventListener("click", function () {
-  if (mainBtn.innerHTML == "Add Product") {
-    if (validateInputs()) {
-      addproduct();
-      clearInputs();
-      displayProducts();
-    } else{
-      Swal.fire({
-        text: "Please fix all the errors to be able to add the product",
-       icon: "error"
-     }).then(() => {
-      validateInputs() 
-  });
-    }
-     
-  } else {
-    if (validateInputs()) {
-      updateData(currentIndex);
-      clearInputs();
-      displayProducts();
+function handleFormSubmit() {
+  if (validateInputs()) {
+    if (mainBtn.innerHTML === "Add Product") {
+      addProduct();
     } else {
-      Swal.fire({
-        text: "Please fix all the errors to be able to update the product",
-       icon: "error"
-     });
+      updateProduct(currentId);
+      mainBtn.innerHTML = "Add Product";
     }
+    clearInputs();
+    displayData(currentUser.products);
+    updatePaginationButtons();
+  } else {
+    Swal.fire({
+      text: "Please fix all the errors to proceed!",
+      icon: "error"
+    }).then(() => {
+      validateInputs();
+    });
   }
-});
-// Function to add a new product
-function addproduct() {
+}
+
+function addProduct() {
   let product = {
+    id: Date.now(),
     name: productName.value,
     category: category.value,
     price: Number(price.value),
@@ -88,27 +87,39 @@ function addproduct() {
     discount: Number(discount.value),
     total: totalBox.innerHTML,
   };
-  // Create a new object for each product
   if (count.value > 1) {
     for (let i = 0; i < count.value; i++) {
-      // Create a copy of the product object
-      let newProduct = { ...product };
-      // Push the copy into the currentUser.products array as a new product
-      currentUser.products.push(newProduct);
+      currentUser.products.push({ ...product });
     }
   } else {
-    // push the product into the currentUser.products array
     currentUser.products.push(product);
   }
-  // Save the users array  to the local storage
-  // Users arrays that contains the current user that contain the latest product(s) added
+
   localStorage.setItem("users", JSON.stringify(users));
   Swal.fire({
     text: "Product added successfully!",
-   icon: "success"
- });
+    icon: "success"
+  });
+
+  goToPage(Math.ceil(currentUser.products.length / entriesPerPage));
 }
-// Function to clear input fields
+
+function updateProduct(id) {
+  let product = currentUser.products.find(product => product.id === currentId);
+  product.name = productName.value;
+  product.category = category.value;
+  product.price = Number(price.value);
+  product.taxes = Number(taxes.value);
+  product.ads = Number(ads.value);
+  product.discount = Number(discount.value);
+  product.total = totalBox.innerHTML;
+  localStorage.setItem("users", JSON.stringify(users));
+  Swal.fire({
+    text: "Product updated successfully!",
+    icon: "success"
+  });
+}
+
 function clearInputs() {
   productName.value = "";
   category.value = "";
@@ -117,179 +128,199 @@ function clearInputs() {
   taxes.value = "";
   ads.value = "";
   discount.value = "";
-  count.value = "";
   totalBox.innerHTML = "";
-  totalBox.classList.add('total-default')
-  totalBox.classList.remove('total-active')
-
+  totalBox.classList.add('total-default');
+  totalBox.classList.remove('total-active');
+  search.value=""
 
 }
-// Function to display all products in the table
-function displayProducts() {
-  // Empty variable stores each element in the products array as a row to be displayed in the Table in the DOM
+
+function displayData(productsArr) {
   let content = "";
-  if (currentUser.products.length > 0) {
-    for (let i = 0; i < currentUser.products.length; i++) {
+  const startIndex = (currentPage - 1) * entriesPerPage;
+  const paginatedProducts = productsArr.slice(startIndex, startIndex + entriesPerPage);
+
+  if (paginatedProducts.length > 0) {
+    paginatedProducts.forEach((product, i) => {
       content += `
-      <tr>
-      <td>${i + 1}</td>
-      <td>${currentUser.products[i].name}</td>
-      <td>${currentUser.products[i].category}</td>
-      <td>${currentUser.products[i].price}</td>
-      <td>${currentUser.products[i].taxes}</td>
-      <td>${currentUser.products[i].ads}</td>
-      <td>${currentUser.products[i].discount}</td>
-      <td>${currentUser.products[i].total}</td>
-      <td>
-      <div class="table-btns">
-      <i class="fa-solid fa-pen-to-square update" onclick="getData(${i}) " ></i>
-      <i class="fa-solid fa-trash delete" onclick="deleteProduct(${i})"></i>
-  </div>
-      </td>
-  </tr>
+        <tr>
+          <td>${startIndex + i + 1}</td>
+          <td>${product.name}</td>
+          <td>${product.category}</td>
+          <td>${product.price}</td>
+          <td>${product.taxes}</td>
+          <td>${product.ads}</td>
+          <td>${product.discount}</td>
+          <td>${product.total}</td>
+          <td>
+            <div class="table-btns">
+              <i class="fa-solid fa-pen-to-square update" onclick="getData(${product.id})"></i>
+              <i class="fa-solid fa-trash delete" onclick="confirmDelete(${product.id})"></i>
+            </div>
+          </td>
+        </tr>
       `;
-    }
-    deleteAllBox.innerHTML = `            
-    <button id="delete-all-btn" onclick="deleteAll()" class="form-btn form-btn-default">Delete All &rAarr; ${currentUser.products.length} &lAarr;</button>  `;
+    });
+    deleteAllBox.innerHTML = `
+      <button id="delete-all-btn" onclick="confirmDeleteAll()" class="form-btn form-btn-default">Delete All &rAarr; ${currentUser.products.length} &lAarr;</button>
+    `;
   } else {
     content = `
-  <tr>
-    <td colspan="9" class="empty">No Data Available</td>
-  </tr>
-`;
+      <tr>
+        <td colspan="9" class="empty">No Data Available</td>
+      </tr>
+    `;
     deleteAllBox.innerHTML = "";
   }
-  // add content inside the table
+
   tableBody.innerHTML = content;
+  updateFooterText(productsArr.length);
 }
-// Function to delete a product with confirmation modal
-function deleteProduct(index) {
-  // Show Modal & Set it's content
+
+function confirmDelete(id) {
   popUpModal.classList.add("pop-up-active");
   popUpTitle.textContent = "You are about to delete a product";
-  popUpText.textContent =
-    "This will delete the product from your table. Are you sure ?";
+  popUpText.textContent = "This will delete the product from your table. Are you sure?";
   popUpImg.src = "img/delete.svg";
-  // if user clicked the delete btn in the modal
-  deleteModalBtn.addEventListener("click", function handleDelete() {
-    currentUser.products.splice(index, 1);
-    localStorage.setItem("users", JSON.stringify(users));
-    displayProducts();
-    deleteModalBtn.removeEventListener("click", handleDelete);
-    popUpModal.classList.remove("pop-up-active");
-     Swal.fire({
-      text: "Product deleted successfully!",
-     icon: "success"
-   });
-  });
-    // if user clicked the cancel btn in the modal
-  cancelModalBtn.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
-  });
-  popUpModal.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
-  });
+
+  deleteModalBtn.onclick = function () {
+    deleteProduct(id);
+  };
 }
-// Function to delete all products with confirmation modal
-function deleteAll() {
+
+function confirmDeleteAll() {
   popUpModal.classList.add("pop-up-active");
-  popUpTitle.textContent = "Dude Are you sane ? You will delete everything !";
-  popUpText.textContent =
-    "I warned you , You will delete all the products from your table.";
+  popUpTitle.textContent = "Dude Are you sane? You will delete everything!";
+  popUpText.textContent = "I warned you, You will delete all the products from your table.";
   popUpImg.src = "img/delete-all.svg";
-  deleteModalBtn.addEventListener("click", function handleDelete() {
-    currentUser.products.splice(0);
-    localStorage.setItem("users", JSON.stringify(users));
-    displayProducts();
-    deleteModalBtn.removeEventListener("click", handleDelete);
-    popUpModal.classList.remove("pop-up-active");
-     Swal.fire({
-      text: "All Products deleted successfully!",
-     icon: "success"
-   });
+
+  deleteModalBtn.onclick = function () {
+    deleteAll();
+  };
+}
+
+function deleteProduct(id) {
+  const productIndex = currentUser.products.findIndex(product => product.id === id);
+  currentUser.products.splice(productIndex, 1);
+  localStorage.setItem("users", JSON.stringify(users));
+  Swal.fire({
+    text: "Product deleted successfully!",
+    icon: "success"
   });
-  cancelModalBtn.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
-  });
-  popUpModal.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
+  displayData(currentUser.products);
+  updatePaginationButtons();
+  updateFooterText(currentUser.products.length);
+  search.value="";
+
+  const startIndex = (currentPage - 1) * entriesPerPage;
+  const paginatedProducts = currentUser.products.slice(startIndex, startIndex + entriesPerPage);
+  if (paginatedProducts.length === 0 && currentPage > 1) {
+    goToPage(currentPage - 1);
+  }
+  closeModal();
+}
+
+function deleteAll() {
+  currentUser.products.splice(0);
+  localStorage.setItem("users", JSON.stringify(users));
+  displayData(currentUser.products);
+  updatePaginationButtons();
+  updateFooterText(currentUser.products.length);
+
+  closeModal();
+  search.value="";
+  Swal.fire({
+    text: "All Products deleted successfully!",
+    icon: "success"
   });
 }
-// Function to get data of certain product and fill the input fields with it & apply some changes in th UI
-function getData(index) {
-  currentIndex = index;
-  productName.value = currentUser.products[index].name;
-  category.value = currentUser.products[index].category;
-  price.value = currentUser.products[index].price;
-  taxes.value = currentUser.products[index].taxes;
-  ads.value = currentUser.products[index].ads;
-  discount.value = currentUser.products[index].discount;
-  totalBox.innerHTML = currentUser.products[index].total;
+
+function closeModal() {
+  popUpModal.classList.remove("pop-up-active");
+}
+
+function cancelModal() {
+  popUpModal.classList.remove("pop-up-active");
+  Swal.fire({
+    text: "Cancelled Successfully",
+    icon: "success",
+  });
+}
+
+function getData(id) {
+  currentId = id;
+  let product = currentUser.products.find(product => product.id === currentId);
+  console.log(product);
+  productName.value = product.name;
+  category.value = product.category;
+  price.value = product.price;
+  taxes.value = product.taxes;
+  ads.value = product.ads;
+  discount.value = product.discount;
+  totalBox.innerHTML = product.total;
   calcTotal();
   count.style.display = "none";
   mainBtn.innerHTML = "Update Product";
-  mainBtn.classList.remove('form-btn-default')
-  mainBtn.classList.add('form-btn-update')
+  mainBtn.classList.remove('form-btn-default');
+  mainBtn.classList.add('form-btn-update');
   window.scrollTo(0, 0);
 }
-// Function to update product data
-function updateData(index) {
-  currentUser.products[index].name = productName.value;
-  currentUser.products[index].category = category.value;
-  currentUser.products[index].price = Number(price.value);
-  currentUser.products[index].taxes = Number(taxes.value);
-  currentUser.products[index].ads = Number(ads.value);
-  currentUser.products[index].discount = Number(discount.value);
-  currentUser.products[index].total = totalBox.innerHTML;
-  localStorage.setItem("users", JSON.stringify(users));
-   Swal.fire({
-    text: "Product updated successfully!",
-   icon: "success"
- });
-  mainBtn.innerHTML = "Add Product";
-  count.style.display = "block";
-  mainBtn.classList.remove('form-btn-update')
-  mainBtn.classList.add('form-btn-default')
-  
- }
-// Function to display search results in real time
- search.addEventListener("keyup", function () {
-  let content = "";
-  for (let i = 0; i < currentUser.products.length; i++) {
-    if (
-      currentUser.products[i].name
-        .toLowerCase()
-        .includes(search.value.trim().toLowerCase()) ||
-      currentUser.products[i].category
-        .toLowerCase()
-        .includes(search.value.trim().toLowerCase())
-    )
-      content += `
-    <tr>
-    <td>${i + 1}</td>
-    <td>${currentUser.products[i].name}</td>
-    <td>${currentUser.products[i].category}</td>
-    <td>${currentUser.products[i].price}</td>
-    <td>${currentUser.products[i].taxes}</td>
-    <td>${currentUser.products[i].ads}</td>
-    <td>${currentUser.products[i].discount}</td>
-    <td>${currentUser.products[i].total}</td>
 
-    <td>
-        <div class="table-btns">
-            <i class="fa-solid fa-pen-to-square update" onclick="getData(${i}) " ></i>
-            <i class="fa-solid fa-trash delete" onclick="deleteProduct(${i})"></i>
-        </div>
+function searchProducts() {
+  const filteredProducts = currentUser.products.filter(product =>
+    product.name.toLowerCase().includes(search.value.trim().toLowerCase()) ||
+    product.category.toLowerCase().includes(search.value.trim().toLowerCase())
+  );
+  currentPage = 1; // Reset to the first page
+  displayData(filteredProducts);
+  updateFilteredPaginationButtons(filteredProducts);
+}
 
-    </td>
+function updateEntriesPerPage() {
+  entriesPerPage = Number(tableSize.value);
+  currentPage = Math.ceil(currentUser.products.length / entriesPerPage); // Navigate to the last page
+  displayData(currentUser.products);
+  updatePaginationButtons();
+}
 
-</tr>
-    
-  `;
+function updateFooterText(totalEntries) {
+  const startIndex = totalEntries === 0 ? 0 : (currentPage - 1) * entriesPerPage + 1;
+  const endIndex = totalEntries === 0 ? 0 : Math.min(startIndex + entriesPerPage - 1, totalEntries);
+  const footerText = `Showing ${startIndex} to ${endIndex} from ${totalEntries} entries`;
+  document.querySelector('footer p').textContent = footerText;
+}
+
+function updatePaginationButtons(filteredProducts = null) {
+  const totalPages = Math.ceil((filteredProducts || currentUser.products).length / entriesPerPage);
+
+  let paginationButtons = `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Prev</button>`;
+  for (let i = 1; i <= totalPages; i++) {
+    paginationButtons += `<button ${i === currentPage ? 'class="active"' : ''} onclick="goToPage(${i})">${i}</button>`;
   }
-  tableBody.innerHTML = content;
-});
-// Function to set error to input
+  paginationButtons += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>`;
+
+  document.querySelector('.pagination').innerHTML = paginationButtons;
+}
+
+function updateFilteredPaginationButtons(filteredProducts) {
+  const totalPages = Math.ceil(filteredProducts.length / entriesPerPage);
+
+  let paginationButtons = `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Prev</button>`;
+  for (let i = 1; i <= totalPages; i++) {
+    paginationButtons += `<button ${i === currentPage ? 'class="active"' : ''} onclick="goToPage(${i})">${i}</button>`;
+  }
+  paginationButtons += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>`;
+
+  document.querySelector('.pagination').innerHTML = paginationButtons;
+}
+
+function goToPage(pageNumber) {
+  currentPage = pageNumber;
+  displayData(currentUser.products);
+  updatePaginationButtons();
+}
+
+// Validation Functions
 function setError(element, message) {
   element.classList.add("error");
   tippy(element, {
@@ -300,11 +331,11 @@ function setError(element, message) {
     arrow: true,
   }).show();
 }
-// Function to set success to input
+
 function setSuccess(element) {
   element.classList.remove("error");
 }
-// Validation functions
+
 function validateName() {
   const nameValue = productName.value.trim();
   if (nameValue === "") {
@@ -315,6 +346,7 @@ function validateName() {
     return true;
   }
 }
+
 function validateCategory() {
   const categoryValue = category.value.trim();
   const categoryRegex = /^[A-Za-z\s]+$/;
@@ -329,6 +361,7 @@ function validateCategory() {
     return true;
   }
 }
+
 function validatePrice() {
   const priceValue = price.value.trim();
   if (priceValue === "") {
@@ -342,6 +375,7 @@ function validatePrice() {
     return true;
   }
 }
+
 function validateTaxes() {
   const taxesValue = taxes.value.trim();
   if (Number(taxesValue) < 0) {
@@ -352,6 +386,7 @@ function validateTaxes() {
     return true;
   }
 }
+
 function validateDiscount() {
   const discountValue = discount.value.trim();
   if (Number(discountValue) < 0) {
@@ -362,6 +397,7 @@ function validateDiscount() {
     return true;
   }
 }
+
 function validateAds() {
   const adsValue = ads.value.trim();
   if (Number(adsValue) < 0) {
@@ -372,7 +408,7 @@ function validateAds() {
     return true;
   }
 }
-// function to call all validation functions and check all inputs validations then returns true or false based on validation of all the input fields to help me then to add or update a product
+
 function validateInputs() {
   const validationFunctions = [
     validateName,
@@ -384,15 +420,12 @@ function validateInputs() {
   ];
   let isValid = true;
   validationFunctions.forEach((func) => {
-    if (func() === false) isValid = false;
+    if (!func()) isValid = false;
   });
   return isValid;
 }
 
-// Swal.fire({
-//   title: 'Error!',
-//   text: 'Do you want to continue',
-//   icon: 'error',
-//   confirmButtonText: 'Cool'
-// })
-//
+// Initial display
+displayData(currentUser.products);
+updatePaginationButtons();
+updateFooterText(currentUser.products.length);
