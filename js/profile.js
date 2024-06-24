@@ -15,8 +15,9 @@ const deleteImg = document.querySelector("#delete");
 const changePasswordBtn = document.querySelector("#change-password-btn");
 const deleteAccount = document.querySelector("#delete-account");
 const popUpModal = document.querySelector(".pop-up");
-const canceModallBtn = document.querySelector(".cancel-modal-btn");
+const cancelModalBtn = document.querySelector(".cancel-modal-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
+
 // function to display user data
 function displayInputs() {
   proName.textContent = currentUser.name;
@@ -29,15 +30,16 @@ function displayInputs() {
   if (currentUser.jobTitle) jobTitleInput.value = currentUser.jobTitle;
 }
 displayInputs();
+
 // function tells the user that email is disabled
-function emailHover() {
-  toastr.clear();
-  toastr["warning"]("Email cannot be changed");
-  setTimeout(function () {
-    toastr.clear();
-  }, 3000);
+function emailDisable() {
+  Swal.fire({
+    text: "Email cannot be changed",
+    icon: "info",
+  });
 }
-// Update or Save user's info  based on the button's current text
+
+// Update or Save user's info based on the button's current text
 mainBtn.addEventListener("click", function () {
   if (mainBtn.textContent === "Update Info") {
     mainBtn.textContent = "Save Changes";
@@ -54,13 +56,14 @@ mainBtn.addEventListener("click", function () {
     });
     emailInput.disabled = true;
     emailInput.style.backgroundColor = "var(--input-disabled-color)";
-    emailInput.addEventListener("mouseenter", emailHover);
+    emailInput.addEventListener("mouseenter", emailDisable);
   } else {
-    emailInput.removeEventListener("mouseenter", emailHover);
+    emailInput.removeEventListener("mouseenter", emailDisable);
     validateInputs();
     displayProfile();
   }
 });
+
 // Change password
 changePasswordBtn.addEventListener("click", function () {
   if (changePasswordBtn.textContent === "Change Password") {
@@ -73,6 +76,7 @@ changePasswordBtn.addEventListener("click", function () {
     validatePasswords();
   }
 });
+
 // Function to update user data
 function updateUser() {
   currentUser.name = fullNameInput.value;
@@ -112,6 +116,7 @@ function updateUser() {
     input.disabled = true;
   });
 }
+
 // Function to update user password
 function updatePassword() {
   if (newPasswordInput.value !== "") {
@@ -129,6 +134,7 @@ function updatePassword() {
     input.disabled = true;
   });
 }
+
 // Function to set error to input
 function setError(element, message) {
   element.classList.add("error");
@@ -140,10 +146,12 @@ function setError(element, message) {
     arrow: true,
   }).show();
 }
+
 // Function to set success to input
 function setSuccess(element) {
   element.classList.remove("error");
 }
+
 // validation functions
 function validateFullName() {
   const nameValue = fullNameInput.value.trim();
@@ -205,6 +213,7 @@ function validateJobTitle() {
     return true;
   }
 }
+
 function validateInputs() {
   const validationFunctions = [
     validateFullName,
@@ -232,27 +241,28 @@ function validateInputs() {
     });
   }
 }
+
 // Validate passwords
 function validateNewPassword() {
   const newPasswordValue = newPasswordInput.value.trim();
   if (newPasswordValue !== "" && newPasswordValue.length < 8) {
     setError(newPasswordInput, `Password must be at least 8 characters long`);
     return false;
-  } else if (currentUser.password == newPasswordValue)
-    setError(
-      newPasswordInput,
-      `This is the same password please enter a new one`
-    );
-  else {
+  } else if (currentUser.password == newPasswordValue) {
+    setError(newPasswordInput, `This is the same password, please enter a new one`);
+    return false;
+  } else {
     setSuccess(newPasswordInput);
     return true;
   }
 }
+
 function validateConfirmPassword() {
   const confirmPasswordValue = confirmPasswordInput.value.trim();
   const newPasswordValue = newPasswordInput.value.trim();
   if (newPasswordValue !== "" && confirmPasswordValue == "") {
     setError(confirmPasswordInput, `Please confirm your new password`);
+    return false;
   } else if (
     confirmPasswordValue !== "" &&
     confirmPasswordValue !== newPasswordValue
@@ -264,6 +274,7 @@ function validateConfirmPassword() {
     return true;
   }
 }
+
 function validatePasswords() {
   const validationFunctions = [validateNewPassword, validateConfirmPassword];
   let isValid = true;
@@ -282,66 +293,112 @@ function validatePasswords() {
     });
   }
 }
+
 // handle file input for img
 accountImgFile.addEventListener("change", () => {
   let file = accountImgFile.files[0];
   let reader = new FileReader();
   reader.readAsDataURL(file);
   reader.addEventListener("load", function () {
-    accountImg.src = reader.result;
-    currentUser.img = reader.result;
-    localStorage.setItem("users", JSON.stringify(users));
-    displayProfile();
-  });
-  Swal.fire({
-    text: "Image added Succesfully",
-    icon: "success",
+    Swal.fire({
+      title: 'This will be your profile photo',
+      imageUrl: reader.result,
+      imageAlt: 'User Image',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        accountImg.src = reader.result;
+        currentUser.img = reader.result;
+        localStorage.setItem("users", JSON.stringify(users));
+        Swal.fire({
+          text: "Profile photo has been added successfully",
+          icon: "success",
+        });
+        displayProfile();
+      }
+    });
   });
 });
 
 deleteImg.addEventListener("click", function () {
-  // Check if the currentUser object exists
   if (currentUser) {
-    // Check if the currentUser has an image
     if (currentUser.img) {
-      // Set the image URL to an empty string or null
-      currentUser.img = ""; // or currentUser.img = null;
-      // Save the updated user data to localStorage
-      localStorage.setItem("users", JSON.stringify(users));
-      // Update the profile and inputs display
-      displayProfile();
-      displayInputs();
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to remove your profile photo?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          currentUser.img = "";
+          localStorage.setItem("users", JSON.stringify(users));
+          displayProfile();
+          displayInputs();
+          Swal.fire({
+            text: "Profile photo has been removed successfully",
+            icon: "success",
+          });
+        }
+      });
     } else {
-      console.log("Current user does not have an image to delete.");
+      Swal.fire({
+        text: "There is no photo to remove",
+        icon: "error",
+      });
     }
-  } else {
-    console.log("Current user not found.");
   }
-  Swal.fire({
-    text: "Image deleted Succesfully",
-    icon: "success",
-  });
 });
 
 deleteAccount.addEventListener("click", function () {
   popUpModal.classList.add("pop-up-active");
   deleteModalBtn.addEventListener("click", function handleDelete() {
-    let index = users.findIndex(
-      (user) => user.name === userName && user.email === userEmail
-    );
-    users.splice(index, 1);
-    localStorage.setItem("users", JSON.stringify(users));
-    deleteModalBtn.removeEventListener("click", handleDelete);
-    popUpModal.classList.remove("pop-up-active");
     Swal.fire({
-      text: "Account Deleted Succesfully",
-      icon: "success",
+      title: 'Confirm the deletion',
+       html:
+        '<input type="email" id="swal-email" class="swal2-input" placeholder="Email">' +
+        '<input type="password" id="swal-password" class="swal2-input" placeholder="Password">',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      preConfirm: () => {
+        const email = Swal.getPopup().querySelector('#swal-email').value;
+        const password = Swal.getPopup().querySelector('#swal-password').value;
+        if (!email || !password) {
+          Swal.showValidationMessage(`Please enter email and password`);
+        }
+        return { email: email, password: password }
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const { email, password } = result.value;
+        if (email === currentUser.email && password === currentUser.password) {
+          let index = users.findIndex(user => user.email === email);
+          users.splice(index, 1);
+          localStorage.setItem("users", JSON.stringify(users));
+          deleteModalBtn.removeEventListener("click", handleDelete);
+          popUpModal.classList.remove("pop-up-active");
+          Swal.fire({
+            text: "Account Deleted Successfully",
+            icon: "success",
+          });
+          setTimeout(function () {
+            window.location.href = "signUp.html";
+          }, 3000);
+        } else {
+          Swal.fire({
+            text: "Incorrect email or password",
+            icon: "error",
+          });
+        }
+      }
     });
-    setTimeout(function () {
-      window.location.href = "signUp.html";
-    }, 3000);
   });
-  canceModallBtn.addEventListener("click", function () {
+
+  cancelModalBtn.addEventListener("click", function () {
     popUpModal.classList.remove("pop-up-active");
     deleteModalBtn.removeEventListener("click", handleDelete);
   });

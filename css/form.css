@@ -35,11 +35,11 @@ a {
 .main-title {
   font-weight: 700;
   margin-bottom: 2.4rem;
-  font-size: 3.6rem; 
+  font-size: 3.2rem; 
 }
 .main-text {
   line-height: 1.6;
-  font-size: 1.8rem; 
+  font-size: 1.6rem; 
 
 }
 .boss-qoute {
@@ -54,10 +54,10 @@ a {
   align-items: center;
   background-color: #eff6ff;
   border-radius: 5px;
-   padding: 1.6rem .8rem;
+   padding:.8rem;
   border: 2px solid #dee2e6;
   color: #333;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
     position: relative;
 
  }
@@ -83,18 +83,18 @@ input {
   outline: none;
   font-weight: 600;
   width: 100%;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 input::placeholder {
   color: #1e40af;
   font-weight: 500;
-  font-size:  1.8rem;
+  font-size:  1.6rem;
 }
 .field .input-icon {
   color: #1e40af;
   margin-left: 1rem;
   padding-right:  1.2rem;
-  font-size:  1.8rem;
+  font-size:  1.6rem;
 }
 .verfy-icon{
    font-size:  2rem;
@@ -175,7 +175,7 @@ display: block;
   padding:  1rem  .5rem;
   border-radius: 5px;
   margin:  1.2rem 0;
-  font-size:  2rem; /* Increased font size */
+  font-size:  1.8rem; 
 }
 
 .my-btn:hover {
@@ -185,8 +185,8 @@ display: block;
 .sign-box {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width:  80rem;
-  border-radius: 11px;
+  max-width:80rem;
+    border-radius: 11px;
   box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
@@ -224,7 +224,7 @@ display: block;
   padding: 1.2rem;
   border-radius: 9px;
   margin-bottom: 2rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 .boss-img {
   width: 4rem;

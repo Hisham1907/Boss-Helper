@@ -57,7 +57,8 @@ main {
 /* Button Styling */
 #add-new-member,
 .submit-btn,
-.view-btn {
+.view-btn,
+.remove-img-btn {
   background-color: var(--fancy-bg-color) ;
   color: var(--fancy-color);
   padding: 1rem 1.6rem;
@@ -223,8 +224,11 @@ table .empty {
   border: 1px solid var(--box-shadow-color);
   position: relative;
   overflow: hidden;
+  margin-bottom: 1.2rem;
 }
-
+.remove-img-btn{
+  width: 100%;
+}
 .form .upload {
   position: absolute;
   width: 100%;
@@ -257,7 +261,7 @@ table .empty {
   height: 15rem;
   border-radius: 5px;
 }
-
+ 
 /* Input fields */
 .input-fields {
   display: grid;

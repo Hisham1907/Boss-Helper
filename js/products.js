@@ -1,5 +1,4 @@
 "use strict";
-
 // Select DOM Elements
 const productName = document.getElementById("name");
 const category = document.getElementById("category");
@@ -29,6 +28,7 @@ let entriesPerPage = 5;
 if (!currentUser.products) {
   currentUser.products = [];
 }
+let formMode = "add"; // "add" or "update"
 
 // Event listeners
 [price, taxes, ads, discount].forEach((input) =>
@@ -57,7 +57,7 @@ function calcTotal() {
 
 function handleFormSubmit() {
   if (validateInputs()) {
-    if (mainBtn.innerHTML === "Add Product") {
+    if (formMode == "add") {
       addProduct();
     } else {
       updateProduct(currentId);
@@ -97,7 +97,8 @@ function addProduct() {
 
   localStorage.setItem("users", JSON.stringify(users));
   Swal.fire({
-    text: "Product added successfully!",
+    title:'Added !'  ,
+    text: "Product has been added successfully!",
     icon: "success"
   });
 
@@ -115,9 +116,11 @@ function updateProduct(id) {
   product.total = totalBox.innerHTML;
   localStorage.setItem("users", JSON.stringify(users));
   Swal.fire({
-    text: "Product updated successfully!",
+    title:'Updated !'  ,
+    text: "Product has been updated successfully!",
     icon: "success"
   });
+ formMode == "add";
 }
 
 function clearInputs() {
@@ -204,7 +207,8 @@ function deleteProduct(id) {
   currentUser.products.splice(productIndex, 1);
   localStorage.setItem("users", JSON.stringify(users));
   Swal.fire({
-    text: "Product deleted successfully!",
+    title:'Deleted !'  ,
+    text: "Product has been deleted successfully!",
     icon: "success"
   });
   displayData(currentUser.products);
@@ -230,7 +234,8 @@ function deleteAll() {
   closeModal();
   search.value="";
   Swal.fire({
-    text: "All Products deleted successfully!",
+    title:'Clear !'  ,
+    text: "All Products have been deleted successfully!",
     icon: "success"
   });
 }
@@ -248,6 +253,7 @@ function cancelModal() {
 }
 
 function getData(id) {
+  formMode = "update";
   currentId = id;
   let product = currentUser.products.find(product => product.id === currentId);
   console.log(product);

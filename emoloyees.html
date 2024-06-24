@@ -76,11 +76,8 @@
               <span>Profile</span>
             </a>
           </li>
-          <li class="menu-item">
-            <a href="signIn.html"><i class="menu-icon fas fa-sign-out-alt"></i>
-              <span>Logout</span>
-            </a>
-          </li>
+          <li class="menu-item"><a id="logout-icon"><i class="menu-icon fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+
           <li>
             <div class="mode">
               <div class="mode-icon">
@@ -175,13 +172,17 @@
       </header>
       <main>
         <div class="form">
-          <div class="img-holder">
-            <label for="file-input" class="upload">
-              <input type="file" id="file-input" class="picture">
-              <i class="fa-solid fa-plus"></i>
-            </label>
-            <img src="img/user.png" alt="" id="employee-form-img">
-          </div>
+       <div class="img-box">
+        <div class="img-holder">
+          <label for="file-input" class="upload">
+            <input type="file" id="file-input" class="picture">
+            <i class="fa-solid fa-plus"></i>
+          </label>
+          <img src="img/user.png" alt="" id="employee-form-img">
+        </div>
+        <button class="remove-img-btn">Remove Photo</button>
+       </div>
+
           <div class="input-fields">
             <div class="input-box">
               <label for="first-name">First Name </label>

@@ -27,13 +27,19 @@ function signInHandler() {
         }
       }
       if (isValid) {
-         Swal.fire({
-          text: "Login Succesfully",
-         icon: "success"
-       })
-        setTimeout(function() {
-           window.location.href = "dashboard.html";
-        }, 3000); 
+setTimeout(function(){
+  Swal.fire({
+    text: "Login Succesfully",
+   icon: "success"
+ }).then((result) => {
+  if (result.isConfirmed) {
+    setTimeout(function() {
+      window.location.href = "dashboard.html";
+   }, 1000); 
+               }
+});
+},1000)
+     
       } else {
          Swal.fire({
           text: "Incorrect email or password. Please check and try again.",

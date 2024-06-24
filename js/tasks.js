@@ -114,7 +114,12 @@ function addTask() {
   }
   currentUser.tasksCategories[categorySelected.value].push(task);
   localStorage.setItem("users", JSON.stringify(users));
-  Swal.fire({ text: "Task added successfully!", icon: "success" });
+   Swal.fire({
+    title:'Added !'  ,
+    text: "Task has been added successfully",
+    icon: "success",
+});
+
   displayCount();
   displayData(currentUser.tasks);
   updateCatsTasksCount();
@@ -229,7 +234,11 @@ function updateTask() {
   }
 
   localStorage.setItem("users", JSON.stringify(users));
-  Swal.fire({ text: "Task updated successfully!", icon: "success" });
+   Swal.fire({
+    title:'Updated !'  ,
+    text: "Task has been updated successfully",
+    icon: "success",
+});
   updateCatsTasksCount();
 }
 
@@ -267,7 +276,11 @@ function deleteTask(id) {
   categoryTasks.splice(taskIndex, 1);
 
   localStorage.setItem("users", JSON.stringify(users));
-  Swal.fire({ text: "Task deleted successfully!", icon: "success" });
+  Swal.fire({
+    title:'Deleted !'  ,
+    text: "Task has been deleted successfully",
+    icon: "success",
+});
   displayCount();
   displayData(currentUser.tasks);
   updateCatsTasksCount();

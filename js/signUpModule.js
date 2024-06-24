@@ -5,7 +5,7 @@ const confirmPasswordInput = document.querySelector("#confirm-password");
 const inputField = document.querySelector(".input-field");
 const errorMessage = document.querySelector(".input-field small");
 const signUpBtn = document.getElementById("signUp");
-                     
+
 let users = [];
 if (localStorage.getItem("users") !== null) {
   users = JSON.parse(localStorage.getItem("users"));
@@ -23,25 +23,32 @@ function addUser() {
     };
     users.push(userData);
     localStorage.setItem("users", JSON.stringify(users));
-    clear();
-     Swal.fire({
-      text: "Account created successfully!",
-     icon: "success"
-   })
-    setTimeout(function() {
-       window.location.href = "signIn.html";  
-    }, 3000);  
+    setTimeout(function () {
+      clear();
+      Swal.fire({
+        text: "Account created successfully!",
+        icon: "success",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setTimeout(function () {
+            window.location.href = "signIn.html";
+          }, 1000);
+        }
+      });
+    }, 1000);
+    
   } else {
-     Swal.fire({
+    Swal.fire({
       text: "Sign up failed! Please check the form for errors.",
-     icon: "error"
-   }).then(() => {
-    validateName();
-    validateEmail();
-    validatePassword();
-    validatePasswordConfirmation(passwordInput.value);});
+      icon: "error",
+    }).then(() => {
+      validateName();
+      validateEmail();
+      validatePassword();
+      validatePasswordConfirmation(passwordInput.value);
+    });
   }
-  resetAppChoices()
+  resetAppChoices();
 }
 function clear() {
   nameInput.value = "";
@@ -63,18 +70,18 @@ signUpHandler();
 
 function setError(element, message) {
   let inputControl = element.parentElement.parentElement;
-   inputControl.classList.add("error");
+  inputControl.classList.add("error");
   inputControl.classList.remove("success");
   if (element._tippy) {
     element._tippy.destroy();
   }
   tippy(element, {
     content: message,
-    trigger: 'manual',  
-    placement: 'bottom',  
-     theme:'errorTooltip',  
-     arrow:true
-     }).show(); 
+    trigger: "manual",
+    placement: "bottom",
+    theme: "errorTooltip",
+    arrow: true,
+  }).show();
 }
 function setSuccess(element) {
   if (element._tippy) {
@@ -89,20 +96,18 @@ function validateName() {
   let nameValue = nameInput.value.trim();
   if (nameValue == "") {
     setError(nameInput, "Name field cannot be empty");
-  }
-   else if (nameValue.length < 3) {
+  } else if (nameValue.length < 3) {
     setError(nameInput, "Name must be at least 3 characters long");
-  }
-   else if (nameValue.length > 30) {
+  } else if (nameValue.length > 30) {
     setError(nameInput, "Name cannot exceed 30 characters");
-   }
-  else {
+  } else {
     setSuccess(nameInput);
   }
 }
 function validateEmail() {
   let emailValue = emailInput.value.trim();
-  const emailRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  const emailRegex =
+    /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   if (emailValue == "") {
     setError(emailInput, "Email field cannot be empty");
@@ -119,10 +124,7 @@ function validateEmail() {
       }
     }
     if (emailExists)
-      setError(
-        emailInput,
-        "This Email already exists. Choose another one"
-      );
+      setError(emailInput, "This Email already exists. Choose another one");
     else setSuccess(emailInput);
   }
 }
@@ -148,7 +150,7 @@ function validatePasswordConfirmation(passwordValue) {
   }
 }
 
-nameInput.addEventListener("input", function() {
+nameInput.addEventListener("input", function () {
   if (nameInput.value.trim() === "") {
     clearError(nameInput);
   } else {
@@ -156,7 +158,7 @@ nameInput.addEventListener("input", function() {
   }
 });
 
-emailInput.addEventListener("input", function() {
+emailInput.addEventListener("input", function () {
   if (emailInput.value.trim() === "") {
     clearError(emailInput);
   } else {
@@ -164,7 +166,7 @@ emailInput.addEventListener("input", function() {
   }
 });
 
-passwordInput.addEventListener("input", function() {
+passwordInput.addEventListener("input", function () {
   if (passwordInput.value.trim() === "") {
     clearError(passwordInput);
   } else {
@@ -172,7 +174,7 @@ passwordInput.addEventListener("input", function() {
   }
 });
 
-confirmPasswordInput.addEventListener("input", function() {
+confirmPasswordInput.addEventListener("input", function () {
   if (confirmPasswordInput.value.trim() === "") {
     clearError(confirmPasswordInput);
   } else {
@@ -186,25 +188,24 @@ function clearError(inputElement) {
   inputControl.classList.remove("error");
   inputControl.classList.remove("success");
 }
- 
- 
-  // loader
-  const loader=document.querySelector('#loader')
-function showLoader(){
-  if(loader){
-    loader.style.display='flex'
+
+// loader
+const loader = document.querySelector("#loader");
+function showLoader() {
+  if (loader) {
+    loader.style.display = "flex";
   }
 }
-showLoader()
-function removeLoader(){
-  if(loader){
-    loader.style.display='none'
+showLoader();
+function removeLoader() {
+  if (loader) {
+    loader.style.display = "none";
   }
 }
-setTimeout(removeLoader,2500)
-function resetAppChoices(){
+setTimeout(removeLoader, 2500);
+function resetAppChoices() {
   isChecked = false;
   isAsideActive = false;
-  localStorage.setItem('isChecked',JSON.stringify(isChecked))
-  localStorage.setItem('isAsideActive', JSON.stringify(isAsideActive));
+  localStorage.setItem("isChecked", JSON.stringify(isChecked));
+  localStorage.setItem("isAsideActive", JSON.stringify(isAsideActive));
 }

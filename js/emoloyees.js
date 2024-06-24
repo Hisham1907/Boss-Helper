@@ -1,4 +1,5 @@
 "use strict"; 
+
 // Select DOM Elements
 const addNewMemberBtn = document.getElementById("add-new-member");
 const formContainer = document.querySelector(".form-container");
@@ -17,17 +18,21 @@ const tableBody = document.getElementById("tableBody");
 const search = document.getElementById("search");
 const popUpModal = document.querySelector(".pop-up");
 const cancelModalBtn = document.querySelector(".cancel-modal-btn");
+const removeImgBtn = document.querySelector(".remove-img-btn");
 const deleteModalBtn = document.querySelector(".delete-modal-btn");
 const tableSize = document.querySelector('#table-size');
 
 // Store the current img selected by user using file input
 let currentImgSrc = "img/user.png"; // Initialize with default image
-let currentEmployeeId = null; // Store the current employee id for update/delete
+let currentEmployeeId; // Store the current employee id for update/delete
+let currentIndex;
+let formMode = "add"; // "add" or "update"
 
 // Initialize employees array if not already initialized in currentUser object
 if (!currentUser.employees) {
     currentUser.employees = [];
 }
+
 // pagination Initializations
 let currentPage = 1;
 let entriesPerPage = 5;
@@ -39,12 +44,15 @@ fileInput.addEventListener("change", handleFileInput);
 mainBtn.addEventListener("click", handleFormSubmit);
 tableSize.addEventListener('change', updateEntriesPerPage);
 search.addEventListener("keyup", searchEmployees);
+removeImgBtn.addEventListener("click", confirmRemoveImg);
 cancelModalBtn.addEventListener("click", cancelModal);
 popUpModal.addEventListener("click", closeModal);
 
 function openForm() {
+    formMode = "add";
     formContainer.classList.add("appear");
     employeesForm.classList.add("appear");
+    clearForm();
 }
 
 function closeForm() {
@@ -59,80 +67,141 @@ function handleFileInput(e) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            currentImgSrc = reader.result;
-            employeeFormImg.src = currentImgSrc;
+            Swal.fire({
+                title: 'You will use this photo',
+                 imageUrl: reader.result,
+                imageAlt: 'Employee Image',
+                showCancelButton: true,
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    currentImgSrc = reader.result;
+                    employeeFormImg.src = currentImgSrc;
+                     Swal.fire({
+                        text: "Photo has been added successfully",
+                        icon: "success"
+                    });
+                }
+            });
         };
     } else {
-         Swal.fire({
+        Swal.fire({
             text: "The file must be less than 1 MB",
-           icon: "info"
-         })
+            icon: "info"
+        });
     }
 }
-// Validates form inputs and either adds or updates an employee based on the form's Button text.
+
+function confirmRemoveImg() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to remove this Photo?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            removeImg();
+            if (formMode === "update") {
+                const employee = currentUser.employees.find(emp => emp.id === currentEmployeeId);
+                if (employee) {
+                    employee.img = 'img/user.png';
+                    localStorage.setItem("users", JSON.stringify(users));
+                }
+            }
+             Swal.fire({
+                text: "Photo has been removed successfully",
+                icon: "success"
+            });
+        }
+    });
+}
+
+function removeImg() {
+    employeeFormImg.src = 'img/user.png';
+    currentImgSrc = 'img/user.png';
+}
+
 function handleFormSubmit() {
     if (validateInputs()) {
-        if (mainBtn.innerHTML === "Add Employee") {
+        if (formMode === "add") {
             addEmployee();
-        } else {
-            updateEmployee(currentEmployeeId);
-            mainBtn.innerHTML = "Add Employee";
+            Swal.fire({
+                title:'Added !'  ,
+                text: "Employee has been added successfully",
+                icon: "success"
+            });
+            closeForm();
+            displayData(currentUser.employees);
+            updatePaginationButtons();
         }
-        closeForm();
-        displayData(currentUser.employees)
-        updatePaginationButtons();
+         else {
+            Swal.fire({
+                title: 'Save the changes',
+                text: "Do you want to update this employee?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    updateEmployee(currentEmployeeId);
+                     Swal.fire({
+                        title:'Updated !'  ,
+                        text: "Employee has been updated successfully",
+                        icon: "success"
+                    });
+                    closeForm();
+                    displayData(currentUser.employees);
+                    updatePaginationButtons();
+                }
+            });
+        }
     } else {
-         Swal.fire({
-            text: "Please fix all the errors to proceed !",
-           icon: "error"
-         }).then(() => {
-            validateInputs() 
+        Swal.fire({
+            text: "Please fix all the errors to proceed!",
+            icon: "error"
+        }).then(() => {
+            validateInputs();
         });
-      
     }
 }
 
 function addEmployee() {
-  const employee = {
-      id: Date.now(), // Unique ID for each employee
-      img: currentImgSrc,
-      firstName: firstName.value,
-      lastName: lastName.value,
-      age: age.value,
-      position: position.value,
-      salary: salary.value,
-      phone: phone.value,
-  };
+    const employee = {
+        id: Date.now(), // Unique ID for each employee
+        img: currentImgSrc,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        age: age.value,
+        position: position.value,
+        salary: salary.value,
+        phone: phone.value,
+    };
 
-  currentUser.employees.push(employee);
-  localStorage.setItem("users", JSON.stringify(users));
-   Swal.fire({
-     text: "Employee added successfully!",
-    icon: "success"
-  });
-  // Calculate the total pages and the page where the new employee should be displayed
-  const totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
-  const targetPage = totalPages;
-  goToPage(targetPage); // Navigate to the last page
+    currentUser.employees.push(employee);
+    localStorage.setItem("users", JSON.stringify(users));
+    // Calculate the total pages and the page where the new employee should be displayed
+    const totalPages = Math.ceil(currentUser.employees.length / entriesPerPage);
+    const targetPage = totalPages;
+    goToPage(targetPage); // Navigate to the last page
 }
 
 function updateEmployee(id) {
-  const employee = currentUser.employees.find(emp => emp.id === id);
-  if (employee) {
-      employee.img = currentImgSrc;
-      employee.firstName = firstName.value; 
-      employee.lastName = lastName.value;
-      employee.age = age.value;
-      employee.position = position.value;
-      employee.salary = salary.value;
-      employee.phone = phone.value;
-      localStorage.setItem("users", JSON.stringify(users));
-      mainBtn.innerHTML = "Add Employee";
-       Swal.fire({
-        text: "Employee updated successfully!",
-       icon: "success"
-     });
-  }
+    const employee = currentUser.employees.find(emp => emp.id === id);
+    if (employee) {
+        employee.img = currentImgSrc;
+        employee.firstName = firstName.value;
+        employee.lastName = lastName.value;
+        employee.age = age.value;
+        employee.position = position.value;
+        employee.salary = salary.value;
+        employee.phone = phone.value;
+        localStorage.setItem("users", JSON.stringify(users));
+        mainBtn.innerHTML = "Add Employee";
+    }
 }
 
 function clearForm() {
@@ -146,8 +215,7 @@ function clearForm() {
     salary.value = "";
     phone.value = "";
     document.querySelectorAll('input.error').forEach(input => input.classList.remove("error"));
-    search.value=""
-
+    search.value = "";
 }
 
 function deleteEmployee(id) {
@@ -158,10 +226,12 @@ function deleteEmployee(id) {
             currentUser.employees.splice(employeeIndex, 1);
             localStorage.setItem("users", JSON.stringify(users));
             Swal.fire({
-                text: "Employee deleted Succesfully",
+                title:'Deleted !'  ,
+                text: "Employee has been deleted successfully",
                 icon: "success",
-              });
-             displayData(currentUser.employees)
+            });
+          
+            displayData(currentUser.employees);
             updatePaginationButtons();
 
             // Check if the current page is empty and navigate to the previous page if necessary
@@ -173,7 +243,7 @@ function deleteEmployee(id) {
 
             closeModal();
             updateFooterText(currentUser.employees.length);
-            search.value="";
+            search.value = "";
 
         }
     };
@@ -185,14 +255,16 @@ function closeModal() {
 function cancelModal() {
     popUpModal.classList.remove("pop-up-active");
     Swal.fire({
-        text: "Cancelled Succesfully",
+        text: "Cancelled Successfully",
         icon: "success",
-      });
+    });
 }
 
 function getData(id) {
+    formMode = "update";
     currentEmployeeId = id;
     const employee = currentUser.employees.find(emp => emp.id === id);
+    currentIndex = currentUser.employees.findIndex(emp => emp.id === id);
     if (employee) {
         formContainer.classList.add("appear");
         employeesForm.classList.add("appear");
@@ -216,7 +288,8 @@ function searchEmployees() {
     displayData(filteredEmployees);
     updateFilteredPaginationButtons(filteredEmployees);
 }
- function displayData(employeesArr) {
+
+function displayData(employeesArr) {
     let content = "";
     const startIndex = (currentPage - 1) * entriesPerPage;
     const paginatedEmployees = employeesArr.slice(startIndex, startIndex + entriesPerPage);
@@ -247,10 +320,11 @@ function searchEmployees() {
     tableBody.innerHTML = content;
     updateFooterText(employeesArr.length);
 }
+
 function updateEntriesPerPage() {
     entriesPerPage = Number(tableSize.value);
     currentPage = Math.ceil(currentUser.employees.length / entriesPerPage); // Navigate to the last page
-    displayData(currentUser.employees)
+    displayData(currentUser.employees);
     updatePaginationButtons();
 }
 
@@ -259,7 +333,7 @@ function updateFooterText(totalEntries) {
     const endIndex = totalEntries === 0 ? 0 : Math.min(startIndex + entriesPerPage - 1, totalEntries);
     const footerText = `Showing ${startIndex} to ${endIndex} from ${totalEntries} entries`;
     document.querySelector('footer p').textContent = footerText;
-  }
+}
 
 function updatePaginationButtons(filteredEmployees = null) {
     const totalPages = Math.ceil((filteredEmployees || currentUser.employees).length / entriesPerPage);
@@ -287,7 +361,7 @@ function updateFilteredPaginationButtons(filteredEmployees) {
 
 function goToPage(pageNumber) {
     currentPage = pageNumber;
-    displayData(currentUser.employees)
+    displayData(currentUser.employees);
     updatePaginationButtons();
 }
 
@@ -381,6 +455,7 @@ function addTooltips() {
     tippy("#search", { content: "Search for an employee", placement: "top", zIndex: 9999999, theme: 'modes' });
     tippy(".fa-magnifying-glass", { content: "Click to search", placement: "top", zIndex: 9999999, theme: 'modes' });
     tippy(".close-btn", { content: "Close", placement: "bottom", zIndex: 9999999, theme: 'modes' }); 
+    tippy(".img-holder", { content: "Add Photo", placement: "top", zIndex: 9999999, theme: 'modes' }); 
 }
 addTooltips();
  
@@ -388,5 +463,3 @@ addTooltips();
 displayData(currentUser.employees)
 updatePaginationButtons();
 updateFooterText(currentUser.employees.length);
-
- 
