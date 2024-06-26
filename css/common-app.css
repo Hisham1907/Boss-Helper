@@ -34,6 +34,7 @@
   --overlay-color: rgba(255, 255, 255, 0.2);
   --search-icon-color: #b1bcd1;
   --fancy-bg-color: #edf1f7;
+  --tippy-bg-color:#edf1f7;
   --fancy-bg-hover-color: #f7f9fc;
   --fancy-color: #222b45;
   --yellow-color: #d79614;
@@ -75,14 +76,15 @@
   --active-category-shadow-color: rgba(59, 131, 246, 0.6);
   --overlay-color: rgba(0, 0, 0, 0.2);
   /*  */
-  --fancy-bg-color: #0a57c2bf;
+  --tippy-bg-color:#0a57c2;
+   --fancy-bg-color: #0a57c2d9;
   --fancy-color: #fff;
   --table-odd-color: #e1e3e7;
   --table-hover-color: #e1e8f4;
-  --fancy-bg-hover-color: #0a57c2d9;
-  --form-btn-default:#0a57c2bf ;
-  --total-default-color: #0a57c2bf;
-  --total-active-color:rgba(10, 87, 194, 0.5);
+  --fancy-bg-hover-color: #0a57c2;
+  --form-btn-default:#0a57c2d9 ;
+  --total-default-color: #0a57c2d9;
+  --total-active-color:#0a57c2d9;
   --form-btn-update:#d79614bf ;
   --yellow-color: #d79614;
   --yellow-hover-color: #daad45;
@@ -103,6 +105,20 @@
 html {
   font-size: 62.5%;
 }
+/* Scroll-bar */
+::-webkit-scrollbar{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+::-webkit-scrollbar-track{
+    background-color: var(--aside-bg-color);
+ }
+::-webkit-scrollbar-thumb{
+   background-color: #fff;
+  border: 2px solid var(--aside-bg-color);
+  border-radius: 100vw;
+}
+ 
 .container {
   display: grid;
   grid-template-columns: 28rem auto;
@@ -457,7 +473,7 @@ table .empty {
 }
 
 .tippy-box[data-theme="modes"] {
-  background-color: var(--fancy-bg-color);
+  background-color: var(--tippy-bg-color);
   color: var(--fancy-color);
   font-size: 1.4rem;
   font-weight: 500;
@@ -466,22 +482,22 @@ table .empty {
 }
 
 .tippy-box[data-theme="modes"][data-placement^="bottom"] > .tippy-arrow::before {
-  color: var(--fancy-bg-color);
+  color: var(--tippy-bg-color);
 }
 
 .tippy-box[data-theme="modes"][data-placement^="top"] > .tippy-arrow::before {
-  color: var(--fancy-bg-color);
+  color: var(--tippy-bg-color);
 }
 
 .tippy-box[data-theme="modes"][data-placement^="right"] > .tippy-arrow::before {
-  color: var(--fancy-bg-color);
+  color: var(--tippy-bg-color);
 }
 
 .tippy-box[data-theme="modes"][data-placement^="left"] > .tippy-arrow::before {
-  color: var(--fancy-bg-color);
+  color: var(--tippy-bg-color);
 }
 .tippy-box[data-theme="navTips"] {
-  background-color: var(--fancy-bg-color);
+  background-color: var(--tippy-bg-color);
   color: var(--fancy-color);
   font-size: 1.4rem;
   font-weight: 500;
@@ -490,7 +506,7 @@ table .empty {
    
 }
 .tippy-box[data-theme="navTips"][data-placement^="right"] > .tippy-arrow::before {
-  color: var(--fancy-bg-color);
+  color: var(--tippy-bg-color);
 }
 
 #toast-container > div {
@@ -759,3 +775,9 @@ footer .pagination button.active {
   background-color: var(--fancy-bg-color);
   color: var(--fancy-color);
 }
+
+
+
+
+
+

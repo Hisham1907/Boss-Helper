@@ -19,7 +19,7 @@ const codingCount = document.getElementById("coding-count");
 const fitnessCount = document.getElementById("fitness-count");
 const educationCount = document.getElementById("education-count");
 const allCount = document.getElementById("all-count");
-const tableSize = document.querySelector('#table-size');
+const tableSize = document.querySelector("#table-size");
 
 // Category Icons
 const categoryIcons = {
@@ -55,10 +55,16 @@ let entriesPerPage = 5;
 
 // Event Listeners
 mainBtn.addEventListener("click", handleFormSubmit);
-categoryFilterBtn.addEventListener("click", () => modal.classList.add("modal-active"));
-modalCloseBtn.addEventListener("click", () => modal.classList.remove("modal-active"));
-modal.addEventListener("click", (e) => { if (e.target.id == "category-modal") modal.classList.remove("modal-active"); });
-tableSize.addEventListener('change', updateEntriesPerPage);
+categoryFilterBtn.addEventListener("click", () =>
+  modal.classList.add("modal-active")
+);
+modalCloseBtn.addEventListener("click", () =>
+  modal.classList.remove("modal-active")
+);
+modal.addEventListener("click", (e) => {
+  if (e.target.id == "category-modal") modal.classList.remove("modal-active");
+});
+tableSize.addEventListener("change", updateEntriesPerPage);
 cancelModalBtn.addEventListener("click", cancelModal);
 
 // Initialize categories and display tasks
@@ -74,9 +80,15 @@ function displayCount() {
 
 // Add or Update task based on the button's current text
 function handleFormSubmit() {
+  const selectedPriority = document.querySelector(
+    'input[name="priority"]:checked'
+  );
+
   if (mainBtn.innerHTML === "Add Task") {
     if (inputField.value === "") {
       Swal.fire({ text: "Input field cannot be empty", icon: "error" });
+    } else if (!selectedPriority) {
+      Swal.fire({ text: "Please select a priority", icon: "error" });
     } else {
       addTask();
       clearInput();
@@ -91,7 +103,14 @@ function handleFormSubmit() {
 
 // Initialize task categories
 function initializeCategories() {
-  const categories = ["personal", "work", "shopping", "coding", "fitness", "education"];
+  const categories = [
+    "personal",
+    "work",
+    "shopping",
+    "coding",
+    "fitness",
+    "education",
+  ];
   categories.forEach((category) => {
     if (!currentUser.tasksCategories[category]) {
       currentUser.tasksCategories[category] = [];
@@ -114,11 +133,11 @@ function addTask() {
   }
   currentUser.tasksCategories[categorySelected.value].push(task);
   localStorage.setItem("users", JSON.stringify(users));
-   Swal.fire({
-    title:'Added !'  ,
+  Swal.fire({
+    title: "Added !",
     text: "Task has been added successfully",
     icon: "success",
-});
+  });
 
   displayCount();
   displayData(currentUser.tasks);
@@ -158,32 +177,56 @@ document.querySelectorAll(".category-item").forEach((category) => {
 
 // Function to Display tasks
 function displayTasks(tasks) {
+  // Check if tasks is an array
+  if (!Array.isArray(tasks)) {
+    console.error("Tasks should be an array.");
+    return;
+  }
+
   tasks.sort((a, b) => a.priority - b.priority); // Sort by priority
   let content = "";
   if (tasks.length > 0) {
     document.getElementById("tasks-no-data").style.display = "none";
-    tasks.forEach((task, i) => {
+    tasks.forEach((task) => {
+      // Check if task and task.category are not null or undefined
+      if (!task || !task.category) {
+        console.error("Task or task category is null or undefined.");
+        return;
+      }
+
       let isCompleted = currentUser.completedTasks.some(
-        (completedTask) => completedTask.category === task.category && completedTask.id === task.id
+        (completedTask) =>
+          completedTask &&
+          completedTask.category === task.category &&
+          completedTask.id === task.id
       );
+
       content += `
-        <div class="task-box priority-${task.priority} ${isCompleted ? "task-completed" : ""}">
+        <div class="task-box priority-${task.priority} ${
+        isCompleted ? "task-completed" : ""
+      }">
           <div class="checkbox-wrapper">
             <div class="cbx">
-              <input id="cbx-${task.id}" type="checkbox" onclick="done(this, ${task.id})" ${isCompleted ? "checked" : ""}>
+              <input id="cbx-${task.id}" type="checkbox" onclick="done(this, ${
+        task.id
+      })" ${isCompleted ? "checked" : ""}>
               <label for="cbx-${task.id}"></label>
               <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
                 <path d="M2 8.36364L6.23077 12L13 2"></path>
               </svg>
             </div>
             <div>
-              <i class="task-cat ${categoryIcons[task.category]}"></i>
+              <i class="task-cat ${categoryIcons[task.category] || 'fas fa-question-circle'}"></i>
               <span class="task-name"> ${task.name}</span>
             </div>
           </div>
           <div class="task-btns">
-            <button id="edit" onclick="getTaskinfo(${task.id})"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button id="delete" onclick="deleteConfirmation(${task.id})"><i class="fa-solid fa-trash"></i></button>
+            <button id="edit" onclick="getTaskinfo(${
+              task.id
+            })"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button id="delete" onclick="deleteConfirmation(${
+              task.id
+            })"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>`;
     });
@@ -194,17 +237,22 @@ function displayTasks(tasks) {
   displayCount();
 }
 
+
 // Function to clear input fields
 function clearInput() {
   inputField.value = "";
-  document.querySelector('input[name="priority"][value="1"]').checked = true;
+  document.querySelectorAll('input[name="priority"]').forEach((input) => {
+    input.checked = false;
+  });
 }
 
 // Function to Retrieve task information for editing & apply some changes in the UI
 function getTaskinfo(id) {
-  const taskIndex = currentUser.tasks.findIndex(task => task.id == id);
+  const taskIndex = currentUser.tasks.findIndex((task) => task.id == id);
   inputField.value = currentUser.tasks[taskIndex].name;
-  document.querySelector(`input[name="priority"][value="${currentUser.tasks[taskIndex].priority}"]`).checked = true;
+  document.querySelector(
+    `input[name="priority"][value="${currentUser.tasks[taskIndex].priority}"]`
+  ).checked = true;
   categorySelected.value = currentUser.tasks[taskIndex].category;
   currentIndex = taskIndex;
   mainBtn.innerHTML = "Update Task";
@@ -216,30 +264,35 @@ function updateTask() {
   const oldCategory = task.category;
 
   task.name = inputField.value;
-  task.priority = document.querySelector('input[name="priority"]:checked').value;
+  task.priority = document.querySelector(
+    'input[name="priority"]:checked'
+  ).value;
   const newCategory = categorySelected.value;
   task.category = newCategory;
 
   // Update categories if the category has changed
   if (oldCategory !== newCategory) {
-    currentUser.tasksCategories[oldCategory] = currentUser.tasksCategories[oldCategory].filter(t => t.id !== task.id);
+    currentUser.tasksCategories[oldCategory] = currentUser.tasksCategories[
+      oldCategory
+    ].filter((t) => t.id !== task.id);
     if (!currentUser.tasksCategories[newCategory]) {
       currentUser.tasksCategories[newCategory] = [];
     }
     currentUser.tasksCategories[newCategory].push(task);
   } else {
     const categoryTasks = currentUser.tasksCategories[oldCategory];
-    const taskIndex = categoryTasks.findIndex(t => t.id === task.id);
+    const taskIndex = categoryTasks.findIndex((t) => t.id === task.id);
     categoryTasks[taskIndex] = task;
   }
 
   localStorage.setItem("users", JSON.stringify(users));
-   Swal.fire({
-    title:'Updated !'  ,
+  Swal.fire({
+    title: "Updated !",
     text: "Task has been updated successfully",
     icon: "success",
-});
+  });
   updateCatsTasksCount();
+  categoryFilterBtn.textContent = "All Tasks";
 }
 
 // Reset the update task form
@@ -257,7 +310,7 @@ function deleteConfirmation(id) {
 }
 
 function deleteTask(id) {
-  const deletedTaskIndex = currentUser.tasks.findIndex(task => task.id == id);
+  const deletedTaskIndex = currentUser.tasks.findIndex((task) => task.id == id);
   const currentTask = currentUser.tasks[deletedTaskIndex];
   const category = currentTask.category;
 
@@ -265,26 +318,30 @@ function deleteTask(id) {
   currentUser.tasks.splice(deletedTaskIndex, 1);
   // Remove from currentUser.completedTasks if exists
   const completedIndex = currentUser.completedTasks.findIndex(
-    task => task.category === currentTask.category && task.id === currentTask.id
+    (task) =>
+      task.category === currentTask.category && task.id === currentTask.id
   );
   if (completedIndex !== -1) {
     currentUser.completedTasks.splice(completedIndex, 1);
   }
   // Remove from category-specific tasks list
   const categoryTasks = currentUser.tasksCategories[category];
-  const taskIndex = categoryTasks.findIndex(task => task.id === currentTask.id);
+  const taskIndex = categoryTasks.findIndex(
+    (task) => task.id === currentTask.id
+  );
   categoryTasks.splice(taskIndex, 1);
 
   localStorage.setItem("users", JSON.stringify(users));
   Swal.fire({
-    title:'Deleted !'  ,
+    title: "Deleted !",
     text: "Task has been deleted successfully",
     icon: "success",
-});
+  });
   displayCount();
   displayData(currentUser.tasks);
   updateCatsTasksCount();
   popUpModal.classList.remove("pop-up-active");
+  categoryFilterBtn.textContent = "All Tasks";
 }
 
 function cancelModal() {
@@ -297,7 +354,7 @@ function cancelModal() {
 
 // Mark a task as done
 function done(currentElement, taskId) {
-  const task = currentUser.tasks.find(task => task.id === taskId);
+  const task = currentUser.tasks.find((task) => task.id === taskId);
   const taskBox = currentElement.closest(".task-box");
 
   if (currentElement.checked) {
@@ -305,7 +362,9 @@ function done(currentElement, taskId) {
     currentUser.completedTasks.push(task);
   } else {
     taskBox.classList.remove("task-completed");
-    const uncomIndex = currentUser.completedTasks.findIndex(t => t.id === task.id);
+    const uncomIndex = currentUser.completedTasks.findIndex(
+      (t) => t.id === task.id
+    );
     currentUser.completedTasks.splice(uncomIndex, 1);
   }
 
@@ -331,29 +390,40 @@ function updateEntriesPerPage() {
 function updateFooterText(startIndex, pageEntries, totalEntries) {
   if (totalEntries === 0) {
     const footerText = `Showing 0 to 0 from 0 entries`;
-    document.querySelector('footer p').textContent = footerText;
+    document.querySelector("footer p").textContent = footerText;
   } else {
     const endIndex = startIndex + pageEntries;
-    const footerText = `Showing ${startIndex + 1} to ${endIndex} from ${totalEntries} entries`;
-    document.querySelector('footer p').textContent = footerText;
+    const footerText = `Showing ${
+      startIndex + 1
+    } to ${endIndex} from ${totalEntries} entries`;
+    document.querySelector("footer p").textContent = footerText;
   }
 }
-
 
 function updatePaginationButtons(tasks) {
   const totalPages = Math.ceil(tasks.length / entriesPerPage);
 
-  let paginationButtons = `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Prev</button>`;
+  let paginationButtons = `<button ${
+    currentPage === 1 ? "disabled" : ""
+  } onclick="goToPage(${currentPage - 1})">Prev</button>`;
   for (let i = 1; i <= totalPages; i++) {
-    paginationButtons += `<button ${i === currentPage ? 'class="active"' : ''} onclick="goToPage(${i})">${i}</button>`;
+    paginationButtons += `<button ${
+      i === currentPage ? 'class="active"' : ""
+    } onclick="goToPage(${i})">${i}</button>`;
   }
-  paginationButtons += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>`;
+  paginationButtons += `<button ${
+    currentPage === totalPages ? "disabled" : ""
+  } onclick="goToPage(${currentPage + 1})">Next</button>`;
 
-  document.querySelector('.pagination').innerHTML = paginationButtons;
+  document.querySelector(".pagination").innerHTML = paginationButtons;
 }
 
 function goToPage(pageNumber) {
-  if (pageNumber < 1 || pageNumber > Math.ceil(currentUser.tasks.length / entriesPerPage)) return;
+  if (
+    pageNumber < 1 ||
+    pageNumber > Math.ceil(currentUser.tasks.length / entriesPerPage)
+  )
+    return;
   currentPage = pageNumber;
   displayData(currentUser.tasks);
   updatePaginationButtons(currentUser.tasks);
@@ -362,5 +432,9 @@ function goToPage(pageNumber) {
 // Initial display
 displayData(currentUser.tasks);
 updatePaginationButtons(currentUser.tasks);
-updateFooterText(0, Math.min(entriesPerPage, currentUser.tasks.length), currentUser.tasks.length);
+updateFooterText(
+  0,
+  Math.min(entriesPerPage, currentUser.tasks.length),
+  currentUser.tasks.length
+);
 updateCatsTasksCount();

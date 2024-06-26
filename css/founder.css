@@ -1,3 +1,13 @@
+* {
+ 
+  --sweet-bg-color: #fff;
+  --text-color: #1f2937;
+  --fancy-bg-hover-color:#1e3a8a ;
+  --fancy-bg-color: #1e40af;
+  --fancy-color: #fff;
+  --red-color: #c03f3f;
+
+}
 body {
   color: #fff;
   font-family: "Rubik", sans-serif;
@@ -278,4 +288,21 @@ margin-bottom: 3.2rem;
    .home-heading{
     font-size: 4.4rem;
   }
+}
+
+
+/* Tippy & Toastr js */
+.tippy-box[data-theme="errorTooltip"] {
+  background-color: var(--red-color);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  
+}
+
+.tippy-box[data-theme="errorTooltip"][data-placement^="bottom"]
+  > .tippy-arrow::before {
+  border-bottom-color: var(--red-color);
 }

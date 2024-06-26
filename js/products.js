@@ -107,22 +107,43 @@ function addProduct() {
 
 function updateProduct(id) {
   let product = currentUser.products.find(product => product.id === currentId);
-  product.name = productName.value;
-  product.category = category.value;
-  product.price = Number(price.value);
-  product.taxes = Number(taxes.value);
-  product.ads = Number(ads.value);
-  product.discount = Number(discount.value);
-  product.total = totalBox.innerHTML;
-  localStorage.setItem("users", JSON.stringify(users));
-  Swal.fire({
-    title:'Updated !'  ,
-    text: "Product has been updated successfully!",
-    icon: "success"
+  if (isProductChanged(product)){
+    product.name = productName.value;
+    product.category = category.value;
+    product.price = Number(price.value);
+    product.taxes = Number(taxes.value);
+    product.ads = Number(ads.value);
+    product.discount = Number(discount.value);
+    product.total = totalBox.innerHTML;
+    localStorage.setItem("users", JSON.stringify(users));
+    Swal.fire({
+      title:'Updated !'  ,
+      text: "Product has been updated successfully!",
+      icon: "success"
+    });
+   
+  }else{
+    Swal.fire({
+      title: 'No changes detected',
+      text: "No updates were made as no changes were detected.",
+      icon: "info"
   });
- formMode == "add";
+  }
+  formMode == "add";
+  mainBtn.classList.remove('form-btn-update');
+  mainBtn.classList.add('form-btn-default');
 }
 
+function isProductChanged(product){
+return(
+  product.name != productName.value||
+  product.category != category.value||
+  product.price != Number(price.value)||
+  product.taxes != Number(taxes.value)||
+  product.ads != Number(ads.value)||
+  product.discount != Number(discount.value)
+)
+}
 function clearInputs() {
   productName.value = "";
   category.value = "";

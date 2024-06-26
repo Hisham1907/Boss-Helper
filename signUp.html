@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Fav-icons -->
-     <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
-     <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
-     <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
-      <link rel="manifest" href="img/favicons/site.webmanifest">
+    <!-- Fav-icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="img/favicons/site.webmanifest">
     <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
-     <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <link rel="stylesheet" href="css/toastr.min.css">
     <link rel="stylesheet" href="css/all.min.css">
-     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/form.css">
 
     <title>Sign Up</title>
 </head>
@@ -27,7 +27,7 @@
     <div class="loader" id="loader">
         <div class="spinner"></div>
         <p class="loading-message">Loading Boss, Please wait...</p>
-      </div>
+    </div>
     <div class="sign-box">
         <div class="sign-content">
             <a href="index.html" class="main-logo "><i class="fas fa-handshake"></i>Boss Helper
@@ -40,7 +40,8 @@
             </main>
 
             <div class="boss-message">
-                <p class="boss-qoute">"I'm thrilled to share my best project! After nurturing the idea, I'm proud to see it come to life.
+                <p class="boss-qoute">"I'm thrilled to share my best project! After nurturing the idea, I'm proud to see
+                    it come to life.
                     Dive in and enjoy!"</p>
                 <div class="boss-info">
                     <img src="img/boss.jpg" class="boss-img" alt="Hisham Rabea, Founder and CEO">
@@ -59,45 +60,49 @@
             </header>
             <div class="input-field ">
                 <div class="field  ">
-                <i class="fa-solid fa-user input-icon "></i>
-                <input type="text" id="name" name="fullName" placeholder="Name" required maxlength="31" autocomplete="off" title="">
-                <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
-                <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                    <i class="fa-solid fa-user input-icon "></i>
+                    <input type="text" id="name" name="fullName" placeholder="Name" required maxlength="31"
+                        autocomplete="off" title="">
+                    <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
+                    <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                </div>
             </div>
-            </div>
-        <div class="input-field  ">
-            <div class="field ">
-                <i class="fa-solid fa-envelope input-icon"></i>
-                <input type="email" id="email" name="email" placeholder="Email" required autocomplete="off" title="">
-                <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
-                <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
-                <span class="underline"></span>
+            <div class="input-field  ">
+                <div class="field ">
+                    <i class="fa-solid fa-envelope input-icon"></i>
+                    <input type="email" id="email" name="email" placeholder="Email" required autocomplete="off"
+                        title="">
+                    <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
+                    <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                    <span class="underline"></span>
 
+                </div>
             </div>
-        </div>
-        <div class="input-field">
-            <div class="field ">
-                <i class="fa-solid fa-lock input-icon"></i>
-                <input type="password" id="password" name="password" placeholder="Password" required title="">
-                <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
-                <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
-                <div id="password-strength"></div>
-            </div>
+            <div class="input-field">
+                <div class="field ">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required title="">
+                    <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
+                    <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                    <div id="password-strength"></div>
+                </div>
 
             </div>
             <div class="input-field">
                 <div class="field ">
-                <i class="fa-solid fa-lock input-icon"></i>
-                <input type="password" id="confirm-password" name="password" placeholder="Confirm Password" required title="" >
-                <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
-                <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
-                <div id="password-strength"></div>
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="confirm-password" name="password" placeholder="Confirm Password" required
+                        title="">
+                    <i class="fa-solid fa-circle-exclamation verfy-icon error-icon "></i>
+                    <i class="fa-solid fa-circle-check verfy-icon success-icon"></i>
+                    <div id="password-strength"></div>
+                </div>
             </div>
-            </div>
-             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="terms-check-btn" required title="">
-                <label class="form-check-label" for="termsCheckbox">
-                    I agree to the <a href="#">Terms and Conditions</a>
+            <div class="form-check">
+                <label class=" check-box">
+                    <input class="form-check-input" type="checkbox" id="terms-check-btn" required title="">
+                    <div class="checkmark"></div>
+                    <span>I agree to the <a href="#">Terms and Conditions</a></span>
                 </label>
             </div>
             <div class="btn-field">
@@ -106,21 +111,18 @@
             </div>
         </div>
     </div>
- 
- 
+
+
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="js/sweetalert2.all.min.js"></script>
-<script src="js/toastr.min.js"></script>
-     <script src="js/signUpModule.js"></script>
-    
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script src="js/toastr.min.js"></script>
+    <script src="js/signUpModule.js"></script>
+
 </body>
 
 </html>
 
 
 <!--  -->
-
- 
-

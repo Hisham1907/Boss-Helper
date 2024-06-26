@@ -245,51 +245,104 @@ display: block;
 .boss-title {
   font-size: 1.4rem;
 }
+
 /* Form Check Box Styling */
-.form-check {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: .8rem;
-  align-items: center;
-  padding-left: 1.2rem;
-  position: relative;
- }
+/* Hide the default checkbox */
+/* Copied from uiverse.io */
 
-.form-check-input {
-  margin-right: 0.5rem;
+.check-box {
+  display: flex;
   position: relative;
-  appearance: none;
-  width: 1.6rem;
-  height: 1.6rem;
-  background-color: transparent;
-  border: 2px solid #1e40af;
-  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1.5rem;
+  user-select: none;
+  gap: .7rem;
 }
 
-.form-check-input:checked {
-  background-color: #1e40af;
-  border-color: #1e40af;
+/* Create a custom checkbox */
+.checkmark {
+  --clr: #1e40af;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: #ccc;
+  border-radius: 50%;
+  transition: 300ms;
 }
 
-.form-check-input:focus {
-  outline: none;
+/* When the checkbox is checked, add a blue background */
+.check-box input:checked ~ .checkmark {
+  background-color: var(--clr);
+  border-radius: .5rem;
+  animation: pulse 500ms ease-in-out;
 }
 
-.form-check-label {
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check-box input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check-box .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid #E0E0E2;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 #1e40af90;
+    rotate: 20deg;
+  }
+
+  50% {
+    rotate: -20deg;
+  }
+
+  75% {
+    box-shadow: 0 0 0 10px rgba(30, 64, 175,376);
+  }
+
+  100% {
+    box-shadow: 0 0 0 13px rgba(30, 64, 175,1.88);
+    rotate: 0;
+  }
+}
+/* check box label */
+.check-box span {
   color: #333;
   font-size: 1.6rem;
   cursor: pointer;
 }
 
-.form-check-label a {
+.check-box span a {
   color: #1e40af;
   text-decoration: none;
 }
 
-.form-check-label a:hover {
+.check-box span a:hover {
   text-decoration: underline !important;
+}
+
+.check-box input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
 /* NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN */
@@ -404,3 +457,5 @@ Tooltip
   color: #333;
   animation: fadeIn .5s alternate infinite;
 }
+
+

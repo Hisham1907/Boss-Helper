@@ -132,6 +132,7 @@ handleTooltips();
 // Logout
 const logout = document.querySelector("#logout-icon");
 logout.addEventListener("click", logoutHandler);
+
 function logoutHandler() {
   Swal.fire({
     title: "Are you sure?",
@@ -142,7 +143,13 @@ function logoutHandler() {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = "signIn.html";
+      Swal.fire({
+        title: "Logged out!",
+        text: "Come back soon, we will miss you",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "signIn.html";
+      });
     }
   });
 }

@@ -37,7 +37,7 @@ for (let i = 0; i < allItemIcons.length; i++) {
 window.addEventListener('load', () => {
   window.scrollTo(0, 0);
 });  
-new WOW().init();
+// new WOW().init();
  });
 
 

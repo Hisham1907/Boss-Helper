@@ -46,6 +46,6 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   
-  new WOW().init();
+  // new WOW().init();
  });
 

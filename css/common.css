@@ -50,6 +50,46 @@ body{
   overflow-x: hidden;
 
 }
+/* Scroll-bar */
+::-webkit-scrollbar{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+::-webkit-scrollbar-track{
+    background-color: #1e3a8a;
+ }
+::-webkit-scrollbar-thumb{
+   background-color: #fff;
+  border: 2px solid #8396D3;
+  border-radius: 100vw;
+}
+
+/* Scrollbar Styles for WebKit Browsers */
+::-webkit-scrollbar {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1e3a8a;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border: 2px solid #1e3a8a;
+  border-radius: 100vw;
+}
+
+ 
+
+/* Fallback for unsupported browsers */
+@supports (scrollbar-color: #fff #1e3a8a) {
+  body {
+    scrollbar-color: #fff #1e3a8a;
+    scrollbar-width: thin;
+  }
+}
+
 /*==============================================================================*/
 /* GENERAL COMPONENTS */
 /*==============================================================================*/
@@ -272,7 +312,7 @@ strong {
   width: 100%;
   background-color: #fffffff7;
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.1);
-  z-index: 999;
+  z-index: 999999999999999999;
   height: 8rem;
    transition: transform 0.3s ease; 
 }

@@ -9,15 +9,23 @@ const productNoDataMessage = document.getElementById("product-no-data");
 const taskContainer = document.querySelector("#task-container");
 const userDashName = document.querySelector("#user-dash-name");
 
+ 
 // Initialize the dashboard
 function initializeDashboard() {
+  if (!currentUser || !currentUser.name) {
+    console.error("currentUser is not defined or missing required properties.");
+    return;
+  }
   userDashName.textContent = currentUser.name;
 
   handleEmployeeData();
   handleProductData();
   handleTaskData();
 
-  displayTasks();
+  if (currentUser.tasks) {
+    displayTasks(currentUser.tasks);
+  }
+
   initializeCharts();
 }
 
@@ -38,12 +46,10 @@ function handleProductData() {
     productNoDataMessage.style.display = "block";
     totalProductsElem.textContent = "0";
     document.querySelector('.product-chart').style.height = '150px';
-
   } else {
     productNoDataMessage.style.display = "none";
     totalProductsElem.textContent = currentUser.products.length;
-        document.querySelector('.product-chart').style.height = '500px';
-
+    document.querySelector('.product-chart').style.height = '500px';
   }
 }
 
@@ -104,53 +110,91 @@ function getProductCountsByCategory() {
   return categories.map((category) => counts[category]);
 }
 
-// Display tasks
-function displayTasks() {
-  const tasks = currentUser.tasks || [];
-  tasks.sort((a, b) => a.priority - b.priority); // Sort by priority
+// Category Icons
+const categoryIcons = {
+  personal: "fas fa-user",
+  work: "fas fa-briefcase",
+  shopping: "fas fa-shopping-cart",
+  coding: "fas fa-laptop-code",
+  fitness: "fas fa-dumbbell",
+  education: "fas fa-graduation-cap",
+};
 
+// Display tasks
+function displayTasks(tasks) {
+  // Check if tasks is an array
+  if (!Array.isArray(tasks)) {
+    console.error("Tasks should be an array.");
+    return;
+  }
+
+  tasks.sort((a, b) => a.priority - b.priority); // Sort by priority
   let content = "";
-  for (let i = 0; i < 4 && i < tasks.length; i++) {
-    const task = tasks[i];
-    if (task) {
-      const isCompleted = currentUser.completedTasks.some(
-        (t) => t.category === task.category && t.name === task.name
+  if (tasks.length > 0) {
+    document.getElementById("tasks-no-data").style.display = "none";
+    tasks.forEach((task) => {
+      // Check if task and task.category are not null or undefined
+      if (!task || !task.category) {
+        console.error("Task or task category is null or undefined.");
+        return;
+      }
+
+      let isCompleted = currentUser.completedTasks.some(
+        (completedTask) =>
+          completedTask &&
+          completedTask.category === task.category &&
+          completedTask.id === task.id
       );
 
       content += `
-        <div class="task-box priority-${task.priority} ${isCompleted ? "task-completed" : ""}">
+        <div class="task-box priority-${task.priority} ${
+        isCompleted ? "task-completed" : ""
+      }">
           <div class="checkbox-wrapper">
             <div class="cbx">
-              <input id="cbx-${i}" type="checkbox" onclick="done(this,${i})" ${isCompleted ? "checked" : ""}>
-              <label for="cbx-${i}"></label>
-              <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+              <input id="cbx-${task.id}" type="checkbox" onclick="done(this, ${
+        task.id
+      })" ${isCompleted ? "checked" : ""}>
+              <label for="cbx-${task.id}"></label>
+              <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
                 <path d="M2 8.36364L6.23077 12L13 2"></path>
               </svg>
             </div>
             <div>
-              <i class="task-cat ${categoryIcons[task.category]}"></i>
+              <i class="task-cat ${categoryIcons[task.category] || 'fas fa-question-circle'}"></i>
               <span class="task-name"> ${task.name}</span>
             </div>
           </div>
+           
         </div>`;
-    }
+    });
+  } else {
+    document.getElementById("tasks-no-data").style.display = "block";
   }
-
   taskContainer.innerHTML = content;
-}
+ }
+
 
 // Mark task as done
-function done(currentElement, currentIndex) {
+function done(currentElement, taskId) {
   const taskBox = currentElement.closest(".task-box");
-  const task = currentUser.tasks[currentIndex];
+  const task = currentUser.tasks.find((task) => task.id === taskId);
+
+  if (!task) {
+    console.error("Task not found.");
+    return;
+  }
 
   if (currentElement.checked) {
     taskBox.classList.add("task-completed");
+    if (!currentUser.completedTasks) {
+      currentUser.completedTasks = [];
+    }
     currentUser.completedTasks.push(task);
   } else {
     taskBox.classList.remove("task-completed");
     const index = currentUser.completedTasks.findIndex(
-      (t) => t.category === task.category && t.name === task.name
+      (t) => t.category === task.category && t.id === task.id
     );
     if (index !== -1) currentUser.completedTasks.splice(index, 1);
   }
@@ -213,4 +257,4 @@ function initializeCharts() {
 }
 
 // Initial call to initialize the dashboard
-initializeDashboard();
+document.addEventListener("DOMContentLoaded", initializeDashboard);

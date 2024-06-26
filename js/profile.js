@@ -1,3 +1,5 @@
+"use strict";
+
 // Select each input element
 const fullNameInput = document.querySelector("#fullname");
 const emailInput = document.querySelector("#email");
@@ -59,8 +61,31 @@ mainBtn.addEventListener("click", function () {
     emailInput.addEventListener("mouseenter", emailDisable);
   } else {
     emailInput.removeEventListener("mouseenter", emailDisable);
-    validateInputs();
-    displayProfile();
+    if (validateInputs()) {
+      if (isDataChanged()) {
+        updateUser();
+        displayProfile();
+      } else {
+        Swal.fire({
+          title: 'No changes detected',
+          text: "No updates were made as no changes were detected.",
+          icon: "info",
+        });
+        displayInputs();
+        mainBtn.textContent = "Update Info";
+        document.querySelectorAll(".form-group input").forEach((input) => {
+          input.style.backgroundColor = "var(--input-disabled-color)";
+          input.disabled = true;
+        });
+      }
+    } else {
+      Swal.fire({
+        text: "Please fix all the errors to be able to save",
+        icon: "error",
+      }).then(() => {
+        validateInputs();
+      });
+    }
   }
 });
 
@@ -73,7 +98,31 @@ changePasswordBtn.addEventListener("click", function () {
       input.disabled = false;
     });
   } else {
-    validatePasswords();
+    if (validatePasswords()) {
+      if (isPasswordChanged()) {
+        updatePassword();
+        newPasswordInput.value = "";
+        confirmPasswordInput.value = "";
+      } else {
+        Swal.fire({
+          title: 'No changes detected',
+          text: "No updates were made as no changes were detected.",
+          icon: "info",
+        });
+      }
+      changePasswordBtn.textContent = "Change Password";
+      [newPasswordInput, confirmPasswordInput].forEach((input) => {
+        input.style.backgroundColor = "var(--input-disabled-color)";
+        input.disabled = true;
+      });
+    } else {
+      Swal.fire({
+        text: "Please fix all the errors add the new password",
+        icon: "error",
+      }).then(() => {
+        validatePasswords();
+      });
+    }
   }
 });
 
@@ -94,27 +143,30 @@ function updateUser() {
   if (jobTitleInput.value !== "") {
     currentUser.jobTitle = jobTitleInput.value;
   }
-
   localStorage.setItem("users", JSON.stringify(users));
-  if (
-    currentUser.name != fullNameInput.value ||
-    currentUser.phone != phoneInput.value ||
-    currentUser.website != websiteInput.value ||
-    currentUser.company != companyNameInput.value ||
-    currentUser.jobTitle != jobTitleInput.value
-  ) {
-    Swal.fire({
-      text: "Profile info updated successfully!",
-      icon: "success",
-    });
-  }
-
-  displayInputs();
-  mainBtn.textContent = "Update Info";
-  document.querySelectorAll(".form-group input").forEach((input) => {
-    input.style.backgroundColor = "var(--input-disabled-color)";
-    input.disabled = true;
+  Swal.fire({
+    text: "Profile info updated successfully!",
+    icon: "success",
   });
+
+ 
+}
+
+function isDataChanged() {
+  return (
+    currentUser.name !== fullNameInput.value ||
+    (currentUser.phone || "") !== phoneInput.value ||
+    (currentUser.website || "") !== websiteInput.value ||
+    (currentUser.company || "") !== companyNameInput.value ||
+    (currentUser.jobTitle || "") !== jobTitleInput.value
+  );
+}
+
+function isPasswordChanged() {
+  return (
+    newPasswordInput.value !== "" &&
+    newPasswordInput.value !== currentUser.password
+  );
 }
 
 // Function to update user password
@@ -128,11 +180,7 @@ function updatePassword() {
   }
   localStorage.setItem("users", JSON.stringify(users));
 
-  changePasswordBtn.textContent = "Change Password";
-  [newPasswordInput, confirmPasswordInput].forEach((input) => {
-    input.style.backgroundColor = "var(--input-disabled-color)";
-    input.disabled = true;
-  });
+ 
 }
 
 // Function to set error to input
@@ -154,7 +202,7 @@ function setSuccess(element) {
 
 // validation functions
 function validateFullName() {
-  const nameValue = fullNameInput.value.trim();
+  const nameValue = fullNameInput.value;
   if (nameValue === "") {
     setError(fullNameInput, `Name can't be empty`);
     return false;
@@ -171,7 +219,7 @@ function validateFullName() {
 }
 
 function validatePhone() {
-  const phoneValue = phoneInput.value.trim();
+  const phoneValue = phoneInput.value;
   if (phoneValue !== "" && !/^(\+\d{1,3})?(\d{9,15})$/.test(phoneValue)) {
     setError(phoneInput, `Please enter a valid phone number`);
     return false;
@@ -182,7 +230,7 @@ function validatePhone() {
 }
 
 function validateWebsite() {
-  const websiteValue = websiteInput.value.trim();
+  const websiteValue = websiteInput.value;
   if (websiteValue !== "" && !/^(http|https):\/\/[^ "]+$/.test(websiteValue)) {
     setError(websiteInput, `Please enter a valid website URL`);
     return false;
@@ -193,7 +241,7 @@ function validateWebsite() {
 }
 
 function validateCompanyName() {
-  const companyNameValue = companyNameInput.value.trim();
+  const companyNameValue = companyNameInput.value;
   if (companyNameValue !== "" && companyNameValue.length >= 30) {
     setError(companyNameInput, `Company name can't be more than 30 characters`);
     return false;
@@ -204,7 +252,7 @@ function validateCompanyName() {
 }
 
 function validateJobTitle() {
-  const jobTitleValue = jobTitleInput.value.trim();
+  const jobTitleValue = jobTitleInput.value;
   if (jobTitleValue !== "" && jobTitleValue.length >= 30) {
     setError(jobTitleInput, `Job title can't be more than 30 characters`);
     return false;
@@ -231,20 +279,12 @@ function validateInputs() {
       isValid = false;
     }
   });
-
-  if (isValid) {
-    updateUser();
-  } else {
-    Swal.fire({
-      text: "Please fix all the errors to be able to save",
-      icon: "error",
-    });
-  }
+  return isValid;
 }
 
 // Validate passwords
 function validateNewPassword() {
-  const newPasswordValue = newPasswordInput.value.trim();
+  const newPasswordValue = newPasswordInput.value;
   if (newPasswordValue !== "" && newPasswordValue.length < 8) {
     setError(newPasswordInput, `Password must be at least 8 characters long`);
     return false;
@@ -258,8 +298,8 @@ function validateNewPassword() {
 }
 
 function validateConfirmPassword() {
-  const confirmPasswordValue = confirmPasswordInput.value.trim();
-  const newPasswordValue = newPasswordInput.value.trim();
+  const confirmPasswordValue = confirmPasswordInput.value;
+  const newPasswordValue = newPasswordInput.value;
   if (newPasswordValue !== "" && confirmPasswordValue == "") {
     setError(confirmPasswordInput, `Please confirm your new password`);
     return false;
@@ -281,17 +321,7 @@ function validatePasswords() {
   validationFunctions.forEach((func) => {
     if (func() === false) isValid = false;
   });
-
-  if (isValid) {
-    updatePassword();
-    newPasswordInput.value = "";
-    confirmPasswordInput.value = "";
-  } else {
-    Swal.fire({
-      text: "Please fix all the errors add the new password",
-      icon: "error",
-    });
-  }
+  return isValid;
 }
 
 // handle file input for img

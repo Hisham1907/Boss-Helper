@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 
 // Select DOM Elements
 const addNewMemberBtn = document.getElementById("add-new-member");
@@ -136,28 +136,38 @@ function handleFormSubmit() {
             closeForm();
             displayData(currentUser.employees);
             updatePaginationButtons();
-        }
-         else {
-            Swal.fire({
-                title: 'Save the changes',
-                text: "Do you want to update this employee?",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    updateEmployee(currentEmployeeId);
-                     Swal.fire({
-                        title:'Updated !'  ,
-                        text: "Employee has been updated successfully",
-                        icon: "success"
-                    });
-                    closeForm();
-                    displayData(currentUser.employees);
-                    updatePaginationButtons();
-                }
-            });
+        } else {
+            const employee = currentUser.employees.find(emp => emp.id === currentEmployeeId);
+            const isDataChanged = isEmployeeDataChanged(employee);
+
+            if (isDataChanged) {
+                Swal.fire({
+                    title: 'Save the changes',
+                    text: "Do you want to update this employee?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        updateEmployee(currentEmployeeId);
+                        Swal.fire({
+                            title: 'Updated!',
+                            text: "Employee has been updated successfully",
+                            icon: "success"
+                        });
+                        closeForm();
+                        displayData(currentUser.employees);
+                        updatePaginationButtons();
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: 'No changes detected',
+                    text: "No updates were made as no changes were detected.",
+                    icon: "info"
+                });
+            }
         }
     } else {
         Swal.fire({
@@ -202,6 +212,18 @@ function updateEmployee(id) {
         localStorage.setItem("users", JSON.stringify(users));
         mainBtn.innerHTML = "Add Employee";
     }
+}
+
+function isEmployeeDataChanged(employee) {
+    return (
+        employee.img !== currentImgSrc ||
+        employee.firstName !== firstName.value ||
+        employee.lastName !== lastName.value ||
+        employee.age !== age.value ||
+        employee.position !== position.value ||
+        employee.salary !== salary.value ||
+        employee.phone !== phone.value
+    );
 }
 
 function clearForm() {
@@ -282,7 +304,8 @@ function getData(id) {
 
 function searchEmployees() {
     const filteredEmployees = currentUser.employees.filter(employee =>
-        employee.firstName.toLowerCase().includes(search.value.trim().toLowerCase())
+        employee.firstName.toLowerCase().includes(search.value.trim().toLowerCase())||
+        employee.lastName.toLowerCase().includes(search.value.trim().toLowerCase())
     );
     currentPage = 1; // Reset to the first page
     displayData(filteredEmployees);
