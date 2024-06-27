@@ -33,6 +33,24 @@ function displayInputs() {
 }
 displayInputs();
 
+// Event listeners
+cancelModalBtn.addEventListener("click", cancelModal);
+
+function closeModal() {
+  popUpModal.classList.remove("pop-up-active");
+}
+
+function cancelModal() {
+  popUpModal.classList.remove("pop-up-active");
+  Swal.fire({
+    text: "Cancelled Successfully",
+    icon: "success",
+  });
+}
+popUpModal.addEventListener("click", function (e) {
+  if (e.target == popUpModal) closeModal();
+});
+
 // function tells the user that email is disabled
 function emailDisable() {
   Swal.fire({
@@ -40,7 +58,6 @@ function emailDisable() {
     icon: "info",
   });
 }
-
 // Update or Save user's info based on the button's current text
 mainBtn.addEventListener("click", function () {
   if (mainBtn.textContent === "Update Info") {
@@ -67,7 +84,7 @@ mainBtn.addEventListener("click", function () {
         displayProfile();
       } else {
         Swal.fire({
-          title: 'No changes detected',
+          title: "No changes detected",
           text: "No updates were made as no changes were detected.",
           icon: "info",
         });
@@ -88,7 +105,6 @@ mainBtn.addEventListener("click", function () {
     }
   }
 });
-
 // Change password
 changePasswordBtn.addEventListener("click", function () {
   if (changePasswordBtn.textContent === "Change Password") {
@@ -105,7 +121,7 @@ changePasswordBtn.addEventListener("click", function () {
         confirmPasswordInput.value = "";
       } else {
         Swal.fire({
-          title: 'No changes detected',
+          title: "No changes detected",
           text: "No updates were made as no changes were detected.",
           icon: "info",
         });
@@ -148,8 +164,6 @@ function updateUser() {
     text: "Profile info updated successfully!",
     icon: "success",
   });
-
- 
 }
 
 function isDataChanged() {
@@ -179,8 +193,6 @@ function updatePassword() {
     });
   }
   localStorage.setItem("users", JSON.stringify(users));
-
- 
 }
 
 // Function to set error to input
@@ -289,7 +301,10 @@ function validateNewPassword() {
     setError(newPasswordInput, `Password must be at least 8 characters long`);
     return false;
   } else if (currentUser.password == newPasswordValue) {
-    setError(newPasswordInput, `This is the same password, please enter a new one`);
+    setError(
+      newPasswordInput,
+      `This is the same password, please enter a new one`
+    );
     return false;
   } else {
     setSuccess(newPasswordInput);
@@ -331,12 +346,12 @@ accountImgFile.addEventListener("change", () => {
   reader.readAsDataURL(file);
   reader.addEventListener("load", function () {
     Swal.fire({
-      title: 'This will be your profile photo',
+      title: "This will be your profile photo",
       imageUrl: reader.result,
-      imageAlt: 'User Image',
+      imageAlt: "User Image",
       showCancelButton: true,
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel'
+      confirmButtonText: "OK",
+      cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
         accountImg.src = reader.result;
@@ -348,6 +363,12 @@ accountImgFile.addEventListener("change", () => {
         });
         displayProfile();
       }
+      else{
+        Swal.fire({
+          text: "Cancelled Successfully",
+          icon: "success",
+        });
+      }
     });
   });
 });
@@ -356,12 +377,12 @@ deleteImg.addEventListener("click", function () {
   if (currentUser) {
     if (currentUser.img) {
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "Do you want to remove your profile photo?",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
       }).then((result) => {
         if (result.isConfirmed) {
           currentUser.img = "";
@@ -387,30 +408,30 @@ deleteAccount.addEventListener("click", function () {
   popUpModal.classList.add("pop-up-active");
   deleteModalBtn.addEventListener("click", function handleDelete() {
     Swal.fire({
-      title: 'Confirm the deletion',
-       html:
+      title: "Confirm the deletion",
+      html:
         '<input type="email" id="swal-email" class="swal2-input" placeholder="Email">' +
         '<input type="password" id="swal-password" class="swal2-input" placeholder="Password">',
       showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
       preConfirm: () => {
-        const email = Swal.getPopup().querySelector('#swal-email').value;
-        const password = Swal.getPopup().querySelector('#swal-password').value;
+        const email = Swal.getPopup().querySelector("#swal-email").value;
+        const password = Swal.getPopup().querySelector("#swal-password").value;
         if (!email || !password) {
           Swal.showValidationMessage(`Please enter email and password`);
         }
-        return { email: email, password: password }
-      }
+        return { email: email, password: password };
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         const { email, password } = result.value;
         if (email === currentUser.email && password === currentUser.password) {
-          let index = users.findIndex(user => user.email === email);
+          let index = users.findIndex((user) => user.email === email);
           users.splice(index, 1);
           localStorage.setItem("users", JSON.stringify(users));
           deleteModalBtn.removeEventListener("click", handleDelete);
-          popUpModal.classList.remove("pop-up-active");
+          closeModal();
           Swal.fire({
             text: "Account Deleted Successfully",
             icon: "success",
@@ -426,14 +447,5 @@ deleteAccount.addEventListener("click", function () {
         }
       }
     });
-  });
-
-  cancelModalBtn.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
-    deleteModalBtn.removeEventListener("click", handleDelete);
-  });
-  popUpModal.addEventListener("click", function () {
-    popUpModal.classList.remove("pop-up-active");
-    deleteModalBtn.removeEventListener("click", handleDelete);
   });
 });

@@ -185,16 +185,22 @@ function displayData(productsArr) {
         </tr>
       `;
     });
-    deleteAllBox.innerHTML = `
-      <button id="delete-all-btn" onclick="confirmDeleteAll()" class="form-btn form-btn-default">Delete All &rAarr; ${currentUser.products.length} &lAarr;</button>
-    `;
   } else {
     content = `
       <tr>
         <td colspan="9" class="empty">No Data Available</td>
       </tr>
     `;
+  }
+
+  if(paginatedProducts.length > 1){
+    deleteAllBox.innerHTML = `
+    <button id="delete-all-btn" onclick="confirmDeleteAll()" class="form-btn form-btn-default">Delete All &rAarr; ${currentUser.products.length} &lAarr;</button>
+  `;
+  }
+  else{
     deleteAllBox.innerHTML = "";
+
   }
 
   tableBody.innerHTML = content;
@@ -205,7 +211,7 @@ function confirmDelete(id) {
   popUpModal.classList.add("pop-up-active");
   popUpTitle.textContent = "You are about to delete a product";
   popUpText.textContent = "This will delete the product from your table. Are you sure?";
-  popUpImg.src = "img/delete.svg";
+  popUpImg.src = "img/svgs/delete-product.svg";
 
   deleteModalBtn.onclick = function () {
     deleteProduct(id);
@@ -216,7 +222,7 @@ function confirmDeleteAll() {
   popUpModal.classList.add("pop-up-active");
   popUpTitle.textContent = "Dude Are you sane? You will delete everything!";
   popUpText.textContent = "I warned you, You will delete all the products from your table.";
-  popUpImg.src = "img/delete-all.svg";
+  popUpImg.src = "img/svgs/delete-all-tasks.svg";
 
   deleteModalBtn.onclick = function () {
     deleteAll();
@@ -272,7 +278,9 @@ function cancelModal() {
     icon: "success",
   });
 }
-
+popUpModal.addEventListener('click',function(e){
+  if(e.target==popUpModal)closeModal();
+})
 function getData(id) {
   formMode = "update";
   currentId = id;

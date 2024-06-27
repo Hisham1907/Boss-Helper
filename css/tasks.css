@@ -542,6 +542,12 @@ color: var(--fancy-color);
     box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
   }
 }
+
+.pop-up-content img {
+  max-width: 75%;
+ margin: auto;
+}
+
 /* Media Queries */
 @media (max-width: 75em) {
   html {

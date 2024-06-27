@@ -314,7 +314,11 @@ table .empty {
   visibility: visible;
   transform: scale(1);
 }
-
+.disappear {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
  
 /* Media Query Adjustments */
 @media (max-width: 75em) {

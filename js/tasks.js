@@ -66,7 +66,6 @@ modal.addEventListener("click", (e) => {
 });
 tableSize.addEventListener("change", updateEntriesPerPage);
 cancelModalBtn.addEventListener("click", cancelModal);
-
 // Initialize categories and display tasks
 initializeCategories();
 displayTasks(currentUser.tasks);
@@ -343,7 +342,9 @@ function deleteTask(id) {
   popUpModal.classList.remove("pop-up-active");
   categoryFilterBtn.textContent = "All Tasks";
 }
-
+function closeModal() {
+  popUpModal.classList.remove("pop-up-active");
+}
 function cancelModal() {
   popUpModal.classList.remove("pop-up-active");
   Swal.fire({
@@ -351,7 +352,9 @@ function cancelModal() {
     icon: "success",
   });
 }
-
+popUpModal.addEventListener('click',function(e){
+  if(e.target==popUpModal)closeModal();
+})
 // Mark a task as done
 function done(currentElement, taskId) {
   const task = currentUser.tasks.find((task) => task.id === taskId);

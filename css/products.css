@@ -206,10 +206,10 @@ tbody tr:hover {
  }
 
 /* ? */
-/* ? */
-/* ? */
-/* ? */
-/* ? */
+.pop-up-content img {
+  max-width: 75%;
+ margin: auto;
+}
 
 @media (max-width: 75em) {
   html {

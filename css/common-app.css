@@ -350,18 +350,20 @@ input:checked + .slider:before {
   opacity: 0;
   visibility: hidden;
   transition: 0.3s all ease-in-out;
-  overflow: hidden;
+  overflow: auto;
   z-index: 9999999;
+ 
 }
 
 .pop-up-content {
-  padding: 2.4rem;
-  background-color: #fff;
+  padding: 2.4rem 0;
+  background-color: var(--sweet-bg-color);
+  color:var(--text-color) ;
   max-width: 400px;
   width: 90%;
   border-radius: 11px;
   text-align: center;
-  border-top: 10px solid #f52f39;
+  border-top: 10px solid var(--red-color) ;
   box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.2);
   opacity: 0;
   visibility: hidden;
@@ -371,12 +373,13 @@ input:checked + .slider:before {
 }
 
 .pop-up-content img {
-  max-width: 80%;
+   max-width: 100%;
   margin: auto;
 }
 
+
 .pop-up-content i {
-  background-color: #f52f39;
+  background-color: var(--red-color);
   padding: 1.2rem;
   border-radius: 50%;
   position: absolute;
@@ -388,13 +391,14 @@ input:checked + .slider:before {
 }
 
 .pop-up-content h2 {
-  color: #000;
+  color:var(--text-color) ;
   font-size: 2rem;
   margin-top: 3rem;
+  margin-bottom: 1.2rem;
 }
 
 .pop-up-content p {
-  color: #333;
+  color:var(--text-color) ;
   margin: 1.2rem 0 2.4rem 0;
   font-size: 1.4rem;
 }
@@ -422,10 +426,13 @@ button.cancel-modal-btn {
 }
 
 button.delete-modal-btn {
-  background-color: #f52f39;
+  background-color: var(--red-color);
   color: #fff;
+  transition: .5s all;
 }
-
+button.delete-modal-btn:hover{
+  background-color: var(--red-hover-color);
+}
 .pop-up-active.pop-up,
 .pop-up-active .pop-up-content {
   opacity: 1;

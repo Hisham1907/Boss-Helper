@@ -173,6 +173,11 @@ label {
 .delete-account-btn:hover {
   background-color: var(--red-hover-color);
 }
+.pop-up-content img {
+  max-width: 80%;
+ margin: auto;
+}
+
 /* Media Queries */
 @media (max-width: 75em) {
   html {
