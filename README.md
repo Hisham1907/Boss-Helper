@@ -63,7 +63,3 @@ The profile page displays the user’s personal information and credentials. Use
 - **CSS**
 - **JavaScript**
 - **Chart.js**
-
-## Contact
-
-For any inquiries or feedback, please contact Hisham on [linkedin](https://www.linkedin.com/in/hisham-rabea-226866248).
